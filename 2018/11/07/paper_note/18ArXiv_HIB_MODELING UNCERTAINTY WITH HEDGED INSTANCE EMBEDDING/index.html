@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯. Gaussian Embedding 又叫 Stochastic Embedding Vector Embedding 又叫 Point Embedding">
+  <meta name="description" content="之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯. Gaussian Embedding 又叫 Stochastic Embedding Vector Embedding 又叫 Point Embedding Motivation前面已经有很多工作将各种各样的Object映射为">
 <meta name="keywords" content="Gaussian Embedding,Deep Learning,Wasserstein">
 <meta property="og:type" content="article">
 <meta property="og:title" content="18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING">
 <meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/11/07/paper_note/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/index.html">
 <meta property="og:site_name" content="Jimmy">
-<meta property="og:description" content="之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯. Gaussian Embedding 又叫 Stochastic Embedding Vector Embedding 又叫 Point Embedding">
+<meta property="og:description" content="之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯. Gaussian Embedding 又叫 Stochastic Embedding Vector Embedding 又叫 Point Embedding Motivation前面已经有很多工作将各种各样的Object映射为">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-08T12:40:27.976Z">
+<meta property="og:updated_time" content="2018-11-08T13:06:48.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING">
-<meta name="twitter:description" content="之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯. Gaussian Embedding 又叫 Stochastic Embedding Vector Embedding 又叫 Point Embedding">
+<meta name="twitter:description" content="之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯. Gaussian Embedding 又叫 Stochastic Embedding Vector Embedding 又叫 Point Embedding Motivation前面已经有很多工作将各种各样的Object映射为">
 
 
 
@@ -405,7 +405,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-08 20:40:27" itemprop="dateModified" datetime="2018-11-08T20:40:27+08:00">2018-11-08</time>
+                <time title="Modified: 2018-11-08 21:06:48" itemprop="dateModified" datetime="2018-11-08T21:06:48+08:00">2018-11-08</time>
               
             
           </span>
@@ -488,9 +488,8 @@
         <p>之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯.</p>
 <p>Gaussian Embedding 又叫 Stochastic Embedding</p>
 <p>Vector Embedding 又叫 Point Embedding</p>
-<a id="more"></a>
 <h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>前面已经有很多工作将各种各样的Object映射为高斯分布来捕获不确定性.但是如果Object的不确定性很高,一个高斯分布也不足以捕获呢?</p>
-<p>本文提出了HIB来解决上述问题.所谓的”hedging its bets”就是为了避免损失,多处下注.对应到本文,对于有歧义的输入,将其映射为多个高斯分布, 每个高斯分布代表其中一个意思. </p>
+<p>本文提出了HIB来解决上述问题.所谓的”hedging its bets”就是为了<strong>避免损失,多处下注</strong>.对应到本文,<strong>对于有歧义的输入,将其映射为多个高斯分布, 每个高斯分布代表其中一个意思</strong>. </p>
 <p>针对图像的歧义需求,设计了$N-digits MNIST$ 数据集,即将mnist中的数字组合成一张新图,这样每张图就有歧义了.</p>
 <p>figure 1. </p>
 <p>这张图就很好的解释了本文的Motivation.</p>
@@ -511,10 +510,19 @@
 <p>$$<br>p ( m | x _ { 1 } , x _ { 2 } ) \approx \frac { 1 } { K ^ { 2 } } \sum _ { k _ { 1 } = 1 } ^ { K } \sum _ { k _ { 2 } = 1 } ^ { K } p ( m | z _ { 1 } ^ { \left( k _ { 1 } \right) } , z _ { 2 } ^ { \left( k _ { 2 } \right) } )<br>$$</p>
 <p>到这里模型其实已经可以用了,但是本文所强调的混合高斯怎么融入到上述模型里呢?</p>
 <p>这里其实很简单,就是将$p(z|x)$这个映射变复杂,采样也变成从多个高斯分布中采样.<br>$$<br>p(z|x)=\sum _ { c = 1 } ^ { C } \mathcal { N } ( z ; \mu ( x , c ) , \Sigma ( x , c ) )<br>$$<br>到现在模型其实新颖程度创新程度感觉还不够, 看来有一部分创新在VIB里.</p>
-<h2 id="variational-information-bottleneck-principle"><a href="#variational-information-bottleneck-principle" class="headerlink" title="variational information bottleneck principle"></a>variational information bottleneck principle</h2><p>为了训练上述模型, 本文混合了soft contrastive loss 和  the VIB principle.这里利用了17ICLR_VIB_Deep variational information bottleneck的推导结果<br>$$<br>I ( z , y ) - \beta I ( z , x )<br>$$<br>直观理解就是:学到的z和标签y很像,同时 z和输入x尽量相似度小. 这样在保证z有效性的同时,又可以滤除x中无用部分<br>$$</p>
+<h2 id="variational-information-bottleneck-principle"><a href="#variational-information-bottleneck-principle" class="headerlink" title="variational information bottleneck principle"></a>variational information bottleneck principle</h2><p>为了训练上述模型, 本文混合了soft contrastive loss 和  the VIB principle.这里利用了17ICLR_VIB_Deep variational information bottleneck的推导结果<br>$$<br>I ( z , y ) - \beta I ( z , x )<br>$$<br>直观理解就是:学到的z和标签y很像,同时 z和输入x尽量相似度小. 这样在保证z有效性的同时,又可以滤除x中无用部分.将公式(4)进行放缩,可以得到(5),</p>
+<p>最终推导得到<br>$$</p>
 <ul>
 <li>\mathcal { L } _ { \mathrm { VIB } } : = \mathbb { E } _ { z \sim p ( z | x ) } [ \log q ( y | z ) ] - \beta \cdot \mathrm { KL } ( p ( z | x ) | r ( z ) )<br>$$<br>并结合本文Embedding需求,对上述loss里的一些项进行了替换.<br>$$<br>\begin{aligned} \mathcal { L } _ { \mathrm { VIBEmb } } : = &amp; - \mathbb { E } _ { z _ { 1 } \sim p \left( z _ { 1 } | x _ { 1 } \right) , z _ { 2 } \sim p \left( z _ { 2 } | x _ { 2 } \right) } [ \log p ( m = \hat { m } | z _ { 1 } , z _ { 2 } ) ] \ &amp; + \beta \cdot \left[ \mathrm { KL } \left( p \left( z _ { 1 } | x _ { 1 } \right) | r \left( z _ { 1 } \right) \right) + \mathrm { KL } \left( p \left( z _ { 2 } | x _ { 2 } \right) | r \left( z _ { 2 } \right) \right) \right] \end{aligned}<br>$$<br>(5)中$q(y|z)$是根据表示z预测标签y,对应这里的$\log p ( m = \hat { m } | z _ { 1 } , z _ { 2 } ) $,这一项就是soft contrastive loss .</li>
 </ul>
+<h1 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h1><p>TODO</p>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>之前的论文都用高斯分布来捕获Object的不确定性取得了一定的效果.但是单个高斯分布就够好了吗?本文通过例子分析了单个高斯的不足,提出用多个高斯分布来描述Object的歧义.</p>
+<p>想法很好,但是感觉力度不够.</p>
+<ol>
+<li>本文亮点的Mixture of Gaussians (MoG) embedding就只一句话描述,不够清楚;</li>
+<li>强调了VIB也只是利用现有的工作,换个loss形式.</li>
+</ol>
+<p>个人感觉最近一些Gaussian Embedding的论文很多都是:换个Gaussian Distribution的形式+换个loss/distance.</p>
 
       
     </div>
@@ -787,7 +795,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Motivation"><span class="nav-number">1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hedged-instance-embedding-HIB"><span class="nav-number">2.1.</span> <span class="nav-text">hedged instance embedding (HIB).</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#variational-information-bottleneck-principle"><span class="nav-number">2.2.</span> <span class="nav-text">variational information bottleneck principle</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Motivation"><span class="nav-number">1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hedged-instance-embedding-HIB"><span class="nav-number">2.1.</span> <span class="nav-text">hedged instance embedding (HIB).</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#variational-information-bottleneck-principle"><span class="nav-number">2.2.</span> <span class="nav-text">variational information bottleneck principle</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Experiment"><span class="nav-number">3.</span> <span class="nav-text">Experiment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-number">4.</span> <span class="nav-text">Summary</span></a></li></ol></div>
             
 
           </div>
