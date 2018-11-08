@@ -232,14 +232,6 @@
         
         
           
-          <li class="menu-item menu-item-about">
-    <a href="/Jhy1993.github.io/about/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
-  </li>
-        
-        
-        
-          
           <li class="menu-item menu-item-tags">
     <a href="/Jhy1993.github.io/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
@@ -256,18 +248,65 @@
         
         
           
+          <li class="menu-item menu-item-something">
+    <a href="/Jhy1993.github.io/something/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-barcode"></i> <br />Something</a>
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
     <a href="/Jhy1993.github.io/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
   </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/Jhy1993.github.io/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
 
       
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
       
     </ul>
   
 
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -314,7 +353,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jimmy">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/Jhy1993.github.io/images/avatar.gif">
+      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx0wt48bstj30hs0hsq3x.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -395,6 +434,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Jhy1993.github.io/2018/10/27/paper_note/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/10/27/paper_note/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -434,20 +483,26 @@
 <p>为了做上面这件事,本文用<strong>无监督的rank</strong>,同时利用<strong>属性和结构</strong>来做一个<strong>inductive</strong>的算法.</p>
 <h2 id="Model-Deep-Gaussian-Embedding"><a href="#Model-Deep-Gaussian-Embedding" class="headerlink" title="Model: Deep Gaussian Embedding"></a>Model: Deep Gaussian Embedding</h2><p>这里对Gaussian Embedding的定义:每个节点的表示$h_i=\mathcal{N}(\mu_i, \sum_i)$ 一个均值向量和一个方差矩阵.注意这里只考虑对角方差矩阵.</p>
 <h3 id="encoder"><a href="#encoder" class="headerlink" title="encoder"></a>encoder</h3><p>这里为了得到节点的$h_i=\mathcal{N}(\mu_i, \sum_i)$,本文用神经网络对节点属性进行变换得到intermediate hidden representation,然后分别引出两个L维向量代表$\mu$和$\sum_i$.</p>
-<h3 id="ranking"><a href="#ranking" class="headerlink" title="ranking"></a>ranking</h3><p>本文认为rank可以比一阶二阶更好捕获局部和全局结构.所以基于节点对之间的最短路径长度,对节点对的相似性进行了排序.<br>$$<br>\Delta \left( \mathbf { h } _ { i } , \mathbf { h } _ { k _ { 1 } } \right) &lt; \Delta \left( \mathbf { h } _ { i } , \mathbf { h } _ { k _ { 2 } } \right) &lt; \cdots &lt; \Delta \left( \mathbf { h } _ { i } , \mathbf { h } _ { k _ { K } } \right) \quad \forall k _ { 1 } \in N _ { i 1 } , \forall k _ { 2 } \in N _ { i 2 } , \ldots , \forall k _ { K } \in N _ { i K }<br>$$</p>
-<p>但是基于最短路径的rank足够好吗? 感觉最短路径长的节点相似性也可以很高.</p>
-<h3 id="Similarity-amp-Dissimilarity"><a href="#Similarity-amp-Dissimilarity" class="headerlink" title="Similarity &amp; Dissimilarity"></a>Similarity &amp; Dissimilarity</h3><p>这里用了非对称的KL来计算相似性(适用于无向图), 也可以用对称的JS.<br>$$<br>\Delta \left( \mathbf { h } _ { i } , \mathbf { h } _ { j } \right) = D _ { K L } \left( \mathcal { N } _ { j } | \mathcal { N } _ { i } \right) =\\<br>\frac { 1 } { 2 } \left[ \operatorname { tr } \left( \Sigma _ { i } ^ { - 1 } \Sigma _ { j } \right) + \left( \mu _ { i } - \mu _ { j } \right) ^ { T } \Sigma _ { i } ^ { - 1 } \left( \mu _ { i } - \mu _ { j } \right) - L - \log \frac { \operatorname { det } \left( \Sigma _ { j } \right) } { \operatorname { det } \left( \Sigma _ { i } \right) } \right]<br>$$</p>
-<p>KL散度有一些固有的缺点</p>
+<h3 id="ranking"><a href="#ranking" class="headerlink" title="ranking"></a>ranking</h3><p>本文认为rank可以比一阶二阶更好捕获局部和全局结构.所以基于节点对之间的最短路径长度,对节点对的相似性进行了排序.</p>
+<script type="math/tex; mode=display">
+\Delta \left( \mathbf { h } _ { i } , \mathbf { h } _ { k _ { 1 } } \right) < \Delta \left( \mathbf { h } _ { i } , \mathbf { h } _ { k _ { 2 } } \right) < \cdots < \Delta \left( \mathbf { h } _ { i } , \mathbf { h } _ { k _ { K } } \right) \quad \forall k _ { 1 } \in N _ { i 1 } , \forall k _ { 2 } \in N _ { i 2 } , \ldots , \forall k _ { K } \in N _ { i K }</script><p>但是基于最短路径的rank足够好吗? 感觉最短路径长的节点相似性也可以很高.</p>
+<h3 id="Similarity-amp-Dissimilarity"><a href="#Similarity-amp-Dissimilarity" class="headerlink" title="Similarity &amp; Dissimilarity"></a>Similarity &amp; Dissimilarity</h3><p>这里用了非对称的KL来计算相似性(适用于无向图), 也可以用对称的JS.</p>
+<script type="math/tex; mode=display">
+\Delta \left( \mathbf { h } _ { i } , \mathbf { h } _ { j } \right) = D _ { K L } \left( \mathcal { N } _ { j } \| \mathcal { N } _ { i } \right) =\\\
+\frac { 1 } { 2 } \left[ \operatorname { tr } \left( \Sigma _ { i } ^ { - 1 } \Sigma _ { j } \right) + \left( \mu _ { i } - \mu _ { j } \right) ^ { T } \Sigma _ { i } ^ { - 1 } \left( \mu _ { i } - \mu _ { j } \right) - L - \log \frac { \operatorname { det } \left( \Sigma _ { j } \right) } { \operatorname { det } \left( \Sigma _ { i } \right) } \right]</script><p>KL散度有一些固有的缺点</p>
 <ul>
 <li>非对称(虽然有些论文说这是特点,适用于有向图).</li>
 <li>在两个分布相差较小的时候,KL散度可能无意义.</li>
 <li>不满足三角不等式.</li>
 </ul>
 <p>所以一些论文尝试换距离,比如Wasserstein 距离.见18KDD_DVNE</p>
-<h3 id="Loss"><a href="#Loss" class="headerlink" title="Loss"></a>Loss</h3><p>$$<br>\mathcal { L } = \sum _ { i } \sum _ { k &lt; l } \sum _ { j _ { k } \in N _ { i k } } \sum _ { j _ { l } \in N _ { i l } } \left( E _ { i j _ { k } } ^ { 2 } + \exp ^ { - E _ { i j _ { l } } } \right) = \sum _ { \left( i , j _ { k } , j _ { l } \right) \in \mathcal { D } _ { t } } \left( E _ { i j _ { k } } ^ { 2 } + \exp ^ { - E _ { i j _ { l } } } \right) \\<br>E _ { i j } = D _ { K L } \left( \mathcal { N } _ { j } | \mathcal { N } _ { i } \right)<br>$$</p>
-<p>最小化这个loss: Ijk比较近,能量比较小; Ijl比较远,能量比较大.</p>
+<h3 id="Loss"><a href="#Loss" class="headerlink" title="Loss"></a>Loss</h3><script type="math/tex; mode=display">
+\mathcal { L } = \sum _ { i } \sum _ { k < l } \sum _ { j _ { k } \in N _ { i k } } \sum _ { j _ { l } \in N _ { i l } } \left( E _ { i j _ { k } } ^ { 2 } + \exp ^ { - E _ { i j _ { l } } } \right) = \sum _ { \left( i , j _ { k } , j _ { l } \right) \in \mathcal { D } _ { t } } \left( E _ { i j _ { k } } ^ { 2 } + \exp ^ { - E _ { i j _ { l } } } \right) \\\
+E _ { i j } = D _ { K L } \left( \mathcal { N } _ { j } \| \mathcal { N } _ { i } \right)</script><p>最小化这个loss: Ijk比较近,能量比较小; Ijl比较远,能量比较大.</p>
 <p>为了使得整体最小,需要ijl的能量指数衰减. 可以理解为,对ijk的约束比较大,要很近;对较远的点(负样本)约束比较小. 从而实现了类似margin的作用.</p>
-<h3 id="Sampling-strategy"><a href="#Sampling-strategy" class="headerlink" title="Sampling strategy"></a>Sampling strategy</h3><p>上述loss需要在整个图上算,这里利用采样的方法来近似.<br>$$<br>\text{replace}\sum _ { \left( i , j _ { k } , j _ { l } \right) \in \mathcal { D } _ { t } } \text { with } \mathbb { E } _ { \left( i , j _ { k } , j _ { l } \right) \sim \mathcal { D } _ { t } }<br>$$<br>但是直接采样会导致优化过程中对<strong>low-degree的点</strong>更新较少.本文提出一种<strong>an alternative node-anchored sampling strategy</strong>:以每个点为一点,采样他们的高阶邻居,组成一批数据进行训练. 然后这种策略依然有着自己的缺点,他<strong>估计的梯度是有偏的.</strong> </p>
+<h3 id="Sampling-strategy"><a href="#Sampling-strategy" class="headerlink" title="Sampling strategy"></a>Sampling strategy</h3><p>上述loss需要在整个图上算,这里利用采样的方法来近似.</p>
+<script type="math/tex; mode=display">
+\text{replace}\sum _ { \left( i , j _ { k } , j _ { l } \right) \in \mathcal { D } _ { t } } \text { with } \mathbb { E } _ { \left( i , j _ { k } , j _ { l } \right) \sim \mathcal { D } _ { t } }</script><p>但是直接采样会导致优化过程中对<strong>low-degree的点</strong>更新较少.本文提出一种<strong>an alternative node-anchored sampling strategy</strong>:以每个点为一点,采样他们的高阶邻居,组成一批数据进行训练. 然后这种策略依然有着自己的缺点,他<strong>估计的梯度是有偏的.</strong> </p>
 <h3 id="Diss"><a href="#Diss" class="headerlink" title="Diss"></a>Diss</h3><ol>
 <li><p>本文在inductive的时候不需要结构信息,而之前的方法graphsage则需要.究其原因,是本文在学习节点表示的时候仅仅利用了属性信息,而结构信息用来计算loss优化模型.</p>
 </li>
@@ -466,7 +521,7 @@
 <h3 id="不确定性"><a href="#不确定性" class="headerlink" title="不确定性"></a>不确定性</h3><p>节点的不确定性应该与它邻居的多样性(种类)有关. 邻居种类越少, 节点越确定.</p>
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>本文提出了Graph2Gauss来捕获节点的不确定性,模型感觉也是简洁有效,实验效果也不错.尤其是是没有属性的G2G_oh效果也很好,证明了gaussian embedding的优势.<br>但是本文在求均值和方差所用的模型太简单(全连接),并且没有利用结构信息,这样可能导致学到的gaussian embedding不够好. 可以试试用GNN搞一波.<br>此外,那个ranking信息感觉也有争议.最短路径某些情况下也许不够好.</p>
 <p>最后,在进行试验的时候只是简单的将均值方差拼接,有没有更好了方式可以反映他们之间的关系?</p>
-<p>且听下回分解&lt;&lt;18KDD_DVNE_Deep Variational Network Embedding in Wasserstein Space&gt;&gt;.</p>
+<p>且听下回分解&lt;<18kdd_dvne_deep variational="" network="" embedding="" in="" wasserstein="" space="">&gt;.</18kdd_dvne_deep></p>
 
       
     </div>
@@ -531,8 +586,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/203.Remove_linked_list_elements/" rel="next" title="203. Remove Linked List Elements">
-                <i class="fa fa-chevron-left"></i> 203. Remove Linked List Elements
+              <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.unique_paths/" rel="next" title="62. unique paths">
+                <i class="fa fa-chevron-left"></i> 62. unique paths
               </a>
             
           </div>
@@ -565,6 +620,9 @@
           </div>
           
 
+  
+    <div class="comments" id="comments">
+    </div>
   
 
 
@@ -601,6 +659,10 @@
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://ws4.sinaimg.cn/large/006tNbRwly1fx0wt48bstj30hs0hsq3x.jpg"
+                alt="Jimmy" />
             
               <p class="site-author-name" itemprop="name">Jimmy</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -685,12 +747,7 @@
                 </span>
               
                 <span class="links-of-author-item">
-                  <a href="https://www.paperweekly.site/user/jhy1993" target="_blank" title="PaperWeekly"><i class="fa fa-fw fa-pen-nib"></i>PaperWeekly</a>
-                  
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="http://rootlu.com" target="_blank" title="Rootlu"><i class="fa fa-fw fa-users"></i>Rootlu</a>
+                  <a href="https://www.paperweekly.site/user/jhy1993" target="_blank" title="PaperWeekly"><i class="fa fa-fw fa-paper-plane"></i>PaperWeekly</a>
                   
                 </span>
               
@@ -701,6 +758,20 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Friend List
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://rootlu.com" title="Rootlu" target="_blank">Rootlu</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -895,9 +966,354 @@
 
 
 
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '1eYNtnXydo0J0kC9W9aMadNY-gzGzoHsz',
+        appKey: 'vEQYCT1mLfBizjas6CkjJMl1',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/Jhy1993.github.io/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
