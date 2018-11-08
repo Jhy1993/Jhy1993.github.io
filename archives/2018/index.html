@@ -389,9 +389,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/paper_note/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/" itemprop="url">
+            <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_WAE_Wasserstein auto-encoders/" itemprop="url">
               
-                <span itemprop="name">18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING</span>
+                <span itemprop="name">18ICLR_WAE_Wasserstein auto-encoders</span>
               
             </a>
         
@@ -426,9 +426,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_WAE_Wasserstein auto-encoders/" itemprop="url">
+            <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/paper_note/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/" itemprop="url">
               
-                <span itemprop="name">18ICLR_WAE_Wasserstein auto-encoders</span>
+                <span itemprop="name">18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING</span>
               
             </a>
         
@@ -574,9 +574,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/021.Merge_two_sorted_lists/" itemprop="url">
+            <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/083.Remove_duplicates_from_sorted_list/" itemprop="url">
               
-                <span itemprop="name">21. Merge Two Sorted Lists</span>
+                <span itemprop="name">83. Remove Duplicates from Sorted List</span>
               
             </a>
         
@@ -648,9 +648,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/083.Remove_duplicates_from_sorted_list/" itemprop="url">
+            <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/021.Merge_two_sorted_lists/" itemprop="url">
               
-                <span itemprop="name">83. Remove Duplicates from Sorted List</span>
+                <span itemprop="name">21. Merge Two Sorted Lists</span>
               
             </a>
         
@@ -950,6 +950,24 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 
@@ -1426,6 +1444,75 @@
 
 
   
+
+  
+  <script>
+    
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
+        .done(function ({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "1eYNtnXydo0J0kC9W9aMadNY-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "1eYNtnXydo0J0kC9W9aMadNY-gzGzoHsz",
+                'X-LC-Key': "vEQYCT1mLfBizjas6CkjJMl1",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+          
+        })
+    });
+  </script>
+
+
 
   
 
