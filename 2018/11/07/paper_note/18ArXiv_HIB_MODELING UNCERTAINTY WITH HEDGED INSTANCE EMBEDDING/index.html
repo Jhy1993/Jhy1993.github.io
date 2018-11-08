@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Jimmy">
 <meta property="og:description" content="之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯. Gaussian Embedding 又叫 Stochastic Embedding Vector Embedding 又叫 Point Embedding">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-08T09:41:08.387Z">
+<meta property="og:updated_time" content="2018-11-08T12:40:27.976Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING">
 <meta name="twitter:description" content="之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯. Gaussian Embedding 又叫 Stochastic Embedding Vector Embedding 又叫 Point Embedding">
@@ -405,7 +405,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-08 17:41:08" itemprop="dateModified" datetime="2018-11-08T17:41:08+08:00">2018-11-08</time>
+                <time title="Modified: 2018-11-08 20:40:27" itemprop="dateModified" datetime="2018-11-08T20:40:27+08:00">2018-11-08</time>
               
             
           </span>
@@ -482,27 +482,20 @@
 <li>也没理解..</li>
 </ol>
 <h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><p>模型主要思路是通过variational information bottleneck principle来学习hedged instance embedding (HIB). </p>
-<h2 id="hedged-instance-embedding-HIB"><a href="#hedged-instance-embedding-HIB" class="headerlink" title="hedged instance embedding (HIB)."></a>hedged instance embedding (HIB).</h2><p>这里首先介绍两个输入的匹配概率, 实际是输入x到分布Z变换$Z \sim p(z|x)$, 计算Z的匹配概率</p>
-<script type="math/tex; mode=display">
-p ( m | x _ { 1 } , x _ { 2 } ) = \int p ( m | z _ { 1 } , z _ { 2 } ) p \left( z _ { 1 } | x _ { 1 } \right) p \left( z _ { 2 } | x _ { 2 } \right) \mathrm { d } z _ { 1 } \mathrm { d } z _ { 2 }</script><p>为了求这个积分分两步:</p>
+<h2 id="hedged-instance-embedding-HIB"><a href="#hedged-instance-embedding-HIB" class="headerlink" title="hedged instance embedding (HIB)."></a>hedged instance embedding (HIB).</h2><p>这里首先介绍两个输入的匹配概率, 实际是输入x到分布Z变换$Z \sim p(z|x)$, 计算Z的匹配概率<br>$$<br>p ( m | x _ { 1 } , x _ { 2 } ) = \int p ( m | z _ { 1 } , z _ { 2 } ) p \left( z _ { 1 } | x _ { 1 } \right) p \left( z _ { 2 } | x _ { 2 } \right) \mathrm { d } z _ { 1 } \mathrm { d } z _ { 2 }<br>$$<br>为了求这个积分分两步:</p>
 <ol>
 <li><p>$p(z|x)$这个一般都是用神经网络来映射.</p>
 </li>
-<li><p>求$p ( m | x <em> { 1 } , x </em> { 2 } )$ 这里用了MC Sampling, 分别从两个输入$x_1,x_2$ 采样多个样本.</p>
+<li><p>求$p ( m | x _ { 1 } , x _ { 2 } )$ 这里用了MC Sampling, 分别从两个输入$x_1,x_2$ 采样多个样本.</p>
 </li>
 </ol>
-<script type="math/tex; mode=display">
-p ( m | x _ { 1 } , x _ { 2 } ) \approx \frac { 1 } { K ^ { 2 } } \sum _ { k _ { 1 } = 1 } ^ { K } \sum _ { k _ { 2 } = 1 } ^ { K } p ( m | z _ { 1 } ^ { \left( k _ { 1 } \right) } , z _ { 2 } ^ { \left( k _ { 2 } \right) } )</script><p>到这里模型其实已经可以用了,但是本文所强调的混合高斯怎么融入到上述模型里呢?</p>
-<p>这里其实很简单,就是将$p(z|x)$这个映射变复杂,采样也变成从多个高斯分布中采样.</p>
-<script type="math/tex; mode=display">
-p(z|x)=\sum _ { c = 1 } ^ { C } \mathcal { N } ( z ; \mu ( x , c ) , \Sigma ( x , c ) )</script><p>到现在模型其实新颖程度创新程度感觉还不够, 看来有一部分创新在VIB里.</p>
-<h2 id="variational-information-bottleneck-principle"><a href="#variational-information-bottleneck-principle" class="headerlink" title="variational information bottleneck principle"></a>variational information bottleneck principle</h2><p>为了训练上述模型, 本文混合了soft contrastive loss 和  the VIB principle.这里利用了17ICLR_VIB_Deep variational information bottleneck的推导结果</p>
-<script type="math/tex; mode=display">
-I ( z , y ) - \beta I ( z , x )</script><p>直观理解就是:学到的z和标签y很像,同时 z和输入x尽量相似度小. 这样在保证z有效性的同时,又可以滤除x中无用部分</p>
-<script type="math/tex; mode=display">
-- \mathcal { L } _ { \mathrm { VIB } } : = \mathbb { E } _ { z \sim p ( z | x ) } [ \log q ( y | z ) ] - \beta \cdot \mathrm { KL } ( p ( z | x ) \| r ( z ) )</script><p>并结合本文Embedding需求,对上述loss里的一些项进行了替换.</p>
-<script type="math/tex; mode=display">
-\begin{aligned} \mathcal { L } _ { \mathrm { VIBEmb } } : = & - \mathbb { E } _ { z _ { 1 } \sim p \left( z _ { 1 } | x _ { 1 } \right) , z _ { 2 } \sim p \left( z _ { 2 } | x _ { 2 } \right) } [ \log p ( m = \hat { m } | z _ { 1 } , z _ { 2 } ) ] \\ & + \beta \cdot \left[ \mathrm { KL } \left( p \left( z _ { 1 } | x _ { 1 } \right) \| r \left( z _ { 1 } \right) \right) + \mathrm { KL } \left( p \left( z _ { 2 } | x _ { 2 } \right) \| r \left( z _ { 2 } \right) \right) \right] \end{aligned}</script><p>(5)中$q(y|z)$是根据表示z预测标签y,对应这里的$\log p ( m = \hat { m } | z <em> { 1 } , z </em> { 2 } ) $,这一项就是soft contrastive loss .</p>
+<p>$$<br>p ( m | x _ { 1 } , x _ { 2 } ) \approx \frac { 1 } { K ^ { 2 } } \sum _ { k _ { 1 } = 1 } ^ { K } \sum _ { k _ { 2 } = 1 } ^ { K } p ( m | z _ { 1 } ^ { \left( k _ { 1 } \right) } , z _ { 2 } ^ { \left( k _ { 2 } \right) } )<br>$$</p>
+<p>到这里模型其实已经可以用了,但是本文所强调的混合高斯怎么融入到上述模型里呢?</p>
+<p>这里其实很简单,就是将$p(z|x)$这个映射变复杂,采样也变成从多个高斯分布中采样.<br>$$<br>p(z|x)=\sum _ { c = 1 } ^ { C } \mathcal { N } ( z ; \mu ( x , c ) , \Sigma ( x , c ) )<br>$$<br>到现在模型其实新颖程度创新程度感觉还不够, 看来有一部分创新在VIB里.</p>
+<h2 id="variational-information-bottleneck-principle"><a href="#variational-information-bottleneck-principle" class="headerlink" title="variational information bottleneck principle"></a>variational information bottleneck principle</h2><p>为了训练上述模型, 本文混合了soft contrastive loss 和  the VIB principle.这里利用了17ICLR_VIB_Deep variational information bottleneck的推导结果<br>$$<br>I ( z , y ) - \beta I ( z , x )<br>$$<br>直观理解就是:学到的z和标签y很像,同时 z和输入x尽量相似度小. 这样在保证z有效性的同时,又可以滤除x中无用部分<br>$$</p>
+<ul>
+<li>\mathcal { L } _ { \mathrm { VIB } } : = \mathbb { E } _ { z \sim p ( z | x ) } [ \log q ( y | z ) ] - \beta \cdot \mathrm { KL } ( p ( z | x ) | r ( z ) )<br>$$<br>并结合本文Embedding需求,对上述loss里的一些项进行了替换.<br>$$<br>\begin{aligned} \mathcal { L } _ { \mathrm { VIBEmb } } : = &amp; - \mathbb { E } _ { z _ { 1 } \sim p \left( z _ { 1 } | x _ { 1 } \right) , z _ { 2 } \sim p \left( z _ { 2 } | x _ { 2 } \right) } [ \log p ( m = \hat { m } | z _ { 1 } , z _ { 2 } ) ] \ &amp; + \beta \cdot \left[ \mathrm { KL } \left( p \left( z _ { 1 } | x _ { 1 } \right) | r \left( z _ { 1 } \right) \right) + \mathrm { KL } \left( p \left( z _ { 2 } | x _ { 2 } \right) | r \left( z _ { 2 } \right) \right) \right] \end{aligned}<br>$$<br>(5)中$q(y|z)$是根据表示z预测标签y,对应这里的$\log p ( m = \hat { m } | z _ { 1 } , z _ { 2 } ) $,这一项就是soft contrastive loss .</li>
+</ul>
 
       
     </div>
@@ -569,8 +562,8 @@ I ( z , y ) - \beta I ( z , x )</script><p>直观理解就是:学到的z和标�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/11/07/paper_note/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/" rel="next" title="18KDD_DVNE_Deep Variational Network Embedding in Wasserstein Space">
-                <i class="fa fa-chevron-left"></i> 18KDD_DVNE_Deep Variational Network Embedding in Wasserstein Space
+              <a href="/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_WAE_Wasserstein auto-encoders/" rel="next" title="18ICLR_WAE_Wasserstein auto-encoders">
+                <i class="fa fa-chevron-left"></i> 18ICLR_WAE_Wasserstein auto-encoders
               </a>
             
           </div>
@@ -578,10 +571,6 @@ I ( z , y ) - \beta I ( z , x )</script><p>直观理解就是:学到的z和标�
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_WAE_Wasserstein auto-encoders/" rel="prev" title="18ICLR_WAE_Wasserstein auto-encoders">
-                18ICLR_WAE_Wasserstein auto-encoders <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
