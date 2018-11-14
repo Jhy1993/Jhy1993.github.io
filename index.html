@@ -108,13 +108,16 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Jimmy">
+  <meta name="description" content="EECS, BUPTer, 算法蒻鷄.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Better Call Saul">
 <meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/index.html">
-<meta property="og:site_name" content="Jimmy">
+<meta property="og:site_name" content="Better Call Saul">
+<meta property="og:description" content="EECS, BUPTer, 算法蒻鷄.">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jimmy">
+<meta name="twitter:title" content="Better Call Saul">
+<meta name="twitter:description" content="EECS, BUPTer, 算法蒻鷄.">
 
 
 
@@ -131,7 +134,7 @@
   };
 </script>
 
-  <title>Jimmy</title>
+  <title>Better Call Saul</title>
   
 
 
@@ -192,10 +195,14 @@
     <div class="custom-logo-site-title">
       <a href="/Jhy1993.github.io/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jimmy</span>
+        <span class="site-title">Better Call Saul</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
+      
+        <p class="site-subtitle">TODO</p>
+      
     
   </div>
 
@@ -342,16 +349,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_WAE_Wasserstein auto-encoders/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/13/1-100/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jimmy">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
       <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="name" content="Better Call Saul">
     </span>
 
     
@@ -361,7 +368,392 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_WAE_Wasserstein auto-encoders/" itemprop="url">
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/13/1-100/" itemprop="url">
+                  Sentences 1-100
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-11-13 09:17:22" itemprop="dateCreated datePublished" datetime="2018-11-13T09:17:22+08:00">2018-11-13</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/English/" itemprop="url" rel="index"><span itemprop="name">English</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Jhy1993.github.io/2018/11/13/1-100/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/13/1-100/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Jhy1993.github.io/2018/11/13/1-100/" class="leancloud_visitors" data-flag-title="Sentences 1-100">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ol>
+<li>One of <strong>the holy grails</strong> of machine learning is to compute meaningful low-dimensional embeddings for high-dimensional complex objects. That ability is crucial to tackle advanced tasks, such as inference on texts using word embeddings [Pennington et al., 2014, Bojanowski et al., 2016], image understanding [Norouzi et al., 2014] or concise representations for nodes in a huge graph [Grover and Leskovec, 2016].
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Jhy1993.github.io/2018/11/13/1-100/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
+      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Better Call Saul">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/" itemprop="url">
+                  18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-11-07 22:27:29" itemprop="dateCreated datePublished" datetime="2018-11-07T22:27:29+08:00">2018-11-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-10 15:37:05" itemprop="dateModified" datetime="2018-11-10T15:37:05+08:00">2018-11-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/" class="leancloud_visitors" data-flag-title="18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯.
+Gaussian Embedding 又叫 Stochastic Embedding
+Vector Embedding 又叫 Point Embedding
+Motivation前面已经有很多工作将各种各样的Object映射为高斯分布来捕获不确定性.但是如果Object的不确定性很高,一个高斯分布也不足以捕获呢?
+本文提出了
+          ...
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/18ICLR_WAE_Wasserstein auto-encoders/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
+      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Better Call Saul">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/18ICLR_WAE_Wasserstein auto-encoders/" itemprop="url">
                   18ICLR_WAE_Wasserstein auto-encoders
                 </a>
               
@@ -425,8 +817,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_WAE_Wasserstein auto-encoders/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_WAE_Wasserstein auto-encoders/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/11/07/18ICLR_WAE_Wasserstein auto-encoders/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/18ICLR_WAE_Wasserstein auto-encoders/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -434,7 +826,7 @@
 
           
           
-             <span id="/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_WAE_Wasserstein auto-encoders/" class="leancloud_visitors" data-flag-title="18ICLR_WAE_Wasserstein auto-encoders">
+             <span id="/Jhy1993.github.io/2018/11/07/18ICLR_WAE_Wasserstein auto-encoders/" class="leancloud_visitors" data-flag-title="18ICLR_WAE_Wasserstein auto-encoders">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -470,7 +862,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_WAE_Wasserstein auto-encoders/#more" rel="contents">
+              <a class="btn" href="/Jhy1993.github.io/2018/11/07/18ICLR_WAE_Wasserstein auto-encoders/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -527,16 +919,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/paper_note/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jimmy">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
       <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="name" content="Better Call Saul">
     </span>
 
     
@@ -546,208 +938,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/paper_note/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/" itemprop="url">
-                  18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-11-07 22:27:29" itemprop="dateCreated datePublished" datetime="2018-11-07T22:27:29+08:00">2018-11-07</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-08 21:09:04" itemprop="dateModified" datetime="2018-11-08T21:09:04+08:00">2018-11-08</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Jhy1993.github.io/2018/11/07/paper_note/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/paper_note/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/Jhy1993.github.io/2018/11/07/paper_note/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/" class="leancloud_visitors" data-flag-title="18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views: </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯.
-Gaussian Embedding 又叫 Stochastic Embedding
-Vector Embedding 又叫 
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/11/07/paper_note/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_DWE_Learning Wasserstein Embeddings/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jimmy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jimmy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_DWE_Learning Wasserstein Embeddings/" itemprop="url">
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/" itemprop="url">
                   18ICLR_DWE_Learning Wasserstein Embeddings
                 </a>
               
@@ -823,8 +1014,8 @@ Vector Embedding 又叫
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_DWE_Learning Wasserstein Embeddings/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_DWE_Learning Wasserstein Embeddings/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -832,7 +1023,7 @@ Vector Embedding 又叫
 
           
           
-             <span id="/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_DWE_Learning Wasserstein Embeddings/" class="leancloud_visitors" data-flag-title="18ICLR_DWE_Learning Wasserstein Embeddings">
+             <span id="/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/" class="leancloud_visitors" data-flag-title="18ICLR_DWE_Learning Wasserstein Embeddings">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -871,7 +1062,7 @@ Vector Embedding 又叫
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_DWE_Learning Wasserstein Embeddings/#more" rel="contents">
+              <a class="btn" href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -928,16 +1119,16 @@ Vector Embedding 又叫
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/paper_note/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jimmy">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
       <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="name" content="Better Call Saul">
     </span>
 
     
@@ -947,7 +1138,7 @@ Vector Embedding 又叫
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/paper_note/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/" itemprop="url">
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/" itemprop="url">
                   18KDD_DVNE_Deep Variational Network Embedding in Wasserstein Space
                 </a>
               
@@ -974,12 +1165,24 @@ Vector Embedding 又叫
                 
               
 
-              <time title="Created: 2018-11-07 16:10:03 / Modified: 22:25:59" itemprop="dateCreated datePublished" datetime="2018-11-07T16:10:03+08:00">2018-11-07</time>
+              <time title="Created: 2018-11-07 16:10:03" itemprop="dateCreated datePublished" datetime="2018-11-07T16:10:03+08:00">2018-11-07</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-12 15:29:05" itemprop="dateModified" datetime="2018-11-12T15:29:05+08:00">2018-11-12</time>
               
             
           </span>
@@ -1011,8 +1214,8 @@ Vector Embedding 又叫
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/11/07/paper_note/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/paper_note/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/11/07/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1020,7 +1223,7 @@ Vector Embedding 又叫
 
           
           
-             <span id="/Jhy1993.github.io/2018/11/07/paper_note/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/" class="leancloud_visitors" data-flag-title="18KDD_DVNE_Deep Variational Network Embedding in Wasserstein Space">
+             <span id="/Jhy1993.github.io/2018/11/07/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/" class="leancloud_visitors" data-flag-title="18KDD_DVNE_Deep Variational Network Embedding in Wasserstein Space">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1057,7 +1260,7 @@ Vector Embedding 又叫
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/11/07/paper_note/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/#more" rel="contents">
+              <a class="btn" href="/Jhy1993.github.io/2018/11/07/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1114,16 +1317,16 @@ Vector Embedding 又叫
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/paper_note/18NIPS_Distilled-Wasserstein-Learning-for-Word-Embedding-and-Topic-Modeling/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/18NIPS_Distilled-Wasserstein-Learning-for-Word-Embedding-and-Topic-Modeling/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jimmy">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
       <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="name" content="Better Call Saul">
     </span>
 
     
@@ -1133,7 +1336,7 @@ Vector Embedding 又叫
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/paper_note/18NIPS_Distilled-Wasserstein-Learning-for-Word-Embedding-and-Topic-Modeling/" itemprop="url">
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/18NIPS_Distilled-Wasserstein-Learning-for-Word-Embedding-and-Topic-Modeling/" itemprop="url">
                   18NIPS_Distilled Wasserstein Learning for Word Embedding and Topic Modeling
                 </a>
               
@@ -1209,8 +1412,8 @@ Vector Embedding 又叫
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/11/07/paper_note/18NIPS_Distilled-Wasserstein-Learning-for-Word-Embedding-and-Topic-Modeling/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/paper_note/18NIPS_Distilled-Wasserstein-Learning-for-Word-Embedding-and-Topic-Modeling/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/11/07/18NIPS_Distilled-Wasserstein-Learning-for-Word-Embedding-and-Topic-Modeling/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/18NIPS_Distilled-Wasserstein-Learning-for-Word-Embedding-and-Topic-Modeling/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1218,7 +1421,7 @@ Vector Embedding 又叫
 
           
           
-             <span id="/Jhy1993.github.io/2018/11/07/paper_note/18NIPS_Distilled-Wasserstein-Learning-for-Word-Embedding-and-Topic-Modeling/" class="leancloud_visitors" data-flag-title="18NIPS_Distilled Wasserstein Learning for Word Embedding and Topic Modeling">
+             <span id="/Jhy1993.github.io/2018/11/07/18NIPS_Distilled-Wasserstein-Learning-for-Word-Embedding-and-Topic-Modeling/" class="leancloud_visitors" data-flag-title="18NIPS_Distilled Wasserstein Learning for Word Embedding and Topic Modeling">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1251,12 +1454,13 @@ Vector Embedding 又叫
       
         
           
-          Motivationword embedding考虑了word之间的关系;而topic model 没有考虑word order和word间的关系.这样会导致一个问题就是word embedding和topic distribution之间mismatch. 为什么要考虑word order呢? 因
-          ...
+          Motivationword embedding考虑了word之间的关系;而topic model 没有考虑word order和word间的关系.这样会导致一个问题就是word embedding和topic distribution之间mismatch. 为什么要考虑word order呢? 因为在某些场景下, 比如本文的医疗处理记录中, 一些操作的先后顺序会极大的影响对操作/疾病/流程的分析. 
+
+          
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/11/07/paper_note/18NIPS_Distilled-Wasserstein-Learning-for-Word-Embedding-and-Topic-Modeling/#more" rel="contents">
+              <a class="btn" href="/Jhy1993.github.io/2018/11/07/18NIPS_Distilled-Wasserstein-Learning-for-Word-Embedding-and-Topic-Modeling/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1313,16 +1517,16 @@ Vector Embedding 又叫
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/10/27/paper_note/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/10/27/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jimmy">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
       <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="name" content="Better Call Saul">
     </span>
 
     
@@ -1332,7 +1536,7 @@ Vector Embedding 又叫
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/10/27/paper_note/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/" itemprop="url">
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/10/27/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/" itemprop="url">
                   18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING
                 </a>
               
@@ -1408,8 +1612,8 @@ Vector Embedding 又叫
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/10/27/paper_note/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/10/27/paper_note/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/10/27/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/10/27/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1417,7 +1621,7 @@ Vector Embedding 又叫
 
           
           
-             <span id="/Jhy1993.github.io/2018/10/27/paper_note/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/" class="leancloud_visitors" data-flag-title="18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING">
+             <span id="/Jhy1993.github.io/2018/10/27/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/" class="leancloud_visitors" data-flag-title="18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1462,7 +1666,7 @@ Vector Embedding 又叫
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/10/27/paper_note/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/#more" rel="contents">
+              <a class="btn" href="/Jhy1993.github.io/2018/10/27/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1519,16 +1723,16 @@ Vector Embedding 又叫
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.unique_paths/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/075.Sort_colors/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jimmy">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
       <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="name" content="Better Call Saul">
     </span>
 
     
@@ -1538,8 +1742,8 @@ Vector Embedding 又叫
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.unique_paths/" itemprop="url">
-                  62. unique paths
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/075.Sort_colors/" itemprop="url">
+                  75. Sort Colors
                 </a>
               
             
@@ -1582,7 +1786,7 @@ Vector Embedding 又叫
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-06 00:37:13" itemprop="dateModified" datetime="2018-11-06T00:37:13+08:00">2018-11-06</time>
+                <time title="Modified: 2018-11-13 23:18:06" itemprop="dateModified" datetime="2018-11-13T23:18:06+08:00">2018-11-13</time>
               
             
           </span>
@@ -1614,8 +1818,8 @@ Vector Embedding 又叫
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.unique_paths/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.unique_paths/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/075.Sort_colors/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/075.Sort_colors/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1623,7 +1827,7 @@ Vector Embedding 又叫
 
           
           
-             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.unique_paths/" class="leancloud_visitors" data-flag-title="62. unique paths">
+             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/075.Sort_colors/" class="leancloud_visitors" data-flag-title="75. Sort Colors">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1656,23 +1860,22 @@ Vector Embedding 又叫
       
         
           
-          62. unique paths 不同路径难度: 中等
+          75. Sort Colors难度: 中等
 刷题内容
 原题连接
 
 
-https://leetcode.com/problems/unique-paths
-https://leetcode-cn.com/problems/unique-paths/description
+https://leetcode.com/problems/sort-colors/description/
 
 
 内容描述
 
-1
+123456789101112131415Given an array with n objects colored red, white or blue, sort them in-place so that objects of the same color are adjacent, with th
           ...
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.unique_paths/#more" rel="contents">
+              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/075.Sort_colors/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1733,12 +1936,12 @@ https://leetcode-cn.com/problems/unique-paths/description
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jimmy">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
       <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="name" content="Better Call Saul">
     </span>
 
     
@@ -1871,7 +2074,10 @@ https://leetcode-cn.com/problems/unique-paths/description
 Easy
 76ms 40%AC代码如下:
 
-注意linked list 的首个node就可能需要删除,所
+注意linked list 的首个node就可能需要删除,所以建立一个哑节点 dummy, dummy.next = head
+链表中的删除实际是跳过该节点
+
+1234567891011121314151617181920class Solution(obje
           ...
           <!--noindex-->
           
@@ -1933,225 +2139,16 @@ Easy
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/021.Merge_two_sorted_lists/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jimmy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jimmy">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/021.Merge_two_sorted_lists/" itemprop="url">
-                  21. Merge Two Sorted Lists
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-09-25 08:52:22" itemprop="dateCreated datePublished" datetime="2018-09-25T08:52:22+08:00">2018-09-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-10-30 22:37:55" itemprop="dateModified" datetime="2018-10-30T22:37:55+08:00">2018-10-30</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/021.Merge_two_sorted_lists/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/021.Merge_two_sorted_lists/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/021.Merge_two_sorted_lists/" class="leancloud_visitors" data-flag-title="21. Merge Two Sorted Lists">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views: </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          21. Merge Two Sorted Lists难度: Easy
-刷题内容
-原题连接
-
-
-https://leetcode.com/problems/merge-two-sorted-lists/description/
-
-
-内容描述
-
-123456Merge two sorted linked
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/021.Merge_two_sorted_lists/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/160.Intersection_of_two_linked_lists/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jimmy">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
       <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="name" content="Better Call Saul">
     </span>
 
     
@@ -2282,7 +2279,8 @@ https://leetcode.com/problems/merge-two-sorted-lists/description/
           160. Intersection of Two Linked Lists题目:https://leetcode.com/problems/intersection-of-two-linked-lists/
 难度:
 Easy
-如果两个linkedlist有intersection的话，可以看到，其实
+如果两个linkedlist有intersection的话，可以看到，其实如果一开始我们就走到b2的话，那么我们就可以两个pointer一个一个的对比，到哪一个地址一样，接下来就是intersection部分。
+12345A:          a1 → a2       
           ...
           <!--noindex-->
           
@@ -2370,7 +2368,7 @@ Easy
                 alt="Jimmy" />
             
               <p class="site-author-name" itemprop="name">Jimmy</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">EECS, BUPTer, 算法蒻鷄.</p>
           </div>
 
           
@@ -2380,7 +2378,7 @@ Easy
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2461,6 +2459,11 @@ Easy
               
                 <span class="links-of-author-item">
                   <a href="https://www.paperweekly.site/user/jhy1993" target="_blank" title="PaperWeekly"><i class="fa fa-fw fa-paper-plane"></i>PaperWeekly</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://youtube.com/yourname" target="_blank" title="YouTube"><i class="fa fa-fw fa-youtube"></i>YouTube</a>
                   
                 </span>
               

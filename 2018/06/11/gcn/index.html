@@ -108,27 +108,27 @@
 
 
 
-  <meta name="description" content="本文来自network embedding大佬THU 崔鹏老师.在Wasserstein空间将节点表示为一个高斯分布. 感觉这篇实际是18ICLR_Graph2Gauss和18ICLR_WAE_Wasserstein auto-encoders的结合.">
-<meta name="keywords" content="Network Embedding,Deep Learning,Wasserstein,Gaussian Embedding">
+  <meta name="description" content="图神经网络,尤其是图卷积,在近两年的顶会上疯狂刷脸. 这里整理了部分相关文献,并准备从GCN系列开始梳理.">
+<meta name="keywords" content="Graph Neural Network,GCN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="18KDD_DVNE_Deep Variational Network Embedding in Wasserstein Space">
-<meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/11/07/paper_note/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/index.html">
-<meta property="og:site_name" content="Jimmy">
-<meta property="og:description" content="本文来自network embedding大佬THU 崔鹏老师.在Wasserstein空间将节点表示为一个高斯分布. 感觉这篇实际是18ICLR_Graph2Gauss和18ICLR_WAE_Wasserstein auto-encoders的结合.">
+<meta property="og:title" content="Graph Neural Network之GCN的理论">
+<meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/06/11/gcn/index.html">
+<meta property="og:site_name" content="Better Call Saul">
+<meta property="og:description" content="图神经网络,尤其是图卷积,在近两年的顶会上疯狂刷脸. 这里整理了部分相关文献,并准备从GCN系列开始梳理.">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fwzlkok87fj31100ks7ac.jpg">
-<meta property="og:updated_time" content="2018-11-07T14:25:59.903Z">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fwyjaje2itj30u2146n72.jpg">
+<meta property="og:updated_time" content="2018-11-07T08:05:08.521Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="18KDD_DVNE_Deep Variational Network Embedding in Wasserstein Space">
-<meta name="twitter:description" content="本文来自network embedding大佬THU 崔鹏老师.在Wasserstein空间将节点表示为一个高斯分布. 感觉这篇实际是18ICLR_Graph2Gauss和18ICLR_WAE_Wasserstein auto-encoders的结合.">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fwzlkok87fj31100ks7ac.jpg">
+<meta name="twitter:title" content="Graph Neural Network之GCN的理论">
+<meta name="twitter:description" content="图神经网络,尤其是图卷积,在近两年的顶会上疯狂刷脸. 这里整理了部分相关文献,并准备从GCN系列开始梳理.">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fwyjaje2itj30u2146n72.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://Jhy1993.github.io/Jhy1993.github.io/2018/11/07/paper_note/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/"/>
+  <link rel="canonical" href="https://Jhy1993.github.io/Jhy1993.github.io/2018/06/11/gcn/"/>
 
 
 
@@ -138,7 +138,7 @@
   };
 </script>
 
-  <title>18KDD_DVNE_Deep Variational Network Embedding in Wasserstein Space | Jimmy</title>
+  <title>Graph Neural Network之GCN的理论 | Better Call Saul</title>
   
 
 
@@ -198,10 +198,14 @@
     <div class="custom-logo-site-title">
       <a href="/Jhy1993.github.io/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jimmy</span>
+        <span class="site-title">Better Call Saul</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
+      
+        <p class="site-subtitle">TODO</p>
+      
     
   </div>
 
@@ -348,16 +352,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/paper_note/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/06/11/gcn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jimmy">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
       <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="name" content="Better Call Saul">
     </span>
 
     
@@ -365,7 +369,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">18KDD_DVNE_Deep Variational Network Embedding in Wasserstein Space
+          <h1 class="post-title" itemprop="name headline">Graph Neural Network之GCN的理论
               
             
           </h1>
@@ -390,12 +394,24 @@
                 
               
 
-              <time title="Created: 2018-11-07 16:10:03 / Modified: 22:25:59" itemprop="dateCreated datePublished" datetime="2018-11-07T16:10:03+08:00">2018-11-07</time>
+              <time title="Created: 2018-06-11 21:33:44" itemprop="dateCreated datePublished" datetime="2018-06-11T21:33:44+08:00">2018-06-11</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-07 16:05:08" itemprop="dateModified" datetime="2018-11-07T16:05:08+08:00">2018-11-07</time>
               
             
           </span>
@@ -427,8 +443,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/11/07/paper_note/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/paper_note/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/06/11/gcn/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/06/11/gcn/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -436,7 +452,7 @@
 
           
           
-             <span id="/Jhy1993.github.io/2018/11/07/paper_note/18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space/" class="leancloud_visitors" data-flag-title="18KDD_DVNE_Deep Variational Network Embedding in Wasserstein Space">
+             <span id="/Jhy1993.github.io/2018/06/11/gcn/" class="leancloud_visitors" data-flag-title="Graph Neural Network之GCN的理论">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -475,98 +491,16 @@
       
 
       
-        <p>本文来自network embedding大佬THU 崔鹏老师.<br>在Wasserstein空间将节点表示为一个高斯分布.</p>
-<p>感觉这篇实际是18ICLR_Graph2Gauss和18ICLR_WAE_Wasserstein auto-encoders的结合.</p>
+        <p>图神经网络,尤其是图卷积,在近两年的顶会上疯狂刷脸.</p>
+<p>这里整理了部分相关文献,并准备从GCN系列开始梳理.</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fwyjaje2itj30u2146n72.jpg" alt="image-20181106183929992"></p>
 <a id="more"></a>
-<h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>本文上来罗列了很多的优点:</p>
-<ul>
-<li>节点映射为Wasserstein space的一个gaussian distribution来保持网络结构和不确定性<ul>
-<li>network embedding的fundamental problem就是保持网络本身的结构和性质(如传递性,X阶结构)</li>
-</ul>
-</li>
-<li>Wasserstein distance可以保持transitivity,并且W-2距离对高斯分布有闭市解,线性计算复杂度<ul>
-<li>KL散度不对称, JS对称但是和KL散度一样无法保持传递性</li>
-</ul>
-</li>
-<li>均值代表节点的位置, 方差代表节点的不确定性</li>
-<li>可以保持局部和全局结构<ul>
-<li>保持一阶相似性和二阶相似性感觉已经成了NE的基本操作了..</li>
-</ul>
-</li>
-</ul>
-<p>然后分析了一波现有方法的不足</p>
-<ul>
-<li>Wasserstein distance相对现有KL的优势,可以保持transitivity</li>
-<li>现有方法是把均值向量和方差向量拼接一起作为最终的表示,比较粗糙. 无法反映他们之前的本质关系.</li>
-<li>无法保持高阶相似性. graph2gauss可以,但是需要计算最短路径,比较耗时.</li>
-</ul>
-<p>但是我觉得相对于Graph2Gauss比较特别的有两点</p>
-<ul>
-<li><p>换了个Wasserstein distance保持transitivity,并且W2距离对于两个高斯分布有闭式解,计算高效.</p>
-</li>
-<li><p>通过深度变分模型来保持均值与方差之间的关系.(用采样过程,代替简单的拼接,见5.3实验分析)</p>
-</li>
-</ul>
-<p>和之前一样,每个节点的表示$h_i=\mathcal{N}(\mu_i, \sum_i)$ 一个均值向量和一个方差矩阵.这里方差矩阵只考虑对角方差矩阵.</p>
-<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><p>首先看到模型图就感觉和SDNE很像.SNDE是约束节点对相似,这里是约束三元组的rank关系.</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fwzlkok87fj31100ks7ac.jpg" alt="image-20181107165226521"></p>
-<p>首先看下这里如何对两个高斯分布进行相似性度量,这里选用Wasserstein distance来度量分布的相似性,特别的这里选用$W_2$ 距离.<br>$$<br>\begin{aligned} \operatorname { dist } &amp; = W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) , \mathcal { N } \left( \mu _ { 2 } , \Sigma _ { 2 } \right) \right) \ d i s t ^ { 2 } &amp; = \left| \mu _ { 1 } - \mu _ { 2 } \right| _ { 2 } ^ { 2 } + \operatorname { Tr } \left( \Sigma _ { 1 } + \Sigma _ { 2 } - 2 \left( \Sigma _ { 1 } ^ { 1 / 2 } \Sigma _ { 2 } \Sigma _ { 1 } ^ { 1 / 2 } \right) ^ { 1 / 2 } \right) \end{aligned}<br>$$<br>又因为这里只考虑对角方差矩阵$\Sigma _ { 1 } \Sigma _ { 2 } = \Sigma _ { 2 } \Sigma _ { 1 }$, 上述可以进一步化简<br>$$<br>W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) ; \mathcal { N } \left( m _ { 2 } , \Sigma _ { 2 } \right) \right) ^ { 2 } = \left| \mu _ { 1 } - \mu _ { 2 } \right| _ { 2 } ^ { 2 } + \left| \Sigma _ { 1 } ^ { 1 / 2 } - \Sigma _ { 2 } ^ { 1 / 2 } \right| _ { F } ^ { 2 }<br>$$</p>
-<p>Loss分为两部分,类似SDNE的的loss</p>
-<ul>
-<li><p>一阶相似性: 用了和Graph2Gauss一样的基于ranking 的loss,</p>
-<ul>
-<li>$$<br>\mathcal { L } _ { 1 } = \sum _ { ( i , j , k ) \in \mathrm { D } } \left( E _ { i j } ^ { 2 } + \exp \left( - E _ { i k } \right) \right)<br>$$</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>二阶相似性:用WAE来编码每个节点的邻接向量.这里对WAE进行了简化,最后和AE的区别就是encoder后得到的分布中采样的结果才是隐表示Z.</p>
-<ul>
-<li><p>$$<br>\mathcal { L } _ { 2 } = \inf _ { Q ( Z | X ) \in Q } \mathbb { E } _ { P _ { X } } \mathbb { E } _ { Q ( Z | X ) } \left[ | X \circ ( X - G ( Z ) ) | _ { 2 } ^ { 2 } \right]<br>$$</p>
-</li>
-<li><p>这里也像SDNE一样加大对非零元素的惩罚,只是惩罚系数为0,1 所以SDNE中的B成了这里的X.</p>
-</li>
-</ul>
-</li>
-<li><p>优化. 这里用了repara trick.这里变分自编码器学习到的是均值$\mu$和标准差$\sigma$ , 从均值为0,标准差为1的高斯分布中采样,再放缩平移得到Z.</p>
-</li>
-<li><p>$$<br>\mathbf { z } _ { i } = \mu _ { i } + \sigma _ { i } * \epsilon , \epsilon \sim \mathcal { N } ( 0 , \mathbf { I } )<br>$$</p>
-</li>
-<li></li>
-<li><p>激活函数的选择,有两个需要注意</p>
-<ul>
-<li>均值没有用激活函数, 为什么?</li>
-<li>这里用elu()+1来保证$\sigma_i$ 是正的. 标准差没有负数!</li>
-<li>sigmoid来压缩输出到[0,1]之间.</li>
-</ul>
-</li>
-</ul>
-<h1 id="Exp"><a href="#Exp" class="headerlink" title="Exp"></a>Exp</h1><p>数据集:都是无向图, 无属性. 但是graph2gauss需要属性,这里用one-hot代替</p>
-<p>为了保证公平,所有学习高斯分布的算法 dim(均值)+dim(方差)=L,本文虽然不是拼接也遵守这个规定.</p>
-<p>两类有效性实验:</p>
+<p>最早的图卷积网络都是从谱域出发,利用图傅里叶变换,滤波器来设计.</p>
+<p>Ref:</p>
 <ol>
-<li>基于相似性的,包括网络重构和链路预测,这里是基于节点的<strong>均值和方差</strong>来计算相似性.<strong>无向图在计算KL的时候是怎么算的呢?</strong> <ol>
-<li>网络重构的提升很小,链路预测提升还可以. 为什么这两个任务的提升差距这么大?</li>
+<li><a href="https://tkipf.github.io/graph-convolutional-networks/" target="_blank" rel="noopener">https://tkipf.github.io/graph-convolutional-networks/</a></li>
+<li></li>
 </ol>
-</li>
-<li>分类任务,这里对于学习分布的算法,只用了节点的<strong>均值</strong>来作为输入. 感觉对G2G不公平.</li>
-</ol>
-<p>比较奇怪的是,<strong>这里用KL距离和W2距离时,DVNE的表现差距很大. DVNE_KL甚至不如很多baseline. 这说明gaussian embedding起到的作用没有W2距离大?</strong> </p>
-<p>一个不确定性实验:</p>
-<p>这个算比较有特色的.这里提出一个intuition: 节点的度越小,越难得到精确的point-vector.换句话说, 节点的度越大,那么连接提供的信息越多, 这个节点也越加稳定. 个人觉得这里的intuition不够准确, graph2gauss的描述更为精确</p>
-<ul>
-<li>测试节点的度和方差的关系. 节点的度越大,方差越小.</li>
-<li>不确定性中的方差项有助于处理噪声边(为什么有助于?).</li>
-</ul>
-<p>注意纵坐标是AUC的下降程度.这里可以就看出噪声边的比例增加,本文算法的AUC下降的最少.但是比较奇怪的是G2G也是gaussian Embedding,为什么它的的下降程度较高? 作者的解释是G2G中均值和方差只是拼接,并没有很好的结合在一起.</p>
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>本文相对于Graph2Gauss的改进在于</p>
-<ul>
-<li>换了W2距离</li>
-<li>把编码均值方差的部分变复杂了,用了个WAE</li>
-</ul>
-<p>但是从实验结果看 采样的方式来利用均值方差貌似作用不大,关键还是这个W2距离.</p>
-<p>如果进一步做,可以考虑做非对角的方差矩阵.如果方差矩阵非对角,那是什么分布呢?答案是椭圆分布Elliptical Distributions.</p>
-<p>且听下回分解.18NIPS_Generalizing Point Embeddings using the Wasserstein Space of Elliptical Distributions</p>
 
       
     </div>
@@ -616,13 +550,9 @@
       
         <div class="post-tags">
           
-            <a href="/Jhy1993.github.io/tags/Network-Embedding/" rel="tag"># Network Embedding</a>
+            <a href="/Jhy1993.github.io/tags/Graph-Neural-Network/" rel="tag"># Graph Neural Network</a>
           
-            <a href="/Jhy1993.github.io/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
-          
-            <a href="/Jhy1993.github.io/tags/Wasserstein/" rel="tag"># Wasserstein</a>
-          
-            <a href="/Jhy1993.github.io/tags/Gaussian-Embedding/" rel="tag"># Gaussian Embedding</a>
+            <a href="/Jhy1993.github.io/tags/GCN/" rel="tag"># GCN</a>
           
         </div>
       
@@ -635,8 +565,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/11/07/paper_note/18NIPS_Distilled-Wasserstein-Learning-for-Word-Embedding-and-Topic-Modeling/" rel="next" title="18NIPS_Distilled Wasserstein Learning for Word Embedding and Topic Modeling">
-                <i class="fa fa-chevron-left"></i> 18NIPS_Distilled Wasserstein Learning for Word Embedding and Topic Modeling
+              <a href="/Jhy1993.github.io/2018/06/11/template/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -645,8 +575,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/11/07/paper_note/18ICLR_DWE_Learning Wasserstein Embeddings/" rel="prev" title="18ICLR_DWE_Learning Wasserstein Embeddings">
-                18ICLR_DWE_Learning Wasserstein Embeddings <i class="fa fa-chevron-right"></i>
+              <a href="/Jhy1993.github.io/2018/06/11/DL_template/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -695,17 +625,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -714,7 +635,7 @@
                 alt="Jimmy" />
             
               <p class="site-author-name" itemprop="name">Jimmy</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">EECS, BUPTer, 算法蒻鷄.</p>
           </div>
 
           
@@ -724,7 +645,7 @@
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -808,6 +729,11 @@
                   
                 </span>
               
+                <span class="links-of-author-item">
+                  <a href="https://youtube.com/yourname" target="_blank" title="YouTube"><i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                  
+                </span>
+              
             </div>
           
 
@@ -839,22 +765,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Motivation"><span class="nav-number">1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exp"><span class="nav-number">3.</span> <span class="nav-text">Exp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

@@ -108,27 +108,27 @@
 
 
 
-  <meta name="description" content="目前主要的network embedding方法都是将节点映射为向量,但是向量所能表示的信息还是不够.受word gaussian embedding的启发,用一个高斯分布来表示word,可以捕获word的多重含义.类比到网络中,node可能有不同方面的信息(多个研究领域,属于多个社区),一些算法尝试将node也映射为高斯分布. 节点表示相当于只学习了高斯分布的均值,而高斯表示除了均值外还可有方差">
-<meta name="keywords" content="Network Embedding,Gaussian Embedding">
+  <meta name="description" content="本文对比了常见散度(KL散度,JS散度)和常见距离(尤其是现在很火的W距离) F-散度散度是用来衡量两个概率密度p,q区别的函数,即:两个分布的相似程度. $$D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x$$这里的$f$需要满足2个条件: $f$是凸函数且$f(1)=0$.">
+<meta name="keywords" content="Deep Learning,Wasserstein">
 <meta property="og:type" content="article">
-<meta property="og:title" content="18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING">
-<meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/10/27/paper_note/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/index.html">
-<meta property="og:site_name" content="Jimmy">
-<meta property="og:description" content="目前主要的network embedding方法都是将节点映射为向量,但是向量所能表示的信息还是不够.受word gaussian embedding的启发,用一个高斯分布来表示word,可以捕获word的多重含义.类比到网络中,node可能有不同方面的信息(多个研究领域,属于多个社区),一些算法尝试将node也映射为高斯分布. 节点表示相当于只学习了高斯分布的均值,而高斯表示除了均值外还可有方差">
+<meta property="og:title" content="常见散度与距离(KL散度,JS散度,W距离)">
+<meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/06/11/常见散度距离/index.html">
+<meta property="og:site_name" content="Better Call Saul">
+<meta property="og:description" content="本文对比了常见散度(KL散度,JS散度)和常见距离(尤其是现在很火的W距离) F-散度散度是用来衡量两个概率密度p,q区别的函数,即:两个分布的相似程度. $$D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x$$这里的$f$需要满足2个条件: $f$是凸函数且$f(1)=0$.">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fwzkxcjgrrj30tu0liafb.jpg">
-<meta property="og:updated_time" content="2018-11-07T08:39:59.915Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx1109nhpsj30hk0g9dfw.jpg">
+<meta property="og:updated_time" content="2018-11-13T00:52:02.757Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING">
-<meta name="twitter:description" content="目前主要的network embedding方法都是将节点映射为向量,但是向量所能表示的信息还是不够.受word gaussian embedding的启发,用一个高斯分布来表示word,可以捕获word的多重含义.类比到网络中,node可能有不同方面的信息(多个研究领域,属于多个社区),一些算法尝试将node也映射为高斯分布. 节点表示相当于只学习了高斯分布的均值,而高斯表示除了均值外还可有方差">
-<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fwzkxcjgrrj30tu0liafb.jpg">
+<meta name="twitter:title" content="常见散度与距离(KL散度,JS散度,W距离)">
+<meta name="twitter:description" content="本文对比了常见散度(KL散度,JS散度)和常见距离(尤其是现在很火的W距离) F-散度散度是用来衡量两个概率密度p,q区别的函数,即:两个分布的相似程度. $$D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x$$这里的$f$需要满足2个条件: $f$是凸函数且$f(1)=0$.">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx1109nhpsj30hk0g9dfw.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://Jhy1993.github.io/Jhy1993.github.io/2018/10/27/paper_note/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/"/>
+  <link rel="canonical" href="https://Jhy1993.github.io/Jhy1993.github.io/2018/06/11/常见散度距离/"/>
 
 
 
@@ -138,7 +138,7 @@
   };
 </script>
 
-  <title>18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING | Jimmy</title>
+  <title>常见散度与距离(KL散度,JS散度,W距离) | Better Call Saul</title>
   
 
 
@@ -198,10 +198,14 @@
     <div class="custom-logo-site-title">
       <a href="/Jhy1993.github.io/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jimmy</span>
+        <span class="site-title">Better Call Saul</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
+      
+        <p class="site-subtitle">TODO</p>
+      
     
   </div>
 
@@ -348,16 +352,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/10/27/paper_note/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/06/11/常见散度距离/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jimmy">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
       <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="name" content="Better Call Saul">
     </span>
 
     
@@ -365,7 +369,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING
+          <h1 class="post-title" itemprop="name headline">常见散度与距离(KL散度,JS散度,W距离)
               
             
           </h1>
@@ -390,7 +394,7 @@
                 
               
 
-              <time title="Created: 2018-10-27 17:04:17" itemprop="dateCreated datePublished" datetime="2018-10-27T17:04:17+08:00">2018-10-27</time>
+              <time title="Created: 2018-06-11 21:33:44" itemprop="dateCreated datePublished" datetime="2018-06-11T21:33:44+08:00">2018-06-11</time>
             
 
             
@@ -407,7 +411,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-07 16:39:59" itemprop="dateModified" datetime="2018-11-07T16:39:59+08:00">2018-11-07</time>
+                <time title="Modified: 2018-11-13 08:52:02" itemprop="dateModified" datetime="2018-11-13T08:52:02+08:00">2018-11-13</time>
               
             
           </span>
@@ -424,7 +428,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a></span>
 
                 
                 
@@ -439,8 +443,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/10/27/paper_note/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/10/27/paper_note/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/06/11/常见散度距离/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/06/11/常见散度距离/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -448,7 +452,7 @@
 
           
           
-             <span id="/Jhy1993.github.io/2018/10/27/paper_note/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/" class="leancloud_visitors" data-flag-title="18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING">
+             <span id="/Jhy1993.github.io/2018/06/11/常见散度距离/" class="leancloud_visitors" data-flag-title="常见散度与距离(KL散度,JS散度,W距离)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -487,54 +491,59 @@
       
 
       
-        <p>目前主要的network embedding方法都是将节点映射为向量,但是向量所能表示的信息还是不够.受word gaussian embedding的启发,用一个高斯分布来表示word,可以捕获word的多重含义.类比到网络中,node可能有不同方面的信息(多个研究领域,属于多个社区),一些算法尝试将node也映射为高斯分布.</p>
-<p>节点表示相当于只学习了高斯分布的均值,而高斯表示除了均值外还可有方差,包括了更多的信息.</p>
-<p>但是还有一些困惑:</p>
+        <p>本文对比了常见散度(KL散度,JS散度)和常见距离(尤其是现在很火的W距离)</p>
+<h1 id="F-散度"><a href="#F-散度" class="headerlink" title="F-散度"></a>F-散度</h1><p>散度是用来衡量两个概率密度p,q区别的函数,即:两个分布的相似程度.</p>
+<p>$$<br>D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x<br>$$<br>这里的$f$需要满足2个条件: $f$是凸函数且$f(1)=0$.</p>
+<p>可以证明:</p>
+<p>因为$f$是凸函数,由Jensen不等式可知 $E(f(x)) &gt;= f(E(x))$,所以<br>$$<br>D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x \geq f \left( \int q ( x ) \frac { p ( x ) } { q ( x ) } d x \right) = f ( 1 ) = 0<br>$$</p>
+<h2 id="KL散度"><a href="#KL散度" class="headerlink" title="KL散度"></a>KL散度</h2><p>KL散度是F-散度的一个特例,当$f(x)=xlogx$ 的时候:<br>$$<br>D _ { KL} ( p | q ) = \int  p(x) \log \left( \frac { p ( x ) } { q ( x ) } \right) d x<br>$$<br>需要注意</p>
 <ul>
-<li>高斯分布所谓的”捕获不确定性”到底对评测任务(节点分类)有什么提升?</li>
-<li>单个高斯分布 VS 混合高斯模型?</li>
-<li>目前都是假定协方差矩阵是对角的,如果不是对角的呢?(18NIPS已经做了)</li>
+<li>KL散度非对称,即 $D _ { KL} ( p | q ) \neq D _ { KL} ( q | p )$ ,所以KL散度不是一个真正的距离或者度量.</li>
+<li>KL散度不满足三角不等式 $D _ { KL} ( p | q ) &gt; D _ { KL} ( p | r )  + D _ { KL} ( r | q )  $.  </li>
+<li>KL散度取值范围从$[0, \infty]$ , p=q的时候,两个分布完全一样取到0</li>
 </ul>
-<p>下面梳理了几篇gaussian embedding的文章,包括word和node</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fwzkxcjgrrj30tu0liafb.jpg" alt="image-20181106183228402"></p>
-<a id="more"></a>
-<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>网络中的节点可能含有丰富的甚至冲突的语义,比如节点属于不同的社区,有着不同的爱好.(这点和word2gaussian中word的多义,歧义现象符合).这种现象被解释为不确定性.那么如何在进行网络表示学习,对节点进行embedding的时候来捕获这种不确定性呢?那就是将节点映射为高斯分布,而不是一个向量. 高斯分布除了均值部分(相当于原来向量表示),还有方差(不确定性).</p>
-<p>为了做上面这件事,本文用<strong>无监督的rank</strong>,同时利用<strong>属性和结构</strong>来做一个<strong>inductive</strong>的算法.</p>
-<h2 id="Model-Deep-Gaussian-Embedding"><a href="#Model-Deep-Gaussian-Embedding" class="headerlink" title="Model: Deep Gaussian Embedding"></a>Model: Deep Gaussian Embedding</h2><p>这里对Gaussian Embedding的定义:每个节点的表示$h_i=\mathcal{N}(\mu_i, \sum_i)$ 一个均值向量和一个方差矩阵.注意这里只考虑对角方差矩阵.</p>
-<h3 id="encoder"><a href="#encoder" class="headerlink" title="encoder"></a>encoder</h3><p>这里为了得到节点的$h_i=\mathcal{N}(\mu_i, \sum_i)$,本文用神经网络对节点属性进行变换得到intermediate hidden representation,然后分别引出两个L维向量代表$\mu$和$\sum_i$.</p>
-<h3 id="ranking"><a href="#ranking" class="headerlink" title="ranking"></a>ranking</h3><p>本文认为rank可以比一阶二阶更好捕获局部和全局结构.所以基于节点对之间的最短路径长度,对节点对的相似性进行了排序.<br>$$<br>\Delta \left( \mathbf { h } _ { i } , \mathbf { h } _ { k _ { 1 } } \right) &lt; \Delta \left( \mathbf { h } _ { i } , \mathbf { h } _ { k _ { 2 } } \right) &lt; \cdots &lt; \Delta \left( \mathbf { h } _ { i } , \mathbf { h } _ { k _ { K } } \right) \quad \forall k _ { 1 } \in N _ { i 1 } , \forall k _ { 2 } \in N _ { i 2 } , \ldots , \forall k _ { K } \in N _ { i K }<br>$$</p>
-<p>但是基于最短路径的rank足够好吗? 感觉最短路径长的节点相似性也可以很高.</p>
-<h3 id="Similarity-amp-Dissimilarity"><a href="#Similarity-amp-Dissimilarity" class="headerlink" title="Similarity &amp; Dissimilarity"></a>Similarity &amp; Dissimilarity</h3><p>这里用了非对称的KL来计算相似性(适用于无向图), 也可以用对称的JS.<br>$$<br>\Delta \left( \mathbf { h } _ { i } , \mathbf { h } _ { j } \right) = D _ { K L } \left( \mathcal { N } _ { j } | \mathcal { N } _ { i } \right) =\\<br>\frac { 1 } { 2 } \left[ \operatorname { tr } \left( \Sigma _ { i } ^ { - 1 } \Sigma _ { j } \right) + \left( \mu _ { i } - \mu _ { j } \right) ^ { T } \Sigma _ { i } ^ { - 1 } \left( \mu _ { i } - \mu _ { j } \right) - L - \log \frac { \operatorname { det } \left( \Sigma _ { j } \right) } { \operatorname { det } \left( \Sigma _ { i } \right) } \right]<br>$$</p>
-<p>KL散度有一些固有的缺点</p>
+<p>KL散度 不对称导致的问题:</p>
 <ul>
-<li>非对称(虽然有些论文说这是特点,适用于有向图).</li>
-<li>在两个分布相差较小的时候,KL散度可能无意义.</li>
-<li>不满足三角不等式.</li>
+<li>情况1.当 $p\rightarrow 0$ 且 $q\rightarrow 1$时, $ p(x) \log \left( \frac { p ( x ) } { q ( x ) }\ \right) \rightarrow 0$ , 对$D_{KL}(p||q)$的贡献为0</li>
+<li>情况2.当 $p\rightarrow 1$ 且 $q\rightarrow 0$时,  $p(x) \log \left( \frac { p ( x ) } { q ( x ) }\ \right) \rightarrow +\infty $, 对$D_{KL}(p||q)$的贡献为$+\infty $.<ul>
+<li>进步一这里可以解释为什么我们通常选择正态分布而不是均匀分布.</li>
+<li>均匀分布:只要两个均分分布不是完全相同,必然出现$p\neq0,q=0$的情况,导致$D_{KL}(p||q)\rightarrow +\infty $.</li>
+<li>正态分布:所有概率密度都是非负的,所以不会出现上述情况.</li>
 </ul>
-<p>所以一些论文尝试换距离,比如Wasserstein 距离.见18KDD_DVNE</p>
-<h3 id="Loss"><a href="#Loss" class="headerlink" title="Loss"></a>Loss</h3><p>$$<br>\mathcal { L } = \sum _ { i } \sum _ { k &lt; l } \sum _ { j _ { k } \in N _ { i k } } \sum _ { j _ { l } \in N _ { i l } } \left( E _ { i j _ { k } } ^ { 2 } + \exp ^ { - E _ { i j _ { l } } } \right) = \sum _ { \left( i , j _ { k } , j _ { l } \right) \in \mathcal { D } _ { t } } \left( E _ { i j _ { k } } ^ { 2 } + \exp ^ { - E _ { i j _ { l } } } \right) \\<br>E _ { i j } = D _ { K L } \left( \mathcal { N } _ { j } | \mathcal { N } _ { i } \right)<br>$$</p>
-<p>最小化这个loss: Ijk比较近,能量比较小; Ijl比较远,能量比较大.</p>
-<p>为了使得整体最小,需要ijl的能量指数衰减. 可以理解为,对ijk的约束比较大,要很近;对较远的点(负样本)约束比较小. 从而实现了类似margin的作用.</p>
-<h3 id="Sampling-strategy"><a href="#Sampling-strategy" class="headerlink" title="Sampling strategy"></a>Sampling strategy</h3><p>上述loss需要在整个图上算,这里利用采样的方法来近似.<br>$$<br>\text{replace}\sum _ { \left( i , j _ { k } , j _ { l } \right) \in \mathcal { D } _ { t } } \text { with } \mathbb { E } _ { \left( i , j _ { k } , j _ { l } \right) \sim \mathcal { D } _ { t } }<br>$$<br>但是直接采样会导致优化过程中对<strong>low-degree的点</strong>更新较少.本文提出一种<strong>an alternative node-anchored sampling strategy</strong>:以每个点为一点,采样他们的高阶邻居,组成一批数据进行训练. 然后这种策略依然有着自己的缺点,他<strong>估计的梯度是有偏的.</strong> </p>
-<h3 id="Diss"><a href="#Diss" class="headerlink" title="Diss"></a>Diss</h3><ol>
-<li><p>本文在inductive的时候不需要结构信息,而之前的方法graphsage则需要.究其原因,是本文在学习节点表示的时候仅仅利用了属性信息,而结构信息用来计算loss优化模型.</p>
 </li>
-<li><p>没有属性时,可以用onehot编码来代替属性.</p>
-</li>
-<li><p>一般能做到O(E)时间复杂度就不错了,这里只有O(N)可以说是相当高效了</p>
-</li>
+</ul>
+<p>换而言之, pq之间的KL散度可能导致惩罚或者梯度差距极大.</p>
+<h2 id="JS散度"><a href="#JS散度" class="headerlink" title="JS散度"></a>JS散度</h2><p>JS散度实际就是KL散度的一个扩展,被用来推导GAN.<br>$$<br>D _ { JS} ( p | q ) =\frac{1}{2}D _ { KL} ( p | \frac{p+q}{2} ) +\frac{1}{2}D _ { KL} ( q | \frac{p+q}{2} )<br>$$<br>需要注意</p>
+<ul>
+<li>JS散度是对称的.</li>
+<li>JS散度有界,范围是$[0,\log2]$这个上界不同情况,见<a href="http://pages.stern.nyu.edu/~dbackus/BCZ/entropy/Jensen%96Shannon-divergence-Wikipedia.pdf" target="_blank" rel="noopener">http://pages.stern.nyu.edu/~dbackus/BCZ/entropy/Jensen%96Shannon-divergence-Wikipedia.pdf</a></li>
+</ul>
+<p>KL散度和JS散度度量的时候有一个问题：</p>
+<p>如果两个分配P,Q离得很远，完全没有重叠的时候，那么KL散度值是没有意义的，而JS散度值是一个常数。这在学习算法中是比较致命的，这就意味这这一点的梯度为0。梯度消失了。</p>
+<h1 id="距离"><a href="#距离" class="headerlink" title="距离"></a>距离</h1><p>一个真正的距离或者度量要满足3个条件:</p>
+<h2 id="TV距离"><a href="#TV距离" class="headerlink" title="TV距离"></a>TV距离</h2><p>里还证明了 EBGAN 的 loss 是在 minimize TV 距离，而 TV 距离与 JS 是等价的（事实上 KL &gt; TV = JS &gt; EM ）</p>
+<h2 id="Wasserstein距离"><a href="#Wasserstein距离" class="headerlink" title="Wasserstein距离"></a>Wasserstein距离</h2><p>定义为<br>$$<br>W _ { p } ( \mu , \nu ) : = \left( \begin{array} { c } { \inf } \ { \gamma \in \Gamma ( \mu , \nu ) } \end{array} \int _ { M \times M } d ( x , y ) ^ { p } \mathrm { d } \gamma ( x , y ) \right)^{1/p}<br>$$<br>$$<br>W _ { p } ( \mu , \nu ) ^ { p } = \inf \mathbf { E } \left[ d ( X , Y ) ^ { p } \right]<br>$$</p>
+<p>这里$\Gamma ( \mu , \nu )$ 是$ \mu , \nu $分布组合起来的<strong>所有的可能的联合分布</strong>的集合, $(x,y)$代表从$\gamma$中进行采样出一对样本. 针对这对样本,从x搬移到y处所需要的距离就是 $d(x,y)$. 加上期望就代表,把所有$\mu $搬移到$\nu$所需要的距离.</p>
+<p>Wasserstein距离满足距离的三个要求.</p>
+<p>可以证明其满足三角不等式<br>$$<br>W _ { p } ( \mu , \nu ) \leq \left( \int | x - z | ^ { p } d \gamma \right) ^ { 1 / p } = \left( \int | x - z | ^ { p } d \sigma \right) ^ { 1 / p } = | x - z | _ { L ^ { p } ( \sigma ) } \\<br>\leq | x - y | _ { L ^ { p } ( \sigma ) } + | y - z | _ { L ^ { p } ( \sigma ) } = \left( \int | x - z | ^ { p } d \sigma \right) ^ { 1 / p } + \left( \int | x - z | ^ { p } d \sigma \right) ^ { 1 / p } \\<br>= \left( \int | x - z | ^ { p } d \gamma ^ { + } \right) ^ { 1 / p } + \left( \int | x - z | ^ { p } d \gamma ^ { - } \right) ^ { 1 / p } = W _ { p } ( \mu , \rho ) + W _ { p } ( \rho , \nu )<br>$$<br>Wessertein距离相比KL散度和JS散度的<strong>优势</strong>在于：即使两个分布的支撑集没有重叠或者重叠非常少，仍然能反映两个分布的远近。而JS散度在此情况下是常量，KL散度可能无意义.<br>(6)中的$W _ { p } ( \mu , \nu ) ^ { p } $又叫$W_p$距离, 这样就会有$W_1$距离和$W_2$距离</p>
+<h3 id="W-1-距离-EMD距离"><a href="#W-1-距离-EMD距离" class="headerlink" title="$W_1$距离(EMD距离)"></a>$W_1$距离(EMD距离)</h3><p>TODO</p>
+<h3 id="W-2-距离"><a href="#W-2-距离" class="headerlink" title="$W_2$距离"></a>$W_2$距离</h3><p>$W_p$距离的求解是非常麻烦的,但是在某种情况下求解很方便.</p>
+<p>针对<strong>两个高斯分布</strong>,$W_2$距离有<strong>闭式解</strong>(线性时间求解):<br>$$<br>d i s t = W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) , \mathcal { N } \left( \mu _ { 2 } , \Sigma _ { 2 } \right) \right)<br>\\<br>d i s t ^ { 2 } = \left| \mu _ { 1 } - \mu _ { 2 } \right| _ { 2 } ^ { 2 } + \operatorname { Tr } \left( \Sigma _ { 1 } + \Sigma _ { 2 } - 2 \left( \Sigma _ { 1 } ^ { 1 / 2 } \Sigma _ { 2 } \Sigma _ { 1 } ^ { 1 / 2 } \right) ^ { 1 / 2 } \right)<br>$$<br>如果这两个高斯分布的方差矩阵为对角矩阵,即$\Sigma _ { 1 } \Sigma _ { 2 } = \Sigma _ { 2 } \Sigma _ { 1 }$,上式可以进一步简化.<br>$$<br>W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) ; \boldsymbol { N } \left( m _ { 2 } , \Sigma _ { 2 } \right) \right) ^ { 2 } = \left| \mu _ { 1 } - \mu _ { 2 } \right| _ { 2 } ^ { 2 } + \left| \Sigma _ { 1 } ^ { 1 / 2 } - \Sigma _ { 2 } ^ { 1 / 2 } \right| _ { F } ^ { 2 }<br>$$</p>
+<h1 id="JS散度-KL散度-Wessertein距离对比"><a href="#JS散度-KL散度-Wessertein距离对比" class="headerlink" title="JS散度,KL散度,Wessertein距离对比"></a>JS散度,KL散度,Wessertein距离对比</h1><p>举例如下:</p>
+<p>考虑如下二维空间中的两个分布pq，p在线段AB上均匀分布，q在线段CD上均匀分布，通过控制参数$\theta$可以控制着两个分布的距离远近。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx1109nhpsj30hk0g9dfw.jpg" alt="img"></p>
+<p>$$<br>D_{KL}(p||q)=D_{KL}(q||p)=<br>\left{ \begin{array} { l l } { + \infty } &amp; { \text { if } \theta \neq 0 } \ { 0 } &amp; { \text { if } \theta = 0 } \end{array} \right. (突变)<br>$$</p>
+<p>$$<br>D_{JS}(p||q)== \left{ \begin{array} { l l } { \log 2 } &amp; { \text { if } \theta \neq 0 } \ { 0 } &amp; { \text { if } \theta = 0 } \end{array} \right. (突变<br>$$</p>
+<p>$$<br>W(p,q)=|\theta| (平滑)<br>$$</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<li><a href="https://blog.csdn.net/uestc_c2_403/article/details/75208644" target="_blank" rel="noopener">https://blog.csdn.net/uestc_c2_403/article/details/75208644</a></li>
+<li><a href="https://www.zhihu.com/question/39872326/answer/83688277" target="_blank" rel="noopener">https://www.zhihu.com/question/39872326/answer/83688277</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/25071913" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25071913</a></li>
+<li><a href="http://pages.stern.nyu.edu/~dbackus/BCZ/entropy/Jensen%96Shannon-divergence-Wikipedia.pdf" target="_blank" rel="noopener">http://pages.stern.nyu.edu/~dbackus/BCZ/entropy/Jensen%96Shannon-divergence-Wikipedia.pdf</a></li>
+<li>The Wasserstein distances</li>
+<li>Optimal Transport for Applied Mathematicians</li>
+<li><a href="http://www.geometry.caltech.edu/pubs/dGBOD12.pdf" target="_blank" rel="noopener">http://www.geometry.caltech.edu/pubs/dGBOD12.pdf</a></li>
 </ol>
-<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><ol>
-<li>本文可以处理有向图,但是一些baseline只支持无向图,所以要把有向图无向化,这会给这些baseline一些优势</li>
-<li>有些试验需要基于L维向量进行比较,针对这些实验本文学的是<strong>L/2维</strong>度的, 然后把<strong>均值和向量拼接</strong>起来进行试验.这种方法感觉就比较粗暴,没有很好利用他们之间的关系.之后的DVNE就较好的融合了均值方差.</li>
-</ol>
-<h3 id="链路预测"><a href="#链路预测" class="headerlink" title="链路预测"></a>链路预测</h3><p>这里用the negative energy $-E_{ij}$作为边存在的概率, 节点的维度L由均值和方差拼接而成.</p>
-<h3 id="节点分类"><a href="#节点分类" class="headerlink" title="节点分类"></a>节点分类</h3><p>这里按照前面的介绍应该是均值和方差拼接为长度为L的向量,但是在代码的example里面,只用了均值.</p>
-<h3 id="采样策略"><a href="#采样策略" class="headerlink" title="采样策略"></a>采样策略</h3><p>相对于随机采样,效果提升不多,但是极大的降低了梯度的方差</p>
-<h3 id="不确定性"><a href="#不确定性" class="headerlink" title="不确定性"></a>不确定性</h3><p>节点的不确定性应该与它邻居的多样性(种类)有关. 邻居种类越少, 节点越确定.</p>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>本文提出了Graph2Gauss来捕获节点的不确定性,模型感觉也是简洁有效,实验效果也不错.尤其是是没有属性的G2G_oh效果也很好,证明了gaussian embedding的优势.<br>但是本文在求均值和方差所用的模型太简单(全连接),并且没有利用结构信息,这样可能导致学到的gaussian embedding不够好. 可以试试用GNN搞一波.<br>此外,那个ranking信息感觉也有争议.最短路径某些情况下也许不够好.</p>
-<p>最后,在进行试验的时候只是简单的将均值方差拼接,有没有更好了方式可以反映他们之间的关系?</p>
-<p>且听下回分解&lt;&lt;18KDD_DVNE_Deep Variational Network Embedding in Wasserstein Space&gt;&gt;.</p>
 
       
     </div>
@@ -584,9 +593,9 @@
       
         <div class="post-tags">
           
-            <a href="/Jhy1993.github.io/tags/Network-Embedding/" rel="tag"># Network Embedding</a>
+            <a href="/Jhy1993.github.io/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
           
-            <a href="/Jhy1993.github.io/tags/Gaussian-Embedding/" rel="tag"># Gaussian Embedding</a>
+            <a href="/Jhy1993.github.io/tags/Wasserstein/" rel="tag"># Wasserstein</a>
           
         </div>
       
@@ -599,8 +608,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.unique_paths/" rel="next" title="62. unique paths">
-                <i class="fa fa-chevron-left"></i> 62. unique paths
+              <a href="/Jhy1993.github.io/2018/06/11/DL_template/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -609,8 +618,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/11/07/paper_note/18NIPS_Distilled-Wasserstein-Learning-for-Word-Embedding-and-Topic-Modeling/" rel="prev" title="18NIPS_Distilled Wasserstein Learning for Word Embedding and Topic Modeling">
-                18NIPS_Distilled Wasserstein Learning for Word Embedding and Topic Modeling <i class="fa fa-chevron-right"></i>
+              <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/083.Remove_duplicates_from_sorted_list/" rel="prev" title="83. Remove Duplicates from Sorted List">
+                83. Remove Duplicates from Sorted List <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -678,7 +687,7 @@
                 alt="Jimmy" />
             
               <p class="site-author-name" itemprop="name">Jimmy</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">EECS, BUPTer, 算法蒻鷄.</p>
           </div>
 
           
@@ -688,7 +697,7 @@
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -772,6 +781,11 @@
                   
                 </span>
               
+                <span class="links-of-author-item">
+                  <a href="https://youtube.com/yourname" target="_blank" title="YouTube"><i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                  
+                </span>
+              
             </div>
           
 
@@ -813,7 +827,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-number">1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Deep-Gaussian-Embedding"><span class="nav-number">2.</span> <span class="nav-text">Model: Deep Gaussian Embedding</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#encoder"><span class="nav-number">2.1.</span> <span class="nav-text">encoder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ranking"><span class="nav-number">2.2.</span> <span class="nav-text">ranking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Similarity-amp-Dissimilarity"><span class="nav-number">2.3.</span> <span class="nav-text">Similarity &amp; Dissimilarity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss"><span class="nav-number">2.4.</span> <span class="nav-text">Loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sampling-strategy"><span class="nav-number">2.5.</span> <span class="nav-text">Sampling strategy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Diss"><span class="nav-number">2.6.</span> <span class="nav-text">Diss</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiment"><span class="nav-number">3.</span> <span class="nav-text">Experiment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链路预测"><span class="nav-number">3.1.</span> <span class="nav-text">链路预测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点分类"><span class="nav-number">3.2.</span> <span class="nav-text">节点分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#采样策略"><span class="nav-number">3.3.</span> <span class="nav-text">采样策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不确定性"><span class="nav-number">3.4.</span> <span class="nav-text">不确定性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">4.</span> <span class="nav-text">Summary</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#F-散度"><span class="nav-number">1.</span> <span class="nav-text">F-散度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#KL散度"><span class="nav-number">1.1.</span> <span class="nav-text">KL散度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS散度"><span class="nav-number">1.2.</span> <span class="nav-text">JS散度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#距离"><span class="nav-number">2.</span> <span class="nav-text">距离</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TV距离"><span class="nav-number">2.1.</span> <span class="nav-text">TV距离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wasserstein距离"><span class="nav-number">2.2.</span> <span class="nav-text">Wasserstein距离</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#W-1-距离-EMD距离"><span class="nav-number">2.2.1.</span> <span class="nav-text">$W_1$距离(EMD距离)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#W-2-距离"><span class="nav-number">2.2.2.</span> <span class="nav-text">$W_2$距离</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JS散度-KL散度-Wessertein距离对比"><span class="nav-number">3.</span> <span class="nav-text">JS散度,KL散度,Wessertein距离对比</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
