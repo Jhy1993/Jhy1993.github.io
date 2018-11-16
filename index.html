@@ -349,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/14/DL/常见散度距离/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/15/常见散度距离/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jimmy">
@@ -368,8 +368,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/14/DL/常见散度距离/" itemprop="url">
-                  常见散度与距离(KL散度,JS散度,W距离)
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/15/常见散度距离/" itemprop="url">
+                  常见散度与距离(KL散度，JS散度，Wasserstein距离，互信息MI)
                 </a>
               
             
@@ -395,9 +395,25 @@
                 
               
 
-              <time title="Created: 2018-11-14 16:44:25" itemprop="dateCreated datePublished" datetime="2018-11-14T16:44:25+08:00">2018-11-14</time>
+              <time title="Created: 2018-11-15 15:31:57" itemprop="dateCreated datePublished" datetime="2018-11-15T15:31:57+08:00">2018-11-15</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-16 11:19:14" itemprop="dateModified" datetime="2018-11-16T11:19:14+08:00">2018-11-16</time>
+              
             
           </span>
 
@@ -428,8 +444,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/11/14/DL/常见散度距离/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/14/DL/常见散度距离/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/11/15/常见散度距离/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/15/常见散度距离/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -437,7 +453,7 @@
 
           
           
-             <span id="/Jhy1993.github.io/2018/11/14/DL/常见散度距离/" class="leancloud_visitors" data-flag-title="常见散度与距离(KL散度,JS散度,W距离)">
+             <span id="/Jhy1993.github.io/2018/11/15/常见散度距离/" class="leancloud_visitors" data-flag-title="常见散度与距离(KL散度，JS散度，Wasserstein距离，互信息MI)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -470,17 +486,16 @@
       
         
           
-          本文对比了常见散度(KL散度,JS散度)和常见距离(尤其是现在很火的W距离)
-F-散度散度是用来衡量两个概率密度p,q区别的函数,即:两个分布的相似程度.
-
-D _ { f } ( p \| q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x这里的$f$需要满足2个条件: $f$是凸函数且$f(1)=0$.
+          本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离)
+F-散度散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度.
+$$D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x$$这里的$f$需要满足2个条件: $f$是凸函数且$f(1)=0$.
 可以证明:
-因为$f$是凸函数,由Jensen不等式可知 $E(f(x)) &gt;= f(E(x))
+因为$f$是凸函数,由Jensen不等式可知 $E(f(x)) &
           ...
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/11/14/DL/常见散度距离/#more" rel="contents">
+              <a class="btn" href="/Jhy1993.github.io/2018/11/15/常见散度距离/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -587,6 +602,22 @@ D _ { f } ( p \| q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \righ
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-15 23:46:46" itemprop="dateModified" datetime="2018-11-15T23:46:46+08:00">2018-11-15</time>
+              
+            
           </span>
 
           
@@ -667,409 +698,6 @@ D _ { f } ( p \| q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \righ
               </a>
             </div>
          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jimmy">
-      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
-      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Better Call Saul">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/" itemprop="url">
-                  18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-11-07 22:27:29" itemprop="dateCreated datePublished" datetime="2018-11-07T22:27:29+08:00">2018-11-07</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-10 15:37:05" itemprop="dateModified" datetime="2018-11-10T15:37:05+08:00">2018-11-10</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/" class="leancloud_visitors" data-flag-title="18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views: </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯.
-Gaussian Embedding 又叫 Stochastic Embedding
-Vector Embedding 又叫 Point Embedding
-Motivation前面已经有很多工作将各种各样的Object映射为高斯分布来捕获不确定性.但是如果Object的不确定性很高,一个高斯分布也不足以捕获呢?
-本文提出了
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jimmy">
-      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
-      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Better Call Saul">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/" itemprop="url">
-                  18ICLR_DWE_Learning Wasserstein Embeddings
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-11-07 22:27:29" itemprop="dateCreated datePublished" datetime="2018-11-07T22:27:29+08:00">2018-11-07</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-09 10:49:46" itemprop="dateModified" datetime="2018-11-09T10:49:46+08:00">2018-11-09</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/" class="leancloud_visitors" data-flag-title="18ICLR_DWE_Learning Wasserstein Embeddings">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views: </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          s
-
-          
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
           <!--/noindex-->
         
       
@@ -1255,6 +883,408 @@ Motivation前面已经有很多工作将各种各样的Object映射为高斯分�
               </a>
             </div>
          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
+      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Better Call Saul">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/" itemprop="url">
+                  18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-11-07 22:27:29" itemprop="dateCreated datePublished" datetime="2018-11-07T22:27:29+08:00">2018-11-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-16 10:33:31" itemprop="dateModified" datetime="2018-11-16T10:33:31+08:00">2018-11-16</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/" class="leancloud_visitors" data-flag-title="18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯.
+ Stochastic Embedding是将Object映射为一个分布,包括Gaussian Embedding.
+Point Embedding是将Object映射为一个点, 包括Vector Embedding.
+Motivation前面已经有很多工作将各种各样的Object映射为高斯分布来捕获不确定性.但是如果Obj
+          ...
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
+      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Better Call Saul">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/" itemprop="url">
+                  18ICLR_DWE_Learning Wasserstein Embeddings
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-11-07 22:27:29" itemprop="dateCreated datePublished" datetime="2018-11-07T22:27:29+08:00">2018-11-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-16 11:19:17" itemprop="dateModified" datetime="2018-11-16T11:19:17+08:00">2018-11-16</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/" class="leancloud_visitors" data-flag-title="18ICLR_DWE_Learning Wasserstein Embeddings">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          s
+
+          
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE_Learning Wasserstein Embeddings/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1911,7 +1941,7 @@ Motivation前面已经有很多工作将各种各样的Object映射为高斯分�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/383._ransom_note/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.Unique_paths/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jimmy">
@@ -1930,8 +1960,8 @@ Motivation前面已经有很多工作将各种各样的Object映射为高斯分�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/383._ransom_note/" itemprop="url">
-                  383. Ransom Note
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.Unique_paths/" itemprop="url">
+                  62. unique paths
                 </a>
               
             
@@ -1974,7 +2004,7 @@ Motivation前面已经有很多工作将各种各样的Object映射为高斯分�
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-14 22:40:12" itemprop="dateModified" datetime="2018-11-14T22:40:12+08:00">2018-11-14</time>
+                <time title="Modified: 2018-11-06 00:37:13" itemprop="dateModified" datetime="2018-11-06T00:37:13+08:00">2018-11-06</time>
               
             
           </span>
@@ -2006,8 +2036,8 @@ Motivation前面已经有很多工作将各种各样的Object映射为高斯分�
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/383._ransom_note/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/383._ransom_note/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.Unique_paths/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.Unique_paths/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2015,7 +2045,7 @@ Motivation前面已经有很多工作将各种各样的Object映射为高斯分�
 
           
           
-             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/383._ransom_note/" class="leancloud_visitors" data-flag-title="383. Ransom Note">
+             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.Unique_paths/" class="leancloud_visitors" data-flag-title="62. unique paths">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2048,20 +2078,23 @@ Motivation前面已经有很多工作将各种各样的Object映射为高斯分�
       
         
           
-          383. Ransom Note题目：https://leetcode.com/problems/ransom-note/
-难度 : Easy
-https://leetcode.com/problems/ransom-note/description/
-思路1  41%
-因为要能构成,又限制每个字母只能用一次
-一个magazine能构成的rabsomNote的条件是:ransomNote中每个字母都在magazine中出现且次数不少于ransomNote中的次数
-可以构建两个字典,并比较
+          62. unique paths 不同路径难度: 中等
+刷题内容
+原题连接
 
-12
+
+https://leetcode.com/problems/unique-paths
+https://leetcode-cn.com/problems/unique-paths/description
+
+
+内容描述
+
+12345一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。问总共
           ...
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/383._ransom_note/#more" rel="contents">
+              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.Unique_paths/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -2118,7 +2151,7 @@ https://leetcode.com/problems/ransom-note/description/
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/203.Remove_linked_list_elements/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/077.Combinations/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jimmy">
@@ -2137,8 +2170,8 @@ https://leetcode.com/problems/ransom-note/description/
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/203.Remove_linked_list_elements/" itemprop="url">
-                  203. Remove Linked List Elements
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/077.Combinations/" itemprop="url">
+                  77. Combinations
                 </a>
               
             
@@ -2181,7 +2214,7 @@ https://leetcode.com/problems/ransom-note/description/
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-10-30 23:51:10" itemprop="dateModified" datetime="2018-10-30T23:51:10+08:00">2018-10-30</time>
+                <time title="Modified: 2018-11-14 22:21:43" itemprop="dateModified" datetime="2018-11-14T22:21:43+08:00">2018-11-14</time>
               
             
           </span>
@@ -2213,8 +2246,8 @@ https://leetcode.com/problems/ransom-note/description/
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/203.Remove_linked_list_elements/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/203.Remove_linked_list_elements/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/077.Combinations/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/077.Combinations/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2222,7 +2255,7 @@ https://leetcode.com/problems/ransom-note/description/
 
           
           
-             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/203.Remove_linked_list_elements/" class="leancloud_visitors" data-flag-title="203. Remove Linked List Elements">
+             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/077.Combinations/" class="leancloud_visitors" data-flag-title="77. Combinations">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2255,20 +2288,19 @@ https://leetcode.com/problems/ransom-note/description/
       
         
           
-          203. Remove Linked List Elements题目:https://leetcode.com/problems/remove-linked-list-elements/
-难度:
-Easy
-76ms 40%AC代码如下:
+          #77. Combinations
+题目：https://leetcode.com/problems/combinations/
+难度 : Medium
+652ms 66%思路
 
-注意linked list 的首个node就可能需要删除,所以建立一个哑节点 dummy, dummy.next = head
-链表中的删除实际是跳过该节点
+典型的dfs, 用递归来解决,这里的k就是递归深度.
 
-1234567891011121314151617181920class Solution(obje
+12345678910111213141516171819202122class Solution(object):    def combine(self, n, k):        """        :type n: int        :type k
           ...
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/203.Remove_linked_list_elements/#more" rel="contents">
+              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/077.Combinations/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -2314,7 +2346,7 @@ Easy
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/Jhy1993.github.io/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/Jhy1993.github.io/page/4/">4</a><a class="extend next" rel="next" href="/Jhy1993.github.io/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/Jhy1993.github.io/page/2/">2</a><a class="page-number" href="/Jhy1993.github.io/page/3/">3</a><a class="extend next" rel="next" href="/Jhy1993.github.io/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2361,7 +2393,7 @@ Easy
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
