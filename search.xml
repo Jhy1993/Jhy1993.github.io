@@ -22,16 +22,16 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F11%2F07%2F18ArXiv_HIB_MODELING%20UNCERTAINTY%20WITH%20HEDGED%20INSTANCE%20EMBEDDING%2F</url>
-    <content type="text"><![CDATA[之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯. Stochastic Embedding是将Object映射为一个分布,包括Gaussian Embedding. Point Embedding是将Object映射为一个点, 包括Vector Embedding. Motivation前面已经有很多工作将各种各样的Object映射为高斯分布来捕获不确定性.但是如果Object的不确定性很高,一个高斯分布也不足以捕获呢? 本文提出了HIB来解决上述问题.所谓的”hedging its bets”就是为了避免损失,多处下注.对应到本文,对于有歧义的输入,将其映射为多个高斯分布, 每个高斯分布代表其中一个意思. 针对图像的歧义需求,设计了$N-digits MNIST$ 数据集,即将mnist中的数字组合成一张新图,这样每张图就有歧义了. 这张图就很好的解释了本文的Motivation. 作者总结了本文的3个贡献: 效果提升,尤其是针对一些不确定的输入. 加强了结构正则??怎么理解 也没理解.. Model模型主要思路是通过variational information bottleneck principle来学习hedged instance embedding (HIB). hedged instance embedding (HIB).这里首先介绍两个输入的匹配概率, 实际是输入x到分布Z变换$Z \sim p(z|x)$, 计算Z的匹配概率(如果这里直接用W2距离计算一下呢?)$$p ( m | x _ { 1 } , x _ { 2 } ) = \int p ( m | z _ { 1 } , z _ { 2 } ) p \left( z _ { 1 } | x _ { 1 } \right) p \left( z _ { 2 } | x _ { 2 } \right) \mathrm { d } z _ { 1 } \mathrm { d } z _ { 2 }$$为了求这个积分分两步: $p(z|x)$这个一般都是用神经网络来映射. 求$p ( m | x _ { 1 } , x _ { 2 } )$ 这里用了MC Sampling, 分别从两个输入$x_1,x_2$ 映射后的$z _ { 1 } ^ { \left( k _ { 1 } \right) } \sim p \left( z _ { 1 } | x _ { 1 } \right)$ 和$z _ { 2 } ^ { \left( k _ { 2} \right) } \sim p \left( z _ { 2} | x _ { 2 } \right)$中采样多个样本. $$p ( m | x _ { 1 } , x _ { 2 } ) \approx \frac { 1 } { K ^ { 2 } } \sum _ { k _ { 1 } = 1 } ^ { K } \sum _ { k _ { 2 } = 1 } ^ { K } p ( m | z _ { 1 } ^ { \left( k _ { 1 } \right) } , z _ { 2 } ^ { \left( k _ { 2 } \right) } )$$ 到这里模型其实已经可以用了,但是本文所强调的混合高斯怎么融入到上述模型里呢?(猜测是用多个NN来得到均值方差,再组合) 这里其实很简单,就是将$p(z|x)$这个映射变复杂,采样也变成从多个高斯分布中采样.$$p(z|x)=\sum _ { c = 1 } ^ { C } \mathcal { N } ( z ; \mu ( x , c ) , \Sigma ( x , c ) )$$到现在模型其实新颖程度创新程度感觉还不够, 看来有一部分创新在VIB里. variational information bottleneck principle为了训练上述模型, 本文混合了soft contrastive loss 和 the VIB principle.这里利用了17ICLR_VIB_Deep variational information bottleneck的推导结果$$I ( z , y ) - \beta I ( z , x )$$直观理解就是:学到的z和标签y很像,同时 z和输入x尽量相似度小. 这样在保证z有效性的同时,又可以滤除x中无用部分. 互信息介绍介绍详见 &lt;常见散度与距离(KL散度,JS散度,Wasserstein距离, NMI)&gt; 将公式(4)进行放缩,可以得到(5),详细推导见&lt;17ICLR_VIB_Deep variational information bottleneck&gt; 最终推导得到$$ \mathcal { L } _ { \mathrm { VIB } } = \mathbb { E } _ { z \sim p ( z | x ) } [ \log q ( y | z ) ] - \beta \cdot \mathrm { KL } ( p ( z | x ) | r ( z ) )$$这里的第二项是正则项, 约束生成z的分布$p(z|x)$为一个单位高斯分布,这里$r ( z ) = \mathcal { N } ( z ; 0 , I )$ . 并结合本文Embedding需求,对上述loss里的一些项进行了替换,详细推导见附录.$$\begin{aligned} \mathcal { L } _ { \mathrm { VIBEmb } } = &amp; - \mathbb { E } _ { z _ { 1 } \sim p \left( z _ { 1 } | x _ { 1 } \right) , z _ { 2 } \sim p \left( z _ { 2 } | x _ { 2 } \right) } [ \log p ( m = \hat { m } | z _ { 1 } , z _ { 2 } ) ] \ &amp; + \beta \cdot \left[ \mathrm { KL } \left( p \left( z _ { 1 } | x _ { 1 } \right) | r \left( z _ { 1 } \right) \right) + \mathrm { KL } \left( p \left( z _ { 2 } | x _ { 2 } \right) | r \left( z _ { 2 } \right) \right) \right] \end{aligned}$$(5)中$q(y|z)$是根据表示z预测标签y,对应这里的$\log p ( m = \hat { m } | z _ { 1 } , z _ { 2 } ) $,这一项就是soft contrastive loss . ExperimentTODO Summary之前的论文都用高斯分布来捕获Object的不确定性取得了一定的效果.但是单个高斯分布就够好了吗?本文通过例子分析了单个高斯的不足,提出用多个高斯分布来描述Object的歧义. 想法很好,但是感觉力度不够. 本文亮点的Mixture of Gaussians (MoG) embedding就只一句话描述,不够清楚; 强调了VIB也只是利用现有的工作,换个loss形式. 个人感觉最近一些Gaussian Embedding的论文很多都是:换个Gaussian Distribution的形式+换个loss/distance.]]></content>
+    <title><![CDATA[18ICLR_DWE_Learning Wasserstein Embeddings]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F11%2F07%2F18ICLR_DWE_Learning%20Wasserstein%20Embeddings%2F</url>
+    <content type="text"><![CDATA[s]]></content>
       <categories>
         <category>Paper</category>
       </categories>
       <tags>
         <tag>Deep Learning</tag>
         <tag>Wasserstein</tag>
-        <tag>Gaussian Embedding</tag>
+        <tag>Embedding</tag>
       </tags>
   </entry>
   <entry>
@@ -47,16 +47,16 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[18ICLR_DWE_Learning Wasserstein Embeddings]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F11%2F07%2F18ICLR_DWE_Learning%20Wasserstein%20Embeddings%2F</url>
-    <content type="text"><![CDATA[s]]></content>
+    <title><![CDATA[18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F11%2F07%2F18ArXiv_HIB_MODELING%20UNCERTAINTY%20WITH%20HEDGED%20INSTANCE%20EMBEDDING%2F</url>
+    <content type="text"><![CDATA[之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯. Stochastic Embedding是将Object映射为一个分布,包括Gaussian Embedding. Point Embedding是将Object映射为一个点, 包括Vector Embedding. Motivation前面已经有很多工作将各种各样的Object映射为高斯分布来捕获不确定性.但是如果Object的不确定性很高,一个高斯分布也不足以捕获呢? 本文提出了HIB来解决上述问题.所谓的”hedging its bets”就是为了避免损失,多处下注.对应到本文,对于有歧义的输入,将其映射为多个高斯分布, 每个高斯分布代表其中一个意思. 针对图像的歧义需求,设计了$N-digits MNIST$ 数据集,即将mnist中的数字组合成一张新图,这样每张图就有歧义了. 这张图就很好的解释了本文的Motivation. 作者总结了本文的3个贡献: 效果提升,尤其是针对一些不确定的输入. 加强了结构正则??怎么理解 也没理解.. Model模型主要思路是通过variational information bottleneck principle来学习hedged instance embedding (HIB). hedged instance embedding (HIB).这里首先介绍两个输入的匹配概率, 实际是输入x到分布Z变换$Z \sim p(z|x)$, 计算Z的匹配概率(如果这里直接用W2距离计算一下呢?)$$p ( m | x _ { 1 } , x _ { 2 } ) = \int p ( m | z _ { 1 } , z _ { 2 } ) p \left( z _ { 1 } | x _ { 1 } \right) p \left( z _ { 2 } | x _ { 2 } \right) \mathrm { d } z _ { 1 } \mathrm { d } z _ { 2 }$$为了求这个积分分两步: $p(z|x)$这个一般都是用神经网络来映射. 求$p ( m | x _ { 1 } , x _ { 2 } )$ 这里用了MC Sampling, 分别从两个输入$x_1,x_2$ 映射后的$z _ { 1 } ^ { \left( k _ { 1 } \right) } \sim p \left( z _ { 1 } | x _ { 1 } \right)$ 和$z _ { 2 } ^ { \left( k _ { 2} \right) } \sim p \left( z _ { 2} | x _ { 2 } \right)$中采样多个样本. $$p ( m | x _ { 1 } , x _ { 2 } ) \approx \frac { 1 } { K ^ { 2 } } \sum _ { k _ { 1 } = 1 } ^ { K } \sum _ { k _ { 2 } = 1 } ^ { K } p ( m | z _ { 1 } ^ { \left( k _ { 1 } \right) } , z _ { 2 } ^ { \left( k _ { 2 } \right) } )$$ 到这里模型其实已经可以用了,但是本文所强调的混合高斯怎么融入到上述模型里呢?(猜测是用多个NN来得到均值方差,再组合) 这里其实很简单,就是将$p(z|x)$这个映射变复杂,采样也变成从多个高斯分布中采样.$$p(z|x)=\sum _ { c = 1 } ^ { C } \mathcal { N } ( z ; \mu ( x , c ) , \Sigma ( x , c ) )$$到现在模型其实新颖程度创新程度感觉还不够, 看来有一部分创新在VIB里. variational information bottleneck principle为了训练上述模型, 本文混合了soft contrastive loss 和 the VIB principle.这里利用了17ICLR_VIB_Deep variational information bottleneck的推导结果$$I ( z , y ) - \beta I ( z , x )$$直观理解就是:学到的z和标签y很像,同时 z和输入x尽量相似度小. 这样在保证z有效性的同时,又可以滤除x中无用部分. 互信息介绍介绍详见 &lt;常见散度与距离(KL散度,JS散度,Wasserstein距离, NMI)&gt; 将公式(4)进行放缩,可以得到(5),详细推导见&lt;17ICLR_VIB_Deep variational information bottleneck&gt; 最终推导得到$$ \mathcal { L } _ { \mathrm { VIB } } = \mathbb { E } _ { z \sim p ( z | x ) } [ \log q ( y | z ) ] - \beta \cdot \mathrm { KL } ( p ( z | x ) | r ( z ) )$$这里的第二项是正则项, 约束生成z的分布$p(z|x)$为一个单位高斯分布,这里$r ( z ) = \mathcal { N } ( z ; 0 , I )$ . 并结合本文Embedding需求,对上述loss里的一些项进行了替换,详细推导见附录.$$\begin{aligned} \mathcal { L } _ { \mathrm { VIBEmb } } = &amp; - \mathbb { E } _ { z _ { 1 } \sim p \left( z _ { 1 } | x _ { 1 } \right) , z _ { 2 } \sim p \left( z _ { 2 } | x _ { 2 } \right) } [ \log p ( m = \hat { m } | z _ { 1 } , z _ { 2 } ) ] \ &amp; + \beta \cdot \left[ \mathrm { KL } \left( p \left( z _ { 1 } | x _ { 1 } \right) | r \left( z _ { 1 } \right) \right) + \mathrm { KL } \left( p \left( z _ { 2 } | x _ { 2 } \right) | r \left( z _ { 2 } \right) \right) \right] \end{aligned}$$(5)中$q(y|z)$是根据表示z预测标签y,对应这里的$\log p ( m = \hat { m } | z _ { 1 } , z _ { 2 } ) $,这一项就是soft contrastive loss . ExperimentTODO Summary之前的论文都用高斯分布来捕获Object的不确定性取得了一定的效果.但是单个高斯分布就够好了吗?本文通过例子分析了单个高斯的不足,提出用多个高斯分布来描述Object的歧义. 想法很好,但是感觉力度不够. 本文亮点的Mixture of Gaussians (MoG) embedding就只一句话描述,不够清楚; 强调了VIB也只是利用现有的工作,换个loss形式. 个人感觉最近一些Gaussian Embedding的论文很多都是:换个Gaussian Distribution的形式+换个loss/distance.]]></content>
       <categories>
         <category>Paper</category>
       </categories>
       <tags>
+        <tag>Gaussian Embedding</tag>
         <tag>Deep Learning</tag>
         <tag>Wasserstein</tag>
-        <tag>Embedding</tag>
       </tags>
   </entry>
   <entry>
@@ -67,10 +67,10 @@
         <category>Paper</category>
       </categories>
       <tags>
+        <tag>Gaussian Embedding</tag>
         <tag>Deep Learning</tag>
         <tag>Wasserstein</tag>
         <tag>Network Embedding</tag>
-        <tag>Gaussian Embedding</tag>
       </tags>
   </entry>
   <entry>
@@ -81,8 +81,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Network Embedding</tag>
         <tag>Gaussian Embedding</tag>
+        <tag>Network Embedding</tag>
       </tags>
   </entry>
   <entry>
@@ -93,14 +93,46 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Network Embedding</tag>
         <tag>Gaussian Embedding</tag>
+        <tag>Network Embedding</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[3. Longest Substring Without Repeating Characters]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F003._longest_substring_without_repeating_characters%2F</url>
+    <content type="text"><![CDATA[3. Longest Substring Without Repeating Characters难度: Medium 刷题内容 原题连接 https://leetcode.com/problems/longest-substring-without-repeating-characters/description/ 内容描述 12345678910111213141516171819Given a string, find the length of the longest substring without repeating characters.Example 1:Input: &quot;abcabcbb&quot;Output: 3 Explanation: The answer is &quot;abc&quot;, with the length of 3. Example 2:Input: &quot;bbbbb&quot;Output: 1Explanation: The answer is &quot;b&quot;, with the length of 1.Example 3:Input: &quot;pwwkew&quot;Output: 3Explanation: The answer is &quot;wke&quot;, with the length of 3. Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring. 100ms 66%**- 时间复杂度: O(N)**- 空间复杂度: O(N)** 思路 粗一看是dp，细一看是greedy 我们先从第一个字符开始，碰到某个字符均用dict保存下或则更新其idx. 假设从位置i开始检查, 每检查一位,就更新一次重复子串大小 j-i+1 到j位置发现了第一次发现重复字符’X’,那么ij之间没有重复字符,下次检查就可以从j开始了. 注意这里要把字符x的idx更新为j 更新每个字符的最靠后idx 详细见代码注释 1234567891011121314151617class Solution: def lengthOfLongestSubstring(self, s): """ :type s: str :rtype: int """ max_len = 0 start = 0 n = len(s) d = &#123;&#125; for i in range(n): #d.get(s[i], -1)+1 得到当前字符出现的最靠后那次的idx start = max(start, d.get(s[i], -1) + 1) # i - start + 1 dist(当前位置, 当前字符出现的最靠后那次的idx) max_len = max(max_len, i - start + 1) d[s[i]] = i return max_len]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[83. Remove Duplicates from Sorted List]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F083.Remove_duplicates_from_sorted_list%2F</url>
+    <content type="text"><![CDATA[#83. Remove Duplicates from Sorted List 题目:https://leetcode.com/problems/remove-duplicates-from-sorted-list/ 难度: Easy 60ms 53%how 注意是sort的, 所以重复数字都是相邻的 重复数字可能有多次如 1-&gt;1-&gt;1 1234567891011121314151617181920# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def deleteDuplicates(self, head): """ :type head: ListNode :rtype: ListNode """ cur = head while cur: # 因为这里重复可能有多次, 所以用while而不是if #检查cur.next有没有, 尾部判断 while cur.next and cur.val == cur.next.val: cur.next = cur.next.next cur = cur.next return head dummy 大法 123456789101112class Solution(object): def deleteDuplicates(self, head): """ :type head: ListNode :rtype: ListNode """ dummy = head while head: while head.next and head.next.val == head.val: head.next = head.next.next # skip duplicated node head = head.next # not duplicate of current node, move to next node return dummy]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[203. Remove Linked List Elements]]></title>
     <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F203.Remove_linked_list_elements%2F</url>
     <content type="text"><![CDATA[203. Remove Linked List Elements题目:https://leetcode.com/problems/remove-linked-list-elements/ 难度: Easy 76ms 40%AC代码如下: 注意linked list 的首个node就可能需要删除,所以建立一个哑节点 dummy, dummy.next = head 链表中的删除实际是跳过该节点 1234567891011121314151617181920class Solution(object): def removeElements(self, head, val): """ :type head: ListNode :type val: int :rtype: ListNode """ dummy = ListNode(-1) dummy.next = head cur = dummy while cur.next: #注意这里从cur.next开始判断,因为如果到了cur且cur.val==val,这时已经无法跳过cur了 if cur.next.val == val: cur.next = cur.next.next else: cur = cur.next return dummy.next]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[383. Ransom Note]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F383._ransom_note%2F</url>
+    <content type="text"><![CDATA[383. Ransom Note题目：https://leetcode.com/problems/ransom-note/ 难度 : Easy https://leetcode.com/problems/ransom-note/description/ 思路1 41% 因为要能构成,又限制每个字母只能用一次 一个magazine能构成的rabsomNote的条件是:ransomNote中每个字母都在magazine中出现且次数不少于ransomNote中的次数 可以构建两个字典,并比较 1234567891011121314151617181920212223242526class Solution: def canConstruct(self, ransomNote, magazine): &quot;&quot;&quot; :type ransomNote: str :type magazine: str :rtype: bool &quot;&quot;&quot; d1 = dict() d2 = dict() for i in list(ransomNote): if i in d1: d1[i] += 1 else: d1[i] = 1 for i in list(magazine): if i in d2: d2[i] += 1 else: d2[i] = 1 for key in list(d1.keys()): if key not in d2: return False if key in d2: if d1[key] &gt; d2[key]: return False return True 思路2 77%基本和思路1一样 只不过用Counter来代替字典统计 12345678910111213141516class Solution: def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ import collections cnt1 = collections.Counter(ransomNote) cnt2 = collections.Counter(magazine) for key in list(cnt1.keys()): if key not in cnt2: return False if key in cnt2 and cnt1[key] &gt; cnt2[key]: return False return True 思路3 77得到 cnt1和cnt2之后可以直接字典相减 https://www.jianshu.com/p/58d21289ff5c 字典相加: 合并两个字典, 相同键的值相加 字典相减 cnt1 - cnt2: 如果cnt1包含cnt2 对应的键值相减 cnt2包含cnt1, 减不了,返回空* 12345678910111213class Solution: def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ import collections cnt1 = collections.Counter(ransomNote) cnt2 = collections.Counter(magazine) #这里如果cnt2-cnt1,返回字典 #要用 not cnt1-cnt2, 期望返回空字典=False return not cnt1 - cnt2 略微想了一下，用了一个dictionary来存magazine里面的单字出现的个数，然后来对应check是否可以用来组成ransomNote 123456789101112131415161718192021class Solution(object): def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ maps = &#123;&#125; for i in magazine: if i in maps: maps[i] += 1 else: maps[i] = 1 for i in ransomNote: if i not in maps: return False else: maps[i] -= 1 if maps[i] &lt; 0: return False return True 解法2： 12345678910111213class Solution(object): def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ magCounter = collections.Counter(magazine) ranCounter = collections.Counter(ransomNote) for k in ranCounter: if ranCounter.get(k) &gt; magCounter.get(k): return False return True]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[77. Combinations]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F077.Combinations%2F</url>
+    <content type="text"><![CDATA[#77. Combinations 题目：https://leetcode.com/problems/combinations/ 难度 : Medium 652ms 66%思路 典型的dfs, 用递归来解决,这里的k就是递归深度. 12345678910111213141516171819202122class Solution(object): def combine(self, n, k): """ :type n: int :type k: int :rtype: List[List[int]] """ res = [] # 注意题目要求 数字从1~n self.dfs(n, k, 1, [], res) print(res) def dfs(self, n, k, start, tmp, res): if k == 0: res.append(tmp) print(tmp) return # 注意题目要求 数字从1~n, range(1, n+1) for i in range(start, n+1): # tmp.append(i) self.dfs(n, k-1, i+1, tmp + [i], res) ref思路二： 标准的recursion 但是会超时 1234567891011121314151617class Solution(object): def combine(self, n, k): &quot;&quot;&quot; :type n: int :type k: int :rtype: List[List[int]] &quot;&quot;&quot; ans = [] self.dfs(n, k, 1, [], ans) return ans def dfs(self, n, k ,start, lst, ans): if k == 0 : ans.append(lst) return for i in range(start, n+1): self.dfs(n, k - 1, i + 1,lst +[i], ans) 理解方式 12345678910 ---title: 62. unique pathscategories: - LeetCode--- 1 2 3 12 13 14 23 24 34 可以参照这里 http://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/ 解法三： 采用递归的方式，在n个数中选k个，如果n大于k，那么可以分类讨论，如果选了n，那么就是在1到(n-1)中选(k-1)个，否则就是在1到(n-1)中选k个。递归终止的条件是k为1，这时候1到n都符合要求。 注意一开始这里的else part花了我一点时间来理解，因为n必定大于k，所以这样递归当 n == k的时候选法就是code原作者的写法，也就是直接[range(1,k+1)] 参考这里： https://shenjie1993.gitbooks.io/leetcode-python/content/077%20Combinations.html 12345678910111213141516class Solution(object): def combine(self, n, k): &quot;&quot;&quot; :type n: int :type k: int :rtype: List[List[int]] &quot;&quot;&quot; if k == 1: return [[i + 1] for i in range(n)] result = [] if n &gt; k: result = [r + [n] for r in self.combine(n - 1, k - 1)] + self.combine(n - 1, k) else: #n == k # result = [r + [n] for r in self.combine(n - 1, k - 1)] result = [range(1,k+1)] return result]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
@@ -122,17 +154,9 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[383. Ransom Note]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F383._ransom_note%2F</url>
-    <content type="text"><![CDATA[383. Ransom Note题目：https://leetcode.com/problems/ransom-note/ 难度 : Easy https://leetcode.com/problems/ransom-note/description/ 思路1 41% 因为要能构成,又限制每个字母只能用一次 一个magazine能构成的rabsomNote的条件是:ransomNote中每个字母都在magazine中出现且次数不少于ransomNote中的次数 可以构建两个字典,并比较 1234567891011121314151617181920212223242526class Solution: def canConstruct(self, ransomNote, magazine): &quot;&quot;&quot; :type ransomNote: str :type magazine: str :rtype: bool &quot;&quot;&quot; d1 = dict() d2 = dict() for i in list(ransomNote): if i in d1: d1[i] += 1 else: d1[i] = 1 for i in list(magazine): if i in d2: d2[i] += 1 else: d2[i] = 1 for key in list(d1.keys()): if key not in d2: return False if key in d2: if d1[key] &gt; d2[key]: return False return True 思路2 77%基本和思路1一样 只不过用Counter来代替字典统计 12345678910111213141516class Solution: def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ import collections cnt1 = collections.Counter(ransomNote) cnt2 = collections.Counter(magazine) for key in list(cnt1.keys()): if key not in cnt2: return False if key in cnt2 and cnt1[key] &gt; cnt2[key]: return False return True 思路3 77得到 cnt1和cnt2之后可以直接字典相减 https://www.jianshu.com/p/58d21289ff5c 字典相加: 合并两个字典, 相同键的值相加 字典相减 cnt1 - cnt2: 如果cnt1包含cnt2 对应的键值相减 cnt2包含cnt1, 减不了,返回空* 12345678910111213class Solution: def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ import collections cnt1 = collections.Counter(ransomNote) cnt2 = collections.Counter(magazine) #这里如果cnt2-cnt1,返回字典 #要用 not cnt1-cnt2, 期望返回空字典=False return not cnt1 - cnt2 略微想了一下，用了一个dictionary来存magazine里面的单字出现的个数，然后来对应check是否可以用来组成ransomNote 123456789101112131415161718192021class Solution(object): def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ maps = &#123;&#125; for i in magazine: if i in maps: maps[i] += 1 else: maps[i] = 1 for i in ransomNote: if i not in maps: return False else: maps[i] -= 1 if maps[i] &lt; 0: return False return True 解法2： 12345678910111213class Solution(object): def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ magCounter = collections.Counter(magazine) ranCounter = collections.Counter(ransomNote) for k in ranCounter: if ranCounter.get(k) &gt; magCounter.get(k): return False return True]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[21. Merge Two Sorted Lists]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F021.Merge_two_sorted_lists%2F</url>
-    <content type="text"><![CDATA[21. Merge Two Sorted Lists难度: Easy 刷题内容 原题连接 https://leetcode.com/problems/merge-two-sorted-lists/description/ 内容描述 123456Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.Example:Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4 48ms 77%How 新建一个哑节点, ListNode(0),最后返回的时候返回head.next,正好忽略第一个哑节点 判断大小,将链表的值依次放入, l1和l2有一个先取完, 未取完的部分拼接到后面即可 12345678910111213141516171819202122232425262728# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeTwoLists(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ cur = head = ListNode(0) while l1 and l2: if l1.val &lt; l2.val: cur.next = l1 l1 = l1.next else: cur.next = l2 l2 = l2.next cur = cur.next if l1: cur.next = l1 if l2: cur.next = l2 return head.next]]></content>
+    <title><![CDATA[112. Path Sum]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F112._path_sum%2F</url>
+    <content type="text"><![CDATA[112. Path Sum题目:https://leetcode.com/problems/path-sum/ 难度: Easy 56ms 81%思路 递归查找, 分别从左/右开始递归, 每递归一层, 都需要sum-root.val 1234567891011121314151617181920# Definition for a binary tree node.# class TreeNode:# def __init__(self, x):# self.val = x# self.left = None# self.right = Noneclass Solution: def hasPathSum(self, root, sum): """ :type root: TreeNode :type sum: int :rtype: bool """ if root == None: return False if root.left == None and root.right == None: return root.val == sum return self.hasPathSum(root.left, sum - root.val) or self.hasPathSum(root.right, sum - root.val)]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
@@ -141,6 +165,22 @@
     <title><![CDATA[49. Group Anagrams]]></title>
     <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F049.Group_anagrams%2F</url>
     <content type="text"><![CDATA[49. Group Anagrams难度: Medium 刷题内容 原题连接 https://leetcode.com/problems/group-anagrams/description/ 内容描述 123456789101112131415Given an array of strings, group anagrams together.Example:Input: [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;],Output:[ [&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;], [&quot;nat&quot;,&quot;tan&quot;], [&quot;bat&quot;]]Note:All inputs will be in lowercase.The order of your output does not matter. 解题方案124ms 90%top 是hash table,提示用字典 字典的key是关键, 因为即使打乱顺序也就是那几个字母 开始尝试用set, 不能作为key, 转而用tuple time O(NKlogK) N是strs长度, K是最大str长度, KlogK是sort space O(NK) 新建的res 123456789101112131415class Solution: def groupAnagrams(self, strs): """ :type strs: List[str] :rtype: List[List[str]] """ # 新建一个字典, key是字母的tuple, val是list of str from collections import defaultdict res = defaultdict(list) for st in strs: res[tuple(sorted(st))].append(st) # 注意python3的转换 return list(res.values()) title: 62. unique pathscategories:​ - LeetCode 思路 1 每一个字符串都先排个序看看是不是一样，这样更好判断 1234567891011121314class Solution(object): def groupAnagrams(self, strs): """ :type strs: List[str] :rtype: List[List[str]] """ mapx = &#123;&#125; for i in strs: tmp = ''.join(sorted(list(i))) if tmp in mapx: mapx[tmp].append(i) else: mapx[tmp] = [i] return mapx.values()]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[75. Sort Colors]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F075.Sort_colors%2F</url>
+    <content type="text"><![CDATA[75. Sort Colors难度: 中等 刷题内容 原题连接 https://leetcode.com/problems/sort-colors/description/ 内容描述 123456789101112131415Given an array with n objects colored red, white or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white and blue.Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.Note: You are not suppose to use the library&apos;s sort function for this problem.Example:Input: [2,0,2,1,1,0]Output: [0,0,1,1,2,2]Follow up:A rather straight forward solution is a two-pass algorithm using counting sort.First, iterate the array counting number of 0&apos;s, 1&apos;s, and 2&apos;s, then overwrite array with total number of 0&apos;s, then 1&apos;s and followed by 2&apos;s.Could you come up with a one-pass algorithm using only constant space? 解题方案24ms 63%思路 其实就是排序, 将0放到前面,2放到后面 要求遍历一遍且inplace,这里需要两个计数,left标记0的个数, n-right标记2的个数 排序完,前left个都是0, 后right个都是2. 12345678910111213141516171819class Solution(object): def sortColors(self, nums): """ :type nums: List[int] :rtype: void Do not return anything, modify nums in-place instead. """ left = 0 right = len(nums) - 1 i = 0 while i &lt;= right: if nums[i] == 1: i += 1 elif nums[i] == 0: nums[left], nums[i] = nums[i], nums[left] left += 1 i += 1 elif nums[i] == 2: nums[right], nums[i] = nums[i], nums[right] right -= 1]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[21. Merge Two Sorted Lists]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F021.Merge_two_sorted_lists%2F</url>
+    <content type="text"><![CDATA[21. Merge Two Sorted Lists难度: Easy 刷题内容 原题连接 https://leetcode.com/problems/merge-two-sorted-lists/description/ 内容描述 123456Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.Example:Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4 48ms 77%How 新建一个哑节点, ListNode(0),最后返回的时候返回head.next,正好忽略第一个哑节点 判断大小,将链表的值依次放入, l1和l2有一个先取完, 未取完的部分拼接到后面即可 12345678910111213141516171819202122232425262728# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeTwoLists(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ cur = head = ListNode(0) while l1 and l2: if l1.val &lt; l2.val: cur.next = l1 l1 = l1.next else: cur.next = l2 l2 = l2.next cur = cur.next if l1: cur.next = l1 if l2: cur.next = l2 return head.next]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
@@ -162,57 +202,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[75. Sort Colors]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F075.Sort_colors%2F</url>
-    <content type="text"><![CDATA[75. Sort Colors难度: 中等 刷题内容 原题连接 https://leetcode.com/problems/sort-colors/description/ 内容描述 123456789101112131415Given an array with n objects colored red, white or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white and blue.Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.Note: You are not suppose to use the library&apos;s sort function for this problem.Example:Input: [2,0,2,1,1,0]Output: [0,0,1,1,2,2]Follow up:A rather straight forward solution is a two-pass algorithm using counting sort.First, iterate the array counting number of 0&apos;s, 1&apos;s, and 2&apos;s, then overwrite array with total number of 0&apos;s, then 1&apos;s and followed by 2&apos;s.Could you come up with a one-pass algorithm using only constant space? 解题方案24ms 63%思路 其实就是排序, 将0放到前面,2放到后面 要求遍历一遍且inplace,这里需要两个计数,left标记0的个数, n-right标记2的个数 排序完,前left个都是0, 后right个都是2. 12345678910111213141516171819class Solution(object): def sortColors(self, nums): """ :type nums: List[int] :rtype: void Do not return anything, modify nums in-place instead. """ left = 0 right = len(nums) - 1 i = 0 while i &lt;= right: if nums[i] == 1: i += 1 elif nums[i] == 0: nums[left], nums[i] = nums[i], nums[left] left += 1 i += 1 elif nums[i] == 2: nums[right], nums[i] = nums[i], nums[right] right -= 1]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[3. Longest Substring Without Repeating Characters]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F003._longest_substring_without_repeating_characters%2F</url>
-    <content type="text"><![CDATA[3. Longest Substring Without Repeating Characters难度: Medium 刷题内容 原题连接 https://leetcode.com/problems/longest-substring-without-repeating-characters/description/ 内容描述 12345678910111213141516171819Given a string, find the length of the longest substring without repeating characters.Example 1:Input: &quot;abcabcbb&quot;Output: 3 Explanation: The answer is &quot;abc&quot;, with the length of 3. Example 2:Input: &quot;bbbbb&quot;Output: 1Explanation: The answer is &quot;b&quot;, with the length of 1.Example 3:Input: &quot;pwwkew&quot;Output: 3Explanation: The answer is &quot;wke&quot;, with the length of 3. Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring. 100ms 66%**- 时间复杂度: O(N)**- 空间复杂度: O(N)** 思路 粗一看是dp，细一看是greedy 我们先从第一个字符开始，碰到某个字符均用dict保存下或则更新其idx. 假设从位置i开始检查, 每检查一位,就更新一次重复子串大小 j-i+1 到j位置发现了第一次发现重复字符’X’,那么ij之间没有重复字符,下次检查就可以从j开始了. 注意这里要把字符x的idx更新为j 更新每个字符的最靠后idx 详细见代码注释 1234567891011121314151617class Solution: def lengthOfLongestSubstring(self, s): """ :type s: str :rtype: int """ max_len = 0 start = 0 n = len(s) d = &#123;&#125; for i in range(n): #d.get(s[i], -1)+1 得到当前字符出现的最靠后那次的idx start = max(start, d.get(s[i], -1) + 1) # i - start + 1 dist(当前位置, 当前字符出现的最靠后那次的idx) max_len = max(max_len, i - start + 1) d[s[i]] = i return max_len]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[77. Combinations]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F077.Combinations%2F</url>
-    <content type="text"><![CDATA[#77. Combinations 题目：https://leetcode.com/problems/combinations/ 难度 : Medium 652ms 66%思路 典型的dfs, 用递归来解决,这里的k就是递归深度. 12345678910111213141516171819202122class Solution(object): def combine(self, n, k): """ :type n: int :type k: int :rtype: List[List[int]] """ res = [] # 注意题目要求 数字从1~n self.dfs(n, k, 1, [], res) print(res) def dfs(self, n, k, start, tmp, res): if k == 0: res.append(tmp) print(tmp) return # 注意题目要求 数字从1~n, range(1, n+1) for i in range(start, n+1): # tmp.append(i) self.dfs(n, k-1, i+1, tmp + [i], res) ref思路二： 标准的recursion 但是会超时 1234567891011121314151617class Solution(object): def combine(self, n, k): &quot;&quot;&quot; :type n: int :type k: int :rtype: List[List[int]] &quot;&quot;&quot; ans = [] self.dfs(n, k, 1, [], ans) return ans def dfs(self, n, k ,start, lst, ans): if k == 0 : ans.append(lst) return for i in range(start, n+1): self.dfs(n, k - 1, i + 1,lst +[i], ans) 理解方式 12345678910 ---title: 62. unique pathscategories: - LeetCode--- 1 2 3 12 13 14 23 24 34 可以参照这里 http://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/ 解法三： 采用递归的方式，在n个数中选k个，如果n大于k，那么可以分类讨论，如果选了n，那么就是在1到(n-1)中选(k-1)个，否则就是在1到(n-1)中选k个。递归终止的条件是k为1，这时候1到n都符合要求。 注意一开始这里的else part花了我一点时间来理解，因为n必定大于k，所以这样递归当 n == k的时候选法就是code原作者的写法，也就是直接[range(1,k+1)] 参考这里： https://shenjie1993.gitbooks.io/leetcode-python/content/077%20Combinations.html 12345678910111213141516class Solution(object): def combine(self, n, k): &quot;&quot;&quot; :type n: int :type k: int :rtype: List[List[int]] &quot;&quot;&quot; if k == 1: return [[i + 1] for i in range(n)] result = [] if n &gt; k: result = [r + [n] for r in self.combine(n - 1, k - 1)] + self.combine(n - 1, k) else: #n == k # result = [r + [n] for r in self.combine(n - 1, k - 1)] result = [range(1,k+1)] return result]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[112. Path Sum]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F112._path_sum%2F</url>
-    <content type="text"><![CDATA[112. Path Sum题目:https://leetcode.com/problems/path-sum/ 难度: Easy 56ms 81%思路 递归查找, 分别从左/右开始递归, 每递归一层, 都需要sum-root.val 1234567891011121314151617181920# Definition for a binary tree node.# class TreeNode:# def __init__(self, x):# self.val = x# self.left = None# self.right = Noneclass Solution: def hasPathSum(self, root, sum): """ :type root: TreeNode :type sum: int :rtype: bool """ if root == None: return False if root.left == None and root.right == None: return root.val == sum return self.hasPathSum(root.left, sum - root.val) or self.hasPathSum(root.right, sum - root.val)]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[83. Remove Duplicates from Sorted List]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F083.Remove_duplicates_from_sorted_list%2F</url>
-    <content type="text"><![CDATA[#83. Remove Duplicates from Sorted List 题目:https://leetcode.com/problems/remove-duplicates-from-sorted-list/ 难度: Easy 60ms 53%how 注意是sort的, 所以重复数字都是相邻的 重复数字可能有多次如 1-&gt;1-&gt;1 1234567891011121314151617181920# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def deleteDuplicates(self, head): """ :type head: ListNode :rtype: ListNode """ cur = head while cur: # 因为这里重复可能有多次, 所以用while而不是if #检查cur.next有没有, 尾部判断 while cur.next and cur.val == cur.next.val: cur.next = cur.next.next cur = cur.next return head dummy 大法 123456789101112class Solution(object): def deleteDuplicates(self, head): """ :type head: ListNode :rtype: ListNode """ dummy = head while head: while head.next and head.next.val == head.val: head.next = head.next.next # skip duplicated node head = head.next # not duplicate of current node, move to next node return dummy]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F06%2F11%2Ftemplate%2F</url>
-    <content type="text"><![CDATA[s]]></content>
-      <categories>
-        <category>cate</category>
-      </categories>
-      <tags>
-        <tag>Network Embedding</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[各种GAN]]></title>
     <url>%2FJhy1993.github.io%2F2018%2F06%2F11%2F%E5%90%84%E7%A7%8DGAN%2F</url>
     <content type="text"><![CDATA[GANSimple GANBasic Idea: MLE $\rightarrow$ minimize KL given a data distribution $P_{data}(x)$ $pixel \rightarrow vector$ means the distribution of image a distribution $P_G(x;\theta)$ parametered by $\theta$ $$\theta^*=argmax$$ Generator G is a function, input $z$ ,output $x$ 过去用GMM来拟合,但是效果很差,GAN用NN来做分布变换效果很好 Given a prior distribution $P_{prior}(z)$, a probability distribution $P_G(x)$ is defined by function $G$ Unit gaussian distribution$\xrightarrow{NN}$ generated distribution $\approx$ real distribution Discriminator $D$ is a function, input $x$ , output $scalar$ (分类概率) Evaluate the “difference” between$P_G(x)$ and $P_{data}(x)$ Function $V(G,D)$ $G^*=\arg\underset{m}{\min}\underset{D}{\max}V(G,D)$ Given $G$, the optimal $D^*$ maximizing $$\begin{aligned}V&amp;=E_{x\sim P_{data}}[logD(x)]+E_{x\sim P_G}[log(1-D(x))] \\&amp;=\int_x P_{data}(x)logD(x)dx+\int_xP_G(x)log(1-D(x))dx \\&amp;=\int_x[P_{data}logD(x)+P_G(x)log(1-D(x))]dx \\&amp; assume \quad{}D(x) can have any value here \\&amp;P_{data}和P_G(x)均已知 ,所以简化为\\&amp;f(D)=alog(D)+blog(1-D)\end{aligned}$$ Given $x=Data$, find $D^*$ maximizing $$\begin{aligned}&amp; P_{data}logD(x)+P_G(x)log(1-D(x)) \\&amp;\frac{df(D)}{dD}=a\frac{1}{D}+b\frac{1}{1-D}(-1)=0\\&amp;解得D^=\frac{a}{a+b}\\&amp; D^*=\frac{P_{data}(x)}{P_{data}(x)+P_G(x)}\end{aligned}$$ Given $G$, $\underset{D}{max}V(G,D)=V(G,D^*)$ $$\begin{aligned} &amp;V(G,D^*)=E_{x\sim P_{data}}[logD(x)]+E_{x\sim P_G}[log(1-D(x))] \\ &amp;=E_{x\sim P_{data}}[log{\frac{P_{data}(x)}{P_{data}(x)+P_G(x)}}]+E_{x\sim P_G}[log{\frac{P_{G}(x)}{P_{data}(x)+P_G(x)}}] \\ &amp;=-2log2+\int_x P_{data}(x)log{\frac{P_{data}(x)}{(P_{data}(x)+P_G(x))/2}}dx+\int_xP_G(x)log{\frac{P_{G}(x)}{(P_{data}(x)+P_G(x))/2}}dx \\ &amp;=-2log2+KL\Big(P_{data}(x)||\frac{P_{data}(x)+P_G(x)}{2}\Big) +KL\Big(P_{G}(x)||\frac{P_{data}(x)+P_G(x)}{2}\Big) \\ &amp;=-2log2+ 2JSD\Big(P_{data}(x)||P_G(x)\Big) \\ &amp;\propto JSD\Big(P_{data}(x)||P_G(x)\Big) \\ &amp;KL散度不对称,但是这里的KL()+KL()整体对称,又叫JSD\ \end{aligned}$$ $$Kullback–Leibler divergence \quad D(P||Q)\\D_KL(P||Q)=\sum_iP(i)log\frac{P(i)}{Q(i)} \\Jensen–Shannon \quad divergence \quad and \quad \\完全一样0&lt;JSD(Q||P)=JSD(P||Q)=\frac{1}{2}D(P||M)+\frac{1}{2}D(Q||M) &lt;log2完全没关系\\M=\frac{1}{2}(P+Q)$$ What is the optimal $G$ ? $G$ will models the real data, and $D$ can’t tell the difference (output Prob is 0.5) $$P_G(x)=P_{data}(x)$$ “BTW why do we interested in training GAN?” might come in mind. It’s because probability distribution of data $P_{data}$ might be a very complicated distribution and very hard and intractable to infer. So, having a generative machine that could generate samples from $P_{data}$ without having to deal with nasty probability distribution is very nice. If we have this, then we could use it for another process that require sample from $P_{data}$ as we could get samples relatively cheaply using the trained Generative Net. So many GANsmodifying the optimization of GAN WGAN, fGAN… Different Structure from the Origin GAN Conditional GAN, Semi-supervised GAN, InfoGAN, VAE-GAN WGANGraph GAN##]]></content>
@@ -226,13 +215,13 @@
   </entry>
   <entry>
     <title><![CDATA[Hello World]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F06%2F11%2FDL_template%2F</url>
-    <content type="text"></content>
+    <url>%2FJhy1993.github.io%2F2018%2F06%2F11%2Ftemplate%2F</url>
+    <content type="text"><![CDATA[s]]></content>
       <categories>
-        <category>Deep Learning</category>
+        <category>cate</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
+        <tag>Network Embedding</tag>
       </tags>
   </entry>
   <entry>
@@ -245,6 +234,17 @@
       <tags>
         <tag>Graph Neural Network</tag>
         <tag>GCN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F06%2F11%2FDL_template%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>Deep Learning</category>
+      </categories>
+      <tags>
+        <tag>Deep Learning</tag>
       </tags>
   </entry>
   <entry>
