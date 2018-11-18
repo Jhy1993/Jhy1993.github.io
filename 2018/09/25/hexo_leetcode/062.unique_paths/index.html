@@ -108,19 +108,19 @@
 
 
 
-  <meta name="description" content="62. unique paths 不同路径难度: 中等 刷题内容 原题连接   https://leetcode.com/problems/unique-paths https://leetcode-cn.com/problems/unique-paths/description   内容描述  12345一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。机器">
+  <meta name="description" content="62. unique paths 不同路径难度: 中等 刷题内容 原题连接   https://leetcode.com/problems/unique-paths https://leetcode-cn.com/problems/unique-paths/description   内容描述  12345一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。.机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="62. unique paths">
 <meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.Unique_paths/index.html">
 <meta property="og:site_name" content="Better Call Saul">
-<meta property="og:description" content="62. unique paths 不同路径难度: 中等 刷题内容 原题连接   https://leetcode.com/problems/unique-paths https://leetcode-cn.com/problems/unique-paths/description   内容描述  12345一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。机器">
+<meta property="og:description" content="62. unique paths 不同路径难度: 中等 刷题内容 原题连接   https://leetcode.com/problems/unique-paths https://leetcode-cn.com/problems/unique-paths/description   内容描述  12345一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。.机">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://leetcode-cn.com/static/images/problemset/robot_maze.png">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fwxnidcsdsj30da084752.jpg">
-<meta property="og:updated_time" content="2018-11-05T16:37:13.542Z">
+<meta property="og:updated_time" content="2018-11-16T14:56:16.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="62. unique paths">
-<meta name="twitter:description" content="62. unique paths 不同路径难度: 中等 刷题内容 原题连接   https://leetcode.com/problems/unique-paths https://leetcode-cn.com/problems/unique-paths/description   内容描述  12345一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。机器">
+<meta name="twitter:description" content="62. unique paths 不同路径难度: 中等 刷题内容 原题连接   https://leetcode.com/problems/unique-paths https://leetcode-cn.com/problems/unique-paths/description   内容描述  12345一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。.机">
 <meta name="twitter:image" content="https://leetcode-cn.com/static/images/problemset/robot_maze.png">
 
 
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-06 00:37:13" itemprop="dateModified" datetime="2018-11-06T00:37:13+08:00">2018-11-06</time>
+                <time title="Modified: 2018-11-16 22:56:16" itemprop="dateModified" datetime="2018-11-16T22:56:16+08:00">2018-11-16</time>
               
             
           </span>
@@ -502,7 +502,7 @@
 <blockquote>
 <p>内容描述</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。</span><br><span class="line"></span><br><span class="line">机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。</span><br><span class="line"></span><br><span class="line">问总共有多少条不同的路径？</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。.</span><br><span class="line"></span><br><span class="line">机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。</span><br><span class="line"></span><br><span class="line">问总共有多少条不同的路径？</span><br></pre></td></tr></table></figure>
 <p><img src="https://leetcode-cn.com/static/images/problemset/robot_maze.png" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">例如，上图是一个7 x 3 的网格。有多少可能的路径？</span><br><span class="line"></span><br><span class="line">说明：m 和 n 的值均不超过 100。</span><br><span class="line"></span><br><span class="line">&gt; 示例 1:</span><br><span class="line"></span><br><span class="line">输入: m = 3, n = 2</span><br><span class="line">输出: 3</span><br><span class="line">解释:</span><br><span class="line">从左上角开始，总共有 3 条路径可以到达右下角。</span><br><span class="line">1. 向右 -&gt; 向右 -&gt; 向下</span><br><span class="line">2. 向右 -&gt; 向下 -&gt; 向右</span><br><span class="line">3. 向下 -&gt; 向右 -&gt; 向右</span><br><span class="line"></span><br><span class="line">&gt; 示例 2:</span><br><span class="line"></span><br><span class="line">输入: m = 7, n = 3</span><br><span class="line">输出: 28</span><br></pre></td></tr></table></figure>
 <h1 id="DP-20ms-99"><a href="#DP-20ms-99" class="headerlink" title="DP 20ms 99%"></a>DP 20ms 99%</h1><p><strong>思路</strong></p>
@@ -580,8 +580,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/077.Combinations/" rel="next" title="77. Combinations">
-                <i class="fa fa-chevron-left"></i> 77. Combinations
+              <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/070.Climbing_Stairs/" rel="next" title="70. Climbing Stairs">
+                <i class="fa fa-chevron-left"></i> 70. Climbing Stairs
               </a>
             
           </div>
@@ -590,8 +590,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/10/27/18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING/" rel="prev" title="18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING">
-                18ICLR_Graph2Gauss_DEEP GAUSSIAN EMBEDDING OF GRAPHS_UNSUPERVISED INDUCTIVE LEARNING VIA RANKING <i class="fa fa-chevron-right"></i>
+              <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/049.Group_anagrams/" rel="prev" title="49. Group Anagrams">
+                49. Group Anagrams <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -669,7 +669,7 @@
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

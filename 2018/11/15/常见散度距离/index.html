@@ -117,7 +117,7 @@
 <meta property="og:description" content="本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离) F-散度散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度. $$D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x$$这里的$f$需要满足2个条件: $f$是凸函数">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx1109nhpsj30hk0g9dfw.jpg">
-<meta property="og:updated_time" content="2018-11-16T03:19:14.392Z">
+<meta property="og:updated_time" content="2018-11-18T04:07:00.835Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见散度与距离(KL散度，JS散度，Wasserstein距离，互信息MI)">
 <meta name="twitter:description" content="本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离) F-散度散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度. $$D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x$$这里的$f$需要满足2个条件: $f$是凸函数">
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-16 11:19:14" itemprop="dateModified" datetime="2018-11-16T11:19:14+08:00">2018-11-16</time>
+                <time title="Modified: 2018-11-18 12:07:00" itemprop="dateModified" datetime="2018-11-18T12:07:00+08:00">2018-11-18</time>
               
             
           </span>
@@ -518,7 +518,7 @@
 <p>KL散度 不对称导致的问题:</p>
 <ul>
 <li>情况1.当 $p\rightarrow 0$ 且 $q\rightarrow 1$时, $ p(x) \log \left( \frac { p ( x ) } { q ( x ) }\ \right) \rightarrow 0$ , 对$D_{KL}(p||q)$的贡献为0</li>
-<li>情况2.当 p\rightarrow 1 且 q\rightarrow 0时,  p(x) \log \left( \frac { p ( x ) } { q ( x ) }\ \right) \rightarrow +\infty , 对D_{KL}(p||q)的贡献为+\infty .<ul>
+<li>情况2.当$ p\rightarrow 1 $且 $q\rightarrow 0$时, $ p(x) \log \left( \frac { p ( x ) } { q ( x ) }\ \right) \rightarrow +\infty $, 对$D_{KL}(p||q)$的贡献为$+\infty $.<ul>
 <li>进步一这里可以解释为什么我们通常选择正态分布而不是均匀分布.</li>
 <li>均匀分布:只要两个均分分布不是完全相同,必然出现$p\neq0,q=0$的情况,导致$D_{KL}(p||q)\rightarrow +\infty $.</li>
 <li>正态分布:所有概率密度都是非负的,所以不会出现上述情况.</li>
@@ -551,9 +551,10 @@
 <h1 id="JS散度-KL散度-Wessertein距离对比"><a href="#JS散度-KL散度-Wessertein距离对比" class="headerlink" title="JS散度,KL散度,Wessertein距离对比"></a>JS散度,KL散度,Wessertein距离对比</h1><p>举例如下:</p>
 <p>考虑如下二维空间中的两个分布pq，p在线段AB上均匀分布，q在线段CD上均匀分布，通过控制参数$\theta$可以控制着两个分布的距离远近。</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx1109nhpsj30hk0g9dfw.jpg" alt="img"></p>
-<p>$$<br>D_{KL}(p||q)=D_{KL}(q||p)=<br>\left{ \begin{array} { l l } { + \infty } &amp; { \text { if } \theta \neq 0 } \ { 0 } &amp; { \text { if } \theta = 0 } \end{array} \right. (突变)<br>$$</p>
-<p>$$<br>D_{JS}(p||q)== \left{ \begin{array} { l l } { \log 2 } &amp; { \text { if } \theta \neq 0 } \ { 0 } &amp; { \text { if } \theta = 0 } \end{array} \right. (突变)<br>$$</p>
-<p>$$<br>W(p,q)=|\theta| (平滑)<br>$$</p>
+<p>$$<br>D_{KL}(p||q)=D_{KL}(q||p)=<br>\left{ \begin{array} { l l } { + \infty } &amp; { \text { if } \theta \neq 0 } \ { 0 } &amp; { \text { if } \theta = 0 } \end{array} \right.<br>$$</p>
+<p>$$<br>D_{JS}(p||q)= \left{ \begin{array} { l l } { \log 2 } &amp; { \text { if } \theta \neq 0 } \ { 0 } &amp; { \text { if } \theta = 0 } \end{array} \right.<br>$$</p>
+<p>$$<br>W(p,q)=|\theta|<br>$$</p>
+<p>可以看出JS和KL都出现了突变,而W距离保持平滑</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
 <li><a href="https://blog.csdn.net/uestc_c2_403/article/details/75208644" target="_blank" rel="noopener">https://blog.csdn.net/uestc_c2_403/article/details/75208644</a></li>
 <li><a href="https://www.zhihu.com/question/39872326/answer/83688277" target="_blank" rel="noopener">https://www.zhihu.com/question/39872326/answer/83688277</a></li>
@@ -714,7 +715,7 @@
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
