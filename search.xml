@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[从零单排PRML Kernel Methods]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F12%2F10%2FPRML_6_kernel%20methods%2F</url>
+    <content type="text"><![CDATA[引言机器学习里面对待训练数据有2种,抛弃或者保留 有的是训练完得到参数后就可以抛弃了，比如神经网络； 有的是还需要原来的训练数据比如KNN，SVM也需要保留一部分数据–支持向量。 许多线性参数模型可以转化为对偶形式,转化后依然是线性模型. 只是线性组合的对象变成了一组非线性基函数. 这里的非线性基函数就是在基于各个数据点计算的核函数. 对偶表示最小均方误差形式$$J ( \boldsymbol { w } ) = \frac { 1 } { 2 } \sum _ { n = 1 } ^ { N } \left{ \boldsymbol { w } ^ { T } \boldsymbol { \phi } \left( \boldsymbol { x } _ { n } \right) - t _ { n } \right} ^ { 2 } + \frac { \lambda } { 2 } \boldsymbol { w } ^ { T } \boldsymbol { w }$$对偶形式:核函数形式$$J ( \boldsymbol { a } ) = \frac { 1 } { 2 } \boldsymbol { a } ^ { T } \boldsymbol { K } \boldsymbol { K } \boldsymbol { a } - \boldsymbol { a } ^ { T } \boldsymbol { K } \mathbf { t } + \frac { 1 } { 2 } \mathbf { t } ^ { T } \mathbf { t } + \frac { \lambda } { 2 } \boldsymbol { a } ^ { T } \boldsymbol { K } \boldsymbol { a }$$这里K是著名的Gram矩阵$\boldsymbol { K } = \boldsymbol { \Phi } \boldsymbol { \Phi } ^ { T }$.上式中的$\boldsymbol { a } $又有闭式解$$\boldsymbol { a } = \left( \boldsymbol { K } + \lambda \boldsymbol { I } _ { N } \right) ^ { - 1 } \mathbf { t }$$这样,问题的解$\boldsymbol { a } $就只与核函数$\boldsymbol { K } ​$有关了. 最小均方转为核函数的组合$k \left( x , x ^ { \prime } \right)$后,我们就只关心$x , x ^ { \prime } $基于核函数的结果,对偶表示可以避免了显式的使用特征向量$\phi(x)$.这样做不关心中间过程$\boldsymbol { \phi} ( x ) ^ { \mathrm { T } } \boldsymbol { \phi } \left( x ^ { \prime } \right) $ ,只关心结果$k \left( x , x ^ { \prime } \right)$. 这样做的好处是可以使用隐式的高维特征. 以SVM为例,低维不可分的数据,经过kernel将特征映射到高维后,就可以分开了. 以下式为例, 这里 $k ( \boldsymbol { x } , \boldsymbol { z } ) $ 的形式很简洁,但是如果想找到$\phi(x)$是比较难的.这里的$\phi(x)$只是中间需求,最终我们需要只是$k ( \boldsymbol { x } , \boldsymbol { z } ) $.$$k ( \boldsymbol { x } , \boldsymbol { z } ) = \left( \boldsymbol { x } ^ { T } \boldsymbol { z } \right) ^ { 2 },形式简洁,好算 \\phi ( \mathbf { x } ) = \left( x _ { 1 } ^ { 2 } , \sqrt { 2 } x _ { 1 } x _ { 2 } , x _ { 2 } ^ { 2 } \right) ^ { \mathrm { T } },很难找到,计算量大$$ 构建kernel的方法特征映射法选择一个特征映射函数$\boldsymbol { \phi} ( x ) $ ,并通过这个映射来寻找kernel.$$k \left( x , x ^ { \prime } \right) =\boldsymbol { \phi} ( x ) ^ { \mathrm { T } } \boldsymbol { \phi } \left( x ^ { \prime } \right) = \sum _ { i = 1 } ^ { M } \phi _ { i } ( x ) \phi _ { i } \left( x ^ { \prime } \right)$$ 直接构造直接写出kernel的形式,$$k ( \mathbf { x } , \mathbf { z } ) = \left( \mathbf { x } ^ { \mathrm { T } } \mathbf { z } \right) ^ { 2 }$$这里kernel的形式是写出来了,但是这个形式合法吗? 合法性检验有2个方法: 找到对应的特征映射函数 Gram矩阵在所有可能的{xn}的选择下都是半正定的. 下面是通过方法1来对kernel进行合法性检查.上式可以认为是二维输入$\mathbf { x } = \left( x _ { 1 } , x _ { 2 } \right)$, 经过特征映射法的结果,原因是可以将上式展开了为2个经过特征映射后的$\boldsymbol { \phi} ( x ) $的内积.$$\begin{aligned} k ( \mathbf { x } , \mathbf { z } ) &amp; = \left( \mathbf { x } ^ { \mathrm { T } } \mathbf { z } \right) ^ { 2 } = \left( x _ { 1 } z _ { 1 } + x _ { 2 } z _ { 2 } \right) ^ { 2 } \ &amp; = x _ { 1 } ^ { 2 } z _ { 1 } ^ { 2 } + 2 x _ { 1 } z _ { 1 } x _ { 2 } z _ { 2 } + x _ { 2 } ^ { 2 } z _ { 2 } ^ { 2 } \ &amp; = \left( x _ { 1 } ^ { 2 } , \sqrt { 2 } x _ { 1 } x _ { 2 } , x _ { 2 } ^ { 2 } \right) \left( z _ { 1 } ^ { 2 } , \sqrt { 2 } z _ { 1 } z _ { 2 } , z _ { 2 } ^ { 2 } \right) ^ { \mathrm { T } } \ &amp; = \phi ( \mathbf { x } ) ^ { \mathrm { T } } \phi ( \mathbf { z } ) \end{aligned}$$这里的特征映射函数形式为$\phi ( \mathbf { x } ) = \left( x _ { 1 } ^ { 2 } , \sqrt { 2 } x _ { 1 } x _ { 2 } , x _ { 2 } ^ { 2 } \right) ^ { \mathrm { T } }$ ,可以验证$k ( \mathbf { x } , \mathbf { z } ) = \left( \mathbf { x } ^ { \mathrm { T } } \mathbf { z } \right) ^ { 2 }$ 是一个合法的kernel. 基于现有的合法kernel进行构建假设 $k _ { 1 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) $和$ k _ { 2 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right)$都是合法kernel,那么通过以下形式组合构建的新的kernel也是合法的.$$k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = c k _ { 1 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right), c&gt;0 \k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = k _ { 1 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) + k _ { 2 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) \k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = \exp \left( k _ { 1 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) \right)\k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = f ( \mathbf { x } ) k _ { 1 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) f \left( \mathbf { x } ^ { \prime } \right), f \ is \ any \ function \…$$这里以经典的 高斯核 为例, 通过其构造过程来验证其合法性. 首先高斯核函数是一种径向基核$$k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = \exp \left( - \left| \mathbf { x } - \mathbf { x } ^ { \prime } \right| ^ { 2 } / 2 \sigma ^ { 2 } \right)$$把exp中的平方项展开得到$$\left| \mathbf { x } - \mathbf { x } ^ { \prime } \right| ^ { 2 } = \mathbf { x } ^ { \mathrm { T } } \mathbf { x } + \left( \mathbf { x } ^ { \prime } \right) ^ { \mathrm { T } } \mathbf { x } ^ { \prime } - 2 \mathbf { x } ^ { \mathrm { T } } \mathbf { x } ^ { \prime } \k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = \exp \left( - \mathbf { x } ^ { \mathrm { T } } \mathbf { x } / 2 \sigma ^ { 2 } \right) \exp \left( \mathbf { x } ^ { \mathrm { T } } \mathbf { x } ^ { \prime } / \sigma ^ { 2 } \right) \exp \left( - \left( \mathbf { x } ^ { \prime } \right) ^ { \mathrm { T } } \mathbf { x } ^ { \prime } / 2 \sigma ^ { 2 } \right)$$这里线性kernel $k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = \mathbf { x } ^ { \mathrm { T } } \mathbf { x } ^ { \prime }$ 是合法的,然后基于上述的构造性质,可以看出高斯核是合法的.同时,由于$exp$的泰勒展开有无穷多项,所以高斯核将特征向量映射到无穷多维. 通过概率生成模型来构建给定一个生成模型$p(x)$ , 我们可以定义kernel$$k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = p ( \mathbf { x } ) p \left( \mathbf { x } ^ { \prime } \right)$$这里的$p(x)$可以认f为是$\phi(x)​$. 径向基函数网络在径向基函数中， 每⼀个基函数只依赖于样本和中⼼$\mu_j$之间的径向距离（通常是欧⼏⾥得距离）， 即$$ $$ 这里的网络体现在哪里? 高斯过程什么是高斯过程?首先高斯分布定义为函数$y(\mathbf{x})$上的一个高斯分布,并且这个函数在一系列点 $\mathbf { x } _ { 1 } , \dots , \mathbf { x } _ { N }$ 的响应值 $y \left( \mathbf { x } _ { 1 } \right) , \ldots , y \left( \mathbf { x } _ { N } \right)$ 联合概率分布也是高斯的. 高斯过程=高斯+过程 高斯: 对于$y(\mathbf{x})$,为什么它是高斯的呢?我们令 $$ y ( \mathbf { x } ) = \mathbf { w } ^ { \mathrm { T } } \boldsymbol { \phi } ( \mathbf { x } )\ p ( \mathbf { w } ) = \mathcal { N } ( \mathbf { w } | \mathbf { 0 } , \alpha ^ { - 1 } \mathbf { I } ) $$ 这里的$y$是一些$\mathbf{w}$的混合,而$\mathbf{w}$ 我们给了一个高斯分布的先验.然后利用性质:高斯分布的线性组合依然是高斯分布.所以$y(\mathbf{x})$也是高斯分布. 这里我们只要确定$y(\mathbf{x})$的均值和方差就可以确定这个高斯分布. 过程:时间或者空间上一系列点$\mathbf { x } _ { 1 } , \dots , \mathbf { x } _ { N }$ 的响应值$y \left( \mathbf { x } _ { 1 } \right) , \ldots , y \left( \mathbf { x } _ { N } \right)$ . 考虑一系列的点,我们可以得到$$\mathbf { y } = \mathbf { \Phi } _ { \mathbf { W } }$$下面就是这个多维高斯分布的均值和协方差.$$\begin{aligned} \mathbb { E } [ \mathbf { y } ] &amp; = \mathbf { \Phi } \mathbb { E } [ \mathbf { w } ] = \mathbf { 0 } \ \operatorname { cov } [ \mathbf { y } ] &amp; = \mathbb { E } \left[ \mathbf { y y } ^ { \mathrm { T } } \right] = \mathbf { \Phi } \mathbb { E } \left[ \mathbf { w } \mathbf { w } ^ { \mathrm { T } } \right] \mathbf { \Phi } ^ { \mathrm { T } } = \frac { 1 } { \alpha } \mathbf { \Phi } \mathbf { \Phi } ^ { \mathrm { T } } = \mathbf { K } \end{aligned}$$这里我们进一步做了简化,将$y(\mathbf{x})$的均值设为0,那么一个高斯过程就仅仅受协方差矩阵的控制.更重要的是,这个协方差矩阵我们用一个kernel来确定,kernel形式为特征映射法的形式. 这也是为什么高斯过程放在kernel method这一章! 综上,我们得到确定一个高斯过程的步骤: 确定核函数的形式 求解核形式的协方差矩阵 确定高斯过程 有了前几章的基础,书中这里举了2个核函数例子(高斯核,指数核).给定了$\mathbf { y } $的分布,我们可以进行采样,得到不同的$\mathbf { y } $. 下图就是基于不同的核采样得到的$\mathbf { y } $. 到这里什么是高斯过程及其如何确定一个高斯过程就清楚了.接下来是一些高斯过程应用(回归,分类). 基于高斯过程的回归考虑观测值$y_n$上的一个高斯噪声$\epsilon _ { n }$,$$t _ { n } = y _ { n } + \epsilon _ { n }\y_n=y(\mathbf{x}_n)$$这样$\mathbf { t }$可以认为是从以$\mathbf { y}$为均值的高斯分布中采样得到.$$p ( \mathbf { t } | \mathbf { y } ) = \mathcal { N } ( \mathbf { t } | \mathbf { y } , \beta ^ { - 1 } \mathbf { I } _ { N } )$$基于高斯过程的定义,$$p ( \mathbf { y } ) = \mathcal { N } ( \mathbf { y } | \mathbf { 0 } , \mathbf { K } )$$为了得到$\mathbf { t }$的分布,我们需要对其联合概率分布求积分,即边缘化$$p ( \mathbf { t } ) = \int p ( \mathbf { t } | \mathbf { y } ) p ( \mathbf { y } ) \mathrm { d } \mathbf { y } = \mathcal { N } ( \mathbf { t } | \mathbf { 0 } , \mathbf { C } )$$这里的$p ( \mathbf { t } | \mathbf { y } ) 和 p ( \mathbf { y } ) $都是高斯分布,其中$$C \left( \mathbf { x } _ { n } , \mathbf { x } _ { m } \right) = k \left( \mathbf { x } _ { n } , \mathbf { x } _ { m } \right) + \beta ^ { - 1 } \delta _ { n m }\\delta _ { n m }=1, if \ m=n$$这里意思是只有协方差矩阵的对角线叠加了噪声.这是因为每次的噪声都是相互独立,所以非对角线的位置相关性都为0. 回归问题可以认为是基于之前的输入$\mathbf { x } _ { 1 } , \dots , \mathbf { x } _ { N }$和输出$\mathbf { t } _ { N } = \left( t _ { 1 } , \ldots , t _ { N } \right) ^ { \mathrm { T } }$ ,对新的输入$\mathbf{x}{N+1}$ 进行预测(求$t{N+1}$).写成条件概率的形式就是$$p \left( t _ { N + 1 } | \mathbf { t } _ { N } , …\right)$$这里把输入给省略了.前面已经得到了$p ( \mathbf { t } )$的形式$$p \left( t _ { N + 1 } | \mathbf { t } \right) = \mathcal { N } \left( \mathbf { t } _ { N + 1 } | m \left( \mathbf { x } _ { N + 1 } \right) , \sigma ^ { 2 } \left( \mathbf { x } _ { N + 1 } \right) \right) \\begin{aligned} m \left( \mathbf { x } _ { N + 1 } \right) &amp; = \mathbf { k } ^ { \mathrm { T } } \mathbf { C } _ { N } ^ { - 1 } \mathbf { t } \ \sigma ^ { 2 } \left( \mathbf { x } _ { N + 1 } \right) &amp; = c - \mathbf { k } ^ { \mathrm { T } } \mathbf { C } _ { N } ^ { - 1 } \mathbf { k } \end{aligned}$$ 参考 https://www.zhihu.com/question/46631426 PRML MLAPP http://www.52nlp.cn/prml读书会第六章-kernel-methods]]></content>
+      <categories>
+        <category>PRML</category>
+      </categories>
+      <tags>
+        <tag>Deep Learning</tag>
+        <tag>PRML</tag>
+        <tag>Machine Learning</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[18KDD_HEER_Easing Embedding Learning by Comprehensive Transcription of Heterogeneous Information Networks]]></title>
     <url>%2FJhy1993.github.io%2F2018%2F12%2F04%2F18KDD_HEER%2F</url>
     <content type="text"><![CDATA[本文来自Jiawei Han大佬,针对HIN中潜在的不兼容语义设计了一种无监督的HINE算法HEER. 这篇和他们之前发的18SDM ASPEM Embedding Learning by Aspects in Heterogeneous Information Networks有异曲同工之妙. 区别就是:本文是多方面协同学习,而18SDM是独立处理各个方面. 整个模型用一句话描述就是: edge representations that are further coupled with properly-learned heterogeneous metrics. Motivation本文首先用一张图来描述其motivation 简单来说:HIN中不同的语义可能关联度很低甚至冲突,必须要分开处理. 例如这里的musical -Stan-Ang Lee,他们3者之间有连接,如果同样对待的话,他们3个都会很像.但是实际musical和Ang Lee没啥关系,这里是异质边带来的问题了,所以本文针对不同边来处理. 现有的HINE方法 指定元路径,或者用一些监督信号来选择元路径. 只适用于指定类型HINE的方法或者有一些补充信息. 只embed到metric space里面. 个人感觉HINE就是要将不同节点或者边embed到不同空间来体现异质性. 本文通过一些统计指标来验证HIN中的不兼容度,这样本文的motivation就很强.如图所示, paper-author和paper-year相似度很低,不兼容性很大.直观理解就是,每一年发表的paper多种多样,year并不能作为识别paper的有效特征. 而paper-author和paper-term相似度很高,即paper,author, term这三者有紧密关系. Model一个好的embedding算法应该可以编码HIN中的语义,并能够重构这个HIN.考虑在HIN中边是类型的,这就对embedding算法提出了更高的要求:同时预测边的存在和边的类型.这里定义了 typed closeness ,同时考虑两端的节点对$u,v$和他们之间的边$r$ $$s_r(u,v)=\frac { \exp \left( \boldsymbol { \mu } _ { r } ^ { \top } \mathbf { g } _ { u v } \right) } { \sum _ { \tilde { \boldsymbol { v } } \in \mathcal { P } _ { u } ^ { r } } \exp \left( \boldsymbol { \mu } _ { r } ^ { \top } \mathbf { g } _ { u \tilde { v } } \right) + \sum _ { \tilde { u } \in \mathcal { P } _ { v } ^ { r } } \exp \left( \boldsymbol { \mu } _ { r } ^ { \top } \mathbf { g } _ { \tilde { u } v } \right) } ,(u,v)\in \mathcal { P } ^ { r }$$本文实际没有学习边的embedding而是对节点的embedding进行简单操作得到边的embedding. 本文可以同时处理有向边和无向边.$$\mathbf { g } _ { u v } : = \left{ \begin{array} { l } { 2 \cdot \mathbf { f } _ { u } ^ { O } \circ \mathbf { f } _ { v } ^ { I } , u \rightarrow v} \ { \mathbf { f } _ { u } ^ { O } \circ \mathbf { f } _ { v } ^ { O } + \mathbf { f } _ { u } ^ { I } \circ \mathbf { f } _ { v } ^ { I } } ,undirected\end{array} \right.$$ 优化目标和line很像,都是优化KL距离$$O ^ { r } = K L \left( W _ { u v } ^ { ( r ) } , s _ { t } ( u , v ) \right) \\min _ { \left{ \mathbf { f } _ { u } \right} _ { u \in \mathcal { V } } , \left{ \boldsymbol { \mu } _ { r } \right} _ { r \in \mathcal { R } } } \mathcal { O }$$这里$s_r(u,v)$分母比较难计算,本文利用负采样来优化.这里对负采样进行了约束,即:负采样的样本要和原始样本保持同类型.$$\log \sigma \left( \boldsymbol { \mu } _ { r } ^ { \top } \mathbf { g } _ { u v } \right) + \sum _ { i = 1 } ^ { K } \mathbb { E } _ { \tilde { v } _ { i } } \log \sigma \left( - \boldsymbol { \mu } _ { r } ^ { \top } \mathbf { g } _ { u \tilde { v } _ { i } } \right) + \sum _ { i = 1 } ^ { K } \mathbb { E } _ { \tilde { u } _ { i } } \log \sigma \left( - \boldsymbol { \mu } _ { r } ^ { \top } \mathbf { g } \tilde { u } _ { i } v \right)$$模型整体流程图如下 注意最后面是分类型来计算loss Experiment数据集是常见的HIN,注意每个数据集都是有向边+无向边. 这里只做了边重构实验:敲除部分边,训练模型,基于学习到的embedding预测边. 效果很好,因为本文设计的优化目标就是针对边重构的. 一些常规的HINE中的聚类分类实验都没有做. Summary整体来说 本文的模型并不是很复杂,但是做了一个很好的问题:the comprehensive transcription of HINs in embedding learning. 作者发现了HIN中的语义不兼容问题, 并设计了实验来验证不兼容性.这使得本文的Motivation极强.]]></content>
@@ -34,18 +47,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[18ICLR_WAE_Wasserstein auto-encoders]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F11%2F07%2F18ICLR_WAE_Wasserstein%20auto-encoders%2F</url>
-    <content type="text"><![CDATA[TODO]]></content>
-      <categories>
-        <category>Paper</category>
-      </categories>
-      <tags>
-        <tag>Deep Learning</tag>
-        <tag>Wasserstein</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING]]></title>
     <url>%2FJhy1993.github.io%2F2018%2F11%2F07%2F18ArXiv_HIB_MODELING%20UNCERTAINTY%20WITH%20HEDGED%20INSTANCE%20EMBEDDING%2F</url>
     <content type="text"><![CDATA[之前的Gaussian Embedding都是将Object映射为一个高斯分布来捕捉不确定性. 但是一个高斯分布足够吗? 本文将Object映射为一组高斯分布,即混合高斯. Stochastic Embedding是将Object映射为一个分布,包括Gaussian Embedding. Point Embedding是将Object映射为一个点, 包括Vector Embedding. Motivation前面已经有很多工作将各种各样的Object映射为高斯分布来捕获不确定性.但是如果Object的不确定性很高,一个高斯分布也不足以捕获呢? 本文提出了HIB来解决上述问题.所谓的”hedging its bets”就是为了避免损失,多处下注.对应到本文,对于有歧义的输入,将其映射为多个高斯分布, 每个高斯分布代表其中一个意思. 针对图像的歧义需求,设计了$N-digits MNIST$ 数据集,即将mnist中的数字组合成一张新图,这样每张图就有歧义了. 这张图就很好的解释了本文的Motivation. 作者总结了本文的3个贡献: 效果提升,尤其是针对一些不确定的输入. 加强了结构正则??怎么理解 也没理解.. Model模型主要思路是通过variational information bottleneck principle来学习hedged instance embedding (HIB). hedged instance embedding (HIB).这里首先介绍两个输入的匹配概率, 实际是输入x到分布Z变换$Z \sim p(z|x)$, 计算Z的匹配概率(如果这里直接用W2距离计算一下呢?)$$p ( m | x _ { 1 } , x _ { 2 } ) = \int p ( m | z _ { 1 } , z _ { 2 } ) p \left( z _ { 1 } | x _ { 1 } \right) p \left( z _ { 2 } | x _ { 2 } \right) \mathrm { d } z _ { 1 } \mathrm { d } z _ { 2 }$$为了求这个积分分两步: $p(z|x)$这个一般都是用神经网络来映射. 求$p ( m | x _ { 1 } , x _ { 2 } )$ 这里用了MC Sampling, 分别从两个输入$x_1,x_2$ 映射后的$z _ { 1 } ^ { \left( k _ { 1 } \right) } \sim p \left( z _ { 1 } | x _ { 1 } \right)$ 和$z _ { 2 } ^ { \left( k _ { 2} \right) } \sim p \left( z _ { 2} | x _ { 2 } \right)$中采样多个样本. $$p ( m | x _ { 1 } , x _ { 2 } ) \approx \frac { 1 } { K ^ { 2 } } \sum _ { k _ { 1 } = 1 } ^ { K } \sum _ { k _ { 2 } = 1 } ^ { K } p ( m | z _ { 1 } ^ { \left( k _ { 1 } \right) } , z _ { 2 } ^ { \left( k _ { 2 } \right) } )$$ 到这里模型其实已经可以用了,但是本文所强调的混合高斯怎么融入到上述模型里呢?(猜测是用多个NN来得到均值方差,再组合) 这里其实很简单,就是将$p(z|x)$这个映射变复杂,采样也变成从多个高斯分布中采样.$$p(z|x)=\sum _ { c = 1 } ^ { C } \mathcal { N } ( z ; \mu ( x , c ) , \Sigma ( x , c ) )$$到现在模型其实新颖程度创新程度感觉还不够, 看来有一部分创新在VIB里. variational information bottleneck principle为了训练上述模型, 本文混合了soft contrastive loss 和 the VIB principle.这里利用了17ICLR_VIB_Deep variational information bottleneck的推导结果$$I ( z , y ) - \beta I ( z , x )$$直观理解就是:学到的z和标签y很像,同时 z和输入x尽量相似度小. 这样在保证z有效性的同时,又可以滤除x中无用部分. 互信息介绍介绍详见 &lt;常见散度与距离(KL散度,JS散度,Wasserstein距离, NMI)&gt; 将公式(4)进行放缩,可以得到(5),详细推导见&lt;17ICLR_VIB_Deep variational information bottleneck&gt; 最终推导得到$$ \mathcal { L } _ { \mathrm { VIB } } = \mathbb { E } _ { z \sim p ( z | x ) } [ \log q ( y | z ) ] - \beta \cdot \mathrm { KL } ( p ( z | x ) | r ( z ) )$$这里的第二项是正则项, 约束生成z的分布$p(z|x)$为一个单位高斯分布,这里$r ( z ) = \mathcal { N } ( z ; 0 , I )$ . 并结合本文Embedding需求,对上述loss里的一些项进行了替换,详细推导见附录.$$\begin{aligned} \mathcal { L } _ { \mathrm { VIBEmb } } = &amp; - \mathbb { E } _ { z _ { 1 } \sim p \left( z _ { 1 } | x _ { 1 } \right) , z _ { 2 } \sim p \left( z _ { 2 } | x _ { 2 } \right) } [ \log p ( m = \hat { m } | z _ { 1 } , z _ { 2 } ) ] \ &amp; + \beta \cdot \left[ \mathrm { KL } \left( p \left( z _ { 1 } | x _ { 1 } \right) | r \left( z _ { 1 } \right) \right) + \mathrm { KL } \left( p \left( z _ { 2 } | x _ { 2 } \right) | r \left( z _ { 2 } \right) \right) \right] \end{aligned}$$(5)中$q(y|z)$是根据表示z预测标签y,对应这里的$\log p ( m = \hat { m } | z _ { 1 } , z _ { 2 } ) $,这一项就是soft contrastive loss . ExperimentTODO Summary之前的论文都用高斯分布来捕获Object的不确定性取得了一定的效果.但是单个高斯分布就够好了吗?本文通过例子分析了单个高斯的不足,提出用多个高斯分布来描述Object的歧义. 想法很好,但是感觉力度不够. 本文亮点的Mixture of Gaussians (MoG) embedding就只一句话描述,不够清楚; 强调了VIB也只是利用现有的工作,换个loss形式. 个人感觉最近一些Gaussian Embedding的论文很多都是:换个Gaussian Distribution的形式+换个loss/distance.]]></content>
@@ -53,9 +54,9 @@
         <category>Paper</category>
       </categories>
       <tags>
+        <tag>Gaussian Embedding</tag>
         <tag>Deep Learning</tag>
         <tag>Wasserstein</tag>
-        <tag>Gaussian Embedding</tag>
       </tags>
   </entry>
   <entry>
@@ -72,6 +73,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[18ICLR_WAE_Wasserstein auto-encoders]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F11%2F07%2F18ICLR_WAE_Wasserstein%20auto-encoders%2F</url>
+    <content type="text"><![CDATA[TODO]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>Deep Learning</tag>
+        <tag>Wasserstein</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[18KDD_DVNE_Deep Variational Network Embedding in Wasserstein Space]]></title>
     <url>%2FJhy1993.github.io%2F2018%2F11%2F07%2F18KDD_DVNE_Deep-Variational-Network-Embedding-in-Wasserstein-Space%2F</url>
     <content type="text"><![CDATA[本文来自network embedding大佬THU 崔鹏老师.在Wasserstein空间将节点表示为一个高斯分布. 感觉这篇实际是18ICLR_Graph2Gauss和18ICLR_WAE_Wasserstein auto-encoders的结合. Motivation本文上来罗列了很多的优点: 节点映射为Wasserstein space的一个gaussian distribution来保持网络结构和不确定性 network embedding的fundamental problem就是保持网络本身的结构和性质(如传递性,X阶结构) Wasserstein distance可以保持transitivity,并且W-2距离对高斯分布有闭市解,线性计算复杂度 KL散度不对称, JS对称但是和KL散度一样无法保持传递性 均值代表节点的位置, 方差代表节点的不确定性 可以保持局部和全局结构 保持一阶相似性和二阶相似性感觉已经成了NE的基本操作了.. 然后分析了一波现有方法的不足 Wasserstein distance相对现有KL的优势,可以保持transitivity 现有方法是把均值向量和方差向量拼接一起作为最终的表示,比较粗糙. 无法反映他们之前的本质关系. 无法保持高阶相似性. graph2gauss可以,但是需要计算最短路径,比较耗时. 但是我觉得相对于Graph2Gauss比较特别的有两点 换了个Wasserstein distance保持transitivity,并且W2距离对于两个高斯分布有闭式解,计算高效. 通过深度变分模型来保持均值与方差之间的关系.(用采样过程,代替简单的拼接,见5.3实验分析) 和之前一样,每个节点的表示$h_i=\mathcal{N}(\mu_i, \sum_i)$ 一个均值向量和一个方差矩阵.这里方差矩阵只考虑对角方差矩阵. Model首先看到模型图就感觉和SDNE很像.SNDE是约束节点对相似,这里是约束三元组的rank关系. 首先看下这里如何对两个高斯分布进行相似性度量,这里选用Wasserstein distance来度量分布的相似性,特别的这里选用$W_2$ 距离.$$\begin{aligned} \operatorname { dist } &amp; = W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) , \mathcal { N } \left( \mu _ { 2 } , \Sigma _ { 2 } \right) \right) \ d i s t ^ { 2 } &amp; = \left| \mu _ { 1 } - \mu _ { 2 } \right| _ { 2 } ^ { 2 } + \operatorname { Tr } \left( \Sigma _ { 1 } + \Sigma _ { 2 } - 2 \left( \Sigma _ { 1 } ^ { 1 / 2 } \Sigma _ { 2 } \Sigma _ { 1 } ^ { 1 / 2 } \right) ^ { 1 / 2 } \right) \end{aligned}$$又因为这里只考虑对角方差矩阵$\Sigma _ { 1 } \Sigma _ { 2 } = \Sigma _ { 2 } \Sigma _ { 1 }$, 上述可以进一步化简$$W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) ; \mathcal { N } \left( m _ { 2 } , \Sigma _ { 2 } \right) \right) ^ { 2 } = \left| \mu _ { 1 } - \mu _ { 2 } \right| _ { 2 } ^ { 2 } + \left| \Sigma _ { 1 } ^ { 1 / 2 } - \Sigma _ { 2 } ^ { 1 / 2 } \right| _ { F } ^ { 2 }$$ Loss分为两部分,类似SDNE的的loss 一阶相似性: 用了和Graph2Gauss一样的基于ranking 的loss, $$\mathcal { L } _ { 1 } = \sum _ { ( i , j , k ) \in \mathrm { D } } \left( E _ { i j } ^ { 2 } + \exp \left( - E _ { i k } \right) \right)$$ 二阶相似性:用WAE来编码每个节点的邻接向量.这里对WAE进行了简化,最后和AE的区别就是encoder后得到的分布中采样的结果才是隐表示Z. $$\mathcal { L } _ { 2 } = \inf _ { Q ( Z | X ) \in Q } \mathbb { E } _ { P _ { X } } \mathbb { E } _ { Q ( Z | X ) } \left[ | X \circ ( X - G ( Z ) ) | _ { 2 } ^ { 2 } \right]$$ 这里也像SDNE一样加大对非零元素的惩罚,只是惩罚系数为0,1 所以SDNE中的B成了这里的X. 优化. 这里用了repara trick.这里变分自编码器学习到的是均值$\mu$和标准差$\sigma$ , 从均值为0,标准差为1的高斯分布中采样,再放缩平移得到Z. $$\mathbf { z } _ { i } = \mu _ { i } + \sigma _ { i } * \epsilon , \epsilon \sim \mathcal { N } ( 0 , \mathbf { I } )$$ 激活函数的选择,有两个需要注意 均值没有用激活函数, 为什么? 这里用elu()+1来保证$\sigma_i$ 是正的. 标准差没有负数! sigmoid来压缩输出到[0,1]之间. Exp数据集:都是无向图, 无属性. 但是graph2gauss需要属性,这里用one-hot代替 为了保证公平,所有学习高斯分布的算法 dim(均值)+dim(方差)=L,本文虽然不是拼接也遵守这个规定. 两类有效性实验: 基于相似性的,包括网络重构和链路预测,这里是基于节点的均值和方差来计算相似性.无向图在计算KL的时候是怎么算的呢? 网络重构的提升很小,链路预测提升还可以. 为什么这两个任务的提升差距这么大? 分类任务,这里对于学习分布的算法,只用了节点的均值来作为输入. 感觉对G2G不公平. 比较奇怪的是,这里用KL距离和W2距离时,DVNE的表现差距很大. DVNE_KL甚至不如很多baseline. 这说明gaussian embedding起到的作用没有W2距离大? 一个不确定性实验: 这个算比较有特色的.这里提出一个intuition: 节点的度越小,越难得到精确的point-vector.换句话说, 节点的度越大,那么连接提供的信息越多, 这个节点也越加稳定. 个人觉得这里的intuition不够准确, graph2gauss的描述更为精确 测试节点的度和方差的关系. 节点的度越大,方差越小. 不确定性中的方差项有助于处理噪声边(为什么有助于?). 注意纵坐标是AUC的下降程度.这里可以就看出噪声边的比例增加,本文算法的AUC下降的最少.但是比较奇怪的是G2G也是gaussian Embedding,为什么它的的下降程度较高? 作者的解释是G2G中均值和方差只是拼接,并没有很好的结合在一起. Conclusion本文相对于Graph2Gauss的改进在于 换了W2距离 把编码均值方差的部分变复杂了,用了个WAE 但是从实验结果看 采样的方式来利用均值方差貌似作用不大,关键还是这个W2距离. 如果进一步做,可以考虑做非对角的方差矩阵.如果方差矩阵非对角,那是什么分布呢?答案是椭圆分布Elliptical Distributions. 且听下回分解.18NIPS_Generalizing Point Embeddings using the Wasserstein Space of Elliptical Distributions]]></content>
@@ -79,10 +92,10 @@
         <category>Paper</category>
       </categories>
       <tags>
+        <tag>Gaussian Embedding</tag>
         <tag>Deep Learning</tag>
         <tag>Wasserstein</tag>
         <tag>Network Embedding</tag>
-        <tag>Gaussian Embedding</tag>
       </tags>
   </entry>
   <entry>
@@ -93,8 +106,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Network Embedding</tag>
         <tag>Gaussian Embedding</tag>
+        <tag>Network Embedding</tag>
       </tags>
   </entry>
   <entry>
@@ -105,14 +118,14 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Network Embedding</tag>
         <tag>Gaussian Embedding</tag>
+        <tag>Network Embedding</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[2. Add Two Numbers]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F002._add_two_numbers%2F</url>
-    <content type="text"><![CDATA[2. Add Two Numbers难度: 中等 刷题内容 原题连接 https://leetcode.com/problems/add-two-numbers/description/ 内容描述 123456789You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.You may assume the two numbers do not contain any leading zero, except the number 0 itself.Example:Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)Output: 7 -&gt; 0 -&gt; 8Explanation: 342 + 465 = 807. 解题方案180ms 18%思路 数字相加问题,注意进位,尤其是最后一位. 详见注释 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution:# def addTwoNumbers(self, l1, l2):# """# :type l1: ListNode# :type l2: ListNode# :rtype: ListNode# """# if not l1:# return l2# if not l2:# return l1# if l1.val + l2.val &lt; 10:# l3 = ListNode(l1.val + l2.val)# l3.next = self.addTwoNumbers(l1.next, l2.next)# else:# l3 = ListNode(l1.val + l2.val - 10)# tmp = ListNode(1)# tmp.next = None# l3.next = self.addTwoNumbers(tmp, self.addTwoNumbers(l1.next, l2.next))# return l3 def addTwoNumbers(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ if not l1: return l2 if not l2: return l1---title: 62. unique pathscategories: - LeetCode--- # 建立哑节点, return res.next res = ListNode(-1) cur = res carry = 0 while l1 or l2 or carry: # 短的链表补0 v1 = l1.val if l1 != None else 0 v2 = l2.val if l2 != None else 0 tmp = v1 + v2 + carry if tmp &lt; 10: carry = 0 else: tmp -= 10 carry = 1 cur.next = ListNode(tmp) if l1: l1 = l1.next if l2: l2 = l2.next cur = cur.next return res.next ref 思路 1 全部变成数字做加法再换回去呗，这多暴力，爽！ 123456789101112131415161718192021222324252627282930class Solution(object): def addTwoNumbers(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ if not l1: return l2 if not l2: return l1 val1, val2 = [l1.val], [l2.val] while l1.next: val1.append(l1.next.val) l1 = l1.next while l2.next: val2.append(l2.next.val) l2 = l2.next num1 = ''.join([str(i) for i in val1[::-1]]) num2 = ''.join([str(i) for i in val2[::-1]]) tmp = str(int(num1) + int(num2))[::-1] res = ListNode(int(tmp[0])) run_res = res for i in range(1, len(tmp)): run_res.next = ListNode(int(tmp[i])) run_res = run_res.next return res 思路 2 可以使用递归，每次算一位的相加 12345678910111213141516171819202122class Solution(object): def addTwoNumbers(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ if not l1: return l2 if not l2: return l1 if l1.val + l2.val &lt; 10: l3 = ListNode(l1.val+l2.val) l3.next = self.addTwoNumbers(l1.next, l2.next) else: l3 = ListNode(l1.val+l2.val-10) tmp = ListNode(1) tmp.next = None l3.next = self.addTwoNumbers(l1.next, self.addTwoNumbers(l2.next, tmp)) return l3]]></content>
+    <title><![CDATA[203. Remove Linked List Elements]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F203.Remove_linked_list_elements%2F</url>
+    <content type="text"><![CDATA[203. Remove Linked List Elements题目:https://leetcode.com/problems/remove-linked-list-elements/ 难度: Easy 76ms 40%AC代码如下: 注意linked list 的首个node就可能需要删除,所以建立一个哑节点 dummy, dummy.next = head 链表中的删除实际是跳过该节点 1234567891011121314151617181920class Solution(object): def removeElements(self, head, val): """ :type head: ListNode :type val: int :rtype: ListNode """ dummy = ListNode(-1) dummy.next = head cur = dummy while cur.next: #注意这里从cur.next开始判断,因为如果到了cur且cur.val==val,这时已经无法跳过cur了 if cur.next.val == val: cur.next = cur.next.next else: cur = cur.next return dummy.next]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
@@ -126,73 +139,9 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[383. Ransom Note]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F383._ransom_note%2F</url>
-    <content type="text"><![CDATA[383. Ransom Note题目：https://leetcode.com/problems/ransom-note/ 难度 : Easy https://leetcode.com/problems/ransom-note/description/ 思路1 41% 因为要能构成,又限制每个字母只能用一次 一个magazine能构成的rabsomNote的条件是:ransomNote中每个字母都在magazine中出现且次数不少于ransomNote中的次数 可以构建两个字典,并比较 1234567891011121314151617181920212223242526class Solution: def canConstruct(self, ransomNote, magazine): &quot;&quot;&quot; :type ransomNote: str :type magazine: str :rtype: bool &quot;&quot;&quot; d1 = dict() d2 = dict() for i in list(ransomNote): if i in d1: d1[i] += 1 else: d1[i] = 1 for i in list(magazine): if i in d2: d2[i] += 1 else: d2[i] = 1 for key in list(d1.keys()): if key not in d2: return False if key in d2: if d1[key] &gt; d2[key]: return False return True 思路2 77%基本和思路1一样 只不过用Counter来代替字典统计 12345678910111213141516class Solution: def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ import collections cnt1 = collections.Counter(ransomNote) cnt2 = collections.Counter(magazine) for key in list(cnt1.keys()): if key not in cnt2: return False if key in cnt2 and cnt1[key] &gt; cnt2[key]: return False return True 思路3 77得到 cnt1和cnt2之后可以直接字典相减 https://www.jianshu.com/p/58d21289ff5c 字典相加: 合并两个字典, 相同键的值相加 字典相减 cnt1 - cnt2: 如果cnt1包含cnt2 对应的键值相减 cnt2包含cnt1, 减不了,返回空* 12345678910111213class Solution: def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ import collections cnt1 = collections.Counter(ransomNote) cnt2 = collections.Counter(magazine) #这里如果cnt2-cnt1,返回字典 #要用 not cnt1-cnt2, 期望返回空字典=False return not cnt1 - cnt2 略微想了一下，用了一个dictionary来存magazine里面的单字出现的个数，然后来对应check是否可以用来组成ransomNote 123456789101112131415161718192021class Solution(object): def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ maps = &#123;&#125; for i in magazine: if i in maps: maps[i] += 1 else: maps[i] = 1 for i in ransomNote: if i not in maps: return False else: maps[i] -= 1 if maps[i] &lt; 0: return False return True 解法2： 12345678910111213class Solution(object): def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ magCounter = collections.Counter(magazine) ranCounter = collections.Counter(ransomNote) for k in ranCounter: if ranCounter.get(k) &gt; magCounter.get(k): return False return True]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[21. Merge Two Sorted Lists]]></title>
     <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F021.Merge_two_sorted_lists%2F</url>
     <content type="text"><![CDATA[21. Merge Two Sorted Lists难度: Easy 刷题内容 原题连接 https://leetcode.com/problems/merge-two-sorted-lists/description/ 内容描述 123456Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.Example:Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4 48ms 77%How 新建一个哑节点, ListNode(0),最后返回的时候返回head.next,正好忽略第一个哑节点 判断大小,将链表的值依次放入, l1和l2有一个先取完, 未取完的部分拼接到后面即可 12345678910111213141516171819202122232425262728# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeTwoLists(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ cur = head = ListNode(0) while l1 and l2: if l1.val &lt; l2.val: cur.next = l1 l1 = l1.next else: cur.next = l2 l2 = l2.next cur = cur.next if l1: cur.next = l1 if l2: cur.next = l2 return head.next]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[3. Longest Substring Without Repeating Characters]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F003._longest_substring_without_repeating_characters%2F</url>
-    <content type="text"><![CDATA[3. Longest Substring Without Repeating Characters难度: Medium 刷题内容 原题连接 https://leetcode.com/problems/longest-substring-without-repeating-characters/description/ 内容描述 12345678910111213141516171819Given a string, find the length of the longest substring without repeating characters.Example 1:Input: &quot;abcabcbb&quot;Output: 3 Explanation: The answer is &quot;abc&quot;, with the length of 3. Example 2:Input: &quot;bbbbb&quot;Output: 1Explanation: The answer is &quot;b&quot;, with the length of 1.Example 3:Input: &quot;pwwkew&quot;Output: 3Explanation: The answer is &quot;wke&quot;, with the length of 3. Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring. 100ms 66%**- 时间复杂度: O(N)**- 空间复杂度: O(N)** 思路 粗一看是dp，细一看是greedy 我们先从第一个字符开始，碰到某个字符均用dict保存下或则更新其idx. 假设从位置i开始检查, 每检查一位,就更新一次重复子串大小 j-i+1 到j位置发现了第一次发现重复字符’X’,那么ij之间没有重复字符,下次检查就可以从j开始了. 注意这里要把字符x的idx更新为j 更新每个字符的最靠后idx 详细见代码注释 1234567891011121314151617class Solution: def lengthOfLongestSubstring(self, s): """ :type s: str :rtype: int """ max_len = 0 start = 0 n = len(s) d = &#123;&#125; for i in range(n): #d.get(s[i], -1)+1 得到当前字符出现的最靠后那次的idx start = max(start, d.get(s[i], -1) + 1) # i - start + 1 dist(当前位置, 当前字符出现的最靠后那次的idx) max_len = max(max_len, i - start + 1) d[s[i]] = i return max_len]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[203. Remove Linked List Elements]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F203.Remove_linked_list_elements%2F</url>
-    <content type="text"><![CDATA[203. Remove Linked List Elements题目:https://leetcode.com/problems/remove-linked-list-elements/ 难度: Easy 76ms 40%AC代码如下: 注意linked list 的首个node就可能需要删除,所以建立一个哑节点 dummy, dummy.next = head 链表中的删除实际是跳过该节点 1234567891011121314151617181920class Solution(object): def removeElements(self, head, val): """ :type head: ListNode :type val: int :rtype: ListNode """ dummy = ListNode(-1) dummy.next = head cur = dummy while cur.next: #注意这里从cur.next开始判断,因为如果到了cur且cur.val==val,这时已经无法跳过cur了 if cur.next.val == val: cur.next = cur.next.next else: cur = cur.next return dummy.next]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[49. Group Anagrams]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F049.Group_anagrams%2F</url>
-    <content type="text"><![CDATA[49. Group Anagrams难度: Medium 刷题内容 原题连接 https://leetcode.com/problems/group-anagrams/description/ 内容描述 123456789101112131415Given an array of strings, group anagrams together.Example:Input: [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;],Output:[ [&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;], [&quot;nat&quot;,&quot;tan&quot;], [&quot;bat&quot;]]Note:All inputs will be in lowercase.The order of your output does not matter. 解题方案124ms 90%top 是hash table,提示用字典 字典的key是关键, 因为即使打乱顺序也就是那几个字母 开始尝试用set, 不能作为key, 转而用tuple time O(NKlogK) N是strs长度, K是最大str长度, KlogK是sort space O(NK) 新建的res 123456789101112131415class Solution: def groupAnagrams(self, strs): """ :type strs: List[str] :rtype: List[List[str]] """ # 新建一个字典, key是字母的tuple, val是list of str from collections import defaultdict res = defaultdict(list) for st in strs: res[tuple(sorted(st))].append(st) # 注意python3的转换 return list(res.values()) title: 62. unique pathscategories:​ - LeetCode 思路 1 每一个字符串都先排个序看看是不是一样，这样更好判断 1234567891011121314class Solution(object): def groupAnagrams(self, strs): """ :type strs: List[str] :rtype: List[List[str]] """ mapx = &#123;&#125; for i in strs: tmp = ''.join(sorted(list(i))) if tmp in mapx: mapx[tmp].append(i) else: mapx[tmp] = [i] return mapx.values()]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[70. Climbing Stairs]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F070.Climbing_Stairs%2F</url>
-    <content type="text"><![CDATA[70. Climbing Stairs难度: Easy 刷题内容 原题连接 https://leetcode.com/problems/climbing-stairs/description/ 内容描述 12345678910111213141516171819202122You are climbing a stair case. It takes n steps to reach to the top.Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?Note: Given n will be a positive integer.Example 1:Input: 2Output: 2Explanation: There are two ways to climb to the top.1. 1 step + 1 step2. 2 stepsExample 2:Input: 3Output: 3Explanation: There are three ways to climb to the top.1. 1 step + 1 step + 1 step2. 1 step + 2 steps3. 2 steps + 1 step 解题方案20ms 97%思路 典型DP,因为每次可以走1或2步,所以dp[i]=dp[i-1]+dp[i-2] 初始值可以看出 第一阶:1, 第二阶:2, 注意我们的dp[0]代表第一阶 1234567891011121314class Solution(object): def climbStairs(self, n): """ :type n: int :rtype: int """ if n == 1: return 1 dp = [None for _ in range(n)] dp[0] = 1 dp[1] = 2 for i in range(2, n): dp[i] = dp[i-1] + dp[i-2] return dp[-1]]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[83. Remove Duplicates from Sorted List]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F083.Remove_duplicates_from_sorted_list%2F</url>
-    <content type="text"><![CDATA[#83. Remove Duplicates from Sorted List 题目:https://leetcode.com/problems/remove-duplicates-from-sorted-list/ 难度: Easy 60ms 53%how 注意是sort的, 所以重复数字都是相邻的 重复数字可能有多次如 1-&gt;1-&gt;1 1234567891011121314151617181920# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def deleteDuplicates(self, head): """ :type head: ListNode :rtype: ListNode """ cur = head while cur: # 因为这里重复可能有多次, 所以用while而不是if #检查cur.next有没有, 尾部判断 while cur.next and cur.val == cur.next.val: cur.next = cur.next.next cur = cur.next return head dummy 大法 123456789101112class Solution(object): def deleteDuplicates(self, head): """ :type head: ListNode :rtype: ListNode """ dummy = head while head: while head.next and head.next.val == head.val: head.next = head.next.next # skip duplicated node head = head.next # not duplicate of current node, move to next node return dummy]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[62. unique paths]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F062.Unique_paths%2F</url>
-    <content type="text"><![CDATA[62. unique paths 不同路径难度: 中等 刷题内容 原题连接 https://leetcode.com/problems/unique-paths https://leetcode-cn.com/problems/unique-paths/description 内容描述 12345一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。.机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。问总共有多少条不同的路径？ 123456789101112131415161718例如，上图是一个7 x 3 的网格。有多少可能的路径？说明：m 和 n 的值均不超过 100。&gt; 示例 1:输入: m = 3, n = 2输出: 3解释:从左上角开始，总共有 3 条路径可以到达右下角。1. 向右 -&gt; 向右 -&gt; 向下2. 向右 -&gt; 向下 -&gt; 向右3. 向下 -&gt; 向右 -&gt; 向右&gt; 示例 2:输入: m = 7, n = 3输出: 28 DP 20ms 99%思路 DP两个点,递归公式和初始值 递归公式很好理解 $d[i][j]=d[i-1][j]+d[i][j-1]$, 因为这里只能向右下行走,所以只考虑当前点上方和左侧. 初始值需要考虑一下. 整个棋盘的左边界,左边界上的点没有左侧,只能从[0,0]一路向下,所以全是1 整个棋盘的上边界,上边界上的点没有上侧,只能从[0,0]一路向右,所以全是1 123456789101112131415161718class Solution(object): def uniquePaths(self, m, n): """ :type m: int :type n: int :rtype: int """ d = [[None]* n for _ in range(m)] for i in range(m): for j in range(n): if i== 0 or j == 0: d[i][j] = 1 else: d[i][j] = 0 for i in range(1, m): for j in range(1, n): d[i][j] = d[i-1][j] + d[i][j-1] return d[-1][-1] 组合 20ms 99% 思路 这里可以转化为排列组合问题,总共要走m+n-2步, 其中m-1步向下, n-1步向右 只有向左,向下两种选择,而且不考虑顺序问题,所以是$C_{m+n-2}^{m-1}$ 而且$C_n^m=C_n^{n-m}$ 所以先写个求阶乘,在套上述公式即可 12345678910111213class Solution(object): def uniquePaths(self, m, n): """ :type m: int :type n: int :rtype: int """ def fab(nums): res = 1 for i in range(1, nums+1): res *= i return res return fab(m+n-2) / (fab(n-1) * fab(m-1))]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[112. Path Sum]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F112._path_sum%2F</url>
-    <content type="text"><![CDATA[112. Path Sum题目:https://leetcode.com/problems/path-sum/ 难度: Easy 56ms 81%思路 递归查找, 分别从左/右开始递归, 每递归一层, 都需要sum-root.val 1234567891011121314151617181920# Definition for a binary tree node.# class TreeNode:# def __init__(self, x):# self.val = x# self.left = None# self.right = Noneclass Solution: def hasPathSum(self, root, sum): """ :type root: TreeNode :type sum: int :rtype: bool """ if root == None: return False if root.left == None and root.right == None: return root.val == sum return self.hasPathSum(root.left, sum - root.val) or self.hasPathSum(root.right, sum - root.val)]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
@@ -206,6 +155,14 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[112. Path Sum]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F112._path_sum%2F</url>
+    <content type="text"><![CDATA[112. Path Sum题目:https://leetcode.com/problems/path-sum/ 难度: Easy 56ms 81%思路 递归查找, 分别从左/右开始递归, 每递归一层, 都需要sum-root.val 1234567891011121314151617181920# Definition for a binary tree node.# class TreeNode:# def __init__(self, x):# self.val = x# self.left = None# self.right = Noneclass Solution: def hasPathSum(self, root, sum): """ :type root: TreeNode :type sum: int :rtype: bool """ if root == None: return False if root.left == None and root.right == None: return root.val == sum return self.hasPathSum(root.left, sum - root.val) or self.hasPathSum(root.right, sum - root.val)]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[77. Combinations]]></title>
     <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F077.Combinations%2F</url>
     <content type="text"><![CDATA[#77. Combinations 题目：https://leetcode.com/problems/combinations/ 难度 : Medium 652ms 66%思路 典型的dfs, 用递归来解决,这里的k就是递归深度. 12345678910111213141516171819202122class Solution(object): def combine(self, n, k): """ :type n: int :type k: int :rtype: List[List[int]] """ res = [] # 注意题目要求 数字从1~n self.dfs(n, k, 1, [], res) print(res) def dfs(self, n, k, start, tmp, res): if k == 0: res.append(tmp) print(tmp) return # 注意题目要求 数字从1~n, range(1, n+1) for i in range(start, n+1): # tmp.append(i) self.dfs(n, k-1, i+1, tmp + [i], res) ref思路二： 标准的recursion 但是会超时 1234567891011121314151617class Solution(object): def combine(self, n, k): &quot;&quot;&quot; :type n: int :type k: int :rtype: List[List[int]] &quot;&quot;&quot; ans = [] self.dfs(n, k, 1, [], ans) return ans def dfs(self, n, k ,start, lst, ans): if k == 0 : ans.append(lst) return for i in range(start, n+1): self.dfs(n, k - 1, i + 1,lst +[i], ans) 理解方式 12345678910 ---title: 62. unique pathscategories: - LeetCode--- 1 2 3 12 13 14 23 24 34 可以参照这里 http://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/ 解法三： 采用递归的方式，在n个数中选k个，如果n大于k，那么可以分类讨论，如果选了n，那么就是在1到(n-1)中选(k-1)个，否则就是在1到(n-1)中选k个。递归终止的条件是k为1，这时候1到n都符合要求。 注意一开始这里的else part花了我一点时间来理解，因为n必定大于k，所以这样递归当 n == k的时候选法就是code原作者的写法，也就是直接[range(1,k+1)] 参考这里： https://shenjie1993.gitbooks.io/leetcode-python/content/077%20Combinations.html 12345678910111213141516class Solution(object): def combine(self, n, k): &quot;&quot;&quot; :type n: int :type k: int :rtype: List[List[int]] &quot;&quot;&quot; if k == 1: return [[i + 1] for i in range(n)] result = [] if n &gt; k: result = [r + [n] for r in self.combine(n - 1, k - 1)] + self.combine(n - 1, k) else: #n == k # result = [r + [n] for r in self.combine(n - 1, k - 1)] result = [range(1,k+1)] return result]]></content>
@@ -214,38 +171,60 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F06%2F11%2Ftemplate%2F</url>
-    <content type="text"><![CDATA[s]]></content>
+    <title><![CDATA[383. Ransom Note]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F383._ransom_note%2F</url>
+    <content type="text"><![CDATA[383. Ransom Note题目：https://leetcode.com/problems/ransom-note/ 难度 : Easy https://leetcode.com/problems/ransom-note/description/ 思路1 41% 因为要能构成,又限制每个字母只能用一次 一个magazine能构成的rabsomNote的条件是:ransomNote中每个字母都在magazine中出现且次数不少于ransomNote中的次数 可以构建两个字典,并比较 1234567891011121314151617181920212223242526class Solution: def canConstruct(self, ransomNote, magazine): &quot;&quot;&quot; :type ransomNote: str :type magazine: str :rtype: bool &quot;&quot;&quot; d1 = dict() d2 = dict() for i in list(ransomNote): if i in d1: d1[i] += 1 else: d1[i] = 1 for i in list(magazine): if i in d2: d2[i] += 1 else: d2[i] = 1 for key in list(d1.keys()): if key not in d2: return False if key in d2: if d1[key] &gt; d2[key]: return False return True 思路2 77%基本和思路1一样 只不过用Counter来代替字典统计 12345678910111213141516class Solution: def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ import collections cnt1 = collections.Counter(ransomNote) cnt2 = collections.Counter(magazine) for key in list(cnt1.keys()): if key not in cnt2: return False if key in cnt2 and cnt1[key] &gt; cnt2[key]: return False return True 思路3 77得到 cnt1和cnt2之后可以直接字典相减 https://www.jianshu.com/p/58d21289ff5c 字典相加: 合并两个字典, 相同键的值相加 字典相减 cnt1 - cnt2: 如果cnt1包含cnt2 对应的键值相减 cnt2包含cnt1, 减不了,返回空* 12345678910111213class Solution: def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ import collections cnt1 = collections.Counter(ransomNote) cnt2 = collections.Counter(magazine) #这里如果cnt2-cnt1,返回字典 #要用 not cnt1-cnt2, 期望返回空字典=False return not cnt1 - cnt2 略微想了一下，用了一个dictionary来存magazine里面的单字出现的个数，然后来对应check是否可以用来组成ransomNote 123456789101112131415161718192021class Solution(object): def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ maps = &#123;&#125; for i in magazine: if i in maps: maps[i] += 1 else: maps[i] = 1 for i in ransomNote: if i not in maps: return False else: maps[i] -= 1 if maps[i] &lt; 0: return False return True 解法2： 12345678910111213class Solution(object): def canConstruct(self, ransomNote, magazine): """ :type ransomNote: str :type magazine: str :rtype: bool """ magCounter = collections.Counter(magazine) ranCounter = collections.Counter(ransomNote) for k in ranCounter: if ranCounter.get(k) &gt; magCounter.get(k): return False return True]]></content>
       <categories>
-        <category>cate</category>
+        <category>LeetCode</category>
       </categories>
-      <tags>
-        <tag>Network Embedding</tag>
-      </tags>
   </entry>
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F06%2F11%2FDL_template%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[49. Group Anagrams]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F049.Group_anagrams%2F</url>
+    <content type="text"><![CDATA[49. Group Anagrams难度: Medium 刷题内容 原题连接 https://leetcode.com/problems/group-anagrams/description/ 内容描述 123456789101112131415Given an array of strings, group anagrams together.Example:Input: [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;],Output:[ [&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;], [&quot;nat&quot;,&quot;tan&quot;], [&quot;bat&quot;]]Note:All inputs will be in lowercase.The order of your output does not matter. 解题方案124ms 90%top 是hash table,提示用字典 字典的key是关键, 因为即使打乱顺序也就是那几个字母 开始尝试用set, 不能作为key, 转而用tuple time O(NKlogK) N是strs长度, K是最大str长度, KlogK是sort space O(NK) 新建的res 123456789101112131415class Solution: def groupAnagrams(self, strs): """ :type strs: List[str] :rtype: List[List[str]] """ # 新建一个字典, key是字母的tuple, val是list of str from collections import defaultdict res = defaultdict(list) for st in strs: res[tuple(sorted(st))].append(st) # 注意python3的转换 return list(res.values()) title: 62. unique pathscategories:​ - LeetCode 思路 1 每一个字符串都先排个序看看是不是一样，这样更好判断 1234567891011121314class Solution(object): def groupAnagrams(self, strs): """ :type strs: List[str] :rtype: List[List[str]] """ mapx = &#123;&#125; for i in strs: tmp = ''.join(sorted(list(i))) if tmp in mapx: mapx[tmp].append(i) else: mapx[tmp] = [i] return mapx.values()]]></content>
       <categories>
-        <category>Deep Learning</category>
+        <category>LeetCode</category>
       </categories>
-      <tags>
-        <tag>Deep Learning</tag>
-      </tags>
   </entry>
   <entry>
-    <title><![CDATA[Graph Neural Network之GCN的理论]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F06%2F11%2Fgcn%2F</url>
-    <content type="text"><![CDATA[图神经网络,尤其是图卷积,在近两年的顶会上疯狂刷脸. 这里整理了部分相关文献,并准备从GCN系列开始梳理. 最早的图卷积网络都是从谱域出发,利用图傅里叶变换,滤波器来设计. Ref: https://tkipf.github.io/graph-convolutional-networks/]]></content>
+    <title><![CDATA[83. Remove Duplicates from Sorted List]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F083.Remove_duplicates_from_sorted_list%2F</url>
+    <content type="text"><![CDATA[#83. Remove Duplicates from Sorted List 题目:https://leetcode.com/problems/remove-duplicates-from-sorted-list/ 难度: Easy 60ms 53%how 注意是sort的, 所以重复数字都是相邻的 重复数字可能有多次如 1-&gt;1-&gt;1 1234567891011121314151617181920# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def deleteDuplicates(self, head): """ :type head: ListNode :rtype: ListNode """ cur = head while cur: # 因为这里重复可能有多次, 所以用while而不是if #检查cur.next有没有, 尾部判断 while cur.next and cur.val == cur.next.val: cur.next = cur.next.next cur = cur.next return head dummy 大法 123456789101112class Solution(object): def deleteDuplicates(self, head): """ :type head: ListNode :rtype: ListNode """ dummy = head while head: while head.next and head.next.val == head.val: head.next = head.next.next # skip duplicated node head = head.next # not duplicate of current node, move to next node return dummy]]></content>
       <categories>
-        <category>Paper</category>
+        <category>LeetCode</category>
       </categories>
-      <tags>
-        <tag>Graph Neural Network</tag>
-        <tag>GCN</tag>
-      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[3. Longest Substring Without Repeating Characters]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F003._longest_substring_without_repeating_characters%2F</url>
+    <content type="text"><![CDATA[3. Longest Substring Without Repeating Characters难度: Medium 刷题内容 原题连接 https://leetcode.com/problems/longest-substring-without-repeating-characters/description/ 内容描述 12345678910111213141516171819Given a string, find the length of the longest substring without repeating characters.Example 1:Input: &quot;abcabcbb&quot;Output: 3 Explanation: The answer is &quot;abc&quot;, with the length of 3. Example 2:Input: &quot;bbbbb&quot;Output: 1Explanation: The answer is &quot;b&quot;, with the length of 1.Example 3:Input: &quot;pwwkew&quot;Output: 3Explanation: The answer is &quot;wke&quot;, with the length of 3. Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring. 100ms 66%**- 时间复杂度: O(N)**- 空间复杂度: O(N)** 思路 粗一看是dp，细一看是greedy 我们先从第一个字符开始，碰到某个字符均用dict保存下或则更新其idx. 假设从位置i开始检查, 每检查一位,就更新一次重复子串大小 j-i+1 到j位置发现了第一次发现重复字符’X’,那么ij之间没有重复字符,下次检查就可以从j开始了. 注意这里要把字符x的idx更新为j 更新每个字符的最靠后idx 详细见代码注释 1234567891011121314151617class Solution: def lengthOfLongestSubstring(self, s): """ :type s: str :rtype: int """ max_len = 0 start = 0 n = len(s) d = &#123;&#125; for i in range(n): #d.get(s[i], -1)+1 得到当前字符出现的最靠后那次的idx start = max(start, d.get(s[i], -1) + 1) # i - start + 1 dist(当前位置, 当前字符出现的最靠后那次的idx) max_len = max(max_len, i - start + 1) d[s[i]] = i return max_len]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[2. Add Two Numbers]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F002._add_two_numbers%2F</url>
+    <content type="text"><![CDATA[2. Add Two Numbers难度: 中等 刷题内容 原题连接 https://leetcode.com/problems/add-two-numbers/description/ 内容描述 123456789You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.You may assume the two numbers do not contain any leading zero, except the number 0 itself.Example:Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)Output: 7 -&gt; 0 -&gt; 8Explanation: 342 + 465 = 807. 解题方案180ms 18%思路 数字相加问题,注意进位,尤其是最后一位. 详见注释 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution:# def addTwoNumbers(self, l1, l2):# """# :type l1: ListNode# :type l2: ListNode# :rtype: ListNode# """# if not l1:# return l2# if not l2:# return l1# if l1.val + l2.val &lt; 10:# l3 = ListNode(l1.val + l2.val)# l3.next = self.addTwoNumbers(l1.next, l2.next)# else:# l3 = ListNode(l1.val + l2.val - 10)# tmp = ListNode(1)# tmp.next = None# l3.next = self.addTwoNumbers(tmp, self.addTwoNumbers(l1.next, l2.next))# return l3 def addTwoNumbers(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ if not l1: return l2 if not l2: return l1---title: 62. unique pathscategories: - LeetCode--- # 建立哑节点, return res.next res = ListNode(-1) cur = res carry = 0 while l1 or l2 or carry: # 短的链表补0 v1 = l1.val if l1 != None else 0 v2 = l2.val if l2 != None else 0 tmp = v1 + v2 + carry if tmp &lt; 10: carry = 0 else: tmp -= 10 carry = 1 cur.next = ListNode(tmp) if l1: l1 = l1.next if l2: l2 = l2.next cur = cur.next return res.next ref 思路 1 全部变成数字做加法再换回去呗，这多暴力，爽！ 123456789101112131415161718192021222324252627282930class Solution(object): def addTwoNumbers(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ if not l1: return l2 if not l2: return l1 val1, val2 = [l1.val], [l2.val] while l1.next: val1.append(l1.next.val) l1 = l1.next while l2.next: val2.append(l2.next.val) l2 = l2.next num1 = ''.join([str(i) for i in val1[::-1]]) num2 = ''.join([str(i) for i in val2[::-1]]) tmp = str(int(num1) + int(num2))[::-1] res = ListNode(int(tmp[0])) run_res = res for i in range(1, len(tmp)): run_res.next = ListNode(int(tmp[i])) run_res = run_res.next return res 思路 2 可以使用递归，每次算一位的相加 12345678910111213141516171819202122class Solution(object): def addTwoNumbers(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ if not l1: return l2 if not l2: return l1 if l1.val + l2.val &lt; 10: l3 = ListNode(l1.val+l2.val) l3.next = self.addTwoNumbers(l1.next, l2.next) else: l3 = ListNode(l1.val+l2.val-10) tmp = ListNode(1) tmp.next = None l3.next = self.addTwoNumbers(l1.next, self.addTwoNumbers(l2.next, tmp)) return l3]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[62. unique paths]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F062.Unique_paths%2F</url>
+    <content type="text"><![CDATA[62. unique paths 不同路径难度: 中等 刷题内容 原题连接 https://leetcode.com/problems/unique-paths https://leetcode-cn.com/problems/unique-paths/description 内容描述 12345一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。.机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。问总共有多少条不同的路径？ 123456789101112131415161718例如，上图是一个7 x 3 的网格。有多少可能的路径？说明：m 和 n 的值均不超过 100。&gt; 示例 1:输入: m = 3, n = 2输出: 3解释:从左上角开始，总共有 3 条路径可以到达右下角。1. 向右 -&gt; 向右 -&gt; 向下2. 向右 -&gt; 向下 -&gt; 向右3. 向下 -&gt; 向右 -&gt; 向右&gt; 示例 2:输入: m = 7, n = 3输出: 28 DP 20ms 99%思路 DP两个点,递归公式和初始值 递归公式很好理解 $d[i][j]=d[i-1][j]+d[i][j-1]$, 因为这里只能向右下行走,所以只考虑当前点上方和左侧. 初始值需要考虑一下. 整个棋盘的左边界,左边界上的点没有左侧,只能从[0,0]一路向下,所以全是1 整个棋盘的上边界,上边界上的点没有上侧,只能从[0,0]一路向右,所以全是1 123456789101112131415161718class Solution(object): def uniquePaths(self, m, n): """ :type m: int :type n: int :rtype: int """ d = [[None]* n for _ in range(m)] for i in range(m): for j in range(n): if i== 0 or j == 0: d[i][j] = 1 else: d[i][j] = 0 for i in range(1, m): for j in range(1, n): d[i][j] = d[i-1][j] + d[i][j-1] return d[-1][-1] 组合 20ms 99% 思路 这里可以转化为排列组合问题,总共要走m+n-2步, 其中m-1步向下, n-1步向右 只有向左,向下两种选择,而且不考虑顺序问题,所以是$C_{m+n-2}^{m-1}$ 而且$C_n^m=C_n^{n-m}$ 所以先写个求阶乘,在套上述公式即可 12345678910111213class Solution(object): def uniquePaths(self, m, n): """ :type m: int :type n: int :rtype: int """ def fab(nums): res = 1 for i in range(1, nums+1): res *= i return res return fab(m+n-2) / (fab(n-1) * fab(m-1))]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[70. Climbing Stairs]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F09%2F25%2Fhexo_leetcode%2F070.Climbing_Stairs%2F</url>
+    <content type="text"><![CDATA[70. Climbing Stairs难度: Easy 刷题内容 原题连接 https://leetcode.com/problems/climbing-stairs/description/ 内容描述 12345678910111213141516171819202122You are climbing a stair case. It takes n steps to reach to the top.Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?Note: Given n will be a positive integer.Example 1:Input: 2Output: 2Explanation: There are two ways to climb to the top.1. 1 step + 1 step2. 2 stepsExample 2:Input: 3Output: 3Explanation: There are three ways to climb to the top.1. 1 step + 1 step + 1 step2. 1 step + 2 steps3. 2 steps + 1 step 解题方案20ms 97%思路 典型DP,因为每次可以走1或2步,所以dp[i]=dp[i-1]+dp[i-2] 初始值可以看出 第一阶:1, 第二阶:2, 注意我们的dp[0]代表第一阶 1234567891011121314class Solution(object): def climbStairs(self, n): """ :type n: int :rtype: int """ if n == 1: return 1 dp = [None for _ in range(n)] dp[0] = 1 dp[1] = 2 for i in range(2, n): dp[i] = dp[i-1] + dp[i-2] return dp[-1]]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[18KDD_Multi-Pointer Co-Attention Networks for Recommendation]]></title>
@@ -260,14 +239,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Sentences 101-200]]></title>
-    <url>%2FJhy1993.github.io%2F2018%2F06%2F11%2F101-200%2F</url>
-    <content type="text"></content>
-      <categories>
-        <category>English</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[各种GAN]]></title>
     <url>%2FJhy1993.github.io%2F2018%2F06%2F11%2F%E5%90%84%E7%A7%8DGAN%2F</url>
     <content type="text"><![CDATA[GANSimple GANBasic Idea: MLE $\rightarrow$ minimize KL given a data distribution $P_{data}(x)$ $pixel \rightarrow vector$ means the distribution of image a distribution $P_G(x;\theta)$ parametered by $\theta$ $$\theta^*=argmax$$ Generator G is a function, input $z$ ,output $x$ 过去用GMM来拟合,但是效果很差,GAN用NN来做分布变换效果很好 Given a prior distribution $P_{prior}(z)$, a probability distribution $P_G(x)$ is defined by function $G$ Unit gaussian distribution$\xrightarrow{NN}$ generated distribution $\approx$ real distribution Discriminator $D$ is a function, input $x$ , output $scalar$ (分类概率) Evaluate the “difference” between$P_G(x)$ and $P_{data}(x)$ Function $V(G,D)$ $G^*=\arg\underset{m}{\min}\underset{D}{\max}V(G,D)$ Given $G$, the optimal $D^*$ maximizing $$\begin{aligned}V&amp;=E_{x\sim P_{data}}[logD(x)]+E_{x\sim P_G}[log(1-D(x))] \\&amp;=\int_x P_{data}(x)logD(x)dx+\int_xP_G(x)log(1-D(x))dx \\&amp;=\int_x[P_{data}logD(x)+P_G(x)log(1-D(x))]dx \\&amp; assume \quad{}D(x) can have any value here \\&amp;P_{data}和P_G(x)均已知 ,所以简化为\\&amp;f(D)=alog(D)+blog(1-D)\end{aligned}$$ Given $x=Data$, find $D^*$ maximizing $$\begin{aligned}&amp; P_{data}logD(x)+P_G(x)log(1-D(x)) \\&amp;\frac{df(D)}{dD}=a\frac{1}{D}+b\frac{1}{1-D}(-1)=0\\&amp;解得D^=\frac{a}{a+b}\\&amp; D^*=\frac{P_{data}(x)}{P_{data}(x)+P_G(x)}\end{aligned}$$ Given $G$, $\underset{D}{max}V(G,D)=V(G,D^*)$ $$\begin{aligned} &amp;V(G,D^*)=E_{x\sim P_{data}}[logD(x)]+E_{x\sim P_G}[log(1-D(x))] \\ &amp;=E_{x\sim P_{data}}[log{\frac{P_{data}(x)}{P_{data}(x)+P_G(x)}}]+E_{x\sim P_G}[log{\frac{P_{G}(x)}{P_{data}(x)+P_G(x)}}] \\ &amp;=-2log2+\int_x P_{data}(x)log{\frac{P_{data}(x)}{(P_{data}(x)+P_G(x))/2}}dx+\int_xP_G(x)log{\frac{P_{G}(x)}{(P_{data}(x)+P_G(x))/2}}dx \\ &amp;=-2log2+KL\Big(P_{data}(x)||\frac{P_{data}(x)+P_G(x)}{2}\Big) +KL\Big(P_{G}(x)||\frac{P_{data}(x)+P_G(x)}{2}\Big) \\ &amp;=-2log2+ 2JSD\Big(P_{data}(x)||P_G(x)\Big) \\ &amp;\propto JSD\Big(P_{data}(x)||P_G(x)\Big) \\ &amp;KL散度不对称,但是这里的KL()+KL()整体对称,又叫JSD\ \end{aligned}$$ $$Kullback–Leibler divergence \quad D(P||Q)\\D_KL(P||Q)=\sum_iP(i)log\frac{P(i)}{Q(i)} \\Jensen–Shannon \quad divergence \quad and \quad \\完全一样0&lt;JSD(Q||P)=JSD(P||Q)=\frac{1}{2}D(P||M)+\frac{1}{2}D(Q||M) &lt;log2完全没关系\\M=\frac{1}{2}(P+Q)$$ What is the optimal $G$ ? $G$ will models the real data, and $D$ can’t tell the difference (output Prob is 0.5) $$P_G(x)=P_{data}(x)$$ “BTW why do we interested in training GAN?” might come in mind. It’s because probability distribution of data $P_{data}$ might be a very complicated distribution and very hard and intractable to infer. So, having a generative machine that could generate samples from $P_{data}$ without having to deal with nasty probability distribution is very nice. If we have this, then we could use it for another process that require sample from $P_{data}$ as we could get samples relatively cheaply using the trained Generative Net. So many GANsmodifying the optimization of GAN WGAN, fGAN… Different Structure from the Origin GAN Conditional GAN, Semi-supervised GAN, InfoGAN, VAE-GAN WGANGraph GAN##]]></content>
@@ -277,6 +248,48 @@
       <tags>
         <tag>Deep Learning</tag>
         <tag>GAN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F06%2F11%2Ftemplate%2F</url>
+    <content type="text"><![CDATA[s]]></content>
+      <categories>
+        <category>cate</category>
+      </categories>
+      <tags>
+        <tag>Network Embedding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Sentences 101-200]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F06%2F11%2F101-200%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>English</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Graph Neural Network之GCN的理论]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F06%2F11%2Fgcn%2F</url>
+    <content type="text"><![CDATA[图神经网络,尤其是图卷积,在近两年的顶会上疯狂刷脸. 这里整理了部分相关文献,并准备从GCN系列开始梳理. 最早的图卷积网络都是从谱域出发,利用图傅里叶变换,滤波器来设计. Ref: https://tkipf.github.io/graph-convolutional-networks/]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>Graph Neural Network</tag>
+        <tag>GCN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2FJhy1993.github.io%2F2018%2F06%2F11%2FDL_template%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>Deep Learning</category>
+      </categories>
+      <tags>
+        <tag>Deep Learning</tag>
       </tags>
   </entry>
   <entry>
