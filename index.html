@@ -672,8 +672,12 @@ Struc
       
         
           
-          word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$$$s$$其中, $C(w)$是单词$w$的上下文. 把$w$和$c$ 这种从文本中抽取的的word-pair构建一个集合$D$
-$p ( D = 1 | w , c ; \theta ) $ 可以定义为(内积较大,则容易出现在同一个窗口内):$$p ( D = 1 | w , c ; \theta ) = \frac { 1 } { 1 + e ^ { - v _
+          word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$
+
+s其中, $C(w)$是单词$w$的上下文. 把$w$和$c$ 这种从文本中抽取的的word-pair构建一个集合$D$
+$p ( D = 1 | w , c ; \theta ) $ 可以定义为(内积较大,则容易出现在同一个窗口内):
+
+p ( D = 1 | w , c ; \theta ) = \frac { 1 } { 1 + e ^ { - v _ {
           ...
           <!--noindex-->
           
@@ -875,12 +879,14 @@ $p ( D = 1 | w , c ; \theta ) $ 可以定义为(内积较大,则容易出现在�
           引言机器学习里面对待训练数据有2种,抛弃或者保留
 
 有的是训练完得到参数后就可以抛弃了，比如神经网络；
-有的是还需要原来的训练数据比如KNN，SVM也需要保留一部分数据–支持向量。
+有的是还需要原来的训练数据比如KNN，SVM也需要保留一部分数据—支持向量。
 
 许多线性参数模型可以转化为对偶形式,转化后依然是线性模型.
 只是线性组合的对象变成了一组非线性基函数.
 这里的非线性基函数就是在基于各个数据点计算的核函数.
-对偶表示最小均方误差形式$$J ( \boldsymbol { w } ) = \frac { 1 } { 2 } \sum _ { n = 1 } ^ { 
+对偶表示最小均方误差形式
+
+J ( \boldsymbol { w } ) = \frac { 1 } { 2 } \sum _ { n = 1 } ^ { 
           ...
           <!--noindex-->
           
@@ -1281,9 +1287,10 @@ $p ( D = 1 | w , c ; \theta ) $ 可以定义为(内积较大,则容易出现在�
           
           本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离)
 F-散度散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度.
-$$D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x$$这里的$f$需要满足2个条件: $f$是凸函数且$f(1)=0$.
+
+D _ { f } ( p \| q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x这里的$f$需要满足2个条件: $f$是凸函数且$f(1)=0$.
 可以证明:
-因为$f$是凸函数,由Jensen不等式可知 $E(f(x)) &
+因为$f$是凸函数,由Jensen不等式可知 $E(f(x)) &gt
           ...
           <!--noindex-->
           
@@ -1728,207 +1735,6 @@ $$D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \rig
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/18ICLR_DWE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jimmy">
-      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
-      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Better Call Saul">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE/" itemprop="url">
-                  18ICLR_DWE_Learning Wasserstein Embeddings
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-11-07 22:27:29" itemprop="dateCreated datePublished" datetime="2018-11-07T22:27:29+08:00">2018-11-07</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-02 23:36:11" itemprop="dateModified" datetime="2018-12-02T23:36:11+08:00">2018-12-02</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/18ICLR_DWE/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/Jhy1993.github.io/2018/11/07/18ICLR_DWE/" class="leancloud_visitors" data-flag-title="18ICLR_DWE_Learning Wasserstein Embeddings">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views: </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          s
-18iclr
-
-          
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/18ArXiv_HIB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2075,6 +1881,207 @@ Motivation前面已经有很多工作将各种各样的Object映射为高斯分�
           
             <div class="post-button text-center">
               <a class="btn" href="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/07/18ICLR_DWE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
+      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Better Call Saul">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE/" itemprop="url">
+                  18ICLR_DWE_Learning Wasserstein Embeddings
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-11-07 22:27:29" itemprop="dateCreated datePublished" datetime="2018-11-07T22:27:29+08:00">2018-11-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-02 23:36:11" itemprop="dateModified" datetime="2018-12-02T23:36:11+08:00">2018-12-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/07/18ICLR_DWE/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Jhy1993.github.io/2018/11/07/18ICLR_DWE/" class="leancloud_visitors" data-flag-title="18ICLR_DWE_Learning Wasserstein Embeddings">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          s
+18iclr
+
+          
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

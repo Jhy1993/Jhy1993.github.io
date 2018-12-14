@@ -349,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/06/11/gcn/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/06/11/各种GAN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jimmy">
@@ -368,8 +368,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/06/11/gcn/" itemprop="url">
-                  Graph Neural Network之GCN的理论
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/06/11/各种GAN/" itemprop="url">
+                  各种GAN
                 </a>
               
             
@@ -412,7 +412,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-07 16:05:08" itemprop="dateModified" datetime="2018-11-07T16:05:08+08:00">2018-11-07</time>
+                <time title="Modified: 2018-12-14 15:34:22" itemprop="dateModified" datetime="2018-12-14T15:34:22+08:00">2018-12-14</time>
               
             
           </span>
@@ -429,7 +429,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/ML-DL/" itemprop="url" rel="index"><span itemprop="name">ML & DL</span></a></span>
 
                 
                 
@@ -444,8 +444,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/06/11/gcn/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/06/11/gcn/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/06/11/各种GAN/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/06/11/各种GAN/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -453,7 +453,7 @@
 
           
           
-             <span id="/Jhy1993.github.io/2018/06/11/gcn/" class="leancloud_visitors" data-flag-title="Graph Neural Network之GCN的理论">
+             <span id="/Jhy1993.github.io/2018/06/11/各种GAN/" class="leancloud_visitors" data-flag-title="各种GAN">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -485,17 +485,31 @@
 
       
         
-          <p>图神经网络,尤其是图卷积,在近两年的顶会上疯狂刷脸.</p>
-<p>这里整理了部分相关文献,并准备从GCN系列开始梳理.</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fwyjaje2itj30u2146n72.jpg" alt="image-20181106183929992"></p>
+          
+          GANSimple GANBasic Idea: MLE $\rightarrow$ minimize KL 
+
+given a data distribution $P_{data}(x)$
+
+$pixel \rightarrow vector$ means the distribution of image
+
+
+a distribution $P_G(x;\theta)$ parametered by $\theta$
+
+
+\theta^*=argmax
+
+Generator
+
+G is a
+          ...
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/06/11/gcn/#more" rel="contents">
+              <a class="btn" href="/Jhy1993.github.io/2018/06/11/各种GAN/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
-         
+          
           <!--/noindex-->
         
       
@@ -685,14 +699,14 @@
       
         
           
-          237. Delete Node in a Linked Listhttps://leetcode.com/problems/delete-node-in-a-linked-list/description/
+          237. Delete Node in a Linked List https://leetcode.com/problems/delete-node-in-a-linked-list/description/
 28ms 98%
 输入只给了节点,并没有给整个链表, 假设 1234 删除2
 将该node后面一个节点的值付给该node, 变成1334
 然后将该node的 next跳过一步即可(略过第二个3), 1-3(原来的2)-4
 
 
-1234567891011121314# Definition 
+1234567891011121314# Definition
           ...
           <!--noindex-->
           

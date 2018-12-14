@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$$$s$$其中, $C(w)$是单词$w$的上下文. 把$w$和$c$ 这种从文本中抽取的的word-pair构建一个集合$D$ $p ( D = 1 | w , c ; \theta ) $ 可以定义为(内积较大,则容易出现在同一个窗口内):$$p ( D = 1">
+  <meta name="description" content="word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$  s其中, $C(w)$是单词$w$的上下文. 把$w$和$c$ 这种从文本中抽取的的word-pair构建一个集合$D$ $p ( D = 1 | w , c ; \theta ) $ 可以定义为(内积较大,则容易出现在同一个窗口内):  p ( D = 1 |">
 <meta name="keywords" content="Deep Learning,Embedding,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="word2vec, skip-gram, negative sampling">
 <meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/12/13/word2vec/index.html">
 <meta property="og:site_name" content="Better Call Saul">
-<meta property="og:description" content="word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$$$s$$其中, $C(w)$是单词$w$的上下文. 把$w$和$c$ 这种从文本中抽取的的word-pair构建一个集合$D$ $p ( D = 1 | w , c ; \theta ) $ 可以定义为(内积较大,则容易出现在同一个窗口内):$$p ( D = 1">
+<meta property="og:description" content="word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$  s其中, $C(w)$是单词$w$的上下文. 把$w$和$c$ 这种从文本中抽取的的word-pair构建一个集合$D$ $p ( D = 1 | w , c ; \theta ) $ 可以定义为(内积较大,则容易出现在同一个窗口内):  p ( D = 1 |">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-12-14T07:38:13.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="word2vec, skip-gram, negative sampling">
-<meta name="twitter:description" content="word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$$$s$$其中, $C(w)$是单词$w$的上下文. 把$w$和$c$ 这种从文本中抽取的的word-pair构建一个集合$D$ $p ( D = 1 | w , c ; \theta ) $ 可以定义为(内积较大,则容易出现在同一个窗口内):$$p ( D = 1">
+<meta name="twitter:description" content="word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$  s其中, $C(w)$是单词$w$的上下文. 把$w$和$c$ 这种从文本中抽取的的word-pair构建一个集合$D$ $p ( D = 1 | w , c ; \theta ) $ 可以定义为(内积较大,则容易出现在同一个窗口内):  p ( D = 1 |">
 
 
 
@@ -489,8 +489,12 @@
       
 
       
-        <h1 id="word2vec"><a href="#word2vec" class="headerlink" title="word2vec"></a>word2vec</h1><h1 id="skip-gram"><a href="#skip-gram" class="headerlink" title="skip-gram"></a>skip-gram</h1><p>给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$<br>$$<br>s<br>$$<br>其中, $C(w)$是单词$w$的上下文. 把$w$和$c$ 这种从文本中抽取的的word-pair构建一个集合$D$</p>
-<p>$p ( D = 1 | w , c ; \theta ) $ 可以定义为(<strong>内积较大,则容易出现在同一个窗口内</strong>):<br>$$<br>p ( D = 1 | w , c ; \theta ) = \frac { 1 } { 1 + e ^ { - v _ { c } \cdot v _ { w } } }<br>$$<br>这样</p>
+        <h1 id="word2vec"><a href="#word2vec" class="headerlink" title="word2vec"></a>word2vec</h1><h1 id="skip-gram"><a href="#skip-gram" class="headerlink" title="skip-gram"></a>skip-gram</h1><p>给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$</p>
+<script type="math/tex; mode=display">
+s</script><p>其中, $C(w)$是单词$w$的上下文. 把$w$和$c$ 这种从文本中抽取的的word-pair构建一个集合$D$</p>
+<p>$p ( D = 1 | w , c ; \theta ) $ 可以定义为(<strong>内积较大,则容易出现在同一个窗口内</strong>):</p>
+<script type="math/tex; mode=display">
+p ( D = 1 | w , c ; \theta ) = \frac { 1 } { 1 + e ^ { - v _ { c } \cdot v _ { w } } }</script><p>这样</p>
 
       
     </div>

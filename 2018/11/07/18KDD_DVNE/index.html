@@ -109,7 +109,7 @@
 
 
   <meta name="description" content="本文来自network embedding大佬THU 崔鹏老师.在Wasserstein空间将节点表示为一个高斯分布. 感觉这篇实际是18ICLR_Graph2Gauss和18ICLR_WAE_Wasserstein auto-encoders的结合.">
-<meta name="keywords" content="Deep Learning,Network Embedding,Gaussian Embedding,Wasserstein">
+<meta name="keywords" content="Gaussian Embedding,Deep Learning,Wasserstein,Network Embedding">
 <meta property="og:type" content="article">
 <meta property="og:title" content="18KDD_DVNE_Deep Variational Network Embedding in Wasserstein Space">
 <meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/11/07/18KDD_DVNE/index.html">
@@ -526,28 +526,32 @@
 <p>和之前一样,每个节点的表示$h_i=\mathcal{N}(\mu_i, \sum_i)$ 一个均值向量和一个方差矩阵.这里方差矩阵只考虑对角方差矩阵.</p>
 <h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><p>首先看到模型图就感觉和SDNE很像.SNDE是约束节点对相似,这里是约束三元组的rank关系.</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fwzlkok87fj31100ks7ac.jpg" alt="image-20181107165226521"></p>
-<p>首先看下这里如何对两个高斯分布进行相似性度量,这里选用Wasserstein distance来度量分布的相似性,特别的这里选用$W_2$ 距离.<br>$$<br>\begin{aligned} \operatorname { dist } &amp; = W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) , \mathcal { N } \left( \mu _ { 2 } , \Sigma _ { 2 } \right) \right) \ d i s t ^ { 2 } &amp; = \left| \mu _ { 1 } - \mu _ { 2 } \right| _ { 2 } ^ { 2 } + \operatorname { Tr } \left( \Sigma _ { 1 } + \Sigma _ { 2 } - 2 \left( \Sigma _ { 1 } ^ { 1 / 2 } \Sigma _ { 2 } \Sigma _ { 1 } ^ { 1 / 2 } \right) ^ { 1 / 2 } \right) \end{aligned}<br>$$<br>又因为这里只考虑对角方差矩阵$\Sigma _ { 1 } \Sigma _ { 2 } = \Sigma _ { 2 } \Sigma _ { 1 }$, 上述可以进一步化简<br>$$<br>W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) ; \mathcal { N } \left( m _ { 2 } , \Sigma _ { 2 } \right) \right) ^ { 2 } = \left| \mu _ { 1 } - \mu _ { 2 } \right| _ { 2 } ^ { 2 } + \left| \Sigma _ { 1 } ^ { 1 / 2 } - \Sigma _ { 2 } ^ { 1 / 2 } \right| _ { F } ^ { 2 }<br>$$</p>
-<p>Loss分为两部分,类似SDNE的的loss</p>
+<p>首先看下这里如何对两个高斯分布进行相似性度量,这里选用Wasserstein distance来度量分布的相似性,特别的这里选用$W_2$ 距离.</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \operatorname { dist } & = W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) , \mathcal { N } \left( \mu _ { 2 } , \Sigma _ { 2 } \right) \right) \\ d i s t ^ { 2 } & = \left\| \mu _ { 1 } - \mu _ { 2 } \right\| _ { 2 } ^ { 2 } + \operatorname { Tr } \left( \Sigma _ { 1 } + \Sigma _ { 2 } - 2 \left( \Sigma _ { 1 } ^ { 1 / 2 } \Sigma _ { 2 } \Sigma _ { 1 } ^ { 1 / 2 } \right) ^ { 1 / 2 } \right) \end{aligned}</script><p>又因为这里只考虑对角方差矩阵$\Sigma <em> { 1 } \Sigma </em> { 2 } = \Sigma <em> { 2 } \Sigma </em> { 1 }$, 上述可以进一步化简</p>
+<script type="math/tex; mode=display">
+W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) ; \mathcal { N } \left( m _ { 2 } , \Sigma _ { 2 } \right) \right) ^ { 2 } = \left\| \mu _ { 1 } - \mu _ { 2 } \right\| _ { 2 } ^ { 2 } + \left\| \Sigma _ { 1 } ^ { 1 / 2 } - \Sigma _ { 2 } ^ { 1 / 2 } \right\| _ { F } ^ { 2 }</script><p>Loss分为两部分,类似SDNE的的loss</p>
 <ul>
 <li><p>一阶相似性: 用了和Graph2Gauss一样的基于ranking 的loss,</p>
 <ul>
-<li>$$<br>\mathcal { L } _ { 1 } = \sum _ { ( i , j , k ) \in \mathrm { D } } \left( E _ { i j } ^ { 2 } + \exp \left( - E _ { i k } \right) \right)<br>$$</li>
+<li><script type="math/tex; mode=display">
+\mathcal { L } _ { 1 } = \sum _ { ( i , j , k ) \in \mathrm { D } } \left( E _ { i j } ^ { 2 } + \exp \left( - E _ { i k } \right) \right)</script></li>
 </ul>
 </li>
 </ul>
 <ul>
 <li><p>二阶相似性:用WAE来编码每个节点的邻接向量.这里对WAE进行了简化,最后和AE的区别就是encoder后得到的分布中采样的结果才是隐表示Z.</p>
 <ul>
-<li><p>$$<br>\mathcal { L } _ { 2 } = \inf _ { Q ( Z | X ) \in Q } \mathbb { E } _ { P _ { X } } \mathbb { E } _ { Q ( Z | X ) } \left[ | X \circ ( X - G ( Z ) ) | _ { 2 } ^ { 2 } \right]<br>$$</p>
-</li>
+<li><script type="math/tex; mode=display">
+\mathcal { L } _ { 2 } = \inf _ { Q ( Z | X ) \in Q } \mathbb { E } _ { P _ { X } } \mathbb { E } _ { Q ( Z | X ) } \left[ \| X \circ ( X - G ( Z ) ) \| _ { 2 } ^ { 2 } \right]</script></li>
 <li><p>这里也像SDNE一样加大对非零元素的惩罚,只是惩罚系数为0,1 所以SDNE中的B成了这里的X.</p>
 </li>
 </ul>
 </li>
 <li><p>优化. 这里用了repara trick.这里变分自编码器学习到的是均值$\mu$和标准差$\sigma$ , 从均值为0,标准差为1的高斯分布中采样,再放缩平移得到Z.</p>
 </li>
-<li><p>$$<br>\mathbf { z } _ { i } = \mu _ { i } + \sigma _ { i } * \epsilon , \epsilon \sim \mathcal { N } ( 0 , \mathbf { I } )<br>$$</p>
-</li>
+<li><script type="math/tex; mode=display">
+\mathbf { z } _ { i } = \mu _ { i } + \sigma _ { i } * \epsilon , \epsilon \sim \mathcal { N } ( 0 , \mathbf { I } )</script></li>
 <li></li>
 <li><p>激活函数的选择,有两个需要注意</p>
 <ul>
@@ -632,13 +636,13 @@
       
         <div class="post-tags">
           
-            <a href="/Jhy1993.github.io/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
-          
-            <a href="/Jhy1993.github.io/tags/Network-Embedding/" rel="tag"># Network Embedding</a>
-          
             <a href="/Jhy1993.github.io/tags/Gaussian-Embedding/" rel="tag"># Gaussian Embedding</a>
           
+            <a href="/Jhy1993.github.io/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
             <a href="/Jhy1993.github.io/tags/Wasserstein/" rel="tag"># Wasserstein</a>
+          
+            <a href="/Jhy1993.github.io/tags/Network-Embedding/" rel="tag"># Network Embedding</a>
           
         </div>
       
@@ -661,8 +665,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/11/07/18ArXiv_HIB/" rel="prev" title="18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING">
-                18ArXiv_HIB_MODELING UNCERTAINTY WITH HEDGED INSTANCE EMBEDDING <i class="fa fa-chevron-right"></i>
+              <a href="/Jhy1993.github.io/2018/11/07/18ICLR_DWE/" rel="prev" title="18ICLR_DWE_Learning Wasserstein Embeddings">
+                18ICLR_DWE_Learning Wasserstein Embeddings <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

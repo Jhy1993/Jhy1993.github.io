@@ -498,8 +498,8 @@
 </li>
 <li><p>a distribution $P_G(x;\theta)$ parametered by $\theta$</p>
 </li>
-<li><p>$$<br>\theta^*=argmax<br>$$</p>
-</li>
+<li><script type="math/tex; mode=display">
+\theta^*=argmax</script></li>
 </ul>
 <p><strong>Generator</strong></p>
 <ul>
@@ -513,33 +513,57 @@
 <p><strong>Discriminator</strong></p>
 <ul>
 <li>$D$ is a function, input $x$ , output $scalar$ (分类概率)</li>
-<li>Evaluate the “difference” between$P_G(x)$ and $P_{data}(x)$</li>
+<li>Evaluate the “difference” between$P<em>G(x)$ and $P</em>{data}(x)$</li>
 </ul>
 <p><strong>Function $V(G,D)$</strong> $G^*=\arg\underset{m}{\min}\underset{D}{\max}V(G,D)$  </p>
 <ul>
 <li><p>Given $G$, the optimal $D^*$ maximizing</p>
 </li>
-<li><p>$$<br>\begin{aligned}<br>V&amp;=E_{x\sim P_{data}}[logD(x)]+E_{x\sim P_G}[log(1-D(x))] \\<br>&amp;=\int_x P_{data}(x)logD(x)dx+\int_xP_G(x)log(1-D(x))dx \\<br>&amp;=\int_x[P_{data}logD(x)+P_G(x)log(1-D(x))]dx \\<br>&amp; assume \quad{}D(x) can have any value here \\<br>&amp;P_{data}和P_G(x)均已知 ,所以简化为\\<br>&amp;f(D)=alog(D)+blog(1-D)<br>\end{aligned}<br>$$</p>
-</li>
+<li><script type="math/tex; mode=display">
+\begin{aligned}
+V&=E_{x\sim P_{data}}[logD(x)]+E_{x\sim P_G}[log(1-D(x))] \\\  
+&=\int_x P_{data}(x)logD(x)dx+\int_xP_G(x)log(1-D(x))dx \\\
+&=\int_x[P_{data}logD(x)+P_G(x)log(1-D(x))]dx \\\
+& assume \quad{}D(x) can have any value here \\\
+&P_{data}和P_G(x)均已知 ,所以简化为\\\
+&f(D)=alog(D)+blog(1-D)
+\end{aligned}</script></li>
 <li><p>Given $x=Data$, find $D^*$ maximizing</p>
 </li>
-<li><p>$$<br>\begin{aligned}<br>&amp; P_{data}logD(x)+P_G(x)log(1-D(x)) \\<br>&amp;\frac{df(D)}{dD}=a<em>\frac{1}{D}+b</em>\frac{1}{1-D}<em>(-1)=0\\<br>&amp;解得D^</em>=\frac{a}{a+b}\\<br>&amp; D^*=\frac{P_{data}(x)}{P_{data}(x)+P_G(x)}<br>\end{aligned}<br>$$</p>
-</li>
+<li><script type="math/tex; mode=display">
+\begin{aligned}
+& P_{data}logD(x)+P_G(x)log(1-D(x)) \\\
+&\frac{df(D)}{dD}=a*\frac{1}{D}+b*\frac{1}{1-D}*(-1)=0\\\
+&解得D^*=\frac{a}{a+b}\\\
+& D^*=\frac{P_{data}(x)}{P_{data}(x)+P_G(x)}
+\end{aligned}</script></li>
 <li><p>Given $G$, $\underset{D}{max}V(G,D)=V(G,D^*)$ </p>
 </li>
 </ul>
-<p>$$<br>\begin{aligned}<br>  &amp;V(G,D^*)=E_{x\sim P_{data}}[logD(x)]+E_{x\sim P_G}[log(1-D(x))] \\<br>  &amp;=E_{x\sim P_{data}}[log{\frac{P_{data}(x)}{P_{data}(x)+P_G(x)}}]+E_{x\sim P_G}[log{\frac{P_{G}(x)}{P_{data}(x)+P_G(x)}}] \\<br>  &amp;=-2log2+\int_x P_{data}(x)log{\frac{P_{data}(x)}{(P_{data}(x)+P_G(x))/2}}dx+\int_xP_G(x)log{\frac{P_{G}(x)}{(P_{data}(x)+P_G(x))/2}}dx \\<br>  &amp;=-2log2+KL\Big(P_{data}(x)||\frac{P_{data}(x)+P_G(x)}{2}\Big) +KL\Big(P_{G}(x)||\frac{P_{data}(x)+P_G(x)}{2}\Big) \\<br>  &amp;=-2log2+ 2JSD\Big(P_{data}(x)||P_G(x)\Big)    \\<br>  &amp;\propto JSD\Big(P_{data}(x)||P_G(x)\Big)    \\<br>  &amp;KL散度不对称,但是这里的KL()+KL()整体对称,又叫JSD\<br>  \end{aligned}<br>$$</p>
-<ul>
-<li><p>$$<br>Kullback–Leibler divergence \quad D(P||Q)\\<br>D_KL(P||Q)=\sum_iP(i)log\frac{P(i)}{Q(i)}    \\<br>Jensen–Shannon \quad divergence \quad and \quad  \\<br>完全一样0&lt;JSD(Q||P)=JSD(P||Q)=\frac{1}{2}D(P||M)+\frac{1}{2}D(Q||M) &lt;log2完全没关系\\<br>M=\frac{1}{2}(P+Q)<br>$$</p>
-</li>
+<script type="math/tex; mode=display">
+\begin{aligned}
+  &V(G,D^*)=E_{x\sim P_{data}}[logD(x)]+E_{x\sim P_G}[log(1-D(x))] \\\  
+  &=E_{x\sim P_{data}}[log{\frac{P_{data}(x)}{P_{data}(x)+P_G(x)}}]+E_{x\sim P_G}[log{\frac{P_{G}(x)}{P_{data}(x)+P_G(x)}}] \\\
+  &=-2log2+\int_x P_{data}(x)log{\frac{P_{data}(x)}{(P_{data}(x)+P_G(x))/2}}dx+\int_xP_G(x)log{\frac{P_{G}(x)}{(P_{data}(x)+P_G(x))/2}}dx \\\
+  &=-2log2+KL\Big(P_{data}(x)||\frac{P_{data}(x)+P_G(x)}{2}\Big) +KL\Big(P_{G}(x)||\frac{P_{data}(x)+P_G(x)}{2}\Big) \\\
+  &=-2log2+ 2JSD\Big(P_{data}(x)||P_G(x)\Big)    \\\
+  &\propto JSD\Big(P_{data}(x)||P_G(x)\Big)    \\\
+  &KL散度不对称,但是这里的KL()+KL()整体对称,又叫JSD\\
+  \end{aligned}</script><ul>
+<li><script type="math/tex; mode=display">
+Kullback–Leibler divergence \quad D(P||Q)\\\
+D_KL(P||Q)=\sum_iP(i)log\frac{P(i)}{Q(i)}    \\\
+Jensen–Shannon \quad divergence \quad and \quad  \\\
+完全一样0<JSD(Q||P)=JSD(P||Q)=\frac{1}{2}D(P||M)+\frac{1}{2}D(Q||M) <log2完全没关系\\\
+M=\frac{1}{2}(P+Q)</script></li>
 <li><p>What is the optimal $G$ ?</p>
 <ul>
 <li>$G$ will models the real data, and $D$ can’t tell the difference (output Prob is 0.5)</li>
 </ul>
 </li>
-<li><p>$$<br>P_G(x)=P_{data}(x)<br>$$</p>
-</li>
-<li><p>“BTW why do we interested in training GAN?” might come in mind. It’s because probability distribution of data $P_{data}$ might be a very complicated distribution and very hard and intractable to infer. So, having a generative machine that could generate samples from $P_{data}$ without having to deal with nasty probability distribution is very nice. If we have this, then we could use it for another process that require sample from $P_{data}$ as we could get samples relatively cheaply using the trained Generative Net.</p>
+<li><script type="math/tex; mode=display">
+P_G(x)=P_{data}(x)</script></li>
+<li><p>“BTW why do we interested in training GAN?” might come in mind. It’s because probability distribution of data $P<em>{data}$ might be a very complicated distribution and very hard and intractable to infer. So, having a generative machine that could generate samples from $P</em>{data}$ without having to deal with nasty probability distribution is very nice. If we have this, then we could use it for another process that require sample from $P_{data}$ as we could get samples relatively cheaply using the trained Generative Net.</p>
 </li>
 </ul>
 <h2 id="So-many-GANs"><a href="#So-many-GANs" class="headerlink" title="So many GANs"></a>So many GANs</h2><p><strong>modifying the optimization of GAN</strong></p>
@@ -550,8 +574,7 @@
 <ul>
 <li>Conditional GAN, Semi-supervised GAN, InfoGAN, VAE-GAN</li>
 </ul>
-<h2 id="WGAN"><a href="#WGAN" class="headerlink" title="WGAN"></a>WGAN</h2><h2 id="Graph-GAN"><a href="#Graph-GAN" class="headerlink" title="Graph GAN"></a>Graph GAN</h2><p>## </p>
-
+<h2 id="WGAN"><a href="#WGAN" class="headerlink" title="WGAN"></a>WGAN</h2><h2 id="Graph-GAN"><a href="#Graph-GAN" class="headerlink" title="Graph GAN"></a>Graph GAN</h2><h2 id=""><a href="#" class="headerlink" title=" "></a> </h2>
       
     </div>
 
@@ -615,8 +638,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/06/11/18KDD_MPCN/" rel="next" title="18KDD_Multi-Pointer Co-Attention Networks for Recommendation">
-                <i class="fa fa-chevron-left"></i> 18KDD_Multi-Pointer Co-Attention Networks for Recommendation
+              <a href="/Jhy1993.github.io/2018/05/14/hexo_leetcode/237. Delete Node in a Linked List/" rel="next" title="237. Delete Node in a Linked List">
+                <i class="fa fa-chevron-left"></i> 237. Delete Node in a Linked List
               </a>
             
           </div>
@@ -625,8 +648,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/06/11/重参数化技巧/" rel="prev" title="Reparametrization tricks 重参数技巧">
-                Reparametrization tricks 重参数技巧 <i class="fa fa-chevron-right"></i>
+              <a href="/Jhy1993.github.io/2018/06/11/template/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -846,7 +869,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GAN"><span class="nav-number">1.</span> <span class="nav-text">GAN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Simple-GAN"><span class="nav-number">1.1.</span> <span class="nav-text">Simple GAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#So-many-GANs"><span class="nav-number">1.2.</span> <span class="nav-text">So many GANs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WGAN"><span class="nav-number">1.3.</span> <span class="nav-text">WGAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-GAN"><span class="nav-number">1.4.</span> <span class="nav-text">Graph GAN</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GAN"><span class="nav-number">1.</span> <span class="nav-text">GAN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Simple-GAN"><span class="nav-number">1.1.</span> <span class="nav-text">Simple GAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#So-many-GANs"><span class="nav-number">1.2.</span> <span class="nav-text">So many GANs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WGAN"><span class="nav-number">1.3.</span> <span class="nav-text">WGAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-GAN"><span class="nav-number">1.4.</span> <span class="nav-text">Graph GAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.5.</span> <span class="nav-text"> </span></a></li></ol></li></ol></div>
             
 
           </div>
