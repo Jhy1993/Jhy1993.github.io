@@ -501,10 +501,15 @@
 <h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><h2 id="Input-encoding"><a href="#Input-encoding" class="headerlink" title="Input encoding"></a>Input encoding</h2><ul>
 <li><p>对文本的处理首先就是将文本映射为向量,这里就是简单的embedding_lookup</p>
 </li>
-<li><p>这里作者又尝试了对输入进行<strong>过滤</strong>. 输入$x_i$经过过滤后得到$\overline { x } _ { i }$ .<br> $$<br> \overline { x } _ { i } = \sigma \left( \mathbf { W } _ { g } x _ { i } \right) + \mathbf { b } _ { g } \odot \tanh \left( \mathbf { W } _ { u } x _ { i } + b _ { u } \right)<br> $$<br> 这里的过滤操作感觉有点奇怪. 尚未理解.</p>
+<li><p>这里作者又尝试了对输入进行<strong>过滤</strong>. 输入$x<em>i$经过过滤后得到$\overline { x } </em> { i }$ .</p>
+<script type="math/tex; mode=display">
+ \overline { x } _ { i } = \sigma \left( \mathbf { W } _ { g } x _ { i } \right) + \mathbf { b } _ { g } \odot \tanh \left( \mathbf { W } _ { u } x _ { i } + b _ { u } \right)</script><p> 这里的过滤操作感觉有点奇怪. 尚未理解.</p>
 </li>
 </ul>
-<h2 id="Review-level-Co-Attention"><a href="#Review-level-Co-Attention" class="headerlink" title="Review-level Co-Attention"></a>Review-level Co-Attention</h2><p>首先是Co-Attention操作<br>$$<br>s _ { i j } = F \left( a _ { i } \right) ^ { \top } \mathbf { M } F \left( b _ { j } \right) \\<br>a ^ { \prime } =  { G } \left( \max _ { c o l } ( s ) \right) ^ { \top } a \quad \text { and } \quad b ^ { \prime } = \left( G \left( \max _ { r o w } ( s ) \right) \right) ^ { \top } b<br>$$<br>这里用了max pooling. 相对于传统co-attention, 本文的变化在于$G$. </p>
+<h2 id="Review-level-Co-Attention"><a href="#Review-level-Co-Attention" class="headerlink" title="Review-level Co-Attention"></a>Review-level Co-Attention</h2><p>首先是Co-Attention操作</p>
+<script type="math/tex; mode=display">
+s _ { i j } = F \left( a _ { i } \right) ^ { \top } \mathbf { M } F \left( b _ { j } \right) \\\
+a ^ { \prime } =  { G } \left( \max _ { c o l } ( s ) \right) ^ { \top } a \quad \text { and } \quad b ^ { \prime } = \left( G \left( \max _ { r o w } ( s ) \right) \right) ^ { \top } b</script><p>这里用了max pooling. 相对于传统co-attention, 本文的变化在于$G$. </p>
 <ul>
 <li><p>之前co-attention中的$G$就是个普通的softmax(得到一个soft的分布),类似[0.1, 0.3,…,0.3]的连续向量</p>
 </li>
@@ -528,7 +533,9 @@
 <p>本文用了a multi-pointer composition mechanism来解决上述问题.<strong>实际就是多做几次pointer操作,选出几对不同的reviews</strong>.</p>
 <p>那么这几对reviews该怎么用呢?这里用了3种简单的方式:拼接,叠加,NN.</p>
 <p>最终得到$a_f$和$b_f$.</p>
-<h2 id="Prediction-Layer"><a href="#Prediction-Layer" class="headerlink" title="Prediction Layer"></a>Prediction Layer</h2><p>这里将$a_f$和$b_f$送入FM中进行评分预测.<br>$$<br>F ( x ) = w _ { 0 } + \sum _ { i = 1 } ^ { n } w _ { i } x _ { i } + \sum _ { i = 1 } ^ { n } \sum _ { j = i + 1 } ^ { n } \left\langle v _ { i } , v _ { j } \right\rangle x _ { i } x _ { j }<br>$$<br>loss为评分预测常见的MSE.</p>
+<h2 id="Prediction-Layer"><a href="#Prediction-Layer" class="headerlink" title="Prediction Layer"></a>Prediction Layer</h2><p>这里将$a_f$和$b_f$送入FM中进行评分预测.</p>
+<script type="math/tex; mode=display">
+F ( x ) = w _ { 0 } + \sum _ { i = 1 } ^ { n } w _ { i } x _ { i } + \sum _ { i = 1 } ^ { n } \sum _ { j = i + 1 } ^ { n } \left\langle v _ { i } , v _ { j } \right\rangle x _ { i } x _ { j }</script><p>loss为评分预测常见的MSE.</p>
 <h1 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h1><p>作者提出了4个RQ,并针对这些问题设计了实验.实验效果很好的回答了这些RQ</p>
 <h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>本文的核心贡献就是<strong>将reviews分别处理,然后利用了pointer机制来选择一些有用的reviews</strong> .</p>
 <p>model部分看起来提出了超多算法也很复杂,但是实际作者自己的东西很少. co-attention和gumbel都是现有的算法.</p>
@@ -598,8 +605,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/06/11/各种GAN/" rel="next" title="各种GAN">
-                <i class="fa fa-chevron-left"></i> 各种GAN
+              <a href="/Jhy1993.github.io/2018/06/11/101-200/" rel="next" title="Sentences 101-200">
+                <i class="fa fa-chevron-left"></i> Sentences 101-200
               </a>
             
           </div>
@@ -608,8 +615,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/06/11/101-200/" rel="prev" title="Sentences 101-200">
-                Sentences 101-200 <i class="fa fa-chevron-right"></i>
+              <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/002._add_two_numbers/" rel="prev" title="2. Add Two Numbers">
+                2. Add Two Numbers <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
