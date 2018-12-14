@@ -119,7 +119,7 @@
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxx4bohcakj30r20natbo.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxx4bk8c8uj30ue0k4aci.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxx4xvxpruj31n80nw10a.jpg">
-<meta property="og:updated_time" content="2018-12-06T09:15:12.827Z">
+<meta property="og:updated_time" content="2018-12-14T07:27:42.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="18KDD_HEER_Easing Embedding Learning by Comprehensive Transcription of Heterogeneous Information Networks">
 <meta name="twitter:description" content="本文来自Jiawei Han大佬,针对HIN中潜在的不兼容语义设计了一种无监督的HINE算法HEER. 这篇和他们之前发的18SDM ASPEM Embedding Learning by Aspects in Heterogeneous Information Networks有异曲同工之妙. 区别就是:本文是多方面协同学习,而18SDM是独立处理各个方面. 整个模型用一句话描述就是: edge">
@@ -413,7 +413,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-06 17:15:12" itemprop="dateModified" datetime="2018-12-06T17:15:12+08:00">2018-12-06</time>
+                <time title="Modified: 2018-12-14 15:27:42" itemprop="dateModified" datetime="2018-12-14T15:27:42+08:00">2018-12-14</time>
               
             
           </span>
@@ -509,6 +509,12 @@
 <p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxx4bk8c8uj30ue0k4aci.jpg" alt=""></p>
 <p>paper-author和paper-year相似度很低,不兼容性很大.直观理解就是,每一年发表的paper多种多样,year并不能作为识别paper的有效特征.</p>
 <p>而paper-author和paper-term相似度很高,即paper,author, term这三者有紧密关系.</p>
+<p>这里稍微解释下:</p>
+<ul>
+<li>$l(u,v;r)=\boldsymbol { P } _ { u , : } ^ { r } , \left( \boldsymbol { P } _ { v } ^ { r } , : \right) ^ { \top }$ 定义了两个节点u和v通过r连接到的节点的相似性. 相似性越高, u和v在关系r下越像.</li>
+<li>$J \left( u ; r _ { 1 } , r _ { 2 } \right) : = \frac { \min _ { \varphi ( \nu ) = t } \left{ l \left( u , v ; r _ { 1 } \right) , l \left( u , v ; r _ { 2 } \right) \right} } { \max _ { \varphi ( v ) = t } \left{ l \left( u , v ; r _ { 1 } \right) , l \left( u , v ; r _ { 2 } \right) \right} }$ 定义了节点u在两种关系(r1,r2)下与同类型节点的<strong>相似性的接近程度</strong>. 两个不同关系下的相似性衡量越接近(都大或者都小),那这两种关系越兼容. </li>
+<li>算出一系列的$J$之后,通过查看$J$值的分布(CDF图)来发现其规律.</li>
+</ul>
 <h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><p>一个好的embedding算法应该可以编码HIN中的语义,并能够<strong>重构这个HIN</strong>.考虑在HIN中边是类型的,这就对embedding算法提出了更高的要求:同时预测<strong>边的存在和边的类型</strong>.这里定义了 <strong>typed closeness</strong> ,同时考虑两端的节点对$u,v$和他们之间的边$r$ </p>
 <p>$$<br>s_r(u,v)=\frac { \exp \left( \boldsymbol { \mu } _ { r } ^ { \top } \mathbf { g } _ { u v } \right) } { \sum _ { \tilde { \boldsymbol { v } } \in \mathcal { P } _ { u <em> } ^ { r } } \exp \left( \boldsymbol { \mu } _ { r } ^ { \top } \mathbf { g } _ { u \tilde { v } } \right) + \sum _ { \tilde { u } \in \mathcal { P } _ { </em> v } ^ { r } } \exp \left( \boldsymbol { \mu } _ { r } ^ { \top } \mathbf { g } _ { \tilde { u } v } \right) } ,(u,v)\in \mathcal { P } ^ { r }<br>$$<br>本文实际没有学习边的embedding而是对节点的embedding进行<strong>简单操作</strong>得到边的embedding. 本文可以同时处理有向边和无向边.<br>$$<br>\mathbf { g } _ { u v } : = \left{ \begin{array} { l } { 2 \cdot \mathbf { f } _ { u } ^ { O } \circ \mathbf { f } _ { v } ^ { I } , u \rightarrow v} \ { \mathbf { f } _ { u } ^ { O } \circ \mathbf { f } _ { v } ^ { O } + \mathbf { f } _ { u } ^ { I } \circ \mathbf { f } _ { v } ^ { I } } ,undirected\end{array} \right.<br>$$</p>
 <p>优化目标和line很像,都是优化KL距离<br>$$<br>O ^ { r } = K L \left( W _ { u v } ^ { ( r ) } , s _ { t } ( u , v ) \right) \<br>\min _ { \left{ \mathbf { f } _ { u } \right} _ { u \in \mathcal { V } } , \left{ \boldsymbol { \mu } _ { r } \right} _ { r \in \mathcal { R } } } \mathcal { O }<br>$$<br>这里$s_r(u,v)$分母比较难计算,本文利用负采样来优化.这里对负采样进行了约束,即:<strong>负采样的样本要和原始样本保持同类型</strong>.<br>$$<br>\log \sigma \left( \boldsymbol { \mu } _ { r } ^ { \top } \mathbf { g } _ { u v } \right) + \sum _ { i = 1 } ^ { K } \mathbb { E } _ { \tilde { v } _ { i } } \log \sigma \left( - \boldsymbol { \mu } _ { r } ^ { \top } \mathbf { g } _ { u \tilde { v } _ { i } } \right) + \sum _ { i = 1 } ^ { K } \mathbb { E } _ { \tilde { u } _ { i } } \log \sigma \left( - \boldsymbol { \mu } _ { r } ^ { \top } \mathbf { g } \tilde { u } _ { i } v \right)<br>$$<br>模型整体流程图如下</p>
@@ -592,8 +598,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/12/10/PRML_6_kernel methods/" rel="prev" title="从零单排PRML Kernel Methods">
-                从零单排PRML Kernel Methods <i class="fa fa-chevron-right"></i>
+              <a href="/Jhy1993.github.io/2018/12/10/PRML_6_kernel methods/" rel="prev" title="从零单排PRML 第六章 Kernel Methods">
+                从零单排PRML 第六章 Kernel Methods <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -671,7 +677,7 @@
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -696,9 +702,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -739,7 +743,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

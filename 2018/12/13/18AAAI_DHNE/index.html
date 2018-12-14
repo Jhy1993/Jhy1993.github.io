@@ -108,23 +108,25 @@
 
 
 
-  <meta name="description" content="EECS, BUPTer, 算法蒻鷄.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Better Call Saul">
-<meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/categories/Deep-Learning/index.html">
+  <meta name="description" content="本文来自network embedding大佬Peng Cui老师组。针对超图，超边设计了一种深度模型来学习embedding。整体感觉是超图版本的SDNE。 Motivation本文首先研究了如何在embedding中保持超边的不可分割性，同时证明了线性的相似度函数无法保持超边相似性。这样就迫使我们不得不设计一个非线性的深度模型来保持超边的不可分割性。 Model整个模型分2块，1. 类似SDN">
+<meta name="keywords" content="Deep Learning,Network Embedding,Hypergraph">
+<meta property="og:type" content="article">
+<meta property="og:title" content="18AAAI_DHNE_Structural Deep Embedding for Hyper-Networks">
+<meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/12/13/18AAAI_DHNE/index.html">
 <meta property="og:site_name" content="Better Call Saul">
-<meta property="og:description" content="EECS, BUPTer, 算法蒻鷄.">
+<meta property="og:description" content="本文来自network embedding大佬Peng Cui老师组。针对超图，超边设计了一种深度模型来学习embedding。整体感觉是超图版本的SDNE。 Motivation本文首先研究了如何在embedding中保持超边的不可分割性，同时证明了线性的相似度函数无法保持超边相似性。这样就迫使我们不得不设计一个非线性的深度模型来保持超边的不可分割性。 Model整个模型分2块，1. 类似SDN">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-13T03:06:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Better Call Saul">
-<meta name="twitter:description" content="EECS, BUPTer, 算法蒻鷄.">
+<meta name="twitter:title" content="18AAAI_DHNE_Structural Deep Embedding for Hyper-Networks">
+<meta name="twitter:description" content="本文来自network embedding大佬Peng Cui老师组。针对超图，超边设计了一种深度模型来学习embedding。整体感觉是超图版本的SDNE。 Motivation本文首先研究了如何在embedding中保持超边的不可分割性，同时证明了线性的相似度函数无法保持超边相似性。这样就迫使我们不得不设计一个非线性的深度模型来保持超边的不可分割性。 Model整个模型分2块，1. 类似SDN">
 
 
 
 
 
 
-  <link rel="canonical" href="https://Jhy1993.github.io/Jhy1993.github.io/categories/Deep-Learning/"/>
+  <link rel="canonical" href="https://Jhy1993.github.io/Jhy1993.github.io/2018/12/13/18AAAI_DHNE/"/>
 
 
 
@@ -134,7 +136,7 @@
   };
 </script>
 
-  <title>Category: Deep Learning | Better Call Saul</title>
+  <title>18AAAI_DHNE_Structural Deep Embedding for Hyper-Networks | Better Call Saul</title>
   
 
 
@@ -183,7 +185,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -240,7 +242,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
     <a href="/Jhy1993.github.io/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
   </li>
@@ -328,144 +330,284 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block category">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Deep Learning<small>Category</small>
-        </h1>
-      </div>
-
-      
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/12/13/18AAAI_DHNE/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jimmy">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
+      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Better Call Saul">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/Jhy1993.github.io/2018/11/15/常见散度距离/" itemprop="url">
-              
-                <span itemprop="name">常见散度与距离(KL散度，JS散度，Wasserstein距离，互信息MI)</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">18AAAI_DHNE_Structural Deep Embedding for Hyper-Networks
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-15T15:31:57+08:00"
-              content="2018-11-15" >
-          11-15
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-13 11:06:24" itemprop="dateCreated datePublished" datetime="2018-12-13T11:06:24+08:00">2018-12-13</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Jhy1993.github.io/2018/12/13/18AAAI_DHNE/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/12/13/18AAAI_DHNE/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Jhy1993.github.io/2018/12/13/18AAAI_DHNE/" class="leancloud_visitors" data-flag-title="18AAAI_DHNE_Structural Deep Embedding for Hyper-Networks">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/Jhy1993.github.io/2018/06/11/DL_template/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-11T21:33:44+08:00"
-              content="2018-06-11" >
-          06-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/Jhy1993.github.io/2018/06/11/各种GAN/" itemprop="url">
-              
-                <span itemprop="name">各种GAN</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-11T21:33:44+08:00"
-              content="2018-06-11" >
-          06-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <p>本文来自network embedding大佬Peng Cui老师组。针对超图，超边设计了一种深度模型来学习embedding。整体感觉是超图版本的SDNE。</p>
+<h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>本文首先研究了如何在embedding中保持<strong>超边的不可分割性</strong>，同时证明了<strong>线性的相似度函数无法保持超边相似性</strong>。这样就迫使我们不得不设计一个非线性的深度模型来保持超边的不可分割性。</p>
+<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><p>整个模型分2块，1. 类似SDNE的结构保持部分，2. N-tuplewise similarity function。</p>
+<h2 id="Structure-Preserve（AutoEncoder）"><a href="#Structure-Preserve（AutoEncoder）" class="headerlink" title="Structure Preserve（AutoEncoder）"></a>Structure Preserve（AutoEncoder）</h2><p>这里用了一个SDNE中的AutoEncoder来对节点的邻接向量（邻接矩阵某一行）来进行编码。</p>
+<ol>
+<li><p>那么超图中的邻接矩阵是怎么定义的呢？</p>
+<p>这里的邻接是指可以通过超边连接。例如<strong>超边实例</strong>e1：（a1，b1，c1）和e2：（a1， b2， c3）</p>
+<p>那么a1-e1-b1， a1-e1-c1, a1-e2-b2, a1-e2-c3,可以得到a1的基于超边的邻居有b1,c1,b2,c3. </p>
+<p>上述过程用矩阵的形式表达为， 节点-超边实例的超边连接矩阵 $\mathbf{H}$，这样$\mathbf{H}\mathbf{H}^T$ 就得到了 节点-超边实例-节点 的邻接矩阵， 然后做下处理（$-\mathbf{D}_v$）即可得到超图的邻接矩阵 $\mathbf{A}$。</p>
+</li>
+<li><p>不同类型节点的邻接矩阵一样吗？</p>
+<p>不一样，针对t类型节点其对应的邻接矩阵为$\mathbf{A}^t$。</p>
+</li>
+</ol>
+<p>这里将不同类型的节点映射到不同空间。</p>
+<h2 id="N-tuplewise-similarity-function"><a href="#N-tuplewise-similarity-function" class="headerlink" title="N-tuplewise similarity function"></a>N-tuplewise similarity function</h2><p>这个函数主要是为了保持超边（N元组）的相似性，这里的公式都是以3元组（a，b，c）为例。</p>
+<p>一句话： 保持N元组的相似度函数，就把N元组作为输入，经过NN映射得到一个相似度。</p>
+<h1 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h1><p>本文的实验不同于一般的network embedding实验。</p>
+<p><strong>数据</strong>： 数据集都是只针对于单种hyperedge，那么如果有多种hyperedge本文的模型处理不了，应该怎么做？</p>
+<p><strong>对比算法</strong>： DHNE是基于超边（三元组）的算法，数据集也是超图。一些pairwise的算法如Deepwalk和line也都作为baseline。这样怎么去和baseline对比呢？</p>
+<ul>
+<li>这里首先将超图基于图1（c）的<strong>clique expansion</strong>技术转化为<strong>普通图</strong></li>
+<li>对于<strong>超图重构</strong>和<strong>超边预测</strong>，这里对一条超边里面的节点分别计算pairwise的相似性，并取<strong>mean</strong>或者<strong>minimum</strong>来做预测</li>
+</ul>
+<h2 id="网络重构（超图重构）"><a href="#网络重构（超图重构）" class="headerlink" title="网络重构（超图重构）"></a>网络重构（超图重构）</h2><p>这里是重构超图，文中的“We use the learned embeddings to predict the links of origin networks”的link也是超边。</p>
+<h2 id="链路预测（超边预测）"><a href="#链路预测（超边预测）" class="headerlink" title="链路预测（超边预测）"></a>链路预测（超边预测）</h2><p>对于DHNE， 训练好的模型<strong>一方面可以得到不同类型节点的embedding，一方面可以得到计算超边的相似性函数</strong></p>
+<p>这里做了2种不同的任务</p>
+<ol>
+<li>隐藏20%的超边，用80%的边来训练网络。</li>
+<li>对超边进行采样（改变稀疏度），并重复任务1</li>
+</ol>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>本文的首先做了超图的embedding问题，又有一定的理论证明，最后设计模型验证了效果。感觉两个亮点1.是分析了线性相似度函数的局限性 2.N-tuplewise similarity function的设计。</p>
+<p>那么如果一个超图中有多种类型的超边该怎么处理呢？</p>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/Jhy1993.github.io/images/Wechat_pay.jpeg" alt="Jimmy WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/Jhy1993.github.io/images/ali_pay.jpeg" alt="Jimmy Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/Jhy1993.github.io/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
+            <a href="/Jhy1993.github.io/tags/Network-Embedding/" rel="tag"># Network Embedding</a>
+          
+            <a href="/Jhy1993.github.io/tags/Hypergraph/" rel="tag"># Hypergraph</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Jhy1993.github.io/2018/12/13/word2vec/" rel="next" title="word2vec, skip-gram, negative sampling">
+                <i class="fa fa-chevron-left"></i> word2vec, skip-gram, negative sampling
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -486,8 +628,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -506,7 +657,7 @@
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -531,9 +682,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -574,7 +723,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -638,6 +789,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Motivation"><span class="nav-number">1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Structure-Preserve（AutoEncoder）"><span class="nav-number">2.1.</span> <span class="nav-text">Structure Preserve（AutoEncoder）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N-tuplewise-similarity-function"><span class="nav-number">2.2.</span> <span class="nav-text">N-tuplewise similarity function</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Experiments"><span class="nav-number">3.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络重构（超图重构）"><span class="nav-number">3.1.</span> <span class="nav-text">网络重构（超图重构）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链路预测（超边预测）"><span class="nav-number">3.2.</span> <span class="nav-text">链路预测（超边预测）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-number">4.</span> <span class="nav-text">Summary</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -799,6 +966,10 @@
 
 
   
+  <script type="text/javascript" src="/Jhy1993.github.io/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/Jhy1993.github.io/js/src/post-details.js?v=6.4.2"></script>
+
+
 
   
 
@@ -1178,43 +1349,37 @@
   
   <script>
     
-    function showTime(Counter) {
-      var entries = [];
+    function addCount(Counter) {
       var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
         .done(function ({ results }) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.url;
-            var time = item.time;
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
           }
         })
-        .fail(function ({ responseJSON }) {
-          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
-        });
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
     }
     
 
@@ -1234,9 +1399,7 @@
             });
           };
           
-          if ($('.post-title-link').length >= 1) {
-            showTime(Counter);
-          }
+          addCount(Counter);
           
         })
     });
