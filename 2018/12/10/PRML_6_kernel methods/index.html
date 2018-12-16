@@ -108,19 +108,23 @@
 
 
 
-  <meta name="description" content="引言机器学习里面对待训练数据有2种,抛弃或者保留  有的是训练完得到参数后就可以抛弃了，比如神经网络； 有的是还需要原来的训练数据比如KNN，SVM也需要保留一部分数据—支持向量。  许多线性参数模型可以转化为对偶形式,转化后依然是线性模型. 只是线性组合的对象变成了一组非线性基函数. 这里的非线性基函数就是在基于各个数据点计算的核函数. 对偶表示最小均方误差形式  J ( \boldsymbol">
-<meta name="keywords" content="Deep Learning,Machine Learning,PRML">
+  <meta name="description" content="引言机器学习里面对待训练数据有2种,抛弃或者保留  有的是训练完得到参数后就可以抛弃了，比如神经网络； 有的是还需要原来的训练数据比如KNN，SVM也需要保留一部分数据–支持向量。  许多线性参数模型可以转化为对偶形式,转化后依然是线性模型. 只是线性组合的对象变成了一组非线性基函数. 这里的非线性基函数就是在基于各个数据点计算的核函数. 对偶表示最小均方误差形式$$J ( \boldsymbol">
+<meta name="keywords" content="Deep Learning,PRML,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从零单排PRML 第六章 Kernel Methods">
 <meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/12/10/PRML_6_kernel methods/index.html">
 <meta property="og:site_name" content="Better Call Saul">
-<meta property="og:description" content="引言机器学习里面对待训练数据有2种,抛弃或者保留  有的是训练完得到参数后就可以抛弃了，比如神经网络； 有的是还需要原来的训练数据比如KNN，SVM也需要保留一部分数据—支持向量。  许多线性参数模型可以转化为对偶形式,转化后依然是线性模型. 只是线性组合的对象变成了一组非线性基函数. 这里的非线性基函数就是在基于各个数据点计算的核函数. 对偶表示最小均方误差形式  J ( \boldsymbol">
+<meta property="og:description" content="引言机器学习里面对待训练数据有2种,抛弃或者保留  有的是训练完得到参数后就可以抛弃了，比如神经网络； 有的是还需要原来的训练数据比如KNN，SVM也需要保留一部分数据–支持向量。  许多线性参数模型可以转化为对偶形式,转化后依然是线性模型. 只是线性组合的对象变成了一组非线性基函数. 这里的非线性基函数就是在基于各个数据点计算的核函数. 对偶表示最小均方误差形式$$J ( \boldsymbol">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fy38weej2tj30nt0813zk.jpg">
-<meta property="og:updated_time" content="2018-12-14T11:19:38.053Z">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fy8nz32snmj30ny0hr40v.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fy8ohlkmgpj31010d1gnq.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fy8ovn5sunj30ss0g4ju7.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fy8p1so66rj311d0emq4n.jpg">
+<meta property="og:updated_time" content="2018-12-16T13:14:21.419Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零单排PRML 第六章 Kernel Methods">
-<meta name="twitter:description" content="引言机器学习里面对待训练数据有2种,抛弃或者保留  有的是训练完得到参数后就可以抛弃了，比如神经网络； 有的是还需要原来的训练数据比如KNN，SVM也需要保留一部分数据—支持向量。  许多线性参数模型可以转化为对偶形式,转化后依然是线性模型. 只是线性组合的对象变成了一组非线性基函数. 这里的非线性基函数就是在基于各个数据点计算的核函数. 对偶表示最小均方误差形式  J ( \boldsymbol">
+<meta name="twitter:description" content="引言机器学习里面对待训练数据有2种,抛弃或者保留  有的是训练完得到参数后就可以抛弃了，比如神经网络； 有的是还需要原来的训练数据比如KNN，SVM也需要保留一部分数据–支持向量。  许多线性参数模型可以转化为对偶形式,转化后依然是线性模型. 只是线性组合的对象变成了一组非线性基函数. 这里的非线性基函数就是在基于各个数据点计算的核函数. 对偶表示最小均方误差形式$$J ( \boldsymbol">
 <meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fy38weej2tj30nt0813zk.jpg">
 
 
@@ -411,7 +415,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-14 19:19:38" itemprop="dateModified" datetime="2018-12-14T19:19:38+08:00">2018-12-14</time>
+                <time title="Modified: 2018-12-16 21:14:21" itemprop="dateModified" datetime="2018-12-16T21:14:21+08:00">2018-12-16</time>
               
             
           </span>
@@ -494,28 +498,17 @@
         <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>机器学习里面对待训练数据有2种,抛弃或者保留</p>
 <ul>
 <li>有的是训练完得到参数后就可以抛弃了，比如神经网络；</li>
-<li>有的是还需要原来的训练数据比如KNN，SVM也需要保留一部分数据—支持向量。</li>
+<li>有的是还需要原来的训练数据比如KNN，SVM也需要保留一部分数据–支持向量。</li>
 </ul>
 <p>许多线性参数模型可以转化为对偶形式,转化后依然是线性模型.</p>
 <p>只是线性组合的对象变成了一组<strong>非线性基函数</strong>.</p>
 <p>这里的<strong>非线性基函数</strong>就是在基于各个数据点计算的<strong>核函数</strong>.</p>
-<h1 id="对偶表示"><a href="#对偶表示" class="headerlink" title="对偶表示"></a>对偶表示</h1><p>最小均方误差形式</p>
-<script type="math/tex; mode=display">
-J ( \boldsymbol { w } ) = \frac { 1 } { 2 } \sum _ { n = 1 } ^ { N } \left\{ \boldsymbol { w } ^ { T } \boldsymbol { \phi } \left( \boldsymbol { x } _ { n } \right) - t _ { n } \right\} ^ { 2 } + \frac { \lambda } { 2 } \boldsymbol { w } ^ { T } \boldsymbol { w }</script><p>对偶形式:核函数形式</p>
-<script type="math/tex; mode=display">
-J ( \boldsymbol { a } ) = \frac { 1 } { 2 } \boldsymbol { a } ^ { T } \boldsymbol { K } \boldsymbol { K } \boldsymbol { a } - \boldsymbol { a } ^ { T } \boldsymbol { K } \mathbf { t } + \frac { 1 } { 2 } \mathbf { t } ^ { T } \mathbf { t } + \frac { \lambda } { 2 } \boldsymbol { a } ^ { T } \boldsymbol { K } \boldsymbol { a }</script><p>这里K是著名的Gram矩阵$\boldsymbol { K } = \boldsymbol { \Phi } \boldsymbol { \Phi } ^ { T }$.上式中的$\boldsymbol { a } $又有闭式解</p>
-<script type="math/tex; mode=display">
-\boldsymbol { a } = \left( \boldsymbol { K } + \lambda \boldsymbol { I } _ { N } \right) ^ { - 1 } \mathbf { t }</script><p>这样,问题的解$\boldsymbol { a } $就只与核函数$\boldsymbol { K } $有关了.</p>
+<h1 id="对偶表示"><a href="#对偶表示" class="headerlink" title="对偶表示"></a>对偶表示</h1><p>最小均方误差形式<br>$$<br>J ( \boldsymbol { w } ) = \frac { 1 } { 2 } \sum _ { n = 1 } ^ { N } \left{ \boldsymbol { w } ^ { T } \boldsymbol { \phi } \left( \boldsymbol { x } _ { n } \right) - t _ { n } \right} ^ { 2 } + \frac { \lambda } { 2 } \boldsymbol { w } ^ { T } \boldsymbol { w }<br>$$<br>对偶形式:核函数形式<br>$$<br>J ( \boldsymbol { a } ) = \frac { 1 } { 2 } \boldsymbol { a } ^ { T } \boldsymbol { K } \boldsymbol { K } \boldsymbol { a } - \boldsymbol { a } ^ { T } \boldsymbol { K } \mathbf { t } + \frac { 1 } { 2 } \mathbf { t } ^ { T } \mathbf { t } + \frac { \lambda } { 2 } \boldsymbol { a } ^ { T } \boldsymbol { K } \boldsymbol { a }<br>$$<br>这里K是著名的Gram矩阵$\boldsymbol { K } = \boldsymbol { \Phi } \boldsymbol { \Phi } ^ { T }$.上式中的$\boldsymbol { a } $又有闭式解<br>$$<br>\boldsymbol { a } = \left( \boldsymbol { K } + \lambda \boldsymbol { I } _ { N } \right) ^ { - 1 } \mathbf { t }<br>$$<br>这样,问题的解$\boldsymbol { a } $就只与核函数$\boldsymbol { K } $有关了.</p>
 <p>最小均方转为核函数的组合$k \left( x , x ^ { \prime } \right)$后,我们就只关心$x , x ^ { \prime } $基于核函数的结果,对偶表示可以避免了显式的使用特征向量$\phi(x)$.这样做不关心中间过程$\boldsymbol {  \phi} ( x ) ^ { \mathrm { T } } \boldsymbol { \phi } \left( x ^ { \prime } \right) $ ,只关心结果$k \left( x , x ^ { \prime } \right)$. </p>
 <p>核函数形式$k \left( x , x ^ { \prime } \right) =\boldsymbol {  \phi} ( x ) ^ { \mathrm { T } } \boldsymbol { \phi } \left( x ^ { \prime } \right) $ ,也就是<strong>映射后高维特征空间的内积可以通过原来低维的特征得到</strong>, 这样做的好处是可以使用隐式的高维特征,所以kernel method得到了广泛应用. 以SVM为例,低维不可分的数据,经过kernel将特征映射到高维后,就可以分开了. </p>
-<p>以下式为例, 这里 $k ( \boldsymbol { x } , \boldsymbol { z } ) $ 的形式很简洁,但是如果想找到$\phi(x)$是比较难的.这里的$\phi(x)$只是中间需求,最终我们需要只是$k ( \boldsymbol { x } , \boldsymbol { z } ) $.</p>
-<script type="math/tex; mode=display">
-k ( \boldsymbol { x } , \boldsymbol { z } ) = \left( \boldsymbol { x } ^ { T } \boldsymbol { z } \right) ^ { 2 },形式简洁,好算 \\
-\phi ( \mathbf { x } ) = \left( x _ { 1 } ^ { 2 } , \sqrt { 2 } x _ { 1 } x _ { 2 } , x _ { 2 } ^ { 2 } \right) ^ { \mathrm { T } },很难找到,计算量大</script><h1 id="构建kernel的方法"><a href="#构建kernel的方法" class="headerlink" title="构建kernel的方法"></a>构建kernel的方法</h1><h2 id="特征映射法"><a href="#特征映射法" class="headerlink" title="特征映射法"></a>特征映射法</h2><p>选择一个特征映射函数$\boldsymbol {  \phi} ( x ) $  ,并通过这个映射来寻找kernel.</p>
-<script type="math/tex; mode=display">
-k \left( x , x ^ { \prime } \right) =\boldsymbol {  \phi} ( x ) ^ { \mathrm { T } } \boldsymbol { \phi } \left( x ^ { \prime } \right) = \sum _ { i = 1 } ^ { M } \phi _ { i } ( x ) \phi _ { i } \left( x ^ { \prime } \right)</script><h2 id="直接构造"><a href="#直接构造" class="headerlink" title="直接构造"></a>直接构造</h2><p>直接写出kernel的形式,</p>
-<script type="math/tex; mode=display">
-k ( \mathbf { x } , \mathbf { z } ) = \left( \mathbf { x } ^ { \mathrm { T } } \mathbf { z } \right) ^ { 2 }</script><p>这里kernel的形式是写出来了,但是这个形式合法吗?</p>
+<p>以下式为例, 这里 $k ( \boldsymbol { x } , \boldsymbol { z } ) $ 的形式很简洁,但是如果想找到$\phi(x)$是比较难的.这里的$\phi(x)$只是中间需求,最终我们需要只是$k ( \boldsymbol { x } , \boldsymbol { z } ) $.<br>$$<br>k ( \boldsymbol { x } , \boldsymbol { z } ) = \left( \boldsymbol { x } ^ { T } \boldsymbol { z } \right) ^ { 2 },形式简洁,好算 \<br>\phi ( \mathbf { x } ) = \left( x _ { 1 } ^ { 2 } , \sqrt { 2 } x _ { 1 } x _ { 2 } , x _ { 2 } ^ { 2 } \right) ^ { \mathrm { T } },很难找到,计算量大<br>$$</p>
+<h1 id="构建kernel的方法"><a href="#构建kernel的方法" class="headerlink" title="构建kernel的方法"></a>构建kernel的方法</h1><h2 id="特征映射法"><a href="#特征映射法" class="headerlink" title="特征映射法"></a>特征映射法</h2><p>选择一个特征映射函数$\boldsymbol {  \phi} ( x ) $  ,并通过这个映射来寻找kernel.<br>$$<br>k \left( x , x ^ { \prime } \right) =\boldsymbol {  \phi} ( x ) ^ { \mathrm { T } } \boldsymbol { \phi } \left( x ^ { \prime } \right) = \sum _ { i = 1 } ^ { M } \phi _ { i } ( x ) \phi _ { i } \left( x ^ { \prime } \right)<br>$$</p>
+<h2 id="直接构造"><a href="#直接构造" class="headerlink" title="直接构造"></a>直接构造</h2><p>直接写出kernel的形式,<br>$$<br>k ( \mathbf { x } , \mathbf { z } ) = \left( \mathbf { x } ^ { \mathrm { T } } \mathbf { z } \right) ^ { 2 }<br>$$<br>这里kernel的形式是写出来了,但是这个形式合法吗?</p>
 <p>合法性检验有2个方法:</p>
 <ol>
 <li><p>找到对应的特征映射函数</p>
@@ -523,44 +516,22 @@ k ( \mathbf { x } , \mathbf { z } ) = \left( \mathbf { x } ^ { \mathrm { T } } \
 <li><p>Gram矩阵在所有可能的{xn}的选择下都是半正定的.</p>
 </li>
 </ol>
-<p>下面是通过方法1来对kernel进行合法性检查.上式可以认为是二维输入$\mathbf { x } = \left( x <em> { 1 } , x </em> { 2 } \right)$, 经过<strong>特征映射法</strong>的结果,原因是可以将上式展开了为2个经过特征映射后的$\boldsymbol {  \phi} ( x ) $的内积.</p>
-<script type="math/tex; mode=display">
-\begin{aligned} k ( \mathbf { x } , \mathbf { z } ) & = \left( \mathbf { x } ^ { \mathrm { T } } \mathbf { z } \right) ^ { 2 } = \left( x _ { 1 } z _ { 1 } + x _ { 2 } z _ { 2 } \right) ^ { 2 } \\ & = x _ { 1 } ^ { 2 } z _ { 1 } ^ { 2 } + 2 x _ { 1 } z _ { 1 } x _ { 2 } z _ { 2 } + x _ { 2 } ^ { 2 } z _ { 2 } ^ { 2 } \\ & = \left( x _ { 1 } ^ { 2 } , \sqrt { 2 } x _ { 1 } x _ { 2 } , x _ { 2 } ^ { 2 } \right) \left( z _ { 1 } ^ { 2 } , \sqrt { 2 } z _ { 1 } z _ { 2 } , z _ { 2 } ^ { 2 } \right) ^ { \mathrm { T } } \\ & = \phi ( \mathbf { x } ) ^ { \mathrm { T } } \phi ( \mathbf { z } ) \end{aligned}</script><p>这里的特征映射函数形式为$\phi ( \mathbf { x } ) = \left( x <em> { 1 } ^ { 2 } , \sqrt { 2 } x </em> { 1 } x <em> { 2 } , x </em> { 2 } ^ { 2 } \right) ^ { \mathrm { T } }$ ,可以验证$k ( \mathbf { x } , \mathbf { z } ) = \left( \mathbf { x } ^ { \mathrm { T } } \mathbf { z } \right) ^ { 2 }$ 是一个合法的kernel.</p>
-<h2 id="基于现有的合法kernel进行构建"><a href="#基于现有的合法kernel进行构建" class="headerlink" title="基于现有的合法kernel进行构建"></a>基于现有的合法kernel进行构建</h2><p>假设 $k <em> { 1 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) $和$ k </em> { 2 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right)$都是合法kernel,那么通过以下形式组合构建的新的kernel也是合法的.</p>
-<script type="math/tex; mode=display">
-k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = c k _ { 1 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right), c>0  \\
-k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = k _ { 1 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) + k _ { 2 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) \\
-k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = \exp \left( k _ { 1 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) \right)\\
-k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = f ( \mathbf { x } ) k _ { 1 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) f \left( \mathbf { x } ^ { \prime } \right), f \ is \ any \ function \\
-...</script><p>这里以经典的 高斯核 为例, 通过其构造过程来验证其合法性.</p>
-<p>首先高斯核函数是一种径向基核</p>
-<script type="math/tex; mode=display">
-k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = \exp \left( - \left\| \mathbf { x } - \mathbf { x } ^ { \prime } \right\| ^ { 2 } / 2 \sigma ^ { 2 } \right)</script><p>把exp中的平方项展开得到</p>
-<script type="math/tex; mode=display">
-\left\| \mathbf { x } - \mathbf { x } ^ { \prime } \right\| ^ { 2 } = \mathbf { x } ^ { \mathrm { T } } \mathbf { x } + \left( \mathbf { x } ^ { \prime } \right) ^ { \mathrm { T } } \mathbf { x } ^ { \prime } - 2 \mathbf { x } ^ { \mathrm { T } } \mathbf { x } ^ { \prime } \\
-k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = \exp \left( - \mathbf { x } ^ { \mathrm { T } } \mathbf { x } / 2 \sigma ^ { 2 } \right) \exp \left( \mathbf { x } ^ { \mathrm { T } } \mathbf { x } ^ { \prime } / \sigma ^ { 2 } \right) \exp \left( - \left( \mathbf { x } ^ { \prime } \right) ^ { \mathrm { T } } \mathbf { x } ^ { \prime } / 2 \sigma ^ { 2 } \right)</script><p>这里线性kernel $k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = \mathbf { x } ^ { \mathrm { T } } \mathbf { x } ^ { \prime }$ 是合法的,然后基于上述的构造性质,可以看出<strong>高斯核是合法的</strong>.同时,由于$exp$的泰勒展开有无穷多项,所以<strong>高斯核将特征向量映射到无穷多维</strong>. </p>
-<h2 id="通过概率生成模型来构建"><a href="#通过概率生成模型来构建" class="headerlink" title="通过概率生成模型来构建"></a>通过概率生成模型来构建</h2><p>给定一个生成模型$p(x)$ ,  我们可以定义kernel</p>
-<script type="math/tex; mode=display">
-k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = p ( \mathbf { x } ) p \left( \mathbf { x } ^ { \prime } \right)</script><p>这里的$p(x)$可以认f为是$\phi(x)​$.</p>
-<h1 id="径向基函数网络"><a href="#径向基函数网络" class="headerlink" title="径向基函数网络"></a>径向基函数网络</h1><p>在径向基函数中， 每⼀个基函数<strong>只依赖</strong>于样本和中⼼$\mu_j$之间的径向距离（通常是欧⼏⾥得距离）， 即</p>
-<script type="math/tex; mode=display">
-</script><p>这里的网络体现在哪里?</p>
-<h1 id="高斯过程"><a href="#高斯过程" class="headerlink" title="高斯过程"></a>高斯过程</h1><h2 id="什么是高斯过程"><a href="#什么是高斯过程" class="headerlink" title="什么是高斯过程?"></a>什么是高斯过程?</h2><p>首先高斯分布定义为函数$y(\mathbf{x})$上的一个高斯分布,并且这个函数在一系列点 $\mathbf { x } <em> { 1 } , \dots , \mathbf { x } </em> { N }$ 的响应值 $y \left( \mathbf { x } <em> { 1 } \right) , \ldots , y \left( \mathbf { x } </em> { N } \right)$ 联合概率分布也是高斯的.</p>
+<p>下面是通过方法1来对kernel进行合法性检查.上式可以认为是二维输入$\mathbf { x } = \left( x _ { 1 } , x _ { 2 } \right)$, 经过<strong>特征映射法</strong>的结果,原因是可以将上式展开了为2个经过特征映射后的$\boldsymbol {  \phi} ( x ) $的内积.<br>$$<br>\begin{aligned} k ( \mathbf { x } , \mathbf { z } ) &amp; = \left( \mathbf { x } ^ { \mathrm { T } } \mathbf { z } \right) ^ { 2 } = \left( x _ { 1 } z _ { 1 } + x _ { 2 } z _ { 2 } \right) ^ { 2 } \ &amp; = x _ { 1 } ^ { 2 } z _ { 1 } ^ { 2 } + 2 x _ { 1 } z _ { 1 } x _ { 2 } z _ { 2 } + x _ { 2 } ^ { 2 } z _ { 2 } ^ { 2 } \ &amp; = \left( x _ { 1 } ^ { 2 } , \sqrt { 2 } x _ { 1 } x _ { 2 } , x _ { 2 } ^ { 2 } \right) \left( z _ { 1 } ^ { 2 } , \sqrt { 2 } z _ { 1 } z _ { 2 } , z _ { 2 } ^ { 2 } \right) ^ { \mathrm { T } } \ &amp; = \phi ( \mathbf { x } ) ^ { \mathrm { T } } \phi ( \mathbf { z } ) \end{aligned}<br>$$<br>这里的特征映射函数形式为$\phi ( \mathbf { x } ) = \left( x _ { 1 } ^ { 2 } , \sqrt { 2 } x _ { 1 } x _ { 2 } , x _ { 2 } ^ { 2 } \right) ^ { \mathrm { T } }$ ,可以验证$k ( \mathbf { x } , \mathbf { z } ) = \left( \mathbf { x } ^ { \mathrm { T } } \mathbf { z } \right) ^ { 2 }$ 是一个合法的kernel.</p>
+<h2 id="基于现有的合法kernel进行构建"><a href="#基于现有的合法kernel进行构建" class="headerlink" title="基于现有的合法kernel进行构建"></a>基于现有的合法kernel进行构建</h2><p>假设 $k _ { 1 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) $和$ k _ { 2 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right)$都是合法kernel,那么通过以下形式组合构建的新的kernel也是合法的.<br>$$<br>k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = c k _ { 1 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right), c&gt;0  \<br>k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = k _ { 1 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) + k _ { 2 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) \<br>k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = \exp \left( k _ { 1 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) \right)\<br>k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = f ( \mathbf { x } ) k _ { 1 } \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) f \left( \mathbf { x } ^ { \prime } \right), f \ is \ any \ function \<br>…<br>$$<br>这里以经典的 高斯核 为例, 通过其构造过程来验证其合法性.</p>
+<p>首先高斯核函数是一种径向基核<br>$$<br>k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = \exp \left( - \left| \mathbf { x } - \mathbf { x } ^ { \prime } \right| ^ { 2 } / 2 \sigma ^ { 2 } \right)<br>$$<br>把exp中的平方项展开得到<br>$$<br>\left| \mathbf { x } - \mathbf { x } ^ { \prime } \right| ^ { 2 } = \mathbf { x } ^ { \mathrm { T } } \mathbf { x } + \left( \mathbf { x } ^ { \prime } \right) ^ { \mathrm { T } } \mathbf { x } ^ { \prime } - 2 \mathbf { x } ^ { \mathrm { T } } \mathbf { x } ^ { \prime } \<br>k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = \exp \left( - \mathbf { x } ^ { \mathrm { T } } \mathbf { x } / 2 \sigma ^ { 2 } \right) \exp \left( \mathbf { x } ^ { \mathrm { T } } \mathbf { x } ^ { \prime } / \sigma ^ { 2 } \right) \exp \left( - \left( \mathbf { x } ^ { \prime } \right) ^ { \mathrm { T } } \mathbf { x } ^ { \prime } / 2 \sigma ^ { 2 } \right)<br>$$<br>这里线性kernel $k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = \mathbf { x } ^ { \mathrm { T } } \mathbf { x } ^ { \prime }$ 是合法的,然后基于上述的构造性质,可以看出<strong>高斯核是合法的</strong>.同时,由于$exp$的泰勒展开有无穷多项,所以<strong>高斯核将特征向量映射到无穷多维</strong>. </p>
+<h2 id="通过概率生成模型来构建"><a href="#通过概率生成模型来构建" class="headerlink" title="通过概率生成模型来构建"></a>通过概率生成模型来构建</h2><p>给定一个生成模型$p(x)$ ,  我们可以定义kernel<br>$$<br>k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = p ( \mathbf { x } ) p \left( \mathbf { x } ^ { \prime } \right)<br>$$<br>这里的$p(x)$可以认f为是$\phi(x)​$.</p>
+<h1 id="径向基函数网络"><a href="#径向基函数网络" class="headerlink" title="径向基函数网络"></a>径向基函数网络</h1><p>在径向基函数中， 每⼀个基函数<strong>只依赖</strong>于样本和中⼼$\mu_j$之间的径向距离（通常是欧⼏⾥得距离）， 即<br>$$</p>
+<p>$$</p>
+<p>这里的网络体现在哪里?</p>
+<h1 id="高斯过程"><a href="#高斯过程" class="headerlink" title="高斯过程"></a>高斯过程</h1><h2 id="什么是高斯过程"><a href="#什么是高斯过程" class="headerlink" title="什么是高斯过程?"></a>什么是高斯过程?</h2><p>首先高斯分布定义为函数$y(\mathbf{x})$上的一个高斯分布,并且这个函数在一系列点 $\mathbf { x } _ { 1 } , \dots , \mathbf { x } _ { N }$ 的响应值 $y \left( \mathbf { x } _ { 1 } \right) , \ldots , y \left( \mathbf { x } _ { N } \right)$ 联合概率分布也是高斯的.</p>
 <p>高斯过程=高斯+过程</p>
 <ul>
-<li><p>高斯: 对于$y(\mathbf{x})$,为什么它是高斯的呢?我们令</p>
-<script type="math/tex; mode=display">
- y ( \mathbf { x } ) = \mathbf { w } ^ { \mathrm { T } } \boldsymbol { \phi } ( \mathbf { x } )\\
- p ( \mathbf { w } ) = \mathcal { N } ( \mathbf { w } | \mathbf { 0 } , \alpha ^ { - 1 } \mathbf { I } )</script><p> 这里的$y$是一些$\mathbf{w}$的混合,而$\mathbf{w}$ 我们给了一个高斯分布的先验.然后利用性质:<strong>高斯分布的线性组合依然是高斯分布</strong>.所以$y(\mathbf{x})$也是高斯分布. 这里我们只要确定$y(\mathbf{x})$的<strong>均值和方差</strong>就可以确定这个高斯分布.</p>
+<li><p>高斯: 对于$y(\mathbf{x})$,为什么它是高斯的呢?我们令<br> $$<br> y ( \mathbf { x } ) = \mathbf { w } ^ { \mathrm { T } } \boldsymbol { \phi } ( \mathbf { x } )\<br> p ( \mathbf { w } ) = \mathcal { N } ( \mathbf { w } | \mathbf { 0 } , \alpha ^ { - 1 } \mathbf { I } )<br> $$<br> 这里的$y$是一些$\mathbf{w}$的混合,而$\mathbf{w}$ 我们给了一个高斯分布的先验.然后利用性质:<strong>高斯分布的线性组合依然是高斯分布</strong>.所以$y(\mathbf{x})$也是高斯分布. 这里我们只要确定$y(\mathbf{x})$的<strong>均值和方差</strong>就可以确定这个高斯分布.</p>
 </li>
-<li><p>过程:时间或者空间上一系列点$\mathbf { x } <em> { 1 } , \dots , \mathbf { x } </em> { N }$ 的响应值$y \left( \mathbf { x } <em> { 1 } \right) , \ldots , y \left( \mathbf { x } </em> { N } \right)$ .</p>
+<li><p>过程:时间或者空间上一系列点$\mathbf { x } _ { 1 } , \dots , \mathbf { x } _ { N }$ 的响应值$y \left( \mathbf { x } _ { 1 } \right) , \ldots , y \left( \mathbf { x } _ { N } \right)$ .</p>
 </li>
 </ul>
-<p>考虑一系列的点,我们可以得到</p>
-<script type="math/tex; mode=display">
-\mathbf { y } = \mathbf { \Phi } _ { \mathbf { W } }</script><p>下面就是这个多维高斯分布的均值和协方差.</p>
-<script type="math/tex; mode=display">
-\begin{aligned} \mathbb { E } [ \mathbf { y } ] & = \mathbf { \Phi } \mathbb { E } [ \mathbf { w } ] = \mathbf { 0 } \\ \operatorname { cov } [ \mathbf { y } ] & = \mathbb { E } \left[ \mathbf { y y } ^ { \mathrm { T } } \right] = \mathbf { \Phi } \mathbb { E } \left[ \mathbf { w } \mathbf { w } ^ { \mathrm { T } } \right] \mathbf { \Phi } ^ { \mathrm { T } } = \frac { 1 } { \alpha } \mathbf { \Phi } \mathbf { \Phi } ^ { \mathrm { T } } = \mathbf { K } \end{aligned}</script><p>这里我们进一步做了简化,将$y(\mathbf{x})$的均值设为0,那么一个高斯过程就仅仅受协方差矩阵的控制.更重要的是,这个<strong>协方差矩阵我们用一个kernel来确定,kernel形式为特征映射法的形式</strong>. 这也是为什么高斯过程放在kernel method这一章! 综上,我们得到确定一个高斯过程的步骤:</p>
+<p>考虑一系列的点,我们可以得到<br>$$<br>\mathbf { y } = \mathbf { \Phi } _ { \mathbf { W } }<br>$$<br>下面就是这个多维高斯分布的均值和协方差.<br>$$<br>\begin{aligned} \mathbb { E } [ \mathbf { y } ] &amp; = \mathbf { \Phi } \mathbb { E } [ \mathbf { w } ] = \mathbf { 0 } \ \operatorname { cov } [ \mathbf { y } ] &amp; = \mathbb { E } \left[ \mathbf { y y } ^ { \mathrm { T } } \right] = \mathbf { \Phi } \mathbb { E } \left[ \mathbf { w } \mathbf { w } ^ { \mathrm { T } } \right] \mathbf { \Phi } ^ { \mathrm { T } } = \frac { 1 } { \alpha } \mathbf { \Phi } \mathbf { \Phi } ^ { \mathrm { T } } = \mathbf { K } \end{aligned}<br>$$<br>这里我们进一步做了简化,将$y(\mathbf{x})$的均值设为0,那么一个高斯过程就仅仅受协方差矩阵的控制.更重要的是,这个<strong>协方差矩阵我们用一个kernel来确定,kernel形式为特征映射法的形式</strong>. 这也是为什么高斯过程放在kernel method这一章! 综上,我们得到确定一个高斯过程的步骤:</p>
 <ol>
 <li>确定核函数的形式</li>
 <li>求解核形式的协方差矩阵</li>
@@ -569,27 +540,69 @@ k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = p ( \mathbf { x } 
 <p>有了前几章的基础,书中这里举了2个核函数例子(高斯核,指数核).给定了$\mathbf { y } $的分布,我们可以进行采样,得到不同的$\mathbf { y } $. 下图就是基于不同的核采样得到的$\mathbf { y } $.</p>
 <p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fy38weej2tj30nt0813zk.jpg" alt=""></p>
 <p>到这里什么是高斯过程及其如何确定一个高斯过程就清楚了.接下来是一些高斯过程应用(回归,分类).</p>
-<h2 id="基于高斯过程的回归"><a href="#基于高斯过程的回归" class="headerlink" title="基于高斯过程的回归"></a>基于高斯过程的回归</h2><p>考虑观测值$y<em>n$上的一个高斯噪声$\epsilon </em> { n }$,</p>
-<script type="math/tex; mode=display">
-t _ { n } = y _ { n } + \epsilon _ { n }\\
-y_n=y(\mathbf{x}_n)</script><p>这样$\mathbf { t }$可以认为是从以$\mathbf { y}$为均值的高斯分布中采样得到.</p>
-<script type="math/tex; mode=display">
-p ( \mathbf { t } | \mathbf { y } ) = \mathcal { N } ( \mathbf { t } | \mathbf { y } , \beta ^ { - 1 } \mathbf { I } _ { N } )</script><p>基于高斯过程的定义,</p>
-<script type="math/tex; mode=display">
-p ( \mathbf { y } ) = \mathcal { N } ( \mathbf { y } | \mathbf { 0 } , \mathbf { K } )</script><p>为了得到$\mathbf { t }$的分布,我们需要对其联合概率分布求积分,即边缘化</p>
-<script type="math/tex; mode=display">
-p ( \mathbf { t } ) = \int p ( \mathbf { t } | \mathbf { y } ) p ( \mathbf { y } ) \mathrm { d } \mathbf { y } = \mathcal { N } ( \mathbf { t } | \mathbf { 0 } , \mathbf { C } )</script><p>这里的$p ( \mathbf { t } | \mathbf { y } ) 和 p ( \mathbf { y } )  $都是高斯分布,其中</p>
-<script type="math/tex; mode=display">
-C \left( \mathbf { x } _ { n } , \mathbf { x } _ { m } \right) = k \left( \mathbf { x } _ { n } , \mathbf { x } _ { m } \right) + \beta ^ { - 1 } \delta _ { n m }\\
-\delta _ { n m }=1, if \ m=n</script><p>这里意思是只有协方差矩阵的对角线叠加了噪声.这是因为每次的噪声都是相互独立,所以非对角线的位置相关性都为0.</p>
-<p>回归问题可以认为是基于之前的输入$\mathbf { x } <em> { 1 } , \dots , \mathbf { x } </em> { N }$和输出$\mathbf { t } <em> { N } = \left( t </em> { 1 } , \ldots , t <em> { N } \right) ^ { \mathrm { T } }$ ,对新的输入$\mathbf{x}</em>{N+1}$ 进行预测(求$t_{N+1}$).写成条件概率的形式就是</p>
-<script type="math/tex; mode=display">
-p \left( t _ { N + 1 } | \mathbf { t } _ { N } , ...\right)</script><p>这里把输入给省略了.前面已经得到了$p ( \mathbf { t } )$的形式</p>
-<script type="math/tex; mode=display">
-p \left( t _ { N + 1 } | \mathbf { t } \right) = \mathcal { N } \left( \mathbf { t } _ { N + 1 } | m \left( \mathbf { x } _ { N + 1 } \right) , \sigma ^ { 2 } \left( \mathbf { x } _ { N + 1 } \right) \right) \\
-\begin{aligned} m \left( \mathbf { x } _ { N + 1 } \right) & = \mathbf { k } ^ { \mathrm { T } } \mathbf { C } _ { N } ^ { - 1 } \mathbf { t } \\ \sigma ^ { 2 } \left( \mathbf { x } _ { N + 1 } \right) & = c - \mathbf { k } ^ { \mathrm { T } } \mathbf { C } _ { N } ^ { - 1 } \mathbf { k } \end{aligned}</script><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<h2 id="基于高斯过程的回归"><a href="#基于高斯过程的回归" class="headerlink" title="基于高斯过程的回归"></a>基于高斯过程的回归</h2><p>考虑观测值$y_n$上的一个高斯噪声$\epsilon _ { n }$,<br>$$<br>t _ { n } = y _ { n } + \epsilon _ { n }\<br>y_n=y(\mathbf{x}_n)<br>$$<br>这样$\mathbf { t }$可以认为是从以$\mathbf { y}$为均值的高斯分布中采样得到.<strong>似然函数</strong>如下<br>$$<br>p ( \mathbf { t } | \mathbf { y } ) = \mathcal { N } ( \mathbf { t } | \mathbf { y } , \beta ^ { - 1 } \mathbf { I } _ { N } )<br>$$<br>基于高斯过程的定义, 下式为高斯过程<strong>先验</strong><br>$$<br>p ( \mathbf { y } ) = \mathcal { N } ( \mathbf { y } | \mathbf { 0 } , \mathbf { K } )<br>$$<br>可以看出:核函数$K$控制先验.</p>
+<p>为了得到$\mathbf { t }$的分布,我们需要对其联合概率分布求积分,即边缘化<br>$$<br>p ( \mathbf { t } ) = \int p ( \mathbf { t } | \mathbf { y } ) p ( \mathbf { y } ) \mathrm { d } \mathbf { y } = \mathcal { N } ( \mathbf { t } | \mathbf { 0 } , \mathbf { C } )<br>$$<br>这里的$p ( \mathbf { t } | \mathbf { y } ) 和 p ( \mathbf { y } )  $都是高斯分布,其中<br>$$<br>C \left( \mathbf { x } _ { n } , \mathbf { x } _ { m } \right) = k \left( \mathbf { x } _ { n } , \mathbf { x } _ { m } \right) + \beta ^ { - 1 } \delta _ { n m }\<br>\delta _ { n m }=1, if \ m=n<br>$$<br>这里意思是只有协方差矩阵的对角线叠加了<strong>噪声</strong>.这是因为每次的噪声都是相互独立,所以非对角线的位置相关性都为0.这里对核函数$K$ 的唯一限制就是<strong>协方差矩阵是正定的</strong>.假设$\lambda_i$ 是核函数$K$ 的特征值,那么协方差矩阵$\mathbf { C }$的特征值就是$\lambda_i+\beta^{-1}$.核函数需要满足<strong>半正定</strong>,即$\lambda _ { i } \geq 0$,加上一个正数$\beta$就可以$\lambda_i+\beta^{-1}&gt;0$, 所以$\mathbf { C }$是<strong>正定</strong>.</p>
+<p>回归问题可以认为是基于之前的输入$\mathbf { x } _ { 1 } , \dots , \mathbf { x } _ { N }$和输出$\mathbf { t } _ { N } = \left( t _ { 1 } , \ldots , t _ { N } \right) ^ { \mathrm { T } }$ ,对新的输入$\mathbf{x}<em>{N+1}$ 进行预测(求$t</em>{N+1}$).写成条件概率的形式就是<br>$$<br>p \left( t _ { N + 1 } | \mathbf { t } _ { N } , \mathbf { x } _ { 1 } , \dots , \mathbf { x } _ { N },\mathbf{x}_{N+1} \right), (省略输入)\<br>=p \left( t _ { N + 1 } | \mathbf { t } _ { N }\right)<br>$$<br>前面已经得到了$p ( \mathbf { t } )=\mathcal { N } ( \mathbf { t } | \mathbf { 0 } , \mathbf { C } )$ (高斯分布),那么<br>$$<br>p \left( \mathbf { t } _ { N + 1 } \right) = \mathcal { N } \left( \mathbf { t } _ { N + 1 } | \mathbf { 0 } , \mathbf { C } _ { N + 1 } \right)<br>$$<br>这里的$\mathbf { C } _ { N + 1 } $和前面的$\mathbf { C }_N$ 的关系为,为什么要写成这种形式呢?<br>$$<br>\mathbf { C } _ { N + 1 } = \left( \begin{array} { c c } { \mathbf { C } _ { N } } &amp; { \mathbf { k } } \ { \mathbf { k } ^ { \mathrm { T } } } &amp; { c } \end{array} \right)<br>$$<br>写成上述形式,可以利用公式<br>$$<br>\begin{aligned} \boldsymbol { \mu } _ { a | b } &amp; = \boldsymbol { \mu } _ { a } + \boldsymbol { \Sigma } _ { a b } \boldsymbol { \Sigma } _ { b b } ^ { - 1 } \left( \mathbf { x } _ { b } - \boldsymbol { \mu } _ { b } \right) \ \boldsymbol { \Sigma } _ { a | b } &amp; = \boldsymbol { \Sigma } _ { a a } - \boldsymbol { \Sigma } _ { a b } \boldsymbol { \Sigma } _ { b b } ^ { - 1 } \boldsymbol { \Sigma } _ { b a } \end{aligned}<br>$$<br>这里的$p \left( \mathbf { x } _ { a } | \mathbf { x } _ { b } \right)=p \left( t _ { N + 1 } | \mathbf { t } _ { N }\right)$ , b对应数据$\mathbf { t } _ { N } = \left( t _ { 1 } , \ldots , t _ { N } \right) ^ { \mathrm { T } }$ , a对应$t_{N+1}$.代入得到<br>$$<br>p \left( t _ { N + 1 } | \mathbf { t } \right) = \mathcal { N } \left( \mathbf { t } _ { N + 1 } | m \left( \mathbf { x } _ { N + 1 } \right) , \sigma ^ { 2 } \left( \mathbf { x } _ { N + 1 } \right) \right) \<br>\begin{aligned} m \left( \mathbf { x } _ { N + 1 } \right) &amp; = \mathbf { k } ^ { \mathrm { T } } \mathbf { C } _ { N } ^ { - 1 } \mathbf { t } \ \sigma ^ { 2 } \left( \mathbf { x } _ { N + 1 } \right) &amp; = c - \mathbf { k } ^ { \mathrm { T } } \mathbf { C } _ { N } ^ { - 1 } \mathbf { k } \end{aligned}<br>$$</p>
+<p>这里有了均值和方差就定了:<strong>具有任意核函数$k \left( \mathbf { x } _ { n } , \mathbf { x } _ { m } \right)$ 的高斯过程回归的预测分布.</strong> </p>
+<p>这里高斯过程回归的预测是<strong>一堆基函数的表示</strong>,也就是在<strong>函数空间</strong></p>
+<p>对应之前的线性回归的预测是<strong>一堆参数的表示</strong>,也就是在<strong>参数空间</strong></p>
+<h2 id="学习超参数"><a href="#学习超参数" class="headerlink" title="学习超参数"></a>学习超参数</h2><p>第一次听到GP是用于神经网络超参数的搜索,这里终于看到了真身.</p>
+<p>GP依赖于协方差函数的选择 ,而实际中用一组带有参数的函数来代替协方差函数,这组函数可以描述协方差矩阵的参数.举例如下:<br>$$<br>k \left( \mathbf { x } _ { n } , \mathbf { x } _ { m } \right) = \theta _ { 0 } \exp \left{ - \frac { \theta _ { 1 } } { 2 } \left| \mathbf { x } _ { n } - \mathbf { x } _ { m } \right| ^ { 2 } \right} + \theta _ { 2 } + \theta _ { 3 } \mathbf { x } _ { n } ^ { \mathrm { T } } \mathbf { x } _ { m }<br>$$<br>这里的参数$\theta_0,\theta_1…$控制了协方差矩阵.不同参数的效果如下</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fy8nz32snmj30ny0hr40v.jpg" alt=""></p>
+<p>这里利用最大似然来估计参数.<br>$$<br>\ln p ( \mathbf { t } | \boldsymbol { \theta } ) = - \frac { 1 } { 2 } \ln \left| \mathbf { C } _ { N } \right| - \frac { 1 } { 2 } \mathbf { t } ^ { \mathrm { T } } \mathbf { C } _ { N } ^ { - 1 } \mathbf { t } - \frac { N } { 2 } \ln ( 2 \pi )<br>$$<br>求导,并利用矩阵求导公式<br>$$<br>\begin{aligned} \frac { \partial } { \partial \mathbf { x } } \left( A ^ { - 1 } \right) &amp; = - A ^ { - 1 } \frac { \partial A } { \partial \mathbf { x } } A ^ { - 1 } \ \frac { \partial } { \partial \mathbf { x } } \ln | A | &amp; = \operatorname { Tr } \left( A ^ { - 1 } \frac { \partial A } { \partial \mathbf { x } } \right) \end{aligned}<br>$$<br>可以得到<br>$$<br>\frac { \partial } { \partial \theta _ { i } } \ln p ( \mathbf { t } | \boldsymbol { \theta } ) = - \frac { 1 } { 2 } \operatorname { Tr } \left( \mathbf { C } _ { N } ^ { - 1 } \frac { \partial \mathbf { C } _ { N } } { \partial \theta _ { i } } \right) + \frac { 1 } { 2 } \mathbf { t } ^ { \mathrm { T } } \mathbf { C } _ { N } ^ { - 1 } \frac { \partial \mathbf { C } _ { N } } { \partial \theta _ { i } } \mathbf { C } _ { N } ^ { - 1 } \mathbf { t }<br>$$</p>
+<h2 id="自动相关性确定"><a href="#自动相关性确定" class="headerlink" title="自动相关性确定"></a>自动相关性确定</h2><p>⾼斯过程中的⾃动相关性确定: 通过最⼤似然⽅法进⾏的参数最优化，能 够将<strong>不同输⼊的相对重要性</strong>从数据中推断出来。</p>
+<p>假定一个二维高斯过程$\mathbf { x } = \left( x _ { 1 } , x _ { 2 } \right)$,其核函数如下<br>$$<br>k \left( \mathbf { x } , \mathbf { x } ^ { \prime } \right) = \theta _ { 0 } \exp \left{ - \frac { 1 } { 2 } \sum _ { i = 1 } ^ { 2 } \eta _ { i } \left( x _ { i } - x _ { i } ^ { \prime } \right) ^ { 2 } \right}<br>$$<br>不同的参数$\eta _ { i }$的影响如下: 当$\eta _ { i }$变小的时候,核函数变的对相应的输入$x_i$ 不敏感了.</p>
+<p>我们首先看看,根据参数$\eta_i$来输入$x_i$的影响.下右图: 参数$\eta_2$变小了,那么在其相应的输入$x_2$下,输出变得较为稳定了.直观理解就是上式中$\eta _ { i } \left( x _ { i } - x _ { i } ^ { \prime } \right) ^ { 2 } $变小了,影响自然也下降.</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fy8ohlkmgpj31010d1gnq.jpg" alt=""></p>
+<p>另一个角度,根据输入$x_i$来看看参数$\eta_i$.</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fy8ovn5sunj30ss0g4ju7.jpg" alt=""></p>
+<h2 id="高斯过程分类"><a href="#高斯过程分类" class="headerlink" title="高斯过程分类"></a>高斯过程分类</h2><p>GP分类的预测在整个实数轴上,如果分类需要进行放缩（sigmoid来放缩).</p>
+<p>这里通过$\sigma$函数将<strong>高斯过程</strong>$a ( \mathbf { x } )$ 变成了<strong>非高斯的随机过程</strong>$y$.</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fy8p1so66rj311d0emq4n.jpg" alt=""></p>
+<p>与前面的回归类似,分类问题可以认为是基于之前的输入$\mathbf { x } _ { 1 } , \dots , \mathbf { x } _ { N }$和输出$\mathbf { t } _ { N } = \left( t _ { 1 } , \ldots , t _ { N } \right) ^ { \mathrm { T } }$ ,对新的输入$\mathbf{x}<em>{N+1}$ 进行预测(求$t</em>{N+1}$).写成条件概率的形式就是<br>$$<br>p \left( t _ { N + 1 } | \mathbf { t } _ { N }\right)<br>$$<br>只不过这里的高斯过程换成了$a$,而预测的$t_{N+1}$ 是非高斯过程.<br>$$<br>p \left( \mathbf { a } _ { N + 1 } \right) = \mathcal { N } \left( \mathbf { a } _ { N + 1 } | \mathbf { 0 } , \mathbf { C } _ { N + 1 } \right)<br>$$<br>同时,在分类时,我们假定所有label都是正确的,所以协方差矩阵没有像分类一样叠加了一个噪声项$\beta ^ { - 1 } \delta _ { n m }$. 这里的$\nu$看起来像噪声,实际是为了保证协方差正定引入的.</p>
+<p>对于2分类,将$t _ { N + 1 }$预测为1的概率<br>$$<br>\begin{aligned} p \left( t _ { N + 1 } = 1 | \mathbf { t } _ { N } \right) &amp; = \int p \left( t _ { N + 1 } = 1 | a _ { N + 1 } \right) p \left( a _ { N + 1 } | \mathbf { t } _ { N } \right) \mathrm { d } a _ { N + 1 } \ p \left( t _ { N + 1 } = 1 | a _ { N + 1 } \right) &amp; = \sigma \left( a _ { N + 1 } \right) \end{aligned}<br>$$<br>那么问题来了:上面这个积分怎么解决? 目前有3种方法:</p>
+<ul>
+<li>variational inference</li>
+<li>expectation propagation</li>
+<li>Laplace approximation (下一节重点)</li>
+</ul>
+<h2 id="拉普拉斯近似"><a href="#拉普拉斯近似" class="headerlink" title="拉普拉斯近似"></a>拉普拉斯近似</h2><p>关于拉普拉斯近似的详细介绍见 PRML 4.4. 简而言之,laplace approximation就是使用Gaussian去近似一个<strong>连续变量</strong>的概率密度函数,这个Gaussian是以后验分布的概率的<strong>众数</strong>为中心的。</p>
+<p>注: 本节的$\mathbf { a } _ { N }$就是前面的 $\mathbf { t } _ { N }$.</p>
+<p>上节说到, $p \left( t _ { N + 1 } = 1 | \mathbf { t } _ { N } \right)$ 不好求解.<br>$$<br>\begin{aligned} p \left( a _ { N + 1 } | \mathbf { t } _ { N } \right) &amp; = \int p \left( a _ { N + 1 } , \mathbf { a } _ { N } | \mathbf { t } _ { N } \right) \mathrm { d } \mathbf { a } _ { N } \ &amp; = \frac { 1 } { p \left( \mathbf { t } _ { N } \right) } \int p \left( a _ { N + 1 } , \mathbf { a } _ { N } \right) p \left( \mathbf { t } _ { N } | a _ { N + 1 } , \mathbf { a } _ { N } \right) \mathrm { d } \mathbf { a } _ { N } \ &amp; = \frac { 1 } { p \left( \mathbf { t } _ { N } \right) } \int p \left( a _ { N + 1 } | \mathbf { a } _ { N } \right) p \left( \mathbf { a } _ { N } \right) p \left( \mathbf { t } _ { N } | \mathbf { a } _ { N } \right) \mathrm { d } \mathbf { a } _ { N } \ &amp; = \int p \left( a _ { N + 1 } | \mathbf { a } _ { N } \right) p \left( \mathbf { a } _ { N } | \mathbf { t } _ { N } \right) \mathrm { d } \mathbf { a } _ { N } \end{aligned}<br>$$<br>积分中</p>
+<ul>
+<li>第一项是高斯过程,$p \left( a _ { N + 1 } | \mathbf { a } _ { N } \right) = \mathcal { N } \left( a _ { N + 1 } | \mathbf { k } ^ { \mathrm { T } } \mathbf { C } _ { N } ^ { - 1 } \mathbf { a } _ { N } , c - \mathbf { k } ^ { \mathrm { T } } \mathbf { C } _ { N } ^ { - 1 } \mathbf { k } \right)$ </li>
+<li>第二项是后验分布,如果我们能通过拉普拉斯近似找到一个高斯分布</li>
+</ul>
+<p>那么,$p \left( t _ { N + 1 } = 1 | \mathbf { t } _ { N } \right)$就变成对2个高斯分布的积分,可以求解.</p>
+<p>现在核心问题变成了<strong>第二项:后验怎么求?</strong></p>
+<p>后验=先验*似然(省略归一化)</p>
+<ul>
+<li>先验:前面已经得到,</li>
+</ul>
+<p>$$<br>\ln p ( \mathbf { t } | \boldsymbol { \theta } ) = - \frac { 1 } { 2 } \ln \left| \mathbf { C } _ { N } \right| - \frac { 1 } { 2 } \mathbf { t } ^ { \mathrm { T } } \mathbf { C } _ { N } ^ { - 1 } \mathbf { t } - \frac { N } { 2 } \ln ( 2 \pi )<br>$$</p>
+<p>​    把上式中的$t$换成$a$ ,就得到 $p(\boldsymbol { a } _ { N })$</p>
+<ul>
+<li><p>似然: 由现有的数据及其预测得到,<br> $$<br> p \left( \mathbf { t } _ { N } | \mathbf { a } _ { N } \right) = \prod _ { n = 1 } ^ { N } \sigma \left( a _ { n } \right) ^ { t _ { n } } \left( 1 - \sigma \left( a _ { n } \right) \right) ^ { 1 - t _ { n } } = \prod _ { n = 1 } ^ { N } e ^ { a _ { n } t _ { n } } \sigma \left( - a _ { n } \right) \<br> \sigma \left( a _ { n } \right) ^ { t _ { n } } \left( 1 - \sigma \left( a _ { n } \right) \right) ^ { 1 - t _ { n } }=(\frac{e^{a_n}}{1+e^{a_n}})^{t_n}(\frac{1}{e^{a_n}+1})^{1-t_n}=e ^ { a _ { n } t _ { n } }\frac{1}{1+e^{a_n}}<br> $$</p>
+</li>
+<li><p>结合先验和似然,得到后验的表达形式</p>
+</li>
+</ul>
+<p>$$<br>\begin{aligned} \Psi \left( \boldsymbol { a } _ { N } \right) = &amp; \ln p \left( \boldsymbol { a } _ { N } \right) + \ln p \left( \mathbf { t } _ { N } | \boldsymbol { a } _ { N } \right) \ = &amp; - \frac { 1 } { 2 } \boldsymbol { a } _ { N } ^ { T } \boldsymbol { C } _ { N } ^ { - 1 } \boldsymbol { a } _ { N } - \frac { N } { 2 } \ln ( 2 \pi ) - \frac { 1 } { 2 } \ln \left| \boldsymbol { C } _ { N } \right| + \mathbf { t } _ { N } ^ { T } \boldsymbol { a } _ { N } \ &amp; - \sum _ { n = 1 } ^ { N } \ln \left( 1 + e ^ { a _ { n } } \right) \end{aligned}<br>$$</p>
+<p>目前我们已经有了后验的表达形式,如何来拉普拉斯近似来解呢?    </p>
+<ol>
+<li><p>找到后验分布的<strong>众数</strong></p>
+<p>后验求导,并代入</p>
+</li>
+</ol>
+<p>$$<br>[\ln(1+e^x)]’=\frac{e^x}{1+e^x}=\frac{1}{1+e^{-x}}=\sigma(x)<br>$$<br>​    得到<br>$$<br>\nabla \Psi \left( \boldsymbol { a } _ { N } \right) = \mathbf { t } _ { N } - \boldsymbol { \sigma } _ { N } - \boldsymbol { C } _ { N } ^ { - 1 } \boldsymbol { a } _ { N }<br>$$<br>​    其中,$\boldsymbol { \sigma } _ { N }$是元素为$\sigma(a_n)$的向量. 这里由于$\boldsymbol { \sigma } _ { N }$和$\boldsymbol { a } _ { N }$的非线性关系, 所以令一阶导为零没有闭式解.利用二阶导和IRLS算法我们可以找到众数 $\mathbf { a } _ { N } ^ { \star }$.</p>
+<ol start="2">
+<li>计算以众数 $\mathbf { a } _ { N } ^ { \star }$为中心的高斯分布$q \left( \mathbf { a } _ { N } \right) $ .<br>$$<br>q \left( \mathbf { a } _ { N } \right) = \mathcal { N } \left( \mathbf { a } _ { N } | \mathbf { a } _ { N } ^ { \star } , \mathbf { H } ^ { - 1 } \right)<br>$$</li>
+</ol>
+<p>到这里, $p \left( a _ { N + 1 } | \mathbf { t } _ { N } \right)$已经可以解了,分别将2个高斯分布代入得到,最终$$p \left( a _ { N + 1 } | \mathbf { t } _ { N } \right)$$ 是一个高斯分布,均值方差如下<br>$$<br>\begin{aligned} \mathbb { E } \left[ a _ { N + 1 } | \mathbf { t } _ { N } \right] &amp; = \mathbf { k } ^ { \mathrm { T } } \left( \mathbf { t } _ { N } - \boldsymbol { \sigma } _ { N } \right) \ \operatorname { var } \left[ a _ { N + 1 } | \mathbf { t } _ { N } \right] &amp; = c - \mathbf { k } ^ { \mathrm { T } } \left( \mathbf { W } _ { N } ^ { - 1 } + \mathbf { C } _ { N } \right) ^ { - 1 } \mathbf { k } \end{aligned}<br>$$<br>接下来,我们需要确定 <strong>协方差函数的参数$\theta$.</strong>   最大似然即可</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
 <li><a href="https://www.zhihu.com/question/46631426" target="_blank" rel="noopener">https://www.zhihu.com/question/46631426</a></li>
 <li>PRML </li>
+<li><a href="http://blog.videolectures.net/100-most-popular-machine-learning-talks-at-videolectures-net/" target="_blank" rel="noopener">http://blog.videolectures.net/100-most-popular-machine-learning-talks-at-videolectures-net/</a></li>
 <li>MLAPP</li>
 <li><a href="http://www.52nlp.cn/prml读书会第六章-kernel-methods" target="_blank" rel="noopener">http://www.52nlp.cn/prml读书会第六章-kernel-methods</a></li>
 </ol>
@@ -644,9 +657,9 @@ p \left( t _ { N + 1 } | \mathbf { t } \right) = \mathcal { N } \left( \mathbf {
           
             <a href="/Jhy1993.github.io/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
           
-            <a href="/Jhy1993.github.io/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
-          
             <a href="/Jhy1993.github.io/tags/PRML/" rel="tag"># PRML</a>
+          
+            <a href="/Jhy1993.github.io/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
           
         </div>
       
@@ -748,7 +761,7 @@ p \left( t _ { N + 1 } | \mathbf { t } \right) = \mathcal { N } \left( \mathbf {
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -890,7 +903,7 @@ p \left( t _ { N + 1 } | \mathbf { t } \right) = \mathcal { N } \left( \mathbf {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对偶表示"><span class="nav-number">2.</span> <span class="nav-text">对偶表示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构建kernel的方法"><span class="nav-number">3.</span> <span class="nav-text">构建kernel的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特征映射法"><span class="nav-number">3.1.</span> <span class="nav-text">特征映射法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直接构造"><span class="nav-number">3.2.</span> <span class="nav-text">直接构造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于现有的合法kernel进行构建"><span class="nav-number">3.3.</span> <span class="nav-text">基于现有的合法kernel进行构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过概率生成模型来构建"><span class="nav-number">3.4.</span> <span class="nav-text">通过概率生成模型来构建</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#径向基函数网络"><span class="nav-number">4.</span> <span class="nav-text">径向基函数网络</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高斯过程"><span class="nav-number">5.</span> <span class="nav-text">高斯过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是高斯过程"><span class="nav-number">5.1.</span> <span class="nav-text">什么是高斯过程?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于高斯过程的回归"><span class="nav-number">5.2.</span> <span class="nav-text">基于高斯过程的回归</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对偶表示"><span class="nav-number">2.</span> <span class="nav-text">对偶表示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构建kernel的方法"><span class="nav-number">3.</span> <span class="nav-text">构建kernel的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特征映射法"><span class="nav-number">3.1.</span> <span class="nav-text">特征映射法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直接构造"><span class="nav-number">3.2.</span> <span class="nav-text">直接构造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于现有的合法kernel进行构建"><span class="nav-number">3.3.</span> <span class="nav-text">基于现有的合法kernel进行构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过概率生成模型来构建"><span class="nav-number">3.4.</span> <span class="nav-text">通过概率生成模型来构建</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#径向基函数网络"><span class="nav-number">4.</span> <span class="nav-text">径向基函数网络</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高斯过程"><span class="nav-number">5.</span> <span class="nav-text">高斯过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是高斯过程"><span class="nav-number">5.1.</span> <span class="nav-text">什么是高斯过程?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于高斯过程的回归"><span class="nav-number">5.2.</span> <span class="nav-text">基于高斯过程的回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习超参数"><span class="nav-number">5.3.</span> <span class="nav-text">学习超参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动相关性确定"><span class="nav-number">5.4.</span> <span class="nav-text">自动相关性确定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高斯过程分类"><span class="nav-number">5.5.</span> <span class="nav-text">高斯过程分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉普拉斯近似"><span class="nav-number">5.6.</span> <span class="nav-text">拉普拉斯近似</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

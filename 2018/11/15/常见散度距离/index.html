@@ -108,19 +108,19 @@
 
 
 
-  <meta name="description" content="本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离) F-散度散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度.  D _ { f } ( p \| q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x这里的$f$需要满足2个条件: $f$是凸函数且$">
+  <meta name="description" content="本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离) F-散度散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度. $$D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x$$这里的$f$需要满足2个条件: $f$是凸函数">
 <meta name="keywords" content="Deep Learning,Wasserstein,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见散度与距离(KL散度，JS散度，Wasserstein距离，互信息MI)">
 <meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/11/15/常见散度距离/index.html">
 <meta property="og:site_name" content="Better Call Saul">
-<meta property="og:description" content="本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离) F-散度散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度.  D _ { f } ( p \| q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x这里的$f$需要满足2个条件: $f$是凸函数且$">
+<meta property="og:description" content="本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离) F-散度散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度. $$D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x$$这里的$f$需要满足2个条件: $f$是凸函数">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx1109nhpsj30hk0g9dfw.jpg">
 <meta property="og:updated_time" content="2018-12-14T07:34:10.789Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见散度与距离(KL散度，JS散度，Wasserstein距离，互信息MI)">
-<meta name="twitter:description" content="本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离) F-散度散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度.  D _ { f } ( p \| q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x这里的$f$需要满足2个条件: $f$是凸函数且$">
+<meta name="twitter:description" content="本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离) F-散度散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度. $$D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x$$这里的$f$需要满足2个条件: $f$是凸函数">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx1109nhpsj30hk0g9dfw.jpg">
 
 
@@ -493,17 +493,13 @@
       
         <p>本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离)</p>
 <h1 id="F-散度"><a href="#F-散度" class="headerlink" title="F-散度"></a>F-散度</h1><p>散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度.</p>
-<script type="math/tex; mode=display">
-D _ { f } ( p \| q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x</script><p>这里的$f$需要满足2个条件: $f$是凸函数且$f(1)=0$.</p>
+<p>$$<br>D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x<br>$$<br>这里的$f$需要满足2个条件: $f$是凸函数且$f(1)=0$.</p>
 <p>可以证明:</p>
-<p>因为$f$是凸函数,由Jensen不等式可知 $E(f(x)) &gt;= f(E(x))$,所以</p>
-<script type="math/tex; mode=display">
-D _ { f } ( p \| q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x \geq f \left( \int q ( x ) \frac { p ( x ) } { q ( x ) } d x \right) = f ( 1 ) = 0</script><h2 id="KL散度"><a href="#KL散度" class="headerlink" title="KL散度"></a>KL散度</h2><p>KL散度是F-散度的一个特例,当$f(x)=xlogx$ 的时候:</p>
-<script type="math/tex; mode=display">
-D _ { KL} ( p \| q ) = \int  p(x) \log \left( \frac { p ( x ) } { q ( x ) } \right) d x</script><p>需要注意</p>
+<p>因为$f$是凸函数,由Jensen不等式可知 $E(f(x)) &gt;= f(E(x))$,所以<br>$$<br>D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x \geq f \left( \int q ( x ) \frac { p ( x ) } { q ( x ) } d x \right) = f ( 1 ) = 0<br>$$</p>
+<h2 id="KL散度"><a href="#KL散度" class="headerlink" title="KL散度"></a>KL散度</h2><p>KL散度是F-散度的一个特例,当$f(x)=xlogx$ 的时候:<br>$$<br>D _ { KL} ( p | q ) = \int  p(x) \log \left( \frac { p ( x ) } { q ( x ) } \right) d x<br>$$<br>需要注意</p>
 <ul>
-<li>KL散度非对称,即 $D <em> { KL} ( p | q ) \neq D </em> { KL} ( q | p )$ ,所以KL散度不是一个真正的距离或者度量.</li>
-<li>KL散度不满足三角不等式 $D <em> { KL} ( p | q ) &gt; D </em> { KL} ( p | r )  + D _ { KL} ( r | q )  $.  </li>
+<li>KL散度非对称,即 $D _ { KL} ( p | q ) \neq D _ { KL} ( q | p )$ ,所以KL散度不是一个真正的距离或者度量.</li>
+<li>KL散度不满足三角不等式 $D _ { KL} ( p | q ) &gt; D _ { KL} ( p | r )  + D _ { KL} ( r | q )  $.  </li>
 <li>KL散度取值范围从$[0, \infty]$ , p=q的时候,两个分布完全一样取到0</li>
 </ul>
 <p>p和q的影响:</p>
@@ -530,56 +526,35 @@ D _ { KL} ( p \| q ) = \int  p(x) \log \left( \frac { p ( x ) } { q ( x ) } \rig
 </li>
 </ul>
 <p>换而言之, pq之间的KL散度可能导致惩罚或者梯度差距极大.</p>
-<h2 id="JS散度"><a href="#JS散度" class="headerlink" title="JS散度"></a>JS散度</h2><p>JS散度实际就是KL散度的一个扩展,被用来推导GAN.</p>
-<script type="math/tex; mode=display">
-D _ { JS} ( p \| q ) =\frac{1}{2}D _ { KL} ( p \| \frac{p+q}{2} ) +\frac{1}{2}D _ { KL} ( q \| \frac{p+q}{2} )</script><p>需要注意</p>
+<h2 id="JS散度"><a href="#JS散度" class="headerlink" title="JS散度"></a>JS散度</h2><p>JS散度实际就是KL散度的一个扩展,被用来推导GAN.<br>$$<br>D _ { JS} ( p | q ) =\frac{1}{2}D _ { KL} ( p | \frac{p+q}{2} ) +\frac{1}{2}D _ { KL} ( q | \frac{p+q}{2} )<br>$$<br>需要注意</p>
 <ul>
 <li>JS散度是对称的.</li>
 <li>JS散度有界,范围是$[0,\log2]$这个上界不同情况,见<a href="http://pages.stern.nyu.edu/~dbackus/BCZ/entropy/Jensen%96Shannon-divergence-Wikipedia.pdf" target="_blank" rel="noopener">http://pages.stern.nyu.edu/~dbackus/BCZ/entropy/Jensen%96Shannon-divergence-Wikipedia.pdf</a></li>
 </ul>
 <p>KL散度和JS散度度量的时候有一个问题：</p>
 <p>如果两个分配P,Q离得很远，完全没有重叠的时候，那么KL散度值是没有意义的，而JS散度值是一个常数。这在学习算法中是比较致命的，这就意味这这一点的梯度为0。梯度消失了。</p>
-<h2 id="Renyi-alpha-散度"><a href="#Renyi-alpha-散度" class="headerlink" title="Renyi $\alpha$ -散度"></a>Renyi $\alpha$ -散度</h2><script type="math/tex; mode=display">
-D _ { \alpha} ( p \| q ) = \frac{1}{\alpha(\alpha-1)}\log \bigg( \int    \frac { p ( x ) ^{\alpha}} { q ( x )^{\alpha-1} }  d x \bigg)</script><p>当$\alpha \rightarrow 0或1$时,可以得到KL散度或者reverse KL散度.</p>
+<h2 id="Renyi-alpha-散度"><a href="#Renyi-alpha-散度" class="headerlink" title="Renyi $\alpha$ -散度"></a>Renyi $\alpha$ -散度</h2><p>$$<br>D _ { \alpha} ( p | q ) = \frac{1}{\alpha(\alpha-1)}\log \bigg( \int    \frac { p ( x ) ^{\alpha}} { q ( x )^{\alpha-1} }  d x \bigg)<br>$$</p>
+<p>当$\alpha \rightarrow 0或1$时,可以得到KL散度或者reverse KL散度.</p>
 <p>只有当$\alpha=0.5$的时候对称.</p>
-<h1 id="互信息-Mutual-Information"><a href="#互信息-Mutual-Information" class="headerlink" title="互信息 Mutual Information"></a>互信息 Mutual Information</h1><p>互信息, 很难计算.</p>
-<script type="math/tex; mode=display">
-I ( X ; Y ) = \int _ { Y } \int _ { X } p ( x , y ) \log \left( \frac { p ( x , y ) } { p ( x ) p ( y ) } \right) d x d y \\\</script><script type="math/tex; mode=display">
-I ( X ; Y ) = \sum _ { y \in Y } \sum _ { x \in X } p ( x , y ) \log \left( \frac { p ( x , y ) } { p ( x ) p ( y ) } \right)</script><p>对比互信息和KL散度的公式,可以得到</p>
-<script type="math/tex; mode=display">
-I ( X ; Y ) = D_{KL}\bigg(p(x,y)||p(x)p(y)\bigg)</script><p>此外,令$p(x|y)=\frac{p(x,y)}{p(y)}$, 则</p>
-<script type="math/tex; mode=display">
- \mathrm { I } ( X ; Y ) \\
-= \sum _ { y } p ( y ) \sum _ { x } p ( x | y ) \log _ { 2 } \frac { p ( x | y ) } { p ( x ) } \\ 
- = \sum _ { y } p ( y ) D _ { \mathrm { KL } } ( p ( x | y ) \| p ( x ) ) \\ 
-  = \mathbb { E } _ { Y } \left[ D _ { \mathrm { KL } } ( p ( x | y ) \| p ( x ) ) \right]</script><h1 id="距离"><a href="#距离" class="headerlink" title="距离"></a>距离</h1><p>一个真正的距离或者度量要满足3个条件:</p>
+<h1 id="互信息-Mutual-Information"><a href="#互信息-Mutual-Information" class="headerlink" title="互信息 Mutual Information"></a>互信息 Mutual Information</h1><p>互信息, 很难计算.<br>$$<br>I ( X ; Y ) = \int _ { Y } \int _ { X } p ( x , y ) \log \left( \frac { p ( x , y ) } { p ( x ) p ( y ) } \right) d x d y \\<br>$$</p>
+<p>$$<br>I ( X ; Y ) = \sum _ { y \in Y } \sum _ { x \in X } p ( x , y ) \log \left( \frac { p ( x , y ) } { p ( x ) p ( y ) } \right)<br>$$</p>
+<p>对比互信息和KL散度的公式,可以得到<br>$$<br>I ( X ; Y ) = D_{KL}\bigg(p(x,y)||p(x)p(y)\bigg)<br>$$<br>此外,令$p(x|y)=\frac{p(x,y)}{p(y)}$, 则<br>$$<br> \mathrm { I } ( X ; Y ) \<br>= \sum _ { y } p ( y ) \sum _ { x } p ( x | y ) \log _ { 2 } \frac { p ( x | y ) } { p ( x ) } \<br> = \sum _ { y } p ( y ) D _ { \mathrm { KL } } ( p ( x | y ) | p ( x ) ) \<br>  = \mathbb { E } _ { Y } \left[ D _ { \mathrm { KL } } ( p ( x | y ) | p ( x ) ) \right]<br>$$</p>
+<h1 id="距离"><a href="#距离" class="headerlink" title="距离"></a>距离</h1><p>一个真正的距离或者度量要满足3个条件:</p>
 <h2 id="TV距离"><a href="#TV距离" class="headerlink" title="TV距离"></a>TV距离</h2><p>里还证明了 EBGAN 的 loss 是在 minimize TV 距离，而 TV 距离与 JS 是等价的（事实上 KL &gt; TV = JS &gt; EM ）</p>
-<h2 id="Wasserstein距离"><a href="#Wasserstein距离" class="headerlink" title="Wasserstein距离"></a>Wasserstein距离</h2><p>定义为</p>
-<script type="math/tex; mode=display">
-W _ { p } ( \mu , \nu ) : = \left( \begin{array} { c } { \inf } \\ { \gamma \in \Gamma ( \mu , \nu ) } \end{array} \int _ { M \times M } d ( x , y ) ^ { p } \mathrm { d } \gamma ( x , y ) \right)^{1/p}</script><script type="math/tex; mode=display">
-W _ { p } ( \mu , \nu ) ^ { p } = \inf \mathbf { E } \left[ d ( X , Y ) ^ { p } \right]</script><p>这里$\Gamma ( \mu , \nu )$ 是$ \mu , \nu $分布组合起来的<strong>所有的可能的联合分布</strong>的集合, $(x,y)$代表从$\gamma$中进行采样出一对样本. 针对这对样本,从x搬移到y处所需要的距离就是 $d(x,y)$. 加上期望就代表,把所有$\mu $搬移到$\nu$所需要的距离.</p>
+<h2 id="Wasserstein距离"><a href="#Wasserstein距离" class="headerlink" title="Wasserstein距离"></a>Wasserstein距离</h2><p>定义为<br>$$<br>W _ { p } ( \mu , \nu ) : = \left( \begin{array} { c } { \inf } \ { \gamma \in \Gamma ( \mu , \nu ) } \end{array} \int _ { M \times M } d ( x , y ) ^ { p } \mathrm { d } \gamma ( x , y ) \right)^{1/p}<br>$$<br>$$<br>W _ { p } ( \mu , \nu ) ^ { p } = \inf \mathbf { E } \left[ d ( X , Y ) ^ { p } \right]<br>$$</p>
+<p>这里$\Gamma ( \mu , \nu )$ 是$ \mu , \nu $分布组合起来的<strong>所有的可能的联合分布</strong>的集合, $(x,y)$代表从$\gamma$中进行采样出一对样本. 针对这对样本,从x搬移到y处所需要的距离就是 $d(x,y)$. 加上期望就代表,把所有$\mu $搬移到$\nu$所需要的距离.</p>
 <p>Wasserstein距离满足距离的三个要求.</p>
-<p>可以证明其满足三角不等式</p>
-<script type="math/tex; mode=display">
-W _ { p } ( \mu , \nu ) \leq \left( \int | x - z | ^ { p } d \gamma \right) ^ { 1 / p } = \left( \int | x - z | ^ { p } d \sigma \right) ^ { 1 / p } = \| x - z \| _ { L ^ { p } ( \sigma ) } \\\
-\leq \| x - y \| _ { L ^ { p } ( \sigma ) } + \| y - z \| _ { L ^ { p } ( \sigma ) } = \left( \int | x - z | ^ { p } d \sigma \right) ^ { 1 / p } + \left( \int | x - z | ^ { p } d \sigma \right) ^ { 1 / p } \\\
-= \left( \int | x - z | ^ { p } d \gamma ^ { + } \right) ^ { 1 / p } + \left( \int | x - z | ^ { p } d \gamma ^ { - } \right) ^ { 1 / p } = W _ { p } ( \mu , \rho ) + W _ { p } ( \rho , \nu )</script><p>Wessertein距离相比KL散度和JS散度的<strong>优势</strong>在于：即使两个分布的支撑集没有重叠或者重叠非常少，仍然能反映两个分布的远近。而JS散度在此情况下是常量，KL散度可能无意义.<br>(6)中的$W _ { p } ( \mu , \nu ) ^ { p } $又叫$W_p$距离, 这样就会有$W_1$距离和$W_2$距离</p>
+<p>可以证明其满足三角不等式<br>$$<br>W _ { p } ( \mu , \nu ) \leq \left( \int | x - z | ^ { p } d \gamma \right) ^ { 1 / p } = \left( \int | x - z | ^ { p } d \sigma \right) ^ { 1 / p } = | x - z | _ { L ^ { p } ( \sigma ) } \\<br>\leq | x - y | _ { L ^ { p } ( \sigma ) } + | y - z | _ { L ^ { p } ( \sigma ) } = \left( \int | x - z | ^ { p } d \sigma \right) ^ { 1 / p } + \left( \int | x - z | ^ { p } d \sigma \right) ^ { 1 / p } \\<br>= \left( \int | x - z | ^ { p } d \gamma ^ { + } \right) ^ { 1 / p } + \left( \int | x - z | ^ { p } d \gamma ^ { - } \right) ^ { 1 / p } = W _ { p } ( \mu , \rho ) + W _ { p } ( \rho , \nu )<br>$$<br>Wessertein距离相比KL散度和JS散度的<strong>优势</strong>在于：即使两个分布的支撑集没有重叠或者重叠非常少，仍然能反映两个分布的远近。而JS散度在此情况下是常量，KL散度可能无意义.<br>(6)中的$W _ { p } ( \mu , \nu ) ^ { p } $又叫$W_p$距离, 这样就会有$W_1$距离和$W_2$距离</p>
 <h3 id="W-1-距离-EMD距离"><a href="#W-1-距离-EMD距离" class="headerlink" title="$W_1$距离(EMD距离)"></a>$W_1$距离(EMD距离)</h3><p>TODO</p>
 <h3 id="W-2-距离"><a href="#W-2-距离" class="headerlink" title="$W_2$距离"></a>$W_2$距离</h3><p>$W_p​$距离的求解是非常麻烦的,但是在某种情况下求解很方便.</p>
-<p>针对<strong>两个高斯分布</strong>,$W_2$距离有<strong>闭式解</strong>(线性时间求解):</p>
-<script type="math/tex; mode=display">
-d i s t = W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) , \mathcal { N } \left( \mu _ { 2 } , \Sigma _ { 2 } \right) \right)
-\\\
-d i s t ^ { 2 } = \left\| \mu _ { 1 } - \mu _ { 2 } \right\| _ { 2 } ^ { 2 } + \operatorname { Tr } \left( \Sigma _ { 1 } + \Sigma _ { 2 } - 2 \left( \Sigma _ { 1 } ^ { 1 / 2 } \Sigma _ { 2 } \Sigma _ { 1 } ^ { 1 / 2 } \right) ^ { 1 / 2 } \right)</script><p>如果这两个高斯分布的方差矩阵为对角矩阵,即$\Sigma <em> { 1 } \Sigma </em> { 2 } = \Sigma <em> { 2 } \Sigma </em> { 1 }$,上式可以进一步简化.</p>
-<script type="math/tex; mode=display">
-W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) ; \boldsymbol { N } \left( m _ { 2 } , \Sigma _ { 2 } \right) \right) ^ { 2 } = \left\| \mu _ { 1 } - \mu _ { 2 } \right\| _ { 2 } ^ { 2 } + \left\| \Sigma _ { 1 } ^ { 1 / 2 } - \Sigma _ { 2 } ^ { 1 / 2 } \right\| _ { F } ^ { 2 }</script><h1 id="JS散度-KL散度-Wessertein距离对比"><a href="#JS散度-KL散度-Wessertein距离对比" class="headerlink" title="JS散度,KL散度,Wessertein距离对比"></a>JS散度,KL散度,Wessertein距离对比</h1><p>举例如下:</p>
+<p>针对<strong>两个高斯分布</strong>,$W_2$距离有<strong>闭式解</strong>(线性时间求解):<br>$$<br>d i s t = W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) , \mathcal { N } \left( \mu _ { 2 } , \Sigma _ { 2 } \right) \right)<br>\\<br>d i s t ^ { 2 } = \left| \mu _ { 1 } - \mu _ { 2 } \right| _ { 2 } ^ { 2 } + \operatorname { Tr } \left( \Sigma _ { 1 } + \Sigma _ { 2 } - 2 \left( \Sigma _ { 1 } ^ { 1 / 2 } \Sigma _ { 2 } \Sigma _ { 1 } ^ { 1 / 2 } \right) ^ { 1 / 2 } \right)<br>$$<br>如果这两个高斯分布的方差矩阵为对角矩阵,即$\Sigma _ { 1 } \Sigma _ { 2 } = \Sigma _ { 2 } \Sigma _ { 1 }$,上式可以进一步简化.<br>$$<br>W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) ; \boldsymbol { N } \left( m _ { 2 } , \Sigma _ { 2 } \right) \right) ^ { 2 } = \left| \mu _ { 1 } - \mu _ { 2 } \right| _ { 2 } ^ { 2 } + \left| \Sigma _ { 1 } ^ { 1 / 2 } - \Sigma _ { 2 } ^ { 1 / 2 } \right| _ { F } ^ { 2 }<br>$$</p>
+<h1 id="JS散度-KL散度-Wessertein距离对比"><a href="#JS散度-KL散度-Wessertein距离对比" class="headerlink" title="JS散度,KL散度,Wessertein距离对比"></a>JS散度,KL散度,Wessertein距离对比</h1><p>举例如下:</p>
 <p>考虑如下二维空间中的两个分布pq，p在线段AB上均匀分布，q在线段CD上均匀分布，通过控制参数$\theta$可以控制着两个分布的距离远近。</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx1109nhpsj30hk0g9dfw.jpg" alt="img"></p>
-<script type="math/tex; mode=display">
-D_{KL}(p||q)=D_{KL}(q||p)=
-\left\{ \begin{array} { l l } { + \infty } & { \text { if } \theta \neq 0 } \\ { 0 } & { \text { if } \theta = 0 } \end{array} \right.</script><script type="math/tex; mode=display">
-D_{JS}(p||q)= \left\{ \begin{array} { l l } { \log 2 } & { \text { if } \theta \neq 0 } \\ { 0 } & { \text { if } \theta = 0 } \end{array} \right.</script><script type="math/tex; mode=display">
-W(p,q)=|\theta|</script><p>可以看出JS和KL都出现了突变,而W距离保持平滑</p>
+<p>$$<br>D_{KL}(p||q)=D_{KL}(q||p)=<br>\left{ \begin{array} { l l } { + \infty } &amp; { \text { if } \theta \neq 0 } \ { 0 } &amp; { \text { if } \theta = 0 } \end{array} \right.<br>$$</p>
+<p>$$<br>D_{JS}(p||q)= \left{ \begin{array} { l l } { \log 2 } &amp; { \text { if } \theta \neq 0 } \ { 0 } &amp; { \text { if } \theta = 0 } \end{array} \right.<br>$$</p>
+<p>$$<br>W(p,q)=|\theta|<br>$$</p>
+<p>可以看出JS和KL都出现了突变,而W距离保持平滑</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
 <li><a href="https://blog.csdn.net/uestc_c2_403/article/details/75208644" target="_blank" rel="noopener">https://blog.csdn.net/uestc_c2_403/article/details/75208644</a></li>
 <li><a href="https://www.zhihu.com/question/39872326/answer/83688277" target="_blank" rel="noopener">https://www.zhihu.com/question/39872326/answer/83688277</a></li>
@@ -744,7 +719,7 @@ W(p,q)=|\theta|</script><p>可以看出JS和KL都出现了突变,而W距离保�
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
