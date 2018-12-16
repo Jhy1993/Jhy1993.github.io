@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="最新版见 https://jhy1993.github.io/Jhy1993.github.io/2018/12/13/word2vec/ word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$$$\arg \max _ { \theta } \prod _ { w \in T e x t } \left[ \prod">
+  <meta name="description" content="最新版见 https://jhy1993.github.io/Jhy1993.github.io/2018/12/13/word2vec/ word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$  \arg \max _ { \theta } \prod _ { w \in T e x t } \left[ \prod">
 <meta name="keywords" content="Deep Learning,Embedding,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="word2vec, skip-gram, negative sampling">
 <meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/12/13/word2vec/index.html">
 <meta property="og:site_name" content="Better Call Saul">
-<meta property="og:description" content="最新版见 https://jhy1993.github.io/Jhy1993.github.io/2018/12/13/word2vec/ word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$$$\arg \max _ { \theta } \prod _ { w \in T e x t } \left[ \prod">
+<meta property="og:description" content="最新版见 https://jhy1993.github.io/Jhy1993.github.io/2018/12/13/word2vec/ word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$  \arg \max _ { \theta } \prod _ { w \in T e x t } \left[ \prod">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-12-15T13:39:13.734Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="word2vec, skip-gram, negative sampling">
-<meta name="twitter:description" content="最新版见 https://jhy1993.github.io/Jhy1993.github.io/2018/12/13/word2vec/ word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$$$\arg \max _ { \theta } \prod _ { w \in T e x t } \left[ \prod">
+<meta name="twitter:description" content="最新版见 https://jhy1993.github.io/Jhy1993.github.io/2018/12/13/word2vec/ word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$  \arg \max _ { \theta } \prod _ { w \in T e x t } \left[ \prod">
 
 
 
@@ -491,12 +491,31 @@
       
         <p>最新版见</p>
 <p><a href="https://jhy1993.github.io/Jhy1993.github.io/2018/12/13/word2vec/">https://jhy1993.github.io/Jhy1993.github.io/2018/12/13/word2vec/</a></p>
-<h1 id="word2vec"><a href="#word2vec" class="headerlink" title="word2vec"></a>word2vec</h1><h1 id="skip-gram"><a href="#skip-gram" class="headerlink" title="skip-gram"></a>skip-gram</h1><p>给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$<br>$$<br>\arg \max _ { \theta } \prod _ { w \in T e x t } \left[ \prod _ { c \in C ( w ) } p ( c | w ; \theta ) \right]<br>$$<br>其中, $C(w)$是单词$w$的上下文. 把$w$和$c$ 这种从文本中抽取的的word-pair构建一个集合$D$<br>$$<br>\arg \max _ { \theta } \prod _ { ( w , c ) \in D } p ( c | w ; \theta )<br>$$<br>skip-gram模型根据中心词来预测上下文的条件概率可以写为<br>$$<br>p ( c | w ; \theta ) = \frac { e ^ { v _ { c } \cdot v _ { w } } } { \sum _ { c ^ { \prime } \in C } e ^ { v _ { c ^ { \prime } } \cdot v _ { w } } }<br>$$<br>其中$v_w$和$v_c$分别是中心词和上下文的向量表示.上式<strong>分母要对整个上下文求和,计算量太大</strong>,我们尝试来减小整个计算量.比如负采样技术</p>
-<h1 id="负采样"><a href="#负采样" class="headerlink" title="负采样"></a>负采样</h1><p>首先把上式取log并展开<br>$$<br>\underset { \theta } { \arg \max } \sum _ { ( w , c ) \in D } \log p ( c | w ) = \sum _ { ( w , c ) \in D } \left( \log e ^ { v _ { c } \cdot v _ { w } } - \log \sum _ { c ^ { \prime } } e ^ { v _ { c ^ { \prime } } \cdot v _ { w } } \right)<br>$$<br>这里$( w , c ) \in D$ 意味着我们可以从语料中采样出他们, 那么我们定义 $( w , c ) $可以从D采样出的概率$p(D=1|w,c)$ ,与此对应,如果也可以定义$p(D=0|w,c)$ , 即$( w , c ) \notin D$.</p>
-<p>我们最大化所有可能出现的$( w , c ) \in D$的概率<br>$$<br>{ \arg \max _ { \theta } \prod _ { ( w , c ) \in D } p ( D = 1 | w , c ; \theta ) } \ { = \arg \max _ { \theta } \log \prod _ { ( w , c ) \in D } p ( D = 1 | w , c ; \theta ) } \ { = \arg\max _ { \theta } \sum _ { ( w , c ) \in D } \log p ( D = 1 | w , c ; \theta ) }<br>$$<br>$p ( D = 1 | w , c ; \theta ) $ 可以定义为(<strong>内积较大,则容易出现在同一个窗口内</strong>):<br>$$<br>p ( D = 1 | w , c ; \theta ) = \frac { 1 } { 1 + e ^ { - v _ { c } \cdot v _ { w } } }<br>$$<br>这样目标函数就转为<br>$$<br>\arg \max _ { \theta } \sum _ { ( w , c ) \in D } \log \frac { 1 } { 1 + e ^ { - v _ { c } \cdot v _ { w } } }<br>$$</p>
-<p>这里$D’​$就是随机采样的$(w,c)​$,我们假定他们全是错误的<strong>负样本</strong><br>$$<br> \arg \max _ { \theta } \prod _ { ( w , c ) \in D } p ( D = 1 | c , w ; \theta ) \prod _ { ( w , c ) \in D ^ { \prime } } p ( D = 0 | c , w ; \theta )  \<br>  = \arg \max _ { \theta } \prod _ { ( w , c ) \in D } p ( D = 1 | c , w ; \theta ) \prod _ { ( w , c ) \in D ^ { \prime } } ( 1 - p ( D = 1 | c , w ; \theta ) ) \<br>  { = \arg \max _ { \theta } \sum _ { ( w , c ) \in D } \log p ( D = 1 | c , w ; \theta ) + \sum _ { ( w , c ) \in D ^ { \prime } } \log ( 1 - p ( D = 1 | w , c ; \theta ) ) \<br> = \arg \max _ { \theta } \sum _ { ( w , c ) \in D } \log \frac { 1 } { 1 + e ^ { - v _ { c } \cdot v _ { w } } } + \sum _ { ( w , c ) \in D ^ { \prime } } \log \left( 1 - \frac { 1 } { 1 + e ^ { - v _ { c } \cdot v _ { w } } } \right) \<br> = \arg \max _ { \theta } \sum _ { ( w , c ) \in D } \log \frac { 1 } { 1 + e ^ { - v _ { c } \cdot v _ { w } } } + \sum _ { ( w , c ) \in D ^ { \prime } } \log \left( \frac { 1 } { 1 + e ^ { v _ { c } \cdot v _ { w } } } \right) } \<br>$$</p>
-<p>如果我们令$\sigma ( x ) = \frac { 1 } { 1 + e ^ { - x } }$ ,则<br>$$<br>\begin{aligned} \arg \max _ { \theta } &amp; \sum _ { ( w , c ) \in D } \log \frac { 1 } { 1 + e ^ { - v _ { c } \cdot v _ { w } } } + \sum _ { ( w , c ) \in D ^ { \prime } } \log \left( \frac { 1 } { 1 + e ^ { v _ { c } \cdot v _ { w } } } \right) \ = &amp; \arg \max _ { \theta } \sum _ { ( w , c ) \in D } \log \sigma \left( v _ { c } \cdot v _ { w } \right) + \sum _ { ( w , c ) \in D ^ { \prime } } \log \sigma \left( - v _ { c } \cdot v _ { w } \right) \end{aligned}<br>$$</p>
-
+<h1 id="word2vec"><a href="#word2vec" class="headerlink" title="word2vec"></a>word2vec</h1><h1 id="skip-gram"><a href="#skip-gram" class="headerlink" title="skip-gram"></a>skip-gram</h1><p>给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$</p>
+<script type="math/tex; mode=display">
+\arg \max _ { \theta } \prod _ { w \in T e x t } \left[ \prod _ { c \in C ( w ) } p ( c | w ; \theta ) \right]</script><p>其中, $C(w)$是单词$w$的上下文. 把$w$和$c$ 这种从文本中抽取的的word-pair构建一个集合$D$</p>
+<script type="math/tex; mode=display">
+\arg \max _ { \theta } \prod _ { ( w , c ) \in D } p ( c | w ; \theta )</script><p>skip-gram模型根据中心词来预测上下文的条件概率可以写为</p>
+<script type="math/tex; mode=display">
+p ( c | w ; \theta ) = \frac { e ^ { v _ { c } \cdot v _ { w } } } { \sum _ { c ^ { \prime } \in C } e ^ { v _ { c ^ { \prime } } \cdot v _ { w } } }</script><p>其中$v_w$和$v_c$分别是中心词和上下文的向量表示.上式<strong>分母要对整个上下文求和,计算量太大</strong>,我们尝试来减小整个计算量.比如负采样技术</p>
+<h1 id="负采样"><a href="#负采样" class="headerlink" title="负采样"></a>负采样</h1><p>首先把上式取log并展开</p>
+<script type="math/tex; mode=display">
+\underset { \theta } { \arg \max } \sum _ { ( w , c ) \in D } \log p ( c | w ) = \sum _ { ( w , c ) \in D } \left( \log e ^ { v _ { c } \cdot v _ { w } } - \log \sum _ { c ^ { \prime } } e ^ { v _ { c ^ { \prime } } \cdot v _ { w } } \right)</script><p>这里$( w , c ) \in D$ 意味着我们可以从语料中采样出他们, 那么我们定义 $( w , c ) $可以从D采样出的概率$p(D=1|w,c)$ ,与此对应,如果也可以定义$p(D=0|w,c)$ , 即$( w , c ) \notin D$.</p>
+<p>我们最大化所有可能出现的$( w , c ) \in D$的概率</p>
+<script type="math/tex; mode=display">
+{ \arg \max _ { \theta } \prod _ { ( w , c ) \in D } p ( D = 1 | w , c ; \theta ) } \\ { = \arg \max _ { \theta } \log \prod _ { ( w , c ) \in D } p ( D = 1 | w , c ; \theta ) } \\ { = \arg\max _ { \theta } \sum _ { ( w , c ) \in D } \log p ( D = 1 | w , c ; \theta ) }</script><p>$p ( D = 1 | w , c ; \theta ) $ 可以定义为(<strong>内积较大,则容易出现在同一个窗口内</strong>):</p>
+<script type="math/tex; mode=display">
+p ( D = 1 | w , c ; \theta ) = \frac { 1 } { 1 + e ^ { - v _ { c } \cdot v _ { w } } }</script><p>这样目标函数就转为</p>
+<script type="math/tex; mode=display">
+\arg \max _ { \theta } \sum _ { ( w , c ) \in D } \log \frac { 1 } { 1 + e ^ { - v _ { c } \cdot v _ { w } } }</script><p>这里$D’​$就是随机采样的$(w,c)​$,我们假定他们全是错误的<strong>负样本</strong></p>
+<script type="math/tex; mode=display">
+ \arg \max _ { \theta } \prod _ { ( w , c ) \in D } p ( D = 1 | c , w ; \theta ) \prod _ { ( w , c ) \in D ^ { \prime } } p ( D = 0 | c , w ; \theta )  \\ 
+  = \arg \max _ { \theta } \prod _ { ( w , c ) \in D } p ( D = 1 | c , w ; \theta ) \prod _ { ( w , c ) \in D ^ { \prime } } ( 1 - p ( D = 1 | c , w ; \theta ) ) \\
+  { = \arg \max _ { \theta } \sum _ { ( w , c ) \in D } \log p ( D = 1 | c , w ; \theta ) + \sum _ { ( w , c ) \in D ^ { \prime } } \log ( 1 - p ( D = 1 | w , c ; \theta ) ) \\
+ = \arg \max _ { \theta } \sum _ { ( w , c ) \in D } \log \frac { 1 } { 1 + e ^ { - v _ { c } \cdot v _ { w } } } + \sum _ { ( w , c ) \in D ^ { \prime } } \log \left( 1 - \frac { 1 } { 1 + e ^ { - v _ { c } \cdot v _ { w } } } \right) \\ 
+ = \arg \max _ { \theta } \sum _ { ( w , c ) \in D } \log \frac { 1 } { 1 + e ^ { - v _ { c } \cdot v _ { w } } } + \sum _ { ( w , c ) \in D ^ { \prime } } \log \left( \frac { 1 } { 1 + e ^ { v _ { c } \cdot v _ { w } } } \right) } \\</script><p>如果我们令$\sigma ( x ) = \frac { 1 } { 1 + e ^ { - x } }$ ,则</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \arg \max _ { \theta } & \sum _ { ( w , c ) \in D } \log \frac { 1 } { 1 + e ^ { - v _ { c } \cdot v _ { w } } } + \sum _ { ( w , c ) \in D ^ { \prime } } \log \left( \frac { 1 } { 1 + e ^ { v _ { c } \cdot v _ { w } } } \right) \\ = & \arg \max _ { \theta } \sum _ { ( w , c ) \in D } \log \sigma \left( v _ { c } \cdot v _ { w } \right) + \sum _ { ( w , c ) \in D ^ { \prime } } \log \sigma \left( - v _ { c } \cdot v _ { w } \right) \end{aligned}</script>
       
     </div>
 
@@ -562,8 +581,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/12/10/PRML_6_kernel methods/" rel="next" title="从零单排PRML 第六章 Kernel Methods">
-                <i class="fa fa-chevron-left"></i> 从零单排PRML 第六章 Kernel Methods
+              <a href="/Jhy1993.github.io/2018/12/10/PRML_6_kernel methods/" rel="next" title="从零单排PRML 第6章 Kernel Methods">
+                <i class="fa fa-chevron-left"></i> 从零单排PRML 第6章 Kernel Methods
               </a>
             
           </div>
