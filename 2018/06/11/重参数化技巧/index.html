@@ -501,11 +501,13 @@
 <h1 id="VAE中对高斯分布的重参数"><a href="#VAE中对高斯分布的重参数" class="headerlink" title="VAE中对高斯分布的重参数"></a>VAE中对高斯分布的重参数</h1><p>这里是对连续分布的重参数. </p>
 <p>VAE中隐变量z一般取高斯分布,即$z=\mathcal{N}(\mu, \sigma^2)$,然后从这个分布中采样.但是这个采样操作是<strong>不可导</strong>的,进而导致整个模型无法BP. 解决方法就是Reparametrization tricks重参数技巧.</p>
 <p>我们首先从从均值为0,标准差为1的高斯分布中采样,再放缩平移得到Z.</p>
-<p>$$<br>\mathbf { z } _ { i } = \mu _ { i } + \sigma _ { i } * \epsilon , \epsilon \sim \mathcal { N } ( 0 , \mathbf { I } )<br>$$</p>
-<p>这样从$\epsilon$到$\mathbf{z}$只涉及了线性操作(平移缩放),采样操作在NN计算图之外,而$\epsilon$对于NN来说只是一个常数.</p>
+<script type="math/tex; mode=display">
+\mathbf { z } _ { i } = \mu _ { i } + \sigma _ { i } * \epsilon , \epsilon \sim \mathcal { N } ( 0 , \mathbf { I } )</script><p>这样从$\epsilon$到$\mathbf{z}$只涉及了线性操作(平移缩放),采样操作在NN计算图之外,而$\epsilon$对于NN来说只是一个常数.</p>
 <h1 id="离散分布的采样Gumbel-softmax"><a href="#离散分布的采样Gumbel-softmax" class="headerlink" title="离散分布的采样Gumbel-softmax"></a>离散分布的采样Gumbel-softmax</h1><h3 id="Gumbel-Softmax-Trick"><a href="#Gumbel-Softmax-Trick" class="headerlink" title="Gumbel-Softmax Trick"></a>Gumbel-Softmax Trick</h3><p>VAE的例子是一个连续分布(正态分布)的重参数，离散分布的情况也一样，首先需要可以采样，使得离散的概率分布有意义而不是只取概率最大的值，其次需要可以计算梯度。那么怎么做到的，具体操作如下：</p>
-<p>  对于n维概率向量$\pi$,对$\pi$对应的离散随机变量$x_{\pi}$添加Gumbel噪声，再取样<br>$$<br>x_{\pi}=\arg\max(\log(\pi_i)+G_i)<br>$$<br>其中$G_i$是是独立同分布的标准Gumbel分布的随机变量，标准Gumbel分布的CDF为$F(x)=e^{-e^{-x}},F^{-1}(x)=-\log(-\log(x))$.这就是<strong>Gumbel-Max trick</strong>。可以看到由于这中间有一个<strong>argmax</strong>操作.</p>
-<p>上述的 <strong>argmax操作是不可导的</strong>. 所以尝试用softmax来代替, 即<strong>Gumbel-Softmax Trick</strong>. 这里我们假设argmax返回的是一个one-hot向量,那么我们需要找到argmax的一个显式且光滑的逼近. 这里的$G_i$可以利用$F_{-1}(x)$从均匀分布中采样得到,即$G_i=-\log(-\log(U_i)),U_i\sim U(0,1)$. </p>
+<p>  对于n维概率向量$\pi$,对$\pi$对应的离散随机变量$x_{\pi}$添加Gumbel噪声，再取样</p>
+<script type="math/tex; mode=display">
+x_{\pi}=\arg\max(\log(\pi_i)+G_i)</script><p>其中$G_i$是是独立同分布的标准Gumbel分布的随机变量，标准Gumbel分布的CDF为$F(x)=e^{-e^{-x}},F^{-1}(x)=-\log(-\log(x))$.这就是<strong>Gumbel-Max trick</strong>。可以看到由于这中间有一个<strong>argmax</strong>操作.</p>
+<p>上述的 <strong>argmax操作是不可导的</strong>. 所以尝试用softmax来代替, 即<strong>Gumbel-Softmax Trick</strong>. 这里我们假设argmax返回的是一个one-hot向量,那么我们需要找到argmax的一个显式且光滑的逼近. 这里的$G<em>i$可以利用$F</em>{-1}(x)$从均匀分布中采样得到,即$G_i=-\log(-\log(U_i)),U_i\sim U(0,1)$. </p>
 <p>综上总体思路: </p>
 <ol>
 <li>基于Gumbel Distribution采样来避免不可导问题</li>
@@ -520,16 +522,33 @@
 </li>
 <li><p>对应相加得到新的值向量$v’=[v_1+G_1,v_2+G_2,…,v_n+G_n]$ </p>
 </li>
-<li><p>通过softmax函数<br> $$<br> \sigma_{\tau}(v’_i)=\frac{e^{v’<em>i/\tau}}{\sum\limits</em>{j=1}^ne^{v’_j/\tau}}<br> $$</p>
-</li>
+<li><p>通过softmax函数</p>
+<script type="math/tex; mode=display">
+ \sigma_{\tau}(v'_i)=\frac{e^{v'_i/\tau}}{\sum\limits_{j=1}^ne^{v'_j/\tau}}</script></li>
 </ul>
-<p>这里$\sigma_{\tau}(v’<em>i)$ 就可以实现对argmax的显式且光滑的逼近<br>$$<br>{\lim</em>{\tau \to 0}}\sigma_{\tau}(v’_i)=argmax<br>$$<br>温度参数$\tau$的影响: $\tau$越小(趋近于0), 越接近categorical分布;$\tau$越大(趋近于无穷), 越接近均匀分布</p>
+<p>这里$\sigma_{\tau}(v’_i)$ 就可以实现对argmax的显式且光滑的逼近</p>
+<script type="math/tex; mode=display">
+{\lim_{\tau \to 0}}\sigma_{\tau}(v'_i)=argmax</script><p>温度参数$\tau$的影响: $\tau$越小(趋近于0), 越接近categorical分布;$\tau$越大(趋近于无穷), 越接近均匀分布</p>
 <p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fy6g6szlrjj314o0latcq.jpg" alt=""></p>
-<h2 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h2><p>常规的softmax形式为<br>$$<br>\pi_k=\frac{e^{x_k}}{\sum^K_{k’=1}e^{x’_k}}<br>$$<br>其中,$\pi_k$是softmax之后得到一个概率密度函数. 那么有没有某个分布能够等价于上述的分布呢?</p>
+<h2 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h2><p>常规的softmax形式为</p>
+<script type="math/tex; mode=display">
+\pi_k=\frac{e^{x_k}}{\sum^K_{k'=1}e^{x'_k}}</script><p>其中,$\pi_k$是softmax之后得到一个概率密度函数. 那么有没有某个分布能够等价于上述的分布呢?</p>
 <p>如果对每个$x_k$添加独立标准的gumbel噪声(位置为0,尺度为1),并选择值最大的维度输出,每次的输出结果有一个概率密度函数.这样一个概率密度同样为$\pi_k$ .</p>
 <p>化简</p>
-<p>$$<br>\begin{array}{l}<br>P(z_k\ge z_{k’};\forall k’\not = k|{x_{k’}}<em>{k’=1}^K)\ \qquad \qquad =\int \prod</em>{k’\not= k}e^{-e^{-(z_k-x_{k’})}}\cdot e^{-(z_k-x_k)-e^{-(z_k-x_k)}}\,dz_k \<br>\qquad \qquad = \int e^{-\sum_{k’\not=k}e^{-(z_k-x_{k’})}-(z_k-x_k)-e^{-(z_k-x_k)}}\,dz_k\<br>\qquad \qquad = \int e^{-\sum_{k’=1}^Ke^{-(z_k-x_{k’})}-(z_k-x_k)}\,dz_k\<br>\qquad \qquad = \int e^{-(\sum_{k’=1}^Ke^{x_{k’}})e^{-z_k}-z_k+x_k}\,dz_k\<br>\qquad \qquad = \int e^{-e^{-z_k+\ln(\sum_{k’=1}^Ke^{x_{k’}})}-z_k+x_k}\,dz_k \<br>\qquad \qquad = \int e^{-e^{-(z_k-\ln(\sum_{k’=1}^Ke^{x_{k’}}))}-(z_k-\ln(\sum_{k’=1}^Ke^{x_{k’}}))-\ln(\sum_{k’=1}^Ke^{x_{k’}})+x_k}\,dz_k \<br>\qquad \qquad = e^{-\ln(\sum_{k’=1}^Ke^{x_{k’}})+x_k}\int e^{-e^{-(z_k-\ln(\sum_{k’=1}^Ke^{x_{k’}}))}-(z_k-\ln(\sum_{k’=1}^Ke^{x_{k’}}))}\,dz_k\<br>\qquad \qquad = \frac{e^{x_k}}{\sum_{k’=1}^Ke^{x_{k’}}}\int e^{-e^{-(z_k-\ln(\sum_{k’=1}^Ke^{x_{k’}}))}-(z_k-\ln(\sum_{k’=1}^Ke^{x_{k’}}))}\,dz_k \<br>\qquad \qquad = \frac{e^{x_k}}{\sum_{k’=1}^Ke^{x_{k’}}}\int e^{-(z_k-\ln(\sum_{k’=1}^Ke^{x_{k’}}))-e^{-(z_k-\ln(\sum_{k’=1}^Ke^{x_{k’}}))}}\,dz_k<br>\end{array}<br>$$</p>
-<p>积分里面是$\mu=\ln(\sum_{k’=1}^Ke^{x_{k’}})$ 的gumbel分布,整个积分为1,则<br>$$<br>P(z_k\ge z_{k’};\forall k’\not = k|{x_{k’}}_{k’=1}^K)=\frac{e^{x_k}}{\sum_{k’=1}^Ke^{x_{k’}}}<br>$$<br>结果与softmax的分布一致.</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+P(z_k\ge z_{k'};\forall k'\not = k|\{x_{k'}\}_{k'=1}^K)\\ \qquad \qquad =\int \prod_{k'\not= k}e^{-e^{-(z_k-x_{k'})}}\cdot e^{-(z_k-x_k)-e^{-(z_k-x_k)}}\,dz_k \\
+\qquad \qquad = \int e^{-\sum_{k'\not=k}e^{-(z_k-x_{k'})}-(z_k-x_k)-e^{-(z_k-x_k)}}\,dz_k\\
+\qquad \qquad = \int e^{-\sum_{k'=1}^Ke^{-(z_k-x_{k'})}-(z_k-x_k)}\,dz_k\\
+\qquad \qquad = \int e^{-(\sum_{k'=1}^Ke^{x_{k'}})e^{-z_k}-z_k+x_k}\,dz_k\\
+\qquad \qquad = \int e^{-e^{-z_k+\ln(\sum_{k'=1}^Ke^{x_{k'}})}-z_k+x_k}\,dz_k \\
+\qquad \qquad = \int e^{-e^{-(z_k-\ln(\sum_{k'=1}^Ke^{x_{k'}}))}-(z_k-\ln(\sum_{k'=1}^Ke^{x_{k'}}))-\ln(\sum_{k'=1}^Ke^{x_{k'}})+x_k}\,dz_k \\
+\qquad \qquad = e^{-\ln(\sum_{k'=1}^Ke^{x_{k'}})+x_k}\int e^{-e^{-(z_k-\ln(\sum_{k'=1}^Ke^{x_{k'}}))}-(z_k-\ln(\sum_{k'=1}^Ke^{x_{k'}}))}\,dz_k\\
+\qquad \qquad = \frac{e^{x_k}}{\sum_{k'=1}^Ke^{x_{k'}}}\int e^{-e^{-(z_k-\ln(\sum_{k'=1}^Ke^{x_{k'}}))}-(z_k-\ln(\sum_{k'=1}^Ke^{x_{k'}}))}\,dz_k \\
+\qquad \qquad = \frac{e^{x_k}}{\sum_{k'=1}^Ke^{x_{k'}}}\int e^{-(z_k-\ln(\sum_{k'=1}^Ke^{x_{k'}}))-e^{-(z_k-\ln(\sum_{k'=1}^Ke^{x_{k'}}))}}\,dz_k
+\end{array}</script><p>积分里面是$\mu=\ln(\sum<em>{k’=1}^Ke^{x</em>{k’}})$ 的gumbel分布,整个积分为1,则</p>
+<script type="math/tex; mode=display">
+P(z_k\ge z_{k'};\forall k'\not = k|\{x_{k'}\}_{k'=1}^K)=\frac{e^{x_k}}{\sum_{k'=1}^Ke^{x_{k'}}}</script><p>结果与softmax的分布一致.</p>
 <h2 id="为什么需要gumbel-softmax"><a href="#为什么需要gumbel-softmax" class="headerlink" title="为什么需要gumbel-softmax"></a>为什么需要gumbel-softmax</h2><p><a href="https://blog.csdn.net/jackytintin/article/details/79364490" target="_blank" rel="noopener">乍看起来</a>，gumbel-softmax 的用处令人费解。比如上面的代码示例，直接使用 softmax，也可以达到类似的参数训练效果。但两者有着根本的区别。<br>原理上，常规的 softmax 直接建模了一个概率分布（多项分布），基于交叉熵的训练准则使分布尽可能靠近目标分布；而 gumbel-softmax 则是对多项分布采样的一个近似。使用上，常规的有监督学习任务（分类器训练）中，直接学习输出的概率分布是自然的选择；而对于涉及采样的学习任务（VAE 隐变量采样、强化学习中对actions 集合进行采样以确定下一步的操作），gumbel-softmax 提供了一种再参数化的方法，使得模型可以以端到端的方式进行训练。</p>
 <h1 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h1><ol>
 <li><a href="https://arxiv.org/pdf/1611.01144.pdf" target="_blank" rel="noopener">CATEGORICAL REPARAMETERIZATION<br>WITH GUMBEL-SOFTMAX</a> </li>
@@ -603,8 +622,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/06/11/PRML_4_Linear Models for Classification/" rel="next" title="从零单排PRML 第4章 Linear Models for Classification">
-                <i class="fa fa-chevron-left"></i> 从零单排PRML 第4章 Linear Models for Classification
+              <a href="/Jhy1993.github.io/2018/06/11/template/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -613,8 +632,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/06/11/各种GAN/" rel="prev" title="各种GAN">
-                各种GAN <i class="fa fa-chevron-right"></i>
+              <a href="/Jhy1993.github.io/2018/06/11/gcn/" rel="prev" title="Graph Neural Network之GCN的理论">
+                Graph Neural Network之GCN的理论 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
