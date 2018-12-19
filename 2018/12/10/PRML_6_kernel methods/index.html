@@ -121,7 +121,7 @@
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fy8ohlkmgpj31010d1gnq.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fy8ovn5sunj30ss0g4ju7.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fy8p1so66rj311d0emq4n.jpg">
-<meta property="og:updated_time" content="2018-12-16T13:26:10.414Z">
+<meta property="og:updated_time" content="2018-12-17T12:22:17.263Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零单排PRML 第6章 Kernel Methods">
 <meta name="twitter:description" content="引言机器学习里面对待训练数据有2种,抛弃或者保留  有的是训练完得到参数后就可以抛弃了，比如神经网络； 有的是还需要原来的训练数据比如KNN，SVM也需要保留一部分数据—支持向量。  许多线性参数模型可以转化为对偶形式,转化后依然是线性模型. 只是线性组合的对象变成了一组非线性基函数. 这里的非线性基函数就是在基于各个数据点计算的核函数. 对偶表示最小均方误差形式  J ( \boldsymbol">
@@ -415,7 +415,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-16 21:26:10" itemprop="dateModified" datetime="2018-12-16T21:26:10+08:00">2018-12-16</time>
+                <time title="Modified: 2018-12-17 20:22:17" itemprop="dateModified" datetime="2018-12-17T20:22:17+08:00">2018-12-17</time>
               
             
           </span>
@@ -641,7 +641,7 @@ p \left( \mathbf { a } _ { N + 1 } \right) = \mathcal { N } \left( \mathbf { a }
 <p>注: 本节的$\mathbf { a } <em> { N }$就是前面的 $\mathbf { t } </em> { N }$.</p>
 <p>上节说到, $p \left( t <em> { N + 1 } = 1 | \mathbf { t } </em> { N } \right)$ 不好求解.</p>
 <script type="math/tex; mode=display">
-\begin{aligned} p \left( a _ { N + 1 } | \mathbf { t } _ { N } \right) & = \int p \left( a _ { N + 1 } , \mathbf { a } _ { N } | \mathbf { t } _ { N } \right) \mathrm { d } \mathbf { a } _ { N } \\ & = \frac { 1 } { p \left( \mathbf { t } _ { N } \right) } \int p \left( a _ { N + 1 } , \mathbf { a } _ { N } \right) p \left( \mathbf { t } _ { N } | a _ { N + 1 } , \mathbf { a } _ { N } \right) \mathrm { d } \mathbf { a } _ { N } \\ & = \frac { 1 } { p \left( \mathbf { t } _ { N } \right) } \int p \left( a _ { N + 1 } | \mathbf { a } _ { N } \right) p \left( \mathbf { a } _ { N } \right) p \left( \mathbf { t } _ { N } | \mathbf { a } _ { N } \right) \mathrm { d } \mathbf { a } _ { N } \\ & = \int p \left( a _ { N + 1 } | \mathbf { a } _ { N } \right) p \left( \mathbf { a } _ { N } | \mathbf { t } _ { N } \right) \mathrm { d } \mathbf { a } _ { N } \end{aligned}</script><p>积分中</p>
+\begin{aligned} p \left( a _ { N + 1 } | \mathbf { t } _ { N } \right) & = \int p \left( a _ { N + 1 } , \mathbf { a } _ { N } | \mathbf { t } _ { N } \right) \mathrm { d } \mathbf { a } _ { N } \\ & = \frac { 1 } { p \left( \mathbf { t } _ { N } \right) } \int p \left( a _ { N + 1 } , \mathbf { a } _ { N } \right) p \left( \mathbf { t } _ { N } | a _ { N + 1 } , \mathbf { a } _ { N } \right) \mathrm { d } \mathbf { a } _ { N } \\ & = \frac { 1 } { p \left( \mathbf { t } _ { N } \right) } \int p \left( a _ { N + 1 } | \mathbf { a } _ { N } \right) p \left( \mathbf { a } _ { N } \right) p \left( \mathbf { t } _ { N } | \mathbf { a } _ { N } \right) \mathrm { d } \mathbf { a } _ { N } \\ & = \int p \left( a _ { N + 1 } | \mathbf { a } _ { N } \right) p \left( \mathbf { a } _ { N } | \mathbf { t } _ { N } \right) \mathrm { d } \mathbf { a } _ { N } \end{aligned}</script><p>其中$p \left( \mathbf { t } <em> { N } | a </em> { N + 1 } , \mathbf { a } <em> { N } \right) = p \left( \mathbf { t } </em> { N } | \mathbf { a } _ { N } \right)$ .上述积分中</p>
 <ul>
 <li>第一项是高斯过程,$p \left( a <em> { N + 1 } | \mathbf { a } </em> { N } \right) = \mathcal { N } \left( a <em> { N + 1 } | \mathbf { k } ^ { \mathrm { T } } \mathbf { C } </em> { N } ^ { - 1 } \mathbf { a } <em> { N } , c - \mathbf { k } ^ { \mathrm { T } } \mathbf { C } </em> { N } ^ { - 1 } \mathbf { k } \right)$ </li>
 <li>第二项是后验分布,如果我们能通过拉普拉斯近似找到一个高斯分布</li>
