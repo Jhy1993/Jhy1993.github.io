@@ -108,27 +108,25 @@
 
 
 
-  <meta name="description" content="本文来自network embedding大佬Peng Cui老师组。针对超图，超边设计了一种深度模型来学习embedding。整体感觉是超图版本的SDNE。 Motivation本文首先研究了如何在embedding中保持超边的不可分割性，同时证明了线性的相似度函数无法保持超边相似性。这样就迫使我们不得不设计一个非线性的深度模型来保持超边的不可分割性。 Model整个模型分2块，1. 类似SDN">
-<meta name="keywords" content="Deep Learning,Network Embedding,Hypergraph">
+  <meta name="description" content="s">
+<meta name="keywords" content="Deep Learning,PRML,Machine Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="18AAAI_DHNE_Structural Deep Embedding for Hyper-Networks">
-<meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/12/13/18AAAI_DHNE/index.html">
+<meta property="og:title" content="从零单排PRML 第9章 Mixture Models and EM">
+<meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/12/21/PRML_9_GMM_EM/index.html">
 <meta property="og:site_name" content="Better Call Saul">
-<meta property="og:description" content="本文来自network embedding大佬Peng Cui老师组。针对超图，超边设计了一种深度模型来学习embedding。整体感觉是超图版本的SDNE。 Motivation本文首先研究了如何在embedding中保持超边的不可分割性，同时证明了线性的相似度函数无法保持超边相似性。这样就迫使我们不得不设计一个非线性的深度模型来保持超边的不可分割性。 Model整个模型分2块，1. 类似SDN">
+<meta property="og:description" content="s">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fy9tjh65ttj30vc0mawi2.jpg">
-<meta property="og:updated_time" content="2018-12-17T08:27:57.676Z">
+<meta property="og:updated_time" content="2018-12-21T13:26:03.277Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="18AAAI_DHNE_Structural Deep Embedding for Hyper-Networks">
-<meta name="twitter:description" content="本文来自network embedding大佬Peng Cui老师组。针对超图，超边设计了一种深度模型来学习embedding。整体感觉是超图版本的SDNE。 Motivation本文首先研究了如何在embedding中保持超边的不可分割性，同时证明了线性的相似度函数无法保持超边相似性。这样就迫使我们不得不设计一个非线性的深度模型来保持超边的不可分割性。 Model整个模型分2块，1. 类似SDN">
-<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fy9tjh65ttj30vc0mawi2.jpg">
+<meta name="twitter:title" content="从零单排PRML 第9章 Mixture Models and EM">
+<meta name="twitter:description" content="s">
 
 
 
 
 
 
-  <link rel="canonical" href="https://Jhy1993.github.io/Jhy1993.github.io/2018/12/13/18AAAI_DHNE/"/>
+  <link rel="canonical" href="https://Jhy1993.github.io/Jhy1993.github.io/2018/12/21/PRML_9_GMM_EM/"/>
 
 
 
@@ -138,7 +136,7 @@
   };
 </script>
 
-  <title>18AAAI_DHNE_Structural Deep Embedding for Hyper-Networks | Better Call Saul</title>
+  <title>从零单排PRML 第9章 Mixture Models and EM | Better Call Saul</title>
   
 
 
@@ -352,7 +350,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/12/13/18AAAI_DHNE/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/12/21/PRML_9_GMM_EM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Double E">
@@ -369,7 +367,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">18AAAI_DHNE_Structural Deep Embedding for Hyper-Networks
+          <h1 class="post-title" itemprop="name headline">从零单排PRML 第9章 Mixture Models and EM
               
             
           </h1>
@@ -394,24 +392,12 @@
                 
               
 
-              <time title="Created: 2018-12-13 11:06:24" itemprop="dateCreated datePublished" datetime="2018-12-13T11:06:24+08:00">2018-12-13</time>
+              <time title="Created: 2018-12-21 21:25:59 / Modified: 21:26:03" itemprop="dateCreated datePublished" datetime="2018-12-21T21:25:59+08:00">2018-12-21</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-17 16:27:57" itemprop="dateModified" datetime="2018-12-17T16:27:57+08:00">2018-12-17</time>
               
             
           </span>
@@ -428,7 +414,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/PRML/" itemprop="url" rel="index"><span itemprop="name">PRML</span></a></span>
 
                 
                 
@@ -443,8 +429,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/12/13/18AAAI_DHNE/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/12/13/18AAAI_DHNE/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/12/21/PRML_9_GMM_EM/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/12/21/PRML_9_GMM_EM/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -452,7 +438,7 @@
 
           
           
-             <span id="/Jhy1993.github.io/2018/12/13/18AAAI_DHNE/" class="leancloud_visitors" data-flag-title="18AAAI_DHNE_Structural Deep Embedding for Hyper-Networks">
+             <span id="/Jhy1993.github.io/2018/12/21/PRML_9_GMM_EM/" class="leancloud_visitors" data-flag-title="从零单排PRML 第9章 Mixture Models and EM">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -491,54 +477,7 @@
       
 
       
-        <p>本文来自network embedding大佬Peng Cui老师组。针对超图，超边设计了一种深度模型来学习embedding。整体感觉是超图版本的SDNE。</p>
-<h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>本文首先研究了如何在embedding中保持<strong>超边的不可分割性</strong>，同时证明了<strong>线性的相似度函数无法保持超边相似性</strong>。这样就迫使我们不得不设计一个非线性的深度模型来保持超边的不可分割性。</p>
-<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><p>整个模型分2块，1. 类似SDNE的结构保持部分，2. N-tuplewise similarity function。</p>
-<h2 id="Structure-Preserve（AutoEncoder）"><a href="#Structure-Preserve（AutoEncoder）" class="headerlink" title="Structure Preserve（AutoEncoder）"></a>Structure Preserve（AutoEncoder）</h2><p>这里用了一个SDNE中的AutoEncoder来对节点的邻接向量（邻接矩阵某一行）来进行编码。</p>
-<ol>
-<li><p>那么超图中的邻接矩阵是怎么定义的呢？</p>
-<p>这里的邻接是指可以通过超边连接。例如<strong>超边实例</strong>e1：（a1，b1，c1）和e2：（a1， b2， c3）</p>
-<p>那么a1-e1-b1， a1-e1-c1, a1-e2-b2, a1-e2-c3,可以得到a1的基于超边的邻居有b1,c1,b2,c3. </p>
-<p>上述过程用矩阵的形式表达为， 节点-超边实例的超边连接矩阵 $\mathbf{H}$，这样$\mathbf{H}\mathbf{H}^T$ 就得到了 节点-超边实例-节点 的邻接矩阵， 然后做下处理（$-\mathbf{D}_v$）即可得到超图的邻接矩阵 $\mathbf{A}$。</p>
-</li>
-<li><p>不同类型节点的邻接矩阵一样吗？</p>
-<p>不一样，针对t类型节点其对应的邻接矩阵为$\mathbf{A}^t$。</p>
-</li>
-</ol>
-<p>这里将不同类型的节点映射到不同空间。整体loss</p>
-<p>$$<br>\mathcal { L } _ { 2 } = \sum _ { t } \left| \operatorname { sign } \left( \mathbf { A } _ { i } ^ { t } \right) \odot \left( \mathbf { A } _ { i } ^ { t } - \hat { \mathbf { A } } _ { i } ^ { t } \right) \right| _ { F } ^ { 2 }<br>$$</p>
-<h2 id="N-tuplewise-similarity-function"><a href="#N-tuplewise-similarity-function" class="headerlink" title="N-tuplewise similarity function"></a>N-tuplewise similarity function</h2><p>这个函数主要是为了保持超边（N元组）的相似性，这里的公式都是以3元组（a，b，c）为例,输入是$\left( \mathbf { X } _ { i } ^ { a } , \mathbf { X } _ { j } ^ { b } , \mathbf { X } _ { k } ^ { c } \right)$ 。</p>
-<ul>
-<li>三元组的联合表示:</li>
-</ul>
-<p>$$<br>\mathbf { L } _ { i j k } = \sigma \left( \mathbf { W } _ { a } ^ { ( 2 ) } <em> \mathbf { X } _ { i } ^ { a } + \mathbf { W } _ { b } ^ { ( 2 ) } </em> \mathbf { X } _ { j } ^ { b } + \mathbf { W } _ { c } ^ { ( 2 ) } * \mathbf { X } _ { k } ^ { c } + \mathbf { b } ^ { ( 2 ) } \right)<br>$$</p>
-<ul>
-<li>三元组的相似性</li>
-</ul>
-<p>$$<br>\mathbf { S } _ { i j k } \equiv \mathcal { S } \left( \mathbf { X } _ { i } ^ { a } , \mathbf { X } _ { j } ^ { b } , \mathbf { X } _ { k } ^ { c } \right) = \sigma \left( \mathbf { W } ^ { ( 3 ) } * \mathbf { L } _ { i j k } + \mathbf { b } ^ { ( 3 ) } \right)<br>$$</p>
-<ul>
-<li>分类loss, 存在超边label就是1</li>
-</ul>
-<p>$$<br>\mathcal { L } _ { 1 } = - \left( \mathbf { R } _ { i j k } \log \mathbf { S } _ { i j k } + \left( 1 - \mathbf { R } _ { i j k } \right) \log \left( 1 - \mathbf { S } _ { i j k } \right) \right)<br>$$</p>
-<p>一句话： 保持N元组的相似度函数，就把N元组作为输入，经过NN映射得到一个相似度。</p>
-<p>整个模型图如下:</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fy9tjh65ttj30vc0mawi2.jpg" alt=""></p>
-<h1 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h1><p>本文的实验不同于一般的network embedding实验。</p>
-<p><strong>数据</strong>： 数据集都是只针对于单种hyperedge，那么如果有多种hyperedge本文的模型处理不了，应该怎么做？</p>
-<p><strong>对比算法</strong>： DHNE是基于超边（三元组）的算法，数据集也是超图。一些pairwise的算法如Deepwalk和line也都作为baseline。这样怎么去和baseline对比呢？</p>
-<ul>
-<li>这里首先将超图基于图1（c）的<strong>clique expansion</strong>技术转化为<strong>普通图</strong></li>
-<li>对于<strong>超图重构</strong>和<strong>超边预测</strong>，这里对一条超边里面的节点分别计算pairwise的相似性，并取<strong>mean</strong>或者<strong>minimum</strong>来做预测</li>
-</ul>
-<h2 id="网络重构（超图重构）"><a href="#网络重构（超图重构）" class="headerlink" title="网络重构（超图重构）"></a>网络重构（超图重构）</h2><p>这里是重构超图，文中的“We use the learned embeddings to predict the links of origin networks”的link也是超边。</p>
-<h2 id="链路预测（超边预测）"><a href="#链路预测（超边预测）" class="headerlink" title="链路预测（超边预测）"></a>链路预测（超边预测）</h2><p>对于DHNE， 训练好的模型<strong>一方面可以得到不同类型节点的embedding，一方面可以得到计算超边的相似性函数</strong></p>
-<p>这里做了2种不同的任务</p>
-<ol>
-<li>隐藏20%的超边，用80%的边来训练网络。</li>
-<li>对超边进行采样（改变稀疏度），并重复任务1</li>
-</ol>
-<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>本文的首先做了超图的embedding问题，又有一定的理论证明，最后设计模型验证了效果。感觉两个亮点1.是分析了线性相似度函数的局限性 2.N-tuplewise similarity function的设计。</p>
-<p>那么如果一个超图中有多种类型的超边该怎么处理呢？</p>
+        <p>s</p>
 
       
     </div>
@@ -590,9 +529,9 @@
           
             <a href="/Jhy1993.github.io/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
           
-            <a href="/Jhy1993.github.io/tags/Network-Embedding/" rel="tag"># Network Embedding</a>
+            <a href="/Jhy1993.github.io/tags/PRML/" rel="tag"># PRML</a>
           
-            <a href="/Jhy1993.github.io/tags/Hypergraph/" rel="tag"># Hypergraph</a>
+            <a href="/Jhy1993.github.io/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
           
         </div>
       
@@ -605,8 +544,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/12/13/word2vec/" rel="next" title="word2vec, skip-gram, negative sampling">
-                <i class="fa fa-chevron-left"></i> word2vec, skip-gram, negative sampling
+              <a href="/Jhy1993.github.io/2018/12/13/18AAAI_DHNE/" rel="next" title="18AAAI_DHNE_Structural Deep Embedding for Hyper-Networks">
+                <i class="fa fa-chevron-left"></i> 18AAAI_DHNE_Structural Deep Embedding for Hyper-Networks
               </a>
             
           </div>
@@ -614,10 +553,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Jhy1993.github.io/2018/12/21/PRML_9_GMM_EM/" rel="prev" title="从零单排PRML 第9章 Mixture Models and EM">
-                从零单排PRML 第9章 Mixture Models and EM <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -665,17 +600,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -826,22 +752,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Motivation"><span class="nav-number">1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Structure-Preserve（AutoEncoder）"><span class="nav-number">2.1.</span> <span class="nav-text">Structure Preserve（AutoEncoder）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N-tuplewise-similarity-function"><span class="nav-number">2.2.</span> <span class="nav-text">N-tuplewise similarity function</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Experiments"><span class="nav-number">3.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络重构（超图重构）"><span class="nav-number">3.1.</span> <span class="nav-text">网络重构（超图重构）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链路预测（超边预测）"><span class="nav-number">3.2.</span> <span class="nav-text">链路预测（超边预测）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-number">4.</span> <span class="nav-text">Summary</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

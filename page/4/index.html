@@ -349,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/06/11/各种GAN/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/06/11/PRML_4_Linear Models for Classification/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Double E">
@@ -368,8 +368,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/06/11/各种GAN/" itemprop="url">
-                  各种GAN
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/06/11/PRML_4_Linear Models for Classification/" itemprop="url">
+                  从零单排PRML 第4章 Linear Models for Classification
                 </a>
               
             
@@ -412,7 +412,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-14 15:34:22" itemprop="dateModified" datetime="2018-12-14T15:34:22+08:00">2018-12-14</time>
+                <time title="Modified: 2018-12-21 21:21:50" itemprop="dateModified" datetime="2018-12-21T21:21:50+08:00">2018-12-21</time>
               
             
           </span>
@@ -429,7 +429,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/ML-DL/" itemprop="url" rel="index"><span itemprop="name">ML & DL</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/PRML/" itemprop="url" rel="index"><span itemprop="name">PRML</span></a></span>
 
                 
                 
@@ -444,8 +444,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/06/11/各种GAN/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/06/11/各种GAN/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/06/11/PRML_4_Linear Models for Classification/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/06/11/PRML_4_Linear Models for Classification/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -453,7 +453,7 @@
 
           
           
-             <span id="/Jhy1993.github.io/2018/06/11/各种GAN/" class="leancloud_visitors" data-flag-title="各种GAN">
+             <span id="/Jhy1993.github.io/2018/06/11/PRML_4_Linear Models for Classification/" class="leancloud_visitors" data-flag-title="从零单排PRML 第4章 Linear Models for Classification">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -486,26 +486,223 @@
       
         
           
-          GANSimple GANBasic Idea: MLE $\rightarrow$ minimize KL 
+          拉普拉斯近似在PRML 第6章 高斯过程中有应用.
+首先说拉普拉斯近似有什么用?
+我们都知道高斯分布有很多良好的性质,便于分析.那么如果一个分布$p(z)$不是高斯的怎么办? 那就要通过拉普拉斯近似来找到一个高斯分布$q(z)$来近似它.$$p ( z ) = \frac { 1 } { Z } f ( z )$$
+下面来看具体怎么做?
 
-given a data distribution $P_{data}(x)$
+找到分布$p(z)$的众数. 
 
-$pixel \rightarrow vector$ means the distribution of image
-
-
-a distribution $P_G(x;\theta)$ parametered by $\theta$
-
-$$\theta^*=argmax$$
+找到以该众数为中心的高斯分布$q(z)$.
 
 
-Generator
-
-G 
+1. 找到分布$p(z)$的众数. 
+   因为我们的里用来近似的高斯分布$
           ...
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/06/11/各种GAN/#more" rel="contents">
+              <a class="btn" href="/Jhy1993.github.io/2018/06/11/PRML_4_Linear Models for Classification/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/06/11/18KDD_MPCN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Double E">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
+      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Better Call Saul">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/06/11/18KDD_MPCN/" itemprop="url">
+                  18KDD_Multi-Pointer Co-Attention Networks for Recommendation
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-11 21:33:44" itemprop="dateCreated datePublished" datetime="2018-06-11T21:33:44+08:00">2018-06-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-15 23:17:20" itemprop="dateModified" datetime="2018-12-15T23:17:20+08:00">2018-12-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Jhy1993.github.io/2018/06/11/18KDD_MPCN/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/06/11/18KDD_MPCN/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Jhy1993.github.io/2018/06/11/18KDD_MPCN/" class="leancloud_visitors" data-flag-title="18KDD_Multi-Pointer Co-Attention Networks for Recommendation">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          本文是一篇融合review信息做评分预测的推荐论文.针对user-item pair,在现有的co-attention机制上加入了对review的选择(引入pointer mechanism)来选择最有价值的user’s review 和item’s review.
+Motivation每个user 或者 item都会有很多reviews(一个review list), 同时这些review的价值不同.而现有的融合review的推荐算法都是把review-list拼接起来代表user/item.
+          ...
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Jhy1993.github.io/2018/06/11/18KDD_MPCN/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -2238,7 +2435,7 @@ Given an array of integers, return indices of the two numbers such that they add
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2987,6 +3184,8 @@ Given an array of integers, return indices of the two numbers such that they add
 
   
   
+    
+      
     
       
     
