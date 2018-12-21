@@ -690,9 +690,7 @@ Struc
           
           最新版见
 https://jhy1993.github.io/Jhy1993.github.io/2018/12/13/word2vec/
-word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$
-
-\arg \max _ { \theta } \prod _ { w \in T e x t } \left[ \prod _ { c \in C ( w ) } p ( c | w ; \theta ) \right]其中
+word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们考虑条件概率$p(c|w;\theta)$$$\arg \max _ { \theta } \prod _ { w \in T e x t } \left[ \prod _ { c \in C ( w ) } p ( c | w ; \theta ) \right]$$
           ...
           <!--noindex-->
           
@@ -817,7 +815,7 @@ word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们�
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-17 20:22:17" itemprop="dateModified" datetime="2018-12-17T20:22:17+08:00">2018-12-17</time>
+                <time title="Modified: 2018-12-21 14:57:25" itemprop="dateModified" datetime="2018-12-21T14:57:25+08:00">2018-12-21</time>
               
             
           </span>
@@ -894,14 +892,12 @@ word2vecskip-gram给定一个单词 $w$ 和其窗口内的上下文 $c$, 我们�
           引言机器学习里面对待训练数据有2种,抛弃或者保留
 
 有的是训练完得到参数后就可以抛弃了，比如神经网络；
-有的是还需要原来的训练数据比如KNN，SVM也需要保留一部分数据—支持向量。
+有的是还需要原来的训练数据比如KNN，SVM也需要保留一部分数据–支持向量。
 
 许多线性参数模型可以转化为对偶形式,转化后依然是线性模型.
 只是线性组合的对象变成了一组非线性基函数.
 这里的非线性基函数就是在基于各个数据点计算的核函数.
-对偶表示最小均方误差形式
-
-J ( \boldsymbol { w } ) = \frac { 1 } { 2 } \sum _ { n = 1 } ^ { 
+对偶表示最小均方误差形式$$J ( \boldsymbol { w } ) = \frac { 1 } { 2 } \sum _ { n = 1 } ^ { 
           ...
           <!--noindex-->
           
@@ -1302,10 +1298,9 @@ J ( \boldsymbol { w } ) = \frac { 1 } { 2 } \sum _ { n = 1 } ^ {
           
           本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离)
 F-散度散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度.
-
-D _ { f } ( p \| q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x这里的$f$需要满足2个条件: $f$是凸函数且$f(1)=0$.
+$$D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x$$这里的$f$需要满足2个条件: $f$是凸函数且$f(1)=0$.
 可以证明:
-因为$f$是凸函数,由Jensen不等式可知 $E(f(x)) &gt
+因为$f$是凸函数,由Jensen不等式可知 $E(f(x)) &
           ...
           <!--noindex-->
           
