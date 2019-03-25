@@ -117,7 +117,7 @@
 <meta property="og:description" content="最新版见 https://jhy1993.github.io/Jhy1993.github.io/2018/06/11/重参数化技巧/ 这里讨论各种各样的Reparametrization tricks重参数技巧  对连续分布的重参数 VAE 对离散分布的不可导问题的重参数  VAE中对高斯分布的重参数这里是对连续分布的重参数.  VAE中隐变量z一般取高斯分布,即$z=\mathcal{N}(">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fy6g6szlrjj314o0latcq.jpg">
-<meta property="og:updated_time" content="2018-12-15T13:42:04.468Z">
+<meta property="og:updated_time" content="2019-03-24T08:56:30.951Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reparametrization tricks 重参数技巧">
 <meta name="twitter:description" content="最新版见 https://jhy1993.github.io/Jhy1993.github.io/2018/06/11/重参数化技巧/ 这里讨论各种各样的Reparametrization tricks重参数技巧  对连续分布的重参数 VAE 对离散分布的不可导问题的重参数  VAE中对高斯分布的重参数这里是对连续分布的重参数.  VAE中隐变量z一般取高斯分布,即$z=\mathcal{N}(">
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-15 21:42:04" itemprop="dateModified" datetime="2018-12-15T21:42:04+08:00">2018-12-15</time>
+                <time title="Modified: 2019-03-24 16:56:30" itemprop="dateModified" datetime="2019-03-24T16:56:30+08:00">2019-03-24</time>
               
             
           </span>
@@ -499,7 +499,7 @@
 <li>对离散分布的不可导问题的重参数</li>
 </ul>
 <h1 id="VAE中对高斯分布的重参数"><a href="#VAE中对高斯分布的重参数" class="headerlink" title="VAE中对高斯分布的重参数"></a>VAE中对高斯分布的重参数</h1><p>这里是对连续分布的重参数. </p>
-<p>VAE中隐变量z一般取高斯分布,即$z=\mathcal{N}(\mu, \sigma^2)$,然后从这个分布中采样.但是这个采样操作是<strong>不可导</strong>的,进而导致整个模型无法BP. 解决方法就是Reparametrization tricks重参数技巧.</p>
+<p>VAE中隐变量z一般取高斯分布,即$z=\mathcal{N}(\mu, \sigma^2)​$,然后从这个分布中采样.但是这个采样操作是<strong>不可导</strong>的,进而导致整个模型无法BP. 解决方法就是Reparametrization tricks重参数技巧.</p>
 <p>我们首先从从均值为0,标准差为1的高斯分布中采样,再放缩平移得到Z.</p>
 <p>$$<br>\mathbf { z } _ { i } = \mu _ { i } + \sigma _ { i } * \epsilon , \epsilon \sim \mathcal { N } ( 0 , \mathbf { I } )<br>$$</p>
 <p>这样从$\epsilon$到$\mathbf{z}$只涉及了线性操作(平移缩放),采样操作在NN计算图之外,而$\epsilon$对于NN来说只是一个常数.</p>
@@ -603,8 +603,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/06/11/各种GAN/" rel="next" title="各种GAN">
-                <i class="fa fa-chevron-left"></i> 各种GAN
+              <a href="/Jhy1993.github.io/2018/06/11/PRML_4_Linear Models for Classification/" rel="next" title="从零单排PRML 第4章 Linear Models for Classification">
+                <i class="fa fa-chevron-left"></i> 从零单排PRML 第4章 Linear Models for Classification
               </a>
             
           </div>
@@ -613,8 +613,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/06/11/101-200/" rel="prev" title="Sentences 101-200">
-                Sentences 101-200 <i class="fa fa-chevron-right"></i>
+              <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/021.Merge_two_sorted_lists/" rel="prev" title="21. Merge Two Sorted Lists">
+                21. Merge Two Sorted Lists <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -692,7 +692,7 @@
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -764,7 +764,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -858,7 +858,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright"> &copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright"> &copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

@@ -108,19 +108,19 @@
 
 
 
-  <meta name="description" content="拉普拉斯近似在PRML 第6章 高斯过程中有应用. 首先说拉普拉斯近似有什么用? 我们都知道高斯分布有很多良好的性质,便于分析.那么如果一个分布$p(z)$不是高斯的怎么办? 那就要通过拉普拉斯近似来找到一个高斯分布$q(z)$来近似它.$$p ( z ) = \frac { 1 } { Z } f ( z )$$ 下面来看具体怎么做?  找到分布$p(z)$的众数.   找到以该众数为中心的高斯">
+  <meta name="description" content="拉普拉斯近似在PRML 第6章 高斯过程中有应用. 首先说拉普拉斯近似有什么用? 我们都知道高斯分布有很多良好的性质,便于分析.那么如果一个分布$p(z)$不是高斯的怎么办? 那就要通过拉普拉斯近似来找到一个高斯分布$q(z)$来近似它.  p ( z ) = \frac { 1 } { Z } f ( z )下面来看具体怎么做?  找到分布$p(z)$的众数.   找到以该众数为中心的高斯分布$">
 <meta name="keywords" content="Deep Learning,PRML,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从零单排PRML 第4章 Linear Models for Classification">
 <meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/06/11/PRML_4_Linear Models for Classification/index.html">
 <meta property="og:site_name" content="Better Call Saul">
-<meta property="og:description" content="拉普拉斯近似在PRML 第6章 高斯过程中有应用. 首先说拉普拉斯近似有什么用? 我们都知道高斯分布有很多良好的性质,便于分析.那么如果一个分布$p(z)$不是高斯的怎么办? 那就要通过拉普拉斯近似来找到一个高斯分布$q(z)$来近似它.$$p ( z ) = \frac { 1 } { Z } f ( z )$$ 下面来看具体怎么做?  找到分布$p(z)$的众数.   找到以该众数为中心的高斯">
+<meta property="og:description" content="拉普拉斯近似在PRML 第6章 高斯过程中有应用. 首先说拉普拉斯近似有什么用? 我们都知道高斯分布有很多良好的性质,便于分析.那么如果一个分布$p(z)$不是高斯的怎么办? 那就要通过拉普拉斯近似来找到一个高斯分布$q(z)$来近似它.  p ( z ) = \frac { 1 } { Z } f ( z )下面来看具体怎么做?  找到分布$p(z)$的众数.   找到以该众数为中心的高斯分布$">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fyeo7fju44j30za0f877q.jpg">
-<meta property="og:updated_time" content="2018-12-21T13:21:50.906Z">
+<meta property="og:updated_time" content="2018-12-24T02:21:01.463Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零单排PRML 第4章 Linear Models for Classification">
-<meta name="twitter:description" content="拉普拉斯近似在PRML 第6章 高斯过程中有应用. 首先说拉普拉斯近似有什么用? 我们都知道高斯分布有很多良好的性质,便于分析.那么如果一个分布$p(z)$不是高斯的怎么办? 那就要通过拉普拉斯近似来找到一个高斯分布$q(z)$来近似它.$$p ( z ) = \frac { 1 } { Z } f ( z )$$ 下面来看具体怎么做?  找到分布$p(z)$的众数.   找到以该众数为中心的高斯">
+<meta name="twitter:description" content="拉普拉斯近似在PRML 第6章 高斯过程中有应用. 首先说拉普拉斯近似有什么用? 我们都知道高斯分布有很多良好的性质,便于分析.那么如果一个分布$p(z)$不是高斯的怎么办? 那就要通过拉普拉斯近似来找到一个高斯分布$q(z)$来近似它.  p ( z ) = \frac { 1 } { Z } f ( z )下面来看具体怎么做?  找到分布$p(z)$的众数.   找到以该众数为中心的高斯分布$">
 <meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fyeo7fju44j30za0f877q.jpg">
 
 
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-21 21:21:50" itemprop="dateModified" datetime="2018-12-21T21:21:50+08:00">2018-12-21</time>
+                <time title="Modified: 2018-12-24 10:21:01" itemprop="dateModified" datetime="2018-12-24T10:21:01+08:00">2018-12-24</time>
               
             
           </span>
@@ -493,8 +493,9 @@
       
         <h1 id="拉普拉斯近似"><a href="#拉普拉斯近似" class="headerlink" title="拉普拉斯近似"></a>拉普拉斯近似</h1><p>在<a href="https://jhy1993.github.io/Jhy1993.github.io/2018/12/10/PRML_6_kernel%20methods/">PRML 第6章 高斯过程</a>中有应用.</p>
 <p>首先说拉普拉斯近似有什么用?</p>
-<p>我们都知道高斯分布有很多良好的性质,便于分析.那么如果一个分布$p(z)$不是高斯的怎么办? 那就要通过拉普拉斯近似来找到一个高斯分布$q(z)$来近似它.<br>$$<br>p ( z ) = \frac { 1 } { Z } f ( z )<br>$$</p>
-<p>下面来看具体怎么做?</p>
+<p>我们都知道高斯分布有很多良好的性质,便于分析.那么如果一个分布$p(z)$不是高斯的怎么办? 那就要通过拉普拉斯近似来找到一个高斯分布$q(z)$来近似它.</p>
+<script type="math/tex; mode=display">
+p ( z ) = \frac { 1 } { Z } f ( z )</script><p>下面来看具体怎么做?</p>
 <ol>
 <li><p>找到分布$p(z)$的众数. </p>
 </li>
@@ -502,21 +503,36 @@
 </li>
 </ol>
 <p><strong>1. 找到分布$p(z)$的众数.</strong> </p>
-<p>   因为我们的里用来近似的高斯分布$q(z)$是以原始分布$p(z)$的众数为中心(均值)的. 这里<strong>众数</strong>就是概率分布函数的<strong>最大值</strong>.直观理解,概率分布的最大值为$p(z_0)$ ,那么就是代表$z_0$的出现概率最大,那么对这个分布$p$采样,应该采样到最多的$z_0$,就是是众数.</p>
-<p>   所以<strong>找到分布$p(z)$的众数 -&gt; 找到其概率分布函数最大值</strong>. 一般找最大值最简单的方法就是求导:一阶导数为0(保证极值),且二阶导&lt;0(保证最大).即<br>$$<br>\left. \frac { d f ( z ) } { d z } \right| _ { z = z _ { 0 } } = 0, \<br>   \frac { d ^ { 2 }f(z) } { d z ^ { 2 } } | _ { z = z _ { 0 } } &lt; 0<br>$$</p>
-<p><strong>2. 找到以该众数为中心的高斯分布$q(z)$.</strong> </p>
+<p>   因为我们的里用来近似的高斯分布$q(z)$是以原始分布$p(z)$的众数为中心(均值)的. 这里<strong>众数</strong>是概率分布函数$p(z$ )的<strong>取到最大值的</strong>$z_0$. 直观理解,概率分布的最大值为$p(z_0)$ ,那么就是代表$z_0$的出现概率最大,那么对这个分布$p$采样,应该采样到最多的$z_0$,就是是众数.</p>
+<p>   所以<strong>找到分布$p(z)$的众数 -&gt; 找到其概率分布函数最大值</strong>. 一般找最大值最简单的方法就是求导:一阶导数为0(保证极值),且二阶导&lt;0(保证最大).即</p>
+<script type="math/tex; mode=display">
+\left. \frac { d f ( z ) } { d z } \right| _ { z = z _ { 0 } } = 0, \\
+   \frac { d ^ { 2 }f(z) } { d z ^ { 2 } } | _ { z = z _ { 0 } } < 0</script><p><strong>2. 找到以该众数为中心的高斯分布$q(z)$.</strong> </p>
 <p>这里插播一点泰勒展开的知识(还是大一学的,都忘完了…)</p>
-<p>   泰勒展开: 函数$f(z)$ 在$z_0$点的泰勒展开为<br>$$<br>   f(z)= \sum _ { n = 0 } ^ { \infty } \frac { f ^ { ( n ) } ( z_0 ) } { n ! } ( z - z_0 ) ^ { n } \<br>   =f(z_0)+f’(z_0) + \frac{f’’(z_0)}{2}(z-z_0)^2+….<br>$$</p>
-<p>   这里为什么对$\ln f(z)$泰勒展开而不是直接对$f(z)$泰勒展开呢?</p>
+<p>   泰勒展开: 函数$f(z)$ 在$z_0$点的泰勒展开为</p>
+<script type="math/tex; mode=display">
+   f(z)= \sum _ { n = 0 } ^ { \infty } \frac { f ^ { ( n ) } ( z_0 ) } { n ! } ( z - z_0 ) ^ { n } \\
+   =f(z_0)+f'(z_0) + \frac{f''(z_0)}{2}(z-z_0)^2+....</script><p>   这里为什么对$\ln f(z)$泰勒展开而不是直接对$f(z)$泰勒展开呢?</p>
 <p>原因如下:这里泰勒展开出现了二次形式$(z-z_0)^2$ ,我们要近似的$q$高斯分布,它取log之后刚好也是二次函数!  为了让$p$和$q$的形式尽量接近(这样就只剩匹配系数), 所以我们对$\ln p$做泰勒展开.</p>
-<p>   对$\ln f(z)$在$z_0$进行泰勒展开(注意$f’(z_0)=0$),代入泰勒展开得到:<br>$$<br>   \ln f ( z ) \simeq \ln f \left( z _ { 0 } \right) - \frac { 1 } { 2 } A \left( z - z _ { 0 } \right) ^ { 2 } \<br>   A = - \frac { d ^ { 2 } } { d z ^ { 2 } } \ln f \left. ( z ) \right| _ { z = z _ { 0 } } &gt;0.<br>$$</p>
-<p>还原指数形式:<br>$$<br>f ( z ) \simeq f \left( z _ { 0 } \right) \exp \left{ - \frac { A } { 2 } \left( z - z _ { 0 } \right) ^ { 2 } \right}<br>$$</p>
-<p>现在,$f(z)$已经变成了很像高斯分布的东西了. 这里实际上已经可以看到均值$z_0$和方差$\sigma^2=\frac{1}{A}$ 了,只是还差个系数.通过与标准正态分布进行对照可以得到完整形式的高斯分布,即我们要找的$q(z)$.<br>$$<br>q ( z ) = \left( \frac { A } { 2 \pi } \right) ^ { 1 / 2 } \exp \left{ - \frac { A } { 2 } \left( z - z _ { 0 } \right) ^ { 2 } \right}<br>$$<br>下面是个图例</p>
+<p>   对$\ln f(z)$在$z_0$进行泰勒展开(注意$f’(z_0)=0$),代入泰勒展开得到:</p>
+<script type="math/tex; mode=display">
+   \ln f ( z ) \simeq \ln f \left( z _ { 0 } \right) - \frac { 1 } { 2 } A \left( z - z _ { 0 } \right) ^ { 2 } \\
+   A = - \frac { d ^ { 2 } } { d z ^ { 2 } } \ln f \left. ( z ) \right| _ { z = z _ { 0 } } >0.</script><p>还原指数形式:</p>
+<script type="math/tex; mode=display">
+f ( z ) \simeq f \left( z _ { 0 } \right) \exp \left\{ - \frac { A } { 2 } \left( z - z _ { 0 } \right) ^ { 2 } \right\}</script><p>现在,$f(z)$已经变成了很像高斯分布的东西了. 这里实际上已经可以看到均值$z_0$和方差$\sigma^2=\frac{1}{A}$ 了,即$\mathcal{N}(z_0,A^{-1})$,只是还差个系数.通过与标准正态分布进行对照可以得到完整形式的高斯分布,即我们要找的$q(z)$.</p>
+<script type="math/tex; mode=display">
+q ( z ) = \left( \frac { A } { 2 \pi } \right) ^ { 1 / 2 } \exp \left\{ - \frac { A } { 2 } \left( z - z _ { 0 } \right) ^ { 2 } \right\}</script><p>下面是个图例</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fyeo7fju44j30za0f877q.jpg" alt="image-20181221210716409"></p>
 <p>右图展示了原始分布的众数和高斯分布的中心是在一起的.</p>
 <p><strong>扩展到多维的形式</strong> </p>
 <p>前面都是$p(z)$,接下来我们将$z$扩展成M维向量,来求解M维分布$p ( \mathbf { z } ) = f ( \mathbf { z } ) / Z$. </p>
-<p>泰勒展开变成了<br>$$<br>\ln f ( \mathbf { z } ) \simeq \ln f \left( \mathbf { z } _ { 0 } \right) - \frac { 1 } { 2 } \left( \mathbf { z } - \mathbf { z } _ { 0 } \right) ^ { \mathrm { T } } \mathbf { A } \left( \mathbf { z } - \mathbf { z } _ { 0 } \right)<br>$$<br>回归指数形式<br>$$<br>f ( \mathbf { z } ) \simeq f \left( \mathbf { z } _ { 0 } \right) \exp \left{ - \frac { 1 } { 2 } \left( \mathbf { z } - \mathbf { z } _ { 0 } \right) ^ { \mathrm { T } } \mathbf { A } \left( \mathbf { z } - \mathbf { z } _ { 0 } \right) \right}<br>$$<br>同样的,从一维的形式对照过来.<br>$$<br>q ( \mathbf { z } ) = \frac { | \mathbf { A } | ^ { 1 / 2 } } { ( 2 \pi ) ^ { M / 2 } } \exp \left{ - \frac { 1 } { 2 } \left( \mathbf { z } - \mathbf { z } _ { 0 } \right) ^ { \mathrm { T } } \mathbf { A } \left( \mathbf { z } - \mathbf { z } _ { 0 } \right) \right} = \mathcal { N } ( \mathbf { z } | \mathbf { z } _ { 0 } , \mathbf { A } ^ { - 1 } )<br>$$<br><strong>总结</strong></p>
+<p>泰勒展开变成了</p>
+<script type="math/tex; mode=display">
+\ln f ( \mathbf { z } ) \simeq \ln f \left( \mathbf { z } _ { 0 } \right) - \frac { 1 } { 2 } \left( \mathbf { z } - \mathbf { z } _ { 0 } \right) ^ { \mathrm { T } } \mathbf { A } \left( \mathbf { z } - \mathbf { z } _ { 0 } \right)</script><p>回归指数形式</p>
+<script type="math/tex; mode=display">
+f ( \mathbf { z } ) \simeq f \left( \mathbf { z } _ { 0 } \right) \exp \left\{ - \frac { 1 } { 2 } \left( \mathbf { z } - \mathbf { z } _ { 0 } \right) ^ { \mathrm { T } } \mathbf { A } \left( \mathbf { z } - \mathbf { z } _ { 0 } \right) \right\}</script><p>同样的,从一维的形式对照过来.</p>
+<script type="math/tex; mode=display">
+q ( \mathbf { z } ) = \frac { | \mathbf { A } | ^ { 1 / 2 } } { ( 2 \pi ) ^ { M / 2 } } \exp \left\{ - \frac { 1 } { 2 } \left( \mathbf { z } - \mathbf { z } _ { 0 } \right) ^ { \mathrm { T } } \mathbf { A } \left( \mathbf { z } - \mathbf { z } _ { 0 } \right) \right\} = \mathcal { N } ( \mathbf { z } | \mathbf { z } _ { 0 } , \mathbf { A } ^ { - 1 } )</script><p><strong>总结</strong></p>
 <p>推导过程很多,但是实际上求近似的高斯分布$q ( \mathbf { z } )$ , 我们只需要知道众数$\mathbf { z } _ { 0 }$ 和二阶Hessian矩阵即可.</p>
 <p>整个拉普拉斯近似work的原因是:根据大数定理,在采样到足够多的额样本之后,后验分布式接近一个高斯分布的.</p>
 <h2 id="Model-comparison-and-BIC"><a href="#Model-comparison-and-BIC" class="headerlink" title="Model comparison and BIC"></a>Model comparison and BIC</h2>
@@ -585,8 +601,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/06/11/18KDD_MPCN/" rel="next" title="18KDD_Multi-Pointer Co-Attention Networks for Recommendation">
-                <i class="fa fa-chevron-left"></i> 18KDD_Multi-Pointer Co-Attention Networks for Recommendation
+              <a href="/Jhy1993.github.io/2018/06/11/101-200/" rel="next" title="Sentences 101-200">
+                <i class="fa fa-chevron-left"></i> Sentences 101-200
               </a>
             
           </div>
@@ -595,8 +611,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/06/11/gcn/" rel="prev" title="Graph Neural Network之GCN的理论">
-                Graph Neural Network之GCN的理论 <i class="fa fa-chevron-right"></i>
+              <a href="/Jhy1993.github.io/2018/06/11/重参数化技巧/" rel="prev" title="Reparametrization tricks 重参数技巧">
+                Reparametrization tricks 重参数技巧 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -674,7 +690,7 @@
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -746,7 +762,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -840,7 +856,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright"> &copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright"> &copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

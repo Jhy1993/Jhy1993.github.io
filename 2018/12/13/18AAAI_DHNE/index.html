@@ -117,7 +117,7 @@
 <meta property="og:description" content="本文来自network embedding大佬Peng Cui老师组。针对超图，超边设计了一种深度模型来学习embedding。整体感觉是超图版本的SDNE。 Motivation本文首先研究了如何在embedding中保持超边的不可分割性，同时证明了线性的相似度函数无法保持超边相似性。这样就迫使我们不得不设计一个非线性的深度模型来保持超边的不可分割性。 Model整个模型分2块，1. 类似SDN">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fy9tjh65ttj30vc0mawi2.jpg">
-<meta property="og:updated_time" content="2018-12-17T08:27:57.676Z">
+<meta property="og:updated_time" content="2018-12-22T17:18:26.668Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="18AAAI_DHNE_Structural Deep Embedding for Hyper-Networks">
 <meta name="twitter:description" content="本文来自network embedding大佬Peng Cui老师组。针对超图，超边设计了一种深度模型来学习embedding。整体感觉是超图版本的SDNE。 Motivation本文首先研究了如何在embedding中保持超边的不可分割性，同时证明了线性的相似度函数无法保持超边相似性。这样就迫使我们不得不设计一个非线性的深度模型来保持超边的不可分割性。 Model整个模型分2块，1. 类似SDN">
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-17 16:27:57" itemprop="dateModified" datetime="2018-12-17T16:27:57+08:00">2018-12-17</time>
+                <time title="Modified: 2018-12-23 01:18:26" itemprop="dateModified" datetime="2018-12-23T01:18:26+08:00">2018-12-23</time>
               
             
           </span>
@@ -506,21 +506,21 @@
 </li>
 </ol>
 <p>这里将不同类型的节点映射到不同空间。整体loss</p>
-<p>$$<br>\mathcal { L } _ { 2 } = \sum _ { t } \left| \operatorname { sign } \left( \mathbf { A } _ { i } ^ { t } \right) \odot \left( \mathbf { A } _ { i } ^ { t } - \hat { \mathbf { A } } _ { i } ^ { t } \right) \right| _ { F } ^ { 2 }<br>$$</p>
-<h2 id="N-tuplewise-similarity-function"><a href="#N-tuplewise-similarity-function" class="headerlink" title="N-tuplewise similarity function"></a>N-tuplewise similarity function</h2><p>这个函数主要是为了保持超边（N元组）的相似性，这里的公式都是以3元组（a，b，c）为例,输入是$\left( \mathbf { X } _ { i } ^ { a } , \mathbf { X } _ { j } ^ { b } , \mathbf { X } _ { k } ^ { c } \right)$ 。</p>
+<script type="math/tex; mode=display">
+\mathcal { L } _ { 2 } = \sum _ { t } \left\| \operatorname { sign } \left( \mathbf { A } _ { i } ^ { t } \right) \odot \left( \mathbf { A } _ { i } ^ { t } - \hat { \mathbf { A } } _ { i } ^ { t } \right) \right\| _ { F } ^ { 2 }</script><h2 id="N-tuplewise-similarity-function"><a href="#N-tuplewise-similarity-function" class="headerlink" title="N-tuplewise similarity function"></a>N-tuplewise similarity function</h2><p>这个函数主要是为了保持超边（N元组）的相似性，这里的公式都是以3元组（a，b，c）为例,输入是$\left( \mathbf { X } <em> { i } ^ { a } , \mathbf { X } </em> { j } ^ { b } , \mathbf { X } _ { k } ^ { c } \right)$ 。</p>
 <ul>
 <li>三元组的联合表示:</li>
 </ul>
-<p>$$<br>\mathbf { L } _ { i j k } = \sigma \left( \mathbf { W } _ { a } ^ { ( 2 ) } <em> \mathbf { X } _ { i } ^ { a } + \mathbf { W } _ { b } ^ { ( 2 ) } </em> \mathbf { X } _ { j } ^ { b } + \mathbf { W } _ { c } ^ { ( 2 ) } * \mathbf { X } _ { k } ^ { c } + \mathbf { b } ^ { ( 2 ) } \right)<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+\mathbf { L } _ { i j k } = \sigma \left( \mathbf { W } _ { a } ^ { ( 2 ) } * \mathbf { X } _ { i } ^ { a } + \mathbf { W } _ { b } ^ { ( 2 ) } * \mathbf { X } _ { j } ^ { b } + \mathbf { W } _ { c } ^ { ( 2 ) } * \mathbf { X } _ { k } ^ { c } + \mathbf { b } ^ { ( 2 ) } \right)</script><ul>
 <li>三元组的相似性</li>
 </ul>
-<p>$$<br>\mathbf { S } _ { i j k } \equiv \mathcal { S } \left( \mathbf { X } _ { i } ^ { a } , \mathbf { X } _ { j } ^ { b } , \mathbf { X } _ { k } ^ { c } \right) = \sigma \left( \mathbf { W } ^ { ( 3 ) } * \mathbf { L } _ { i j k } + \mathbf { b } ^ { ( 3 ) } \right)<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+\mathbf { S } _ { i j k } \equiv \mathcal { S } \left( \mathbf { X } _ { i } ^ { a } , \mathbf { X } _ { j } ^ { b } , \mathbf { X } _ { k } ^ { c } \right) = \sigma \left( \mathbf { W } ^ { ( 3 ) } * \mathbf { L } _ { i j k } + \mathbf { b } ^ { ( 3 ) } \right)</script><ul>
 <li>分类loss, 存在超边label就是1</li>
 </ul>
-<p>$$<br>\mathcal { L } _ { 1 } = - \left( \mathbf { R } _ { i j k } \log \mathbf { S } _ { i j k } + \left( 1 - \mathbf { R } _ { i j k } \right) \log \left( 1 - \mathbf { S } _ { i j k } \right) \right)<br>$$</p>
-<p>一句话： 保持N元组的相似度函数，就把N元组作为输入，经过NN映射得到一个相似度。</p>
+<script type="math/tex; mode=display">
+\mathcal { L } _ { 1 } = - \left( \mathbf { R } _ { i j k } \log \mathbf { S } _ { i j k } + \left( 1 - \mathbf { R } _ { i j k } \right) \log \left( 1 - \mathbf { S } _ { i j k } \right) \right)</script><p>一句话： 保持N元组的相似度函数，就把N元组作为输入，经过NN映射得到一个相似度。</p>
 <p>整个模型图如下:</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fy9tjh65ttj30vc0mawi2.jpg" alt=""></p>
 <h1 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h1><p>本文的实验不同于一般的network embedding实验。</p>
@@ -530,11 +530,17 @@
 <li>这里首先将超图基于图1（c）的<strong>clique expansion</strong>技术转化为<strong>普通图</strong></li>
 <li>对于<strong>超图重构</strong>和<strong>超边预测</strong>，这里对一条超边里面的节点分别计算pairwise的相似性，并取<strong>mean</strong>或者<strong>minimum</strong>来做预测</li>
 </ul>
-<h2 id="网络重构（超图重构）"><a href="#网络重构（超图重构）" class="headerlink" title="网络重构（超图重构）"></a>网络重构（超图重构）</h2><p>这里是重构超图，文中的“We use the learned embeddings to predict the links of origin networks”的link也是超边。</p>
-<h2 id="链路预测（超边预测）"><a href="#链路预测（超边预测）" class="headerlink" title="链路预测（超边预测）"></a>链路预测（超边预测）</h2><p>对于DHNE， 训练好的模型<strong>一方面可以得到不同类型节点的embedding，一方面可以得到计算超边的相似性函数</strong></p>
-<p>这里做了2种不同的任务</p>
+<p>所以我们在实验结果中看到deepwalk node2vec等都汇报了两种结果:mean和min.</p>
+<p>对于DHNE， 训练好的模型<strong>一方面可以得到不同类型节点的embedding，一方面可以得到计算超边的相似性函数</strong> .</p>
+<p>所以本文所任务可以分为两类:</p>
 <ol>
-<li>隐藏20%的超边，用80%的边来训练网络。</li>
+<li>需要超边相似性函数的网络重构和链路预测</li>
+<li>只需要节点Embedding的分类</li>
+</ol>
+<h2 id="网络重构（超图重构）"><a href="#网络重构（超图重构）" class="headerlink" title="网络重构（超图重构）"></a>网络重构（超图重构）</h2><p>这里是重构超图，文中的“We use the learned embeddings to predict the links of origin networks”的link也是超边。</p>
+<h2 id="链路预测（超边预测）"><a href="#链路预测（超边预测）" class="headerlink" title="链路预测（超边预测）"></a>链路预测（超边预测）</h2><p>这里做了2种不同的任务</p>
+<ol>
+<li>隐藏20%的超边，用80%的超边来训练网络。</li>
 <li>对超边进行采样（改变稀疏度），并重复任务1</li>
 </ol>
 <h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>本文的首先做了超图的embedding问题，又有一定的理论证明，最后设计模型验证了效果。感觉两个亮点1.是分析了线性相似度函数的局限性 2.N-tuplewise similarity function的设计。</p>
@@ -694,7 +700,7 @@
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -766,7 +772,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -860,7 +866,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright"> &copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright"> &copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

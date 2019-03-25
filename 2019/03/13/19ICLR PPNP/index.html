@@ -108,27 +108,25 @@
 
 
 
-  <meta name="description" content="本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离) F-散度散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度. $$D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x$$这里的$f$需要满足2个条件: $f$是凸函数">
-<meta name="keywords" content="Deep Learning,Wasserstein,Machine Learning">
+  <meta name="description" content="MotivationGCN系列（message passing）一直有个问题就是模型层数加深效果会下降。之前的以前工作也分析或者尝试解决这个问题。 本文作者认为GCN系列（message passing）的问题有两个原因  聚合操作过多会导致过平滑，就是丧失了每个节点的局部特性（通过不断的聚合，一片区域的节点的表示会很像，没有区分度） gcn系列是半监督，每叠加一层都会增加参数量。会不会过拟合？">
+<meta name="keywords" content="Deep Learning,Graph Neural Network">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常见散度与距离(KL散度，JS散度，Wasserstein距离，互信息MI)">
-<meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2018/11/15/常见散度距离/index.html">
+<meta property="og:title" content="19ICLR_PPNP_Predict then Propagate Graph Neural Networks meet Personalized PageRank">
+<meta property="og:url" content="https://Jhy1993.github.io/Jhy1993.github.io/2019/03/13/19ICLR PPNP/index.html">
 <meta property="og:site_name" content="Better Call Saul">
-<meta property="og:description" content="本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离) F-散度散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度. $$D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x$$这里的$f$需要满足2个条件: $f$是凸函数">
+<meta property="og:description" content="MotivationGCN系列（message passing）一直有个问题就是模型层数加深效果会下降。之前的以前工作也分析或者尝试解决这个问题。 本文作者认为GCN系列（message passing）的问题有两个原因  聚合操作过多会导致过平滑，就是丧失了每个节点的局部特性（通过不断的聚合，一片区域的节点的表示会很像，没有区分度） gcn系列是半监督，每叠加一层都会增加参数量。会不会过拟合？">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx1109nhpsj30hk0g9dfw.jpg">
-<meta property="og:updated_time" content="2018-12-14T07:34:10.789Z">
+<meta property="og:updated_time" content="2019-03-13T15:42:13.223Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常见散度与距离(KL散度，JS散度，Wasserstein距离，互信息MI)">
-<meta name="twitter:description" content="本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离) F-散度散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度. $$D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x$$这里的$f$需要满足2个条件: $f$是凸函数">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx1109nhpsj30hk0g9dfw.jpg">
+<meta name="twitter:title" content="19ICLR_PPNP_Predict then Propagate Graph Neural Networks meet Personalized PageRank">
+<meta name="twitter:description" content="MotivationGCN系列（message passing）一直有个问题就是模型层数加深效果会下降。之前的以前工作也分析或者尝试解决这个问题。 本文作者认为GCN系列（message passing）的问题有两个原因  聚合操作过多会导致过平滑，就是丧失了每个节点的局部特性（通过不断的聚合，一片区域的节点的表示会很像，没有区分度） gcn系列是半监督，每叠加一层都会增加参数量。会不会过拟合？">
 
 
 
 
 
 
-  <link rel="canonical" href="https://Jhy1993.github.io/Jhy1993.github.io/2018/11/15/常见散度距离/"/>
+  <link rel="canonical" href="https://Jhy1993.github.io/Jhy1993.github.io/2019/03/13/19ICLR PPNP/"/>
 
 
 
@@ -138,7 +136,7 @@
   };
 </script>
 
-  <title>常见散度与距离(KL散度，JS散度，Wasserstein距离，互信息MI) | Better Call Saul</title>
+  <title>19ICLR_PPNP_Predict then Propagate Graph Neural Networks meet Personalized PageRank | Better Call Saul</title>
   
 
 
@@ -352,7 +350,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/11/15/常见散度距离/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2019/03/13/19ICLR PPNP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Double E">
@@ -369,7 +367,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">常见散度与距离(KL散度，JS散度，Wasserstein距离，互信息MI)
+          <h1 class="post-title" itemprop="name headline">19ICLR_PPNP_Predict then Propagate Graph Neural Networks meet Personalized PageRank
               
             
           </h1>
@@ -394,24 +392,12 @@
                 
               
 
-              <time title="Created: 2018-11-15 15:31:57" itemprop="dateCreated datePublished" datetime="2018-11-15T15:31:57+08:00">2018-11-15</time>
+              <time title="Created: 2019-03-13 11:27:30 / Modified: 23:42:13" itemprop="dateCreated datePublished" datetime="2019-03-13T11:27:30+08:00">2019-03-13</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-14 15:34:10" itemprop="dateModified" datetime="2018-12-14T15:34:10+08:00">2018-12-14</time>
               
             
           </span>
@@ -428,7 +414,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/ML-DL/" itemprop="url" rel="index"><span itemprop="name">ML & DL</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
 
                 
                 
@@ -443,8 +429,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/11/15/常见散度距离/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/11/15/常见散度距离/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2019/03/13/19ICLR PPNP/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2019/03/13/19ICLR PPNP/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -452,7 +438,7 @@
 
           
           
-             <span id="/Jhy1993.github.io/2018/11/15/常见散度距离/" class="leancloud_visitors" data-flag-title="常见散度与距离(KL散度，JS散度，Wasserstein距离，互信息MI)">
+             <span id="/Jhy1993.github.io/2019/03/13/19ICLR PPNP/" class="leancloud_visitors" data-flag-title="19ICLR_PPNP_Predict then Propagate Graph Neural Networks meet Personalized PageRank">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -491,79 +477,23 @@
       
 
       
-        <p>本文对比了常见散度(KL散度，JS散度)和常见距离(尤其是现在很火的Wasserstein距离)</p>
-<h1 id="F-散度"><a href="#F-散度" class="headerlink" title="F-散度"></a>F-散度</h1><p>散度是用来衡量两个概率密度p，q区别的函数，即：两个分布的相似程度.</p>
-<p>$$<br>D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x<br>$$<br>这里的$f$需要满足2个条件: $f$是凸函数且$f(1)=0$.</p>
-<p>可以证明:</p>
-<p>因为$f$是凸函数,由Jensen不等式可知 $E(f(x)) &gt;= f(E(x))$,所以<br>$$<br>D _ { f } ( p | q ) = \int q ( x ) f \left( \frac { p ( x ) } { q ( x ) } \right) d x \geq f \left( \int q ( x ) \frac { p ( x ) } { q ( x ) } d x \right) = f ( 1 ) = 0<br>$$</p>
-<h2 id="KL散度"><a href="#KL散度" class="headerlink" title="KL散度"></a>KL散度</h2><p>KL散度是F-散度的一个特例,当$f(x)=xlogx$ 的时候:<br>$$<br>D _ { KL} ( p | q ) = \int  p(x) \log \left( \frac { p ( x ) } { q ( x ) } \right) d x<br>$$<br>需要注意</p>
-<ul>
-<li>KL散度非对称,即 $D _ { KL} ( p | q ) \neq D _ { KL} ( q | p )$ ,所以KL散度不是一个真正的距离或者度量.</li>
-<li>KL散度不满足三角不等式 $D _ { KL} ( p | q ) &gt; D _ { KL} ( p | r )  + D _ { KL} ( r | q )  $.  </li>
-<li>KL散度取值范围从$[0, \infty]$ , p=q的时候,两个分布完全一样取到0</li>
-</ul>
-<p>p和q的影响:</p>
-<ul>
-<li>如果想要$D_{KL}$小,<ul>
-<li>那么p大的地方,q一定要大</li>
-<li>那么p小的地方,q对$D_{KL}$的影响不大</li>
-</ul>
-</li>
-<li>如果想要$D_{KL}$大<ul>
-<li>那么p大的地方,q对$D_{KL}$影响不大</li>
-<li>那么p小的地方,q一定要小</li>
-</ul>
-</li>
-</ul>
-<p>KL散度 不对称导致的问题:</p>
-<ul>
-<li>情况1.当 $p\rightarrow 0$ 且 $q\rightarrow 1$时, $ p(x) \log \left( \frac { p ( x ) } { q ( x ) }\ \right) \rightarrow 0$ , 对$D_{KL}(p||q)$的贡献为0</li>
-<li>情况2.当$ p\rightarrow 1 $且 $q\rightarrow 0$时, $ p(x) \log \left( \frac { p ( x ) } { q ( x ) }\ \right) \rightarrow +\infty $, 对$D_{KL}(p||q)$的贡献为$+\infty $.<ul>
-<li>进步一这里可以解释为什么我们通常选择正态分布而不是均匀分布.</li>
-<li>均匀分布:只要两个均分分布不是完全相同,必然出现$p\neq0,q=0$的情况,导致$D_{KL}(p||q)\rightarrow +\infty $.</li>
-<li>正态分布:所有概率密度都是非负的,所以不会出现上述情况.</li>
-</ul>
-</li>
-</ul>
-<p>换而言之, pq之间的KL散度可能导致惩罚或者梯度差距极大.</p>
-<h2 id="JS散度"><a href="#JS散度" class="headerlink" title="JS散度"></a>JS散度</h2><p>JS散度实际就是KL散度的一个扩展,被用来推导GAN.<br>$$<br>D _ { JS} ( p | q ) =\frac{1}{2}D _ { KL} ( p | \frac{p+q}{2} ) +\frac{1}{2}D _ { KL} ( q | \frac{p+q}{2} )<br>$$<br>需要注意</p>
-<ul>
-<li>JS散度是对称的.</li>
-<li>JS散度有界,范围是$[0,\log2]$这个上界不同情况,见<a href="http://pages.stern.nyu.edu/~dbackus/BCZ/entropy/Jensen%96Shannon-divergence-Wikipedia.pdf" target="_blank" rel="noopener">http://pages.stern.nyu.edu/~dbackus/BCZ/entropy/Jensen%96Shannon-divergence-Wikipedia.pdf</a></li>
-</ul>
-<p>KL散度和JS散度度量的时候有一个问题：</p>
-<p>如果两个分配P,Q离得很远，完全没有重叠的时候，那么KL散度值是没有意义的，而JS散度值是一个常数。这在学习算法中是比较致命的，这就意味这这一点的梯度为0。梯度消失了。</p>
-<h2 id="Renyi-alpha-散度"><a href="#Renyi-alpha-散度" class="headerlink" title="Renyi $\alpha$ -散度"></a>Renyi $\alpha$ -散度</h2><p>$$<br>D _ { \alpha} ( p | q ) = \frac{1}{\alpha(\alpha-1)}\log \bigg( \int    \frac { p ( x ) ^{\alpha}} { q ( x )^{\alpha-1} }  d x \bigg)<br>$$</p>
-<p>当$\alpha \rightarrow 0或1$时,可以得到KL散度或者reverse KL散度.</p>
-<p>只有当$\alpha=0.5$的时候对称.</p>
-<h1 id="互信息-Mutual-Information"><a href="#互信息-Mutual-Information" class="headerlink" title="互信息 Mutual Information"></a>互信息 Mutual Information</h1><p>互信息, 很难计算.<br>$$<br>I ( X ; Y ) = \int _ { Y } \int _ { X } p ( x , y ) \log \left( \frac { p ( x , y ) } { p ( x ) p ( y ) } \right) d x d y \\<br>$$</p>
-<p>$$<br>I ( X ; Y ) = \sum _ { y \in Y } \sum _ { x \in X } p ( x , y ) \log \left( \frac { p ( x , y ) } { p ( x ) p ( y ) } \right)<br>$$</p>
-<p>对比互信息和KL散度的公式,可以得到<br>$$<br>I ( X ; Y ) = D_{KL}\bigg(p(x,y)||p(x)p(y)\bigg)<br>$$<br>此外,令$p(x|y)=\frac{p(x,y)}{p(y)}$, 则<br>$$<br> \mathrm { I } ( X ; Y ) \<br>= \sum _ { y } p ( y ) \sum _ { x } p ( x | y ) \log _ { 2 } \frac { p ( x | y ) } { p ( x ) } \<br> = \sum _ { y } p ( y ) D _ { \mathrm { KL } } ( p ( x | y ) | p ( x ) ) \<br>  = \mathbb { E } _ { Y } \left[ D _ { \mathrm { KL } } ( p ( x | y ) | p ( x ) ) \right]<br>$$</p>
-<h1 id="距离"><a href="#距离" class="headerlink" title="距离"></a>距离</h1><p>一个真正的距离或者度量要满足3个条件:</p>
-<h2 id="TV距离"><a href="#TV距离" class="headerlink" title="TV距离"></a>TV距离</h2><p>里还证明了 EBGAN 的 loss 是在 minimize TV 距离，而 TV 距离与 JS 是等价的（事实上 KL &gt; TV = JS &gt; EM ）</p>
-<h2 id="Wasserstein距离"><a href="#Wasserstein距离" class="headerlink" title="Wasserstein距离"></a>Wasserstein距离</h2><p>定义为<br>$$<br>W _ { p } ( \mu , \nu ) : = \left( \begin{array} { c } { \inf } \ { \gamma \in \Gamma ( \mu , \nu ) } \end{array} \int _ { M \times M } d ( x , y ) ^ { p } \mathrm { d } \gamma ( x , y ) \right)^{1/p}<br>$$<br>$$<br>W _ { p } ( \mu , \nu ) ^ { p } = \inf \mathbf { E } \left[ d ( X , Y ) ^ { p } \right]<br>$$</p>
-<p>这里$\Gamma ( \mu , \nu )$ 是$ \mu , \nu $分布组合起来的<strong>所有的可能的联合分布</strong>的集合, $(x,y)$代表从$\gamma$中进行采样出一对样本. 针对这对样本,从x搬移到y处所需要的距离就是 $d(x,y)$. 加上期望就代表,把所有$\mu $搬移到$\nu$所需要的距离.</p>
-<p>Wasserstein距离满足距离的三个要求.</p>
-<p>可以证明其满足三角不等式<br>$$<br>W _ { p } ( \mu , \nu ) \leq \left( \int | x - z | ^ { p } d \gamma \right) ^ { 1 / p } = \left( \int | x - z | ^ { p } d \sigma \right) ^ { 1 / p } = | x - z | _ { L ^ { p } ( \sigma ) } \\<br>\leq | x - y | _ { L ^ { p } ( \sigma ) } + | y - z | _ { L ^ { p } ( \sigma ) } = \left( \int | x - z | ^ { p } d \sigma \right) ^ { 1 / p } + \left( \int | x - z | ^ { p } d \sigma \right) ^ { 1 / p } \\<br>= \left( \int | x - z | ^ { p } d \gamma ^ { + } \right) ^ { 1 / p } + \left( \int | x - z | ^ { p } d \gamma ^ { - } \right) ^ { 1 / p } = W _ { p } ( \mu , \rho ) + W _ { p } ( \rho , \nu )<br>$$<br>Wessertein距离相比KL散度和JS散度的<strong>优势</strong>在于：即使两个分布的支撑集没有重叠或者重叠非常少，仍然能反映两个分布的远近。而JS散度在此情况下是常量，KL散度可能无意义.<br>(6)中的$W _ { p } ( \mu , \nu ) ^ { p } $又叫$W_p$距离, 这样就会有$W_1$距离和$W_2$距离</p>
-<h3 id="W-1-距离-EMD距离"><a href="#W-1-距离-EMD距离" class="headerlink" title="$W_1$距离(EMD距离)"></a>$W_1$距离(EMD距离)</h3><p>TODO</p>
-<h3 id="W-2-距离"><a href="#W-2-距离" class="headerlink" title="$W_2$距离"></a>$W_2$距离</h3><p>$W_p​$距离的求解是非常麻烦的,但是在某种情况下求解很方便.</p>
-<p>针对<strong>两个高斯分布</strong>,$W_2$距离有<strong>闭式解</strong>(线性时间求解):<br>$$<br>d i s t = W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) , \mathcal { N } \left( \mu _ { 2 } , \Sigma _ { 2 } \right) \right)<br>\\<br>d i s t ^ { 2 } = \left| \mu _ { 1 } - \mu _ { 2 } \right| _ { 2 } ^ { 2 } + \operatorname { Tr } \left( \Sigma _ { 1 } + \Sigma _ { 2 } - 2 \left( \Sigma _ { 1 } ^ { 1 / 2 } \Sigma _ { 2 } \Sigma _ { 1 } ^ { 1 / 2 } \right) ^ { 1 / 2 } \right)<br>$$<br>如果这两个高斯分布的方差矩阵为对角矩阵,即$\Sigma _ { 1 } \Sigma _ { 2 } = \Sigma _ { 2 } \Sigma _ { 1 }$,上式可以进一步简化.<br>$$<br>W _ { 2 } \left( \mathcal { N } \left( \mu _ { 1 } , \Sigma _ { 1 } \right) ; \boldsymbol { N } \left( m _ { 2 } , \Sigma _ { 2 } \right) \right) ^ { 2 } = \left| \mu _ { 1 } - \mu _ { 2 } \right| _ { 2 } ^ { 2 } + \left| \Sigma _ { 1 } ^ { 1 / 2 } - \Sigma _ { 2 } ^ { 1 / 2 } \right| _ { F } ^ { 2 }<br>$$</p>
-<h1 id="JS散度-KL散度-Wessertein距离对比"><a href="#JS散度-KL散度-Wessertein距离对比" class="headerlink" title="JS散度,KL散度,Wessertein距离对比"></a>JS散度,KL散度,Wessertein距离对比</h1><p>举例如下:</p>
-<p>考虑如下二维空间中的两个分布pq，p在线段AB上均匀分布，q在线段CD上均匀分布，通过控制参数$\theta$可以控制着两个分布的距离远近。</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx1109nhpsj30hk0g9dfw.jpg" alt="img"></p>
-<p>$$<br>D_{KL}(p||q)=D_{KL}(q||p)=<br>\left{ \begin{array} { l l } { + \infty } &amp; { \text { if } \theta \neq 0 } \ { 0 } &amp; { \text { if } \theta = 0 } \end{array} \right.<br>$$</p>
-<p>$$<br>D_{JS}(p||q)= \left{ \begin{array} { l l } { \log 2 } &amp; { \text { if } \theta \neq 0 } \ { 0 } &amp; { \text { if } \theta = 0 } \end{array} \right.<br>$$</p>
-<p>$$<br>W(p,q)=|\theta|<br>$$</p>
-<p>可以看出JS和KL都出现了突变,而W距离保持平滑</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
-<li><a href="https://blog.csdn.net/uestc_c2_403/article/details/75208644" target="_blank" rel="noopener">https://blog.csdn.net/uestc_c2_403/article/details/75208644</a></li>
-<li><a href="https://www.zhihu.com/question/39872326/answer/83688277" target="_blank" rel="noopener">https://www.zhihu.com/question/39872326/answer/83688277</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/25071913" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25071913</a></li>
-<li><a href="http://pages.stern.nyu.edu/~dbackus/BCZ/entropy/Jensen%96Shannon-divergence-Wikipedia.pdf" target="_blank" rel="noopener">http://pages.stern.nyu.edu/~dbackus/BCZ/entropy/Jensen%96Shannon-divergence-Wikipedia.pdf</a></li>
-<li>The Wasserstein distances</li>
-<li>Optimal Transport for Applied Mathematicians</li>
-<li><a href="http://www.geometry.caltech.edu/pubs/dGBOD12.pdf" target="_blank" rel="noopener">http://www.geometry.caltech.edu/pubs/dGBOD12.pdf</a></li>
+        <h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>GCN系列（message passing）一直有个问题就是<strong>模型层数加深效果会下降</strong>。之前的以前工作也分析或者尝试解决这个问题。</p>
+<p>本文作者认为GCN系列（message passing）的问题有两个原因</p>
+<ol>
+<li>聚合操作过多会导致过平滑，就是丧失了每个节点的局部特性（通过不断的聚合，一片区域的节点的表示会很像，没有区分度）</li>
+<li>gcn系列是半监督，每叠加一层都会增加参数量。会不会过拟合？</li>
 </ol>
+<p>针对问题1，作者进行了分析</p>
+<ul>
+<li>k层的gcn近似于k步的随机游走分布（从根节点x开始游走）。这个的分布和起始点x无关，只和终点y有关。而k无穷大的时候，y是整张图的所有节点，所以这时候，所有节点的最终分布相同。<br>这就是为什么gcn无法有效的描述x的有关信息（即，失去了对x的局部结构的注意）。</li>
+</ul>
+<p>针对问题2，作者给出了相应的解法</p>
+<ul>
+<li><strong>把神经网络和传播过程分割开来</strong>。先通过神经网络将节点的feature映射到表示，在基于personalized PageRank进行传播聚合。</li>
+</ul>
+<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><p>以随机游走分布为桥梁，作者进一步分析。其实所谓的PageRank也是收敛到随机游走分布的。通过上面的分析，从 gcn-&gt; 随机游走分布-&gt; PageRank，作者将注意力转到PageRank上来。但是PageRank也存在上述问题（失去对局部结构的关注）。幸运的是，PageRank有个变种 personalized PageRank可以较好的关注根节点的局部结构。</p>
+<p>personalized PageRank很简单，就是加一个重启概率 $\alpha$（以一定概率回到根节点）。</p>
+<p>预测矩阵 $\boldsymbol{H} \in \mathbb{R}^{n \times c}$  预测的n个节点的label</p>
 
       
     </div>
@@ -615,9 +545,7 @@
           
             <a href="/Jhy1993.github.io/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
           
-            <a href="/Jhy1993.github.io/tags/Wasserstein/" rel="tag"># Wasserstein</a>
-          
-            <a href="/Jhy1993.github.io/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+            <a href="/Jhy1993.github.io/tags/Graph-Neural-Network/" rel="tag"># Graph Neural Network</a>
           
         </div>
       
@@ -630,8 +558,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/11/13/1-100/" rel="next" title="Sentences 1-100">
-                <i class="fa fa-chevron-left"></i> Sentences 1-100
+              <a href="/Jhy1993.github.io/2019/02/28/19ICLR_DGI/" rel="next" title="19ICLR_DGI_Deep Graph Infomax">
+                <i class="fa fa-chevron-left"></i> 19ICLR_DGI_Deep Graph Infomax
               </a>
             
           </div>
@@ -640,8 +568,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Jhy1993.github.io/2018/12/04/18KDD_HEER/" rel="prev" title="18KDD_HEER_Easing Embedding Learning by Comprehensive Transcription of Heterogeneous Information Networks">
-                18KDD_HEER_Easing Embedding Learning by Comprehensive Transcription of Heterogeneous Information Networks <i class="fa fa-chevron-right"></i>
+              <a href="/Jhy1993.github.io/2019/03/25/常见散度距离/" rel="prev" title="常见散度与距离(KL散度，JS散度，Wasserstein距离，互信息MI)">
+                常见散度与距离(KL散度，JS散度，Wasserstein距离，互信息MI) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -719,7 +647,7 @@
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -791,7 +719,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -865,7 +793,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#F-散度"><span class="nav-number">1.</span> <span class="nav-text">F-散度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#KL散度"><span class="nav-number">1.1.</span> <span class="nav-text">KL散度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS散度"><span class="nav-number">1.2.</span> <span class="nav-text">JS散度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Renyi-alpha-散度"><span class="nav-number">1.3.</span> <span class="nav-text">Renyi $\alpha$ -散度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#互信息-Mutual-Information"><span class="nav-number">2.</span> <span class="nav-text">互信息 Mutual Information</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#距离"><span class="nav-number">3.</span> <span class="nav-text">距离</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TV距离"><span class="nav-number">3.1.</span> <span class="nav-text">TV距离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wasserstein距离"><span class="nav-number">3.2.</span> <span class="nav-text">Wasserstein距离</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#W-1-距离-EMD距离"><span class="nav-number">3.2.1.</span> <span class="nav-text">$W_1$距离(EMD距离)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#W-2-距离"><span class="nav-number">3.2.2.</span> <span class="nav-text">$W_2$距离</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JS散度-KL散度-Wessertein距离对比"><span class="nav-number">4.</span> <span class="nav-text">JS散度,KL散度,Wessertein距离对比</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Motivation"><span class="nav-number">1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a></li></ol></div>
             
 
           </div>
@@ -885,7 +813,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright"> &copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright"> &copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
