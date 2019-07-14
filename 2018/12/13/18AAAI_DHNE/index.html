@@ -506,21 +506,21 @@
 </li>
 </ol>
 <p>这里将不同类型的节点映射到不同空间。整体loss</p>
-<script type="math/tex; mode=display">
-\mathcal { L } _ { 2 } = \sum _ { t } \left\| \operatorname { sign } \left( \mathbf { A } _ { i } ^ { t } \right) \odot \left( \mathbf { A } _ { i } ^ { t } - \hat { \mathbf { A } } _ { i } ^ { t } \right) \right\| _ { F } ^ { 2 }</script><h2 id="N-tuplewise-similarity-function"><a href="#N-tuplewise-similarity-function" class="headerlink" title="N-tuplewise similarity function"></a>N-tuplewise similarity function</h2><p>这个函数主要是为了保持超边（N元组）的相似性，这里的公式都是以3元组（a，b，c）为例,输入是$\left( \mathbf { X } <em> { i } ^ { a } , \mathbf { X } </em> { j } ^ { b } , \mathbf { X } _ { k } ^ { c } \right)$ 。</p>
+<p>$$<br>\mathcal { L } _ { 2 } = \sum _ { t } \left| \operatorname { sign } \left( \mathbf { A } _ { i } ^ { t } \right) \odot \left( \mathbf { A } _ { i } ^ { t } - \hat { \mathbf { A } } _ { i } ^ { t } \right) \right| _ { F } ^ { 2 }<br>$$</p>
+<h2 id="N-tuplewise-similarity-function"><a href="#N-tuplewise-similarity-function" class="headerlink" title="N-tuplewise similarity function"></a>N-tuplewise similarity function</h2><p>这个函数主要是为了保持超边（N元组）的相似性，这里的公式都是以3元组（a，b，c）为例,输入是$\left( \mathbf { X } _ { i } ^ { a } , \mathbf { X } _ { j } ^ { b } , \mathbf { X } _ { k } ^ { c } \right)$ 。</p>
 <ul>
 <li>三元组的联合表示:</li>
 </ul>
-<script type="math/tex; mode=display">
-\mathbf { L } _ { i j k } = \sigma \left( \mathbf { W } _ { a } ^ { ( 2 ) } * \mathbf { X } _ { i } ^ { a } + \mathbf { W } _ { b } ^ { ( 2 ) } * \mathbf { X } _ { j } ^ { b } + \mathbf { W } _ { c } ^ { ( 2 ) } * \mathbf { X } _ { k } ^ { c } + \mathbf { b } ^ { ( 2 ) } \right)</script><ul>
+<p>$$<br>\mathbf { L } _ { i j k } = \sigma \left( \mathbf { W } _ { a } ^ { ( 2 ) } <em> \mathbf { X } _ { i } ^ { a } + \mathbf { W } _ { b } ^ { ( 2 ) } </em> \mathbf { X } _ { j } ^ { b } + \mathbf { W } _ { c } ^ { ( 2 ) } * \mathbf { X } _ { k } ^ { c } + \mathbf { b } ^ { ( 2 ) } \right)<br>$$</p>
+<ul>
 <li>三元组的相似性</li>
 </ul>
-<script type="math/tex; mode=display">
-\mathbf { S } _ { i j k } \equiv \mathcal { S } \left( \mathbf { X } _ { i } ^ { a } , \mathbf { X } _ { j } ^ { b } , \mathbf { X } _ { k } ^ { c } \right) = \sigma \left( \mathbf { W } ^ { ( 3 ) } * \mathbf { L } _ { i j k } + \mathbf { b } ^ { ( 3 ) } \right)</script><ul>
+<p>$$<br>\mathbf { S } _ { i j k } \equiv \mathcal { S } \left( \mathbf { X } _ { i } ^ { a } , \mathbf { X } _ { j } ^ { b } , \mathbf { X } _ { k } ^ { c } \right) = \sigma \left( \mathbf { W } ^ { ( 3 ) } * \mathbf { L } _ { i j k } + \mathbf { b } ^ { ( 3 ) } \right)<br>$$</p>
+<ul>
 <li>分类loss, 存在超边label就是1</li>
 </ul>
-<script type="math/tex; mode=display">
-\mathcal { L } _ { 1 } = - \left( \mathbf { R } _ { i j k } \log \mathbf { S } _ { i j k } + \left( 1 - \mathbf { R } _ { i j k } \right) \log \left( 1 - \mathbf { S } _ { i j k } \right) \right)</script><p>一句话： 保持N元组的相似度函数，就把N元组作为输入，经过NN映射得到一个相似度。</p>
+<p>$$<br>\mathcal { L } _ { 1 } = - \left( \mathbf { R } _ { i j k } \log \mathbf { S } _ { i j k } + \left( 1 - \mathbf { R } _ { i j k } \right) \log \left( 1 - \mathbf { S } _ { i j k } \right) \right)<br>$$</p>
+<p>一句话： 保持N元组的相似度函数，就把N元组作为输入，经过NN映射得到一个相似度。</p>
 <p>整个模型图如下:</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fy9tjh65ttj30vc0mawi2.jpg" alt=""></p>
 <h1 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h1><p>本文的实验不同于一般的network embedding实验。</p>
@@ -700,7 +700,7 @@
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">50</span>
+                    <span class="site-state-item-count">65</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -712,6 +712,8 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/Jhy1993.github.io/categories/index.html">
                     
+                    
+                      
                     
                       
                     
@@ -772,7 +774,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
