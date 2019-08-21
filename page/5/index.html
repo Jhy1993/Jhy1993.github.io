@@ -349,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/383._ransom_note/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/011._container_with_most_water/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Double E">
@@ -368,8 +368,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/383._ransom_note/" itemprop="url">
-                  383. Ransom Note
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/011._container_with_most_water/" itemprop="url">
+                  11. Container With Most Water
                 </a>
               
             
@@ -412,7 +412,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-14 22:40:12" itemprop="dateModified" datetime="2018-11-14T22:40:12+08:00">2018-11-14</time>
+                <time title="Modified: 2019-02-05 00:00:08" itemprop="dateModified" datetime="2019-02-05T00:00:08+08:00">2019-02-05</time>
               
             
           </span>
@@ -444,8 +444,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/383._ransom_note/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/383._ransom_note/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/011._container_with_most_water/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/011._container_with_most_water/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -453,7 +453,7 @@
 
           
           
-             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/383._ransom_note/" class="leancloud_visitors" data-flag-title="383. Ransom Note">
+             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/011._container_with_most_water/" class="leancloud_visitors" data-flag-title="11. Container With Most Water">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -486,20 +486,23 @@
       
         
           
-          383. Ransom Note题目：https://leetcode.com/problems/ransom-note/
-难度 : Easy
-https://leetcode.com/problems/ransom-note/description/
-思路1  41%
-因为要能构成,又限制每个字母只能用一次
-一个magazine能构成的rabsomNote的条件是:ransomNote中每个字母都在magazine中出现且次数不少于ransomNote中的次数
-可以构建两个字典,并比较
+          11. Container With Most Water题目:https://leetcode.com/problems/container-with-most-water/
+难度:Medium
+思路1 70%暴力遍历所有可能的container,复杂度O(n^2),抛弃
+这里注意到container是两个边缘围起来的,比较容易想到双指针
+具体如下,
 
-12
+从首位开始向中间收缩
+每次container的面积是由最矮的边缘,及两个边缘间的距离决定的
+哪边比较矮就移动一步.
+
+复杂度 O(n)
+123
           ...
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/383._ransom_note/#more" rel="contents">
+              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/011._container_with_most_water/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -556,7 +559,7 @@ https://leetcode.com/problems/ransom-note/description/
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/049.Group_anagrams/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/070.Climbing_Stairs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Double E">
@@ -575,8 +578,8 @@ https://leetcode.com/problems/ransom-note/description/
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/049.Group_anagrams/" itemprop="url">
-                  49. Group Anagrams
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/070.Climbing_Stairs/" itemprop="url">
+                  70. Climbing Stairs
                 </a>
               
             
@@ -619,7 +622,7 @@ https://leetcode.com/problems/ransom-note/description/
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-14 22:38:39" itemprop="dateModified" datetime="2018-11-14T22:38:39+08:00">2018-11-14</time>
+                <time title="Modified: 2019-07-14 21:13:54" itemprop="dateModified" datetime="2019-07-14T21:13:54+08:00">2019-07-14</time>
               
             
           </span>
@@ -651,8 +654,8 @@ https://leetcode.com/problems/ransom-note/description/
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/049.Group_anagrams/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/049.Group_anagrams/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/070.Climbing_Stairs/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/070.Climbing_Stairs/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -660,7 +663,7 @@ https://leetcode.com/problems/ransom-note/description/
 
           
           
-             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/049.Group_anagrams/" class="leancloud_visitors" data-flag-title="49. Group Anagrams">
+             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/070.Climbing_Stairs/" class="leancloud_visitors" data-flag-title="70. Climbing Stairs">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -693,648 +696,22 @@ https://leetcode.com/problems/ransom-note/description/
       
         
           
-          49. Group Anagrams难度: Medium
+          70. Climbing Stairs难度: Easy
 刷题内容
 原题连接
 
 
-https://leetcode.com/problems/group-anagrams/description/
+https://leetcode.com/problems/climbing-stairs/description/
 
 
 内容描述
 
-123456789101112131415Given an array of strings, group anagrams together.Example:Input: [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quo
+12345678910111213141516171819202122You are climbing a stair case. It takes n steps to reach to the top.Each time you can either climb 1 or 2 st
           ...
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/049.Group_anagrams/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/075.Sort_colors/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Double E">
-      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
-      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Better Call Saul">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/075.Sort_colors/" itemprop="url">
-                  75. Sort Colors
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-09-25 08:52:22" itemprop="dateCreated datePublished" datetime="2018-09-25T08:52:22+08:00">2018-09-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-13 23:18:06" itemprop="dateModified" datetime="2018-11-13T23:18:06+08:00">2018-11-13</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/075.Sort_colors/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/075.Sort_colors/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/075.Sort_colors/" class="leancloud_visitors" data-flag-title="75. Sort Colors">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views: </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          75. Sort Colors难度: 中等
-刷题内容
-原题连接
-
-
-https://leetcode.com/problems/sort-colors/description/
-
-
-内容描述
-
-123456789101112131415Given an array with n objects colored red, white or blue, sort them in-place so that objects of the same color are adjacent, with th
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/075.Sort_colors/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.Unique_paths/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Double E">
-      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
-      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Better Call Saul">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.Unique_paths/" itemprop="url">
-                  62. unique paths
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-09-25 08:52:22" itemprop="dateCreated datePublished" datetime="2018-09-25T08:52:22+08:00">2018-09-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-16 22:56:16" itemprop="dateModified" datetime="2018-11-16T22:56:16+08:00">2018-11-16</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.Unique_paths/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.Unique_paths/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.Unique_paths/" class="leancloud_visitors" data-flag-title="62. unique paths">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views: </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          62. unique paths 不同路径难度: 中等
-刷题内容
-原题连接
-
-
-https://leetcode.com/problems/unique-paths
-https://leetcode-cn.com/problems/unique-paths/description
-
-
-内容描述
-
-12345一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。.机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。问总
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/062.Unique_paths/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/203.Remove_linked_list_elements/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Double E">
-      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
-      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Better Call Saul">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/203.Remove_linked_list_elements/" itemprop="url">
-                  203. Remove Linked List Elements
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-09-25 08:52:22" itemprop="dateCreated datePublished" datetime="2018-09-25T08:52:22+08:00">2018-09-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-10-30 23:51:10" itemprop="dateModified" datetime="2018-10-30T23:51:10+08:00">2018-10-30</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/203.Remove_linked_list_elements/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/203.Remove_linked_list_elements/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/203.Remove_linked_list_elements/" class="leancloud_visitors" data-flag-title="203. Remove Linked List Elements">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views: </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          203. Remove Linked List Elements题目:https://leetcode.com/problems/remove-linked-list-elements/
-难度:
-Easy
-76ms 40%AC代码如下:
-
-注意linked list 的首个node就可能需要删除,所以建立一个哑节点 dummy, dummy.next = head
-链表中的删除实际是跳过该节点
-
-1234567891011121314151617181920class Solution(obje
-          ...
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/203.Remove_linked_list_elements/#more" rel="contents">
+              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/070.Climbing_Stairs/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1805,7 +1182,7 @@ Easy
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/012._Integer_to_Roman/">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/013._Roman_to_Integer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Double E">
@@ -1824,8 +1201,8 @@ Easy
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/012._Integer_to_Roman/" itemprop="url">
-                  12. Integer to Roman
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/013._Roman_to_Integer/" itemprop="url">
+                  13.Roman to Integer
                 </a>
               
             
@@ -1868,7 +1245,7 @@ Easy
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-26 00:30:41" itemprop="dateModified" datetime="2019-03-26T00:30:41+08:00">2019-03-26</time>
+                <time title="Modified: 2019-03-25 23:39:10" itemprop="dateModified" datetime="2019-03-25T23:39:10+08:00">2019-03-25</time>
               
             
           </span>
@@ -1900,8 +1277,8 @@ Easy
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/012._Integer_to_Roman/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/012._Integer_to_Roman/" itemprop="commentCount"></span>
+                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/013._Roman_to_Integer/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/013._Roman_to_Integer/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1909,7 +1286,7 @@ Easy
 
           
           
-             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/012._Integer_to_Roman/" class="leancloud_visitors" data-flag-title="12. Integer to Roman">
+             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/013._Roman_to_Integer/" class="leancloud_visitors" data-flag-title="13.Roman to Integer">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1942,18 +1319,22 @@ Easy
       
         
           
-          题目:https://leetcode.com/problems/integer-to-roman/
-难度:Medium
-思路：
-首先我学习了一下罗马字母是如何表示的。然后感慨，这个阿拉伯数字是多么好的发明
-基于的是这些个Symbol：
-121	5	10	50	100	500	1000I	V	X  	 L	 C	 D	 M
-AC代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546
+          难度: Easy
+刷题内容
+原题连接
+
+
+https://leetcode.com/problems/roman-to-integer/
+
+
+内容描述
+
+1234567891011121314151617181920212223242526272829303132333435363738394041Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.Symbol       Value
           ...
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/012._Integer_to_Roman/#more" rel="contents">
+              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/013._Roman_to_Integer/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -2405,6 +1786,625 @@ Easy
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/003._longest_substring_without_repeating_characters/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Double E">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
+      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Better Call Saul">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/003._longest_substring_without_repeating_characters/" itemprop="url">
+                  3. Longest Substring Without Repeating Characters
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-09-25 08:52:22" itemprop="dateCreated datePublished" datetime="2018-09-25T08:52:22+08:00">2018-09-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-11-18 21:20:26" itemprop="dateModified" datetime="2018-11-18T21:20:26+08:00">2018-11-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/003._longest_substring_without_repeating_characters/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/003._longest_substring_without_repeating_characters/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/003._longest_substring_without_repeating_characters/" class="leancloud_visitors" data-flag-title="3. Longest Substring Without Repeating Characters">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          3. Longest Substring Without Repeating Characters难度: Medium
+刷题内容
+原题连接
+
+
+https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+
+
+内容描述
+
+12345678910111213141516171819Given a string, find the length of the longest subs
+          ...
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/003._longest_substring_without_repeating_characters/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/189._rotate_array/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Double E">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
+      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Better Call Saul">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/189._rotate_array/" itemprop="url">
+                  189. Rotate Array
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-09-25 08:52:22" itemprop="dateCreated datePublished" datetime="2018-09-25T08:52:22+08:00">2018-09-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-18 20:15:19" itemprop="dateModified" datetime="2019-03-18T20:15:19+08:00">2019-03-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/189._rotate_array/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/189._rotate_array/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/189._rotate_array/" class="leancloud_visitors" data-flag-title="189. Rotate Array">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          题目：https://leetcode.com/problems/rotate-array/
+难度 : Easy
+旋转法首先，要知道一点，```k % len(nums)``` 次就行了12345678910111213141516171819202122232425262728其次，要注意```if k is None or k &lt;= 0:```的情况* 首先**反转**前end-k个元素* 在**反转** 后k个元素* 整体反转整个list```pythonclass Solution
+          ...
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/189._rotate_array/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Jhy1993.github.io/Jhy1993.github.io/Jhy1993.github.io/2018/09/25/hexo_leetcode/021.Merge_two_sorted_lists/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Double E">
+      <meta itemprop="description" content="EECS, BUPTer, 算法蒻鷄.">
+      <meta itemprop="image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx20lwtnh9j30ku0rs0vc.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Better Call Saul">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/021.Merge_two_sorted_lists/" itemprop="url">
+                  21. Merge Two Sorted Lists
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-09-25 08:52:22" itemprop="dateCreated datePublished" datetime="2018-09-25T08:52:22+08:00">2018-09-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-30 22:37:55" itemprop="dateModified" datetime="2018-10-30T22:37:55+08:00">2018-10-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/Jhy1993.github.io/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/021.Merge_two_sorted_lists/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/Jhy1993.github.io/2018/09/25/hexo_leetcode/021.Merge_two_sorted_lists/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Jhy1993.github.io/2018/09/25/hexo_leetcode/021.Merge_two_sorted_lists/" class="leancloud_visitors" data-flag-title="21. Merge Two Sorted Lists">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          21. Merge Two Sorted Lists难度: Easy
+刷题内容
+原题连接
+
+
+https://leetcode.com/problems/merge-two-sorted-lists/description/
+
+
+内容描述
+
+123456Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of th
+          ...
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Jhy1993.github.io/2018/09/25/hexo_leetcode/021.Merge_two_sorted_lists/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2456,7 +2456,7 @@ Easy
                 
                   <a href="/Jhy1993.github.io/archives/">
                 
-                    <span class="site-state-item-count">65</span>
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
